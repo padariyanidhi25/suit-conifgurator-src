@@ -1,0 +1,75 @@
+{"monogram" :[
+    
+    
+    {
+      "id": "linigm",
+      "image": "https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/custommade/thumbs2/Jacket/LFL1",
+      "alt": "Lining",
+      "title": "Lining",
+      "description": "Full Lined"
+    },
+    {
+      "id": "btnm",
+      "image": "https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/custommade/thumbs2/buttons_v2/TFH01",
+      "alt": "Button",
+      "title": "Button",
+      "description": "Dark Brown"
+    },
+    {
+      "id": "",
+      "image": "https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/custommade/thumbs2/monogramStyle/jacket/MOI1N",
+      "alt": "Monogram",
+      "title": "Monogram",
+      "description": "None"
+    },
+    {
+      "id": "",
+      "image": "https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/custommade/thumbs2/Jacket/LN1",
+      "alt": "Lapel",
+      "title": "Lapel",
+      "description": "Notch"
+    },
+    {
+      "id": "canvas",
+      "image": "https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/custommade/thumbs2/Jacket/CHCL5",
+      "alt": "Lapel",
+      "title": "Canvas",
+      "description": "Half Canvas"
+    },
+    {
+      "id": "shoulder",
+      "image": "https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/custommade/thumbs2/Jacket/SREG1",
+      "alt": "Lapel",
+      "title": "Shoulder",
+      "description": "Lightly Padded"
+    },
+    {
+      "id": "pokt",
+      "image": "https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/custommade/thumbs2/Jacket/SPF5.5",
+      "alt": "Lapel",
+      "title": "Pocket",
+      "description": "Standard Flap(5.5cm)"
+    },
+    {
+      "id": "closure",
+      "image": "https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/custommade/thumbs2/Jacket/MBN2",
+      "alt": "Lapel",
+      "title": "Closure",
+      "description": "2 Button"
+    },
+    {
+      "id": "amf",
+      "image": "https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/custommade/thumbs2/Jacket/HAMF2mm2",
+      "alt": "Lapel",
+      "title": "AMF",
+      "description": "2mm"
+    },
+    {
+      "id": "collarfelt",
+      "image": "https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/custommade/thumbs2/collarFelt_ui_v3/CFC1",
+      "alt": "Lapel",
+      "title": "Collar Felt",
+      "description": "Fabric"
+    }
+  ]
+}
