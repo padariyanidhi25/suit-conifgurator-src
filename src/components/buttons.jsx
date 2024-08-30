@@ -12,7 +12,7 @@ const BtnsComp = () => {
         setUserData(result);
         result.forEach(item => {
           if (item.category === 'Button' && item.isActive) {
-            console.log(`Button Item - Type: ${item.name}, Price: ${item.price}`);
+            // console.log(`Button Item - Type: ${item.name}, Price: ${item.price}`);
           }
         });
       })

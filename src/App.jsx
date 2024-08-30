@@ -11,34 +11,34 @@ import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Vector3 } from "three";
 
-function RectAreaLightComponent({ position, rotation, intensity, width, height, targetPosition }) {
-  const lightRef = useRef();
+// function RectAreaLightComponent({ position, rotation, intensity, width, height, targetPosition }) {
+//   const lightRef = useRef();
 
-  useEffect(() => {
-    if (lightRef.current) {
-      lightRef.current.lookAt(new Vector3(...targetPosition));
-      lightRef.current.updateMatrixWorld();
-    }
-  }, [targetPosition]);
+//   useEffect(() => {
+//     if (lightRef.current) {
+//       lightRef.current.lookAt(new Vector3(...targetPosition));
+//       lightRef.current.updateMatrixWorld();
+//     }
+//   }, [targetPosition]);
 
-  useFrame(() => {
-    if (lightRef.current) {
-      lightRef.current.lookAt(new Vector3(...targetPosition));
-      lightRef.current.updateMatrixWorld();
-    }
-  });
+//   useFrame(() => {
+//     if (lightRef.current) {
+//       lightRef.current.lookAt(new Vector3(...targetPosition));
+//       lightRef.current.updateMatrixWorld();
+//     }
+//   });
 
-  return (
-    <rectAreaLight
-      ref={lightRef}
-      position={position}
-      rotation={rotation}
-      intensity={intensity}
-      width={width}
-      height={height}
-    />
-  );
-}
+//   return (
+//     <rectAreaLight
+//       ref={lightRef}
+//       position={position}
+//       rotation={rotation}
+//       intensity={intensity}
+//       width={width}
+//       height={height}
+//     />
+//   );
+// }
 
 function App() {
   const [showFirstCanvas, setShowFirstCanvas] = useState(true);
@@ -99,32 +99,22 @@ function App() {
                 position={[0, 0.05, 0.334]}
               />
               
-              <RectAreaLightComponent 
-                position={[0.468164, -0.022108, 0.921883]} 
-                rotation={[
-                  toRadians(3.31184),
-                  toRadians(64.1682),
-                  toRadians(-18.401),
-                ]}
-                intensity={1}
-                width={10}
-                height={10}
-                targetPosition={targetPosition} // Targeting the model position
+              <directionalLight 
+                position={[0.468164, 0.092108, 0.921883]} 
+                rotation={[0.0578025123,1.1199463651,-0.32115803566 ]}
+                intensity={0.5}
+                // color={"red"}
               />
               
-              {/* Right-side RectAreaLight */}
-              {/* <RectAreaLightComponent
-                position={[-0.352444, -0.25606, 0.029522]}
-                rotation={[
-                  toRadians(0.000013),
-                  toRadians(67.8842),
-                  toRadians(-142.782),
-                ]}
+             {/* <ambientLight intensity={0.1} color={"red"} /> */}
+              <directionalLight
+                position={[-0.352444, -0.015606, 0.029522]}
+                rotation={[2.2689280276,1.548028001,-2.492016013  ]}
                 intensity={1}
-                width={10}
-                height={10}
-                targetPosition={targetPosition} // Targeting the model position
-              /> */}
+                // color={"red"}
+               
+              />
+              {/* <Environment preset="studio"   intensity={4}/> */}
 
               <Experience toggleCanvas={toggleCanvas} setFabricPrice={setFabricPrice} />
             </Canvas>
