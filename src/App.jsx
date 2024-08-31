@@ -90,15 +90,20 @@ function App() {
               
               
               <StaticDirectionalLight
-                position={[0.468164,2, 7.21883]}
-                targetPosition={[12, 1, 15.5]} 
-                intensity={0.2}
+                position={[-0.45244,0.32952,0.27606]}
+                targetPosition={[4, -1, 0.1]} 
+                intensity={1}
               />
 
               <StaticDirectionalLight
-                position={[-0.352444, 2,2.329522]}
-                targetPosition={[-9, 0, -20.5]} 
-                intensity={0.8}
+                position={[0.468164,0.42188, 0.17211]}
+                targetPosition={[-4, -1, 0.1]} 
+                intensity={1.5}
+              />
+              <StaticDirectionalLight
+                position={[0,0,12]}
+                targetPosition={[0,3,4]} 
+                intensity={0.3}
               />
 
               {/* <Environment preset="studio" intensity={4}/> */}
