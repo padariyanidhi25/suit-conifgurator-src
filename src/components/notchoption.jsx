@@ -6,9 +6,9 @@ import { useButtonTexture } from './Buttontexture';
 
 
 export function Nochdoublebrested(props) {
-  const { nodes, materials } = useGLTF('./clouseroption-noch/brested_noch_new.glb');
+  const { nodes, materials } = useGLTF('./clouseroption-noch/doublebreastednoch.glb');
 
-  useButtonTexture(materials,'Button.003')
+  useButtonTexture(materials,'Button')
 
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -36,62 +36,40 @@ export function Nochdoublebrested(props) {
   }, [materials]);
 
   return (
-    <group {...props} dispose={null} scale={45}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.double_breasted_buttons.geometry}
-        material={materials['Button.003']}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={0.01}
-      />
+    <group {...props} dispose={null}>
       <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
         <mesh
           castShadow
           receiveShadow
           geometry={nodes.Mesh012.geometry}
-          material={materials['Jacket.005']}
+          material={materials.Jacket}
         />
         <mesh
           castShadow
           receiveShadow
           geometry={nodes.Mesh012_1.geometry}
-          material={materials['Kaaj.002']}
+          material={materials.Kaaj}
         />
       </group>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.double_breasted_buttons.geometry}
+        material={materials.Button}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
     </group>
   )
 }
 
-useGLTF.preload('./clouseroption-noch/brested_noch_new.glb')
+useGLTF.preload('./clouseroption-noch/doublebreastednoch.glb')
 
 export function Notchdoublebtn(props) {
-    const { nodes, materials } = useGLTF('./clouseroption-noch/noch_doublebtn_new.glb')
+    const { nodes, materials } = useGLTF('./clouseroption-noch/doublebuttonnoch.glb')
     const [textureURL, setTextureURL] = useState(null);
-  //   const [buttonTextureURL, setButtonTextureURL] = useState(null);
-  //  useEffect(() => {
-  //   const handleButtonSelected = ({ textureURL }) => {
-  //     setButtonTextureURL(textureURL);
-  //     applyButtonTexture(textureURL);
-  //   };
 
-  //   eventEmitter.on('buttonSelected', handleButtonSelected);
-
-  //   return () => {
-  //     eventEmitter.off('buttonSelected', handleButtonSelected);
-  //   };
-  // }, []);
-
-  // const applyButtonTexture = (texturePath) => {
-  //   const loader = new THREE.TextureLoader();
-  //   loader.load(texturePath, (texture) => {
-  //     if (materials['Button.004']) { // Update the correct material key for your model
-  //       materials['Button.004'].map = texture;
-  //       materials['Button.004'].needsUpdate = true;
-  //     }
-  //   });
-  // };
-  useButtonTexture(materials,'Button.004')
+  useButtonTexture(materials,'Button.001')
 
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -120,69 +98,46 @@ export function Notchdoublebtn(props) {
       };
     }, [materials]);
     return (
-      <group {...props} dispose={null} scale={45}>
+      <group {...props} dispose={null}>
       <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
         <mesh
           castShadow
           receiveShadow
           geometry={nodes.Mesh010.geometry}
-          material={materials['Jacket.006']}
+          material={materials['Jacket.001']}
         />
         <mesh
           castShadow
           receiveShadow
           geometry={nodes.Mesh010_1.geometry}
-          material={materials['Kaaj.003']}
+          material={materials['Kaaj.001']}
         />
       </group>
       <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Mesh007.geometry}
-          material={materials['Jacket.007']}
+          geometry={nodes.Mesh003.geometry}
+          material={materials['Jacket.002']}
         />
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Mesh007_1.geometry}
-          material={materials['Button.004']}
+          geometry={nodes.Mesh003_1.geometry}
+          material={materials['Button.001']}
         />
       </group>
     </group>
-    )
-  }
+  )
+}
   
-  useGLTF.preload('./clouseroption-noch/noch_doublebtn_new.glb')
+  useGLTF.preload('./clouseroption-noch/doublebuttonnoch.glb')
 
   export function Notchsinglebtn(props) {
-    const { nodes, materials } = useGLTF('./clouseroption-noch/noch_singlebtn_new.glb')
+    const { nodes, materials } = useGLTF('./clouseroption-noch/singlebuttonnoch.glb')
     const [textureURL, setTextureURL] = useState(null);
-    // const [buttonTextureURL, setButtonTextureURL] = useState(null);
-    // useEffect(() => {
-    //   const handleButtonSelected = ({ textureURL }) => {
-    //     setButtonTextureURL(textureURL);
-    //     applyButtonTexture(textureURL);
-    //   };
-  
-    //   eventEmitter.on('buttonSelected', handleButtonSelected);
-  
-    //   return () => {
-    //     eventEmitter.off('buttonSelected', handleButtonSelected);
-    //   };
-    // }, []);
-  
-    // const applyButtonTexture = (texturePath) => {
-    //   const loader = new THREE.TextureLoader();
-    //   loader.load(texturePath, (texture) => {
-    //     // Assuming the button material has a specific key like 'Button.011'
-    //     if (materials['Button.005']) {
-    //       materials['Button.005'].map = texture;
-    //       materials['Button.005'].needsUpdate = true;
-    //     }
-    //   });
-    // };
-    useButtonTexture(materials,'Button.005')
+ 
+    useButtonTexture(materials,'Button.002')
 
   
     useEffect(() => {
@@ -213,38 +168,38 @@ export function Notchdoublebtn(props) {
       };
     }, [materials]);
     return (
-      <group {...props} dispose={null} scale={45}>
+      <group {...props} dispose={null}>
+      <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Mesh001.geometry}
+          material={materials['Jacket.003']}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Mesh001_1.geometry}
+          material={materials['Button.002']}
+        />
+      </group>
       <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
         <mesh
           castShadow
           receiveShadow
           geometry={nodes.Mesh011.geometry}
-          material={materials['Jacket.008']}
+          material={materials['Jacket.004']}
         />
         <mesh
           castShadow
           receiveShadow
           geometry={nodes.Mesh011_1.geometry}
-          material={materials['Kaaj.004']}
-        />
-      </group>
-      <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Mesh008.geometry}
-          material={materials['Jacket.009']}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Mesh008_1.geometry}
-          material={materials['Button.005']}
+          material={materials['Kaaj.002']}
         />
       </group>
     </group>
-    )
-  }
+  )
+}
   
-  useGLTF.preload('./clouseroption-noch/noch_singlebtn_new.glb')
+  useGLTF.preload('./clouseroption-noch/singlebuttonnoch.glb')
   

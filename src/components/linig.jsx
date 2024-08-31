@@ -3,28 +3,28 @@ import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 
 export function Linig(props) {
-  const { nodes, materials } = useGLTF('./lining/lining_new.glb');
+  const { nodes, materials } = useGLTF('./lining/Full_Linning.glb');
 
   return (
-    <group {...props} dispose={null} scale={45}>
-    <mesh
-      castShadow
-      receiveShadow
-      geometry={nodes.Full_Lined.geometry}
-      material={materials.Lining}
-      rotation={[Math.PI / 2, 0, 0]}
-      scale={0.01}
-    />
-  </group>
-  );
+    <group {...props} dispose={null}>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Full_Lined.geometry}
+        material={materials.Lining}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+    </group>
+  )
 }
 
-useGLTF.preload('./lining/lining_new.glb');
+useGLTF.preload('./lining/Full_Linning.glb');
 
 export function Butterfly_Lining(props) {
-  const { nodes, materials } = useGLTF('./lining/Butterfly_Lining_GLB.glb')
+  const { nodes, materials } = useGLTF('./lining/Butterfly_Lining.glb')
   return (
-    <group {...props} dispose={null} scale={45}>
+    <group {...props} dispose={null}>
       <mesh
         castShadow
         receiveShadow
@@ -37,11 +37,12 @@ export function Butterfly_Lining(props) {
   )
 }
 
-useGLTF.preload('./lining/Butterfly_Lining_GLB.glb')
+useGLTF.preload('./lining/Butterfly_Lining.glb')
+
 export function Half_Linning(props) {
-  const { nodes, materials } = useGLTF('./lining//Half_Linning_GLB.glb')
+  const { nodes, materials } = useGLTF('./lining/Half_Linning.glb')
   return (
-    <group {...props} dispose={null} scale={45}>
+    <group {...props} dispose={null}>
       <mesh
         castShadow
         receiveShadow
@@ -54,4 +55,4 @@ export function Half_Linning(props) {
   )
 }
 
-useGLTF.preload('./lining//Half_Linning_GLB.glb')
+useGLTF.preload('./lining/Half_Linning.glb')

@@ -8,7 +8,7 @@ import eventEmitter from './eventEmitter';
 
 
 export function Flap_Pocket(props) {
-  const { nodes, materials } = useGLTF('./pockets/Flap_Pocket_n.glb');
+  const { nodes, materials } = useGLTF('./pockets/Flap_Pocket.glb');
   const [textureURL, setTextureURL] = useState(null);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export function Flap_Pocket(props) {
 
 
   return (
-    <group {...props} dispose={null} scale={45}>
+    <group {...props} dispose={null}>
     <mesh
       castShadow
       receiveShadow
@@ -46,13 +46,13 @@ export function Flap_Pocket(props) {
       scale={0.01}
     />
   </group>
-  );
+)
 }
 
-useGLTF.preload('./pockets/Flap_Pocket_n.glb');
+useGLTF.preload('./pockets/Flap_Pocket.glb');
 
 export function Patch_Pocket(props) {
-  const { nodes, materials } = useGLTF('./pockets/Patch_Pockets_n.glb');
+  const { nodes, materials } = useGLTF('./pockets/Patch_Pockets.glb');
   const [textureURL, setTextureURL] = useState(null);
 
   useEffect(() => {
@@ -81,7 +81,7 @@ export function Patch_Pocket(props) {
 
 
   return (
-    <group {...props} dispose={null} scale={45}>
+    <group {...props} dispose={null}>
       <mesh
         castShadow
         receiveShadow
@@ -91,13 +91,13 @@ export function Patch_Pocket(props) {
         scale={0.01}
       />
     </group>
-  );
+  )
 }
 
-useGLTF.preload('./pockets/Patch_Pockets_n.glb');
+useGLTF.preload('./pockets/Patch_Pockets.glb');
 
 export function Besom_Pocket(props) {
-  const { nodes, materials } = useGLTF('./pockets/Besom_Pocket_n.glb');
+  const { nodes, materials } = useGLTF('./pockets/Besom_Pocket.glb');
   const [textureURL, setTextureURL] = useState(null);
 
   useEffect(() => {
@@ -124,23 +124,23 @@ export function Besom_Pocket(props) {
   }, [materials]);
 
   return (
-    <group {...props} dispose={null} scale={45}>
-    <mesh
-      castShadow
-      receiveShadow
-      geometry={nodes.Besom_Pocket.geometry}
-      material={materials.Jacket}
-      rotation={[Math.PI / 2, 0, 0]}
-      scale={0.01}
-    />
-  </group>
-  );
+    <group {...props} dispose={null}>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Besom_Pocket.geometry}
+        material={materials.Jacket}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+    </group>
+  )
 }
 
-useGLTF.preload('./pockets/Besom_Pocket_n.glb');
+useGLTF.preload('./pockets/Besom_Pocket.glb');
 
 export function Upperpocket(props) {
-  const { nodes, materials } = useGLTF('./pockets/upper_Normal_pocket_n.glb')
+  const { nodes, materials } = useGLTF('./pockets/upper_Normal_pocket.glb')
   const [textureURL, setTextureURL] = useState(null);
 
   useEffect(() => {
@@ -167,7 +167,7 @@ export function Upperpocket(props) {
   }, [materials]);
  
   return (
-    <group {...props} dispose={null} scale={45}>
+    <group {...props} dispose={null}>
     <mesh
       castShadow
       receiveShadow
@@ -177,12 +177,13 @@ export function Upperpocket(props) {
       scale={0.01}
     />
   </group>
-  )
+)
 }
 
-useGLTF.preload('./pockets/upper_Normal_pocket_n.glb')
+useGLTF.preload('./pockets/upper_Normal_pocket.glb')
+
 export function Halfmoon(props) {
-  const { nodes, materials } = useGLTF('./pockets/upper_halfmoon_pocket_n.glb')
+  const { nodes, materials } = useGLTF('./pockets/upper_halfmoon_pocket.glb')
   const [textureURL, setTextureURL] = useState(null);
 
   useEffect(() => {
@@ -208,7 +209,7 @@ export function Halfmoon(props) {
     };
   }, [materials]);
   return (
-    <group {...props} dispose={null} scale={45}>
+    <group {...props} dispose={null}>
     <mesh
       castShadow
       receiveShadow
@@ -218,12 +219,12 @@ export function Halfmoon(props) {
       scale={0.01}
     />
   </group>
-  )
+)
 }
 
-useGLTF.preload('./pockets/upper_halfmoon_pocket_n.glb')
+useGLTF.preload('./pockets/upper_halfmoon_pocket.glb')
 export function Patch_Pocket_Upper(props) {
-  const { nodes, materials } = useGLTF('./pockets/Patch_pocket_new.glb')
+  const { nodes, materials } = useGLTF('./pockets/Patch_Pocket Upper.glb')
   const [textureURL, setTextureURL] = useState(null);
 
   useEffect(() => {
@@ -249,17 +250,17 @@ export function Patch_Pocket_Upper(props) {
     };
   }, [materials]);
   return (
-    <group {...props} dispose={null} scale={45}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Patch_Pocket_Upper.geometry}
-        material={materials.Jacket}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={0.01}
-      />
-    </group>
-  )
+    <group {...props} dispose={null}>
+    <mesh
+      castShadow
+      receiveShadow
+      geometry={nodes.Patch_Pocket_Upper.geometry}
+      material={materials.Jacket}
+      rotation={[Math.PI / 2, 0, 0]}
+      scale={0.01}
+    />
+  </group>
+)
 }
 
-useGLTF.preload('./pockets/Patch_pocket_new.glb')
+useGLTF.preload('./pockets/Patch_Pocket Upper.glb')

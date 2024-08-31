@@ -148,7 +148,7 @@ function Chair( ...props ) {
  
   
     return (
-      <group {...props} dispose={null} scale={45}>
+      <group {...props} dispose={null} >
       {/* <mesh
         castShadow
         receiveShadow

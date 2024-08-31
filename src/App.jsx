@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import { Canvas } from "@react-three/fiber";
 import Experience from "./components/Experience";
@@ -7,38 +7,29 @@ import { CustomizationProvider } from "./contexts/Customization";
 import { Environment, PerspectiveCamera } from "@react-three/drei";
 import { getEntries } from "./Firebase/userUtil";
 import eventEmitter from "./components/eventEmitter";
-import { useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
 import { Vector3 } from "three";
 
-// function RectAreaLightComponent({ position, rotation, intensity, width, height, targetPosition }) {
-//   const lightRef = useRef();
+function StaticDirectionalLight({ position, targetPosition, intensity }) {
+  const lightRef = useRef();
+  const targetRef = useRef();
 
-//   useEffect(() => {
-//     if (lightRef.current) {
-//       lightRef.current.lookAt(new Vector3(...targetPosition));
-//       lightRef.current.updateMatrixWorld();
-//     }
-//   }, [targetPosition]);
+  useEffect(() => {
+    if (lightRef.current && targetRef.current) {
+      lightRef.current.target = targetRef.current;
+    }
+  }, []);
 
-//   useFrame(() => {
-//     if (lightRef.current) {
-//       lightRef.current.lookAt(new Vector3(...targetPosition));
-//       lightRef.current.updateMatrixWorld();
-//     }
-//   });
-
-//   return (
-//     <rectAreaLight
-//       ref={lightRef}
-//       position={position}
-//       rotation={rotation}
-//       intensity={intensity}
-//       width={width}
-//       height={height}
-//     />
-//   );
-// }
+  return (
+    <>
+      <directionalLight
+        ref={lightRef}
+        position={position}
+        intensity={intensity}
+      />
+      <mesh ref={targetRef} position={targetPosition} />
+    </>
+  );
+}
 
 function App() {
   const [showFirstCanvas, setShowFirstCanvas] = useState(true);
@@ -82,8 +73,6 @@ function App() {
     setTotalPrice(buttonPrice + fabricPrice);
   }, [buttonPrice, fabricPrice]);
 
-  const toRadians = (degrees) => degrees * (Math.PI / 180);
-  const targetPosition = [0,0,0];
   return (
     <>
       <CustomizationProvider>
@@ -99,22 +88,20 @@ function App() {
                 position={[0, 0.05, 0.334]}
               />
               
-              <directionalLight 
-                position={[0.468164, 0.092108, 0.921883]} 
-                rotation={[0.0578025123,1.1199463651,-0.32115803566 ]}
-                intensity={0.5}
-                // color={"red"}
-              />
               
-             {/* <ambientLight intensity={0.1} color={"red"} /> */}
-              <directionalLight
-                position={[-0.352444, -0.015606, 0.029522]}
-                rotation={[2.2689280276,1.548028001,-2.492016013  ]}
-                intensity={1}
-                // color={"red"}
-               
+              <StaticDirectionalLight
+                position={[0.468164,2, 7.21883]}
+                targetPosition={[12, 1, 15.5]} 
+                intensity={0.2}
               />
-              {/* <Environment preset="studio"   intensity={4}/> */}
+
+              <StaticDirectionalLight
+                position={[-0.352444, 2,2.329522]}
+                targetPosition={[-9, 0, -20.5]} 
+                intensity={0.8}
+              />
+
+              {/* <Environment preset="studio" intensity={4}/> */}
 
               <Experience toggleCanvas={toggleCanvas} setFabricPrice={setFabricPrice} />
             </Canvas>

@@ -5,33 +5,10 @@ import * as THREE from 'three';
 import { useButtonTexture } from './Buttontexture';
 
 export function Peakdoublebreasted(props) {
-  const { nodes, materials } = useGLTF('./clouseroption-peak/peakdoublebreasted_new.glb')
+  const { nodes, materials } = useGLTF('./clouseroption-peak/doublebreastedpeak.glb')
   const [textureURL, setTextureURL] = React.useState(null);
-  // const [buttonTextureURL, setButtonTextureURL] = React.useState(null);
-  // useEffect(() => {
-  //   const handleButtonSelected = ({ textureURL }) => {
-  //     setButtonTextureURL(textureURL);
-  //     applyButtonTexture(textureURL);
-  //   };
-
-  //   eventEmitter.on('buttonSelected', handleButtonSelected);
-
-  //   return () => {
-  //     eventEmitter.off('buttonSelected', handleButtonSelected);
-  //   };
-  // }, []);
-
-  // const applyButtonTexture = (texturePath) => {
-  //   const loader = new THREE.TextureLoader();
-  //   loader.load(texturePath, (texture) => {
-  //     // Assuming the button material has a specific key like 'Button.011'
-  //     if (materials['Button.006']) {
-  //       materials['Button.006'].map = texture;
-  //       materials['Button.006'].needsUpdate = true;
-  //     }
-  //   });
-  // };
-  useButtonTexture(materials,'Button.006')
+ 
+  useButtonTexture(materials,'Button.003')
 
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -62,26 +39,26 @@ export function Peakdoublebreasted(props) {
   
 
   return (
-    <group {...props} dispose={null} scale={45}>
+    <group {...props} dispose={null}>
       <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
         <mesh
           castShadow
           receiveShadow
           geometry={nodes.Mesh017.geometry}
-          material={materials['Jacket.010']}
+          material={materials['Jacket.005']}
         />
         <mesh
           castShadow
           receiveShadow
           geometry={nodes.Mesh017_1.geometry}
-          material={materials['Kaaj.005']}
+          material={materials['Kaaj.003']}
         />
       </group>
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.double_breasted_buttons.geometry}
-        material={materials['Button.006']}
+        material={materials['Button.003']}
         rotation={[Math.PI / 2, 0, 0]}
         scale={0.01}
       />
@@ -89,36 +66,13 @@ export function Peakdoublebreasted(props) {
   )
 }
 
-useGLTF.preload('./clouseroption-peak/peakdoublebreasted_new.glb')
+useGLTF.preload('./clouseroption-peak/doublebreastedpeak.glb')
 
 export function Peakdoublebtn(props) {
-    const { nodes, materials } = useGLTF('./clouseroption-peak/peakdoublebutton_new.glb')
+    const { nodes, materials } = useGLTF('./clouseroption-peak/doublebuttonpeak.glb')
     const [textureURL, setTextureURL] = React.useState(null);
-    // const [buttonTextureURL, setButtonTextureURL] = React.useState(null);
-    // useEffect(() => {
-    //   const handleButtonSelected = ({ textureURL }) => {
-    //     setButtonTextureURL(textureURL);
-    //     applyButtonTexture(textureURL);
-    //   };
   
-    //   eventEmitter.on('buttonSelected', handleButtonSelected);
-  
-    //   return () => {
-    //     eventEmitter.off('buttonSelected', handleButtonSelected);
-    //   };
-    // }, []);
-  
-    // const applyButtonTexture = (texturePath) => {
-    //   const loader = new THREE.TextureLoader();
-    //   loader.load(texturePath, (texture) => {
-    //     // Assuming the button material has a specific key like 'Button.011'
-    //     if (materials['Button.007']) {
-    //       materials['Button.007'].map = texture;
-    //       materials['Button.007'].needsUpdate = true;
-    //     }
-    //   });
-    // };
-    useButtonTexture(materials,'Button.007')
+    useButtonTexture(materials,'Button.004')
     useEffect(() => {
       const handleApplyFabric = ({ textureURL }) => {
         if (textureURL) {
@@ -146,13 +100,13 @@ export function Peakdoublebtn(props) {
     };
   }, [materials]);
     return (
-      <group {...props} dispose={null} scale={45}>
+      <group {...props} dispose={null}>
       <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
         <mesh
           castShadow
           receiveShadow
           geometry={nodes.Mesh016.geometry}
-          material={materials['Jacket.011']}
+          material={materials['Jacket.006']}
         />
         <mesh
           castShadow
@@ -165,51 +119,28 @@ export function Peakdoublebtn(props) {
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Mesh013.geometry}
-          material={materials['Jacket.012']}
+          geometry={nodes.Mesh004.geometry}
+          material={materials['Jacket.007']}
         />
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Mesh013_1.geometry}
-          material={materials['Button.007']}
+          geometry={nodes.Mesh004_1.geometry}
+          material={materials['Button.004']}
         />
       </group>
     </group>
-    )
-  }
+  )
+}
   
-  useGLTF.preload('./clouseroption-peak/peakdoublebutton_new.glb')
+  useGLTF.preload('./clouseroption-peak/doublebuttonpeak.glb')
 
   
 export function Peaksinglebtn(props) {
-    const { nodes, materials } = useGLTF('./clouseroption-peak/peaksinglebutton_new.glb')
+    const { nodes, materials } = useGLTF('./clouseroption-peak/singlebuttonpeak.glb')
     const [textureURL, setTextureURL] = useState(null);
-    // const [buttonTextureURL, setButtonTextureURL] = useState(null);
-    // useEffect(() => {
-    //   const handleButtonSelected = ({ textureURL }) => {
-    //     setButtonTextureURL(textureURL);
-    //     applyButtonTexture(textureURL);
-    //   };
-  
-    //   eventEmitter.on('buttonSelected', handleButtonSelected);
-  
-    //   return () => {
-    //     eventEmitter.off('buttonSelected', handleButtonSelected);
-    //   };
-    // }, []);
-  
-    // const applyButtonTexture = (texturePath) => {
-    //   const loader = new THREE.TextureLoader();
-    //   loader.load(texturePath, (texture) => {
-    //     // Assuming the button material has a specific key like 'Button.011'
-    //     if (materials['Button.008']) {
-    //       materials['Button.008'].map = texture;
-    //       materials['Button.008'].needsUpdate = true;
-    //     }
-    //   });
-    // };
-    useButtonTexture(materials,'Button.008')
+
+    useButtonTexture(materials,'Button.005')
   
     useEffect(() => {
       const handleApplyFabric = ({ textureURL }) => {
@@ -239,38 +170,38 @@ export function Peaksinglebtn(props) {
     }, [materials]);
   
     return (
-      <group {...props} dispose={null} scale={45}>
+      <group {...props} dispose={null}>
+      <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Mesh005.geometry}
+          material={materials['Jacket.008']}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Mesh005_1.geometry}
+          material={materials['Button.005']}
+        />
+      </group>
       <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
         <mesh
           castShadow
           receiveShadow
           geometry={nodes.Mesh018.geometry}
-          material={materials['Jacket.013']}
+          material={materials['Jacket.009']}
         />
         <mesh
           castShadow
           receiveShadow
           geometry={nodes.Mesh018_1.geometry}
-          material={materials['Kaaj.006']}
-        />
-      </group>
-      <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Mesh014.geometry}
-          material={materials['Jacket.014']}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Mesh014_1.geometry}
-          material={materials['Button.008']}
+          material={materials['Kaaj.004']}
         />
       </group>
     </group>
-    )
-  }
+  )
+}
   
-  useGLTF.preload('./clouseroption-peak/peaksinglebutton_new.glb')
+  useGLTF.preload('./clouseroption-peak/singlebuttonpeak.glb')
   

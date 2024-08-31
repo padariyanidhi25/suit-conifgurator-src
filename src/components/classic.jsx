@@ -93,7 +93,7 @@ export  function Classic(props) {
  
 
   return (
-    <group {...props} dispose={null} scale={45}>
+    <group {...props} dispose={null} >
      
       <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
         <mesh

@@ -155,8 +155,8 @@ const Experience = ({ toggleCanvas }) => {
     <>
       {progress < 100 && <SpinnerLoader />}
       <Suspense fallback={null} >
-        <Stage intensity={0} environment={null} shadows={false}>
-          <OrbitControls
+        <Stage intensity={0} environment={null} shadows={false} >
+          {/* <OrbitControls
             enableRotate={false}
             enablePan={true}
             panSpeed={0.5}
@@ -164,7 +164,7 @@ const Experience = ({ toggleCanvas }) => {
             minDistance={9}
             maxDistance={20}
             
-          />
+          /> */}
            
 
               {/* <Environment preset="studio" /> */}
