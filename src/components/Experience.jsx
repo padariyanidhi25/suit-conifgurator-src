@@ -12,6 +12,7 @@ import CollarSelector from "./collarselector";
 import NotchSelector from "./notchselector";
 import PeakSelector from "./peakselector";
 import { Double_vent } from "./doublevent";
+import { Kaaj } from "./kaaj";
 
 
 const Experience = ({ toggleCanvas }) => {
@@ -165,11 +166,14 @@ const Experience = ({ toggleCanvas }) => {
             maxDistance={20}
             
           /> */}
+          {/* <OrbitControls/> */}
            
 
               {/* <Environment preset="studio" /> */}
+              {/* <Kaaj/> */}
           {showPocketSelector && <PocketSelector />} 
          {showUpperPocketSelector && <UpperpocketSelector />}
+         {collarType === 'notch' && <Kaaj />}
           <NotchSelector defaultNotch={defaultNotch} /> 
          {showvent && <Double_vent/>}
           {collarType === 'peak' && <PeakSelector defaultNotch={defaultNotch} />} 

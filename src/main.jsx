@@ -5,6 +5,7 @@ import App from './App';
 import './index.css';
 import BtnsComp from './components/buttons';
 import FabComp from './components/Fabric';
+import LiningComponent from './components/lining_color';
 // import LiningColor from './components/lining_color';
   
 // Create root for the main application
@@ -35,10 +36,10 @@ fabRoot.render(
     <FabComp/>
   </React.StrictMode>
 )
-// const lcolorRoot=createRoot(document.getElementById('lining-color'));
+const lcolorRoot=createRoot(document.getElementById('lining-color'));
 
-// lcolorRoot.render(
-//   <React.StrictMode>
-//     <LiningColor/>
-//   </React.StrictMode>
-// )
+lcolorRoot.render(
+  <React.StrictMode>
+    <LiningComponent/>
+  </React.StrictMode>
+)

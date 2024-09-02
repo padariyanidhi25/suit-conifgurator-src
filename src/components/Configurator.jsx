@@ -133,7 +133,7 @@ const Configurator = () => {
         document.getElementById('fabric-type').style.display = 'none'
         document.getElementById('lining-menu').style.display = 'none'
         document.getElementById('liningcontent').style.display = 'none'
-
+        document.getElementById('waist').style.display='none'
 
         // buttonsContent.style.display='none';
         button_menu.style.display = 'none';
@@ -293,21 +293,7 @@ const Configurator = () => {
         document.getElementById('waistcoat-button').style.display = 'none'
         document.getElementById('confirmbuttonw').style.display = 'none'
         document.getElementById('confirmlapel').style.display = 'none'
-        // document.getElementById('confirmallfabric').style.display = 'none'
-        // document.getElementById('confirmnewarrival').style.display = 'none'
-        // document.getElementById('dropdown-menunewarrival').style.display = 'none'
-        // document.getElementById('confirmpatterns').style.display = 'none'
-        // document.getElementById('dropdown-menupatterns').style.display = 'none'
-        // document.getElementById('confirmtraveller').style.display = 'none'
-        // document.getElementById('dropdown-menutraveller').style.display = 'none'
-        // document.getElementById('confirmluxury').style.display = 'none'
-        // document.getElementById('dropdown-menuluxury').style.display = 'none'
-        // document.getElementById('confirmwedding').style.display = 'none'
-        // document.getElementById('dropdown-menuwedding').style.display = 'none'
-        // document.getElementById('confirmbusiness').style.display = 'none'
-        // document.getElementById('dropdown-menubusiness').style.display = 'none'
-        // document.getElementById('confirmbestseller').style.display = 'none'
-        // document.getElementById('dropdown-menubestseller').style.display = 'none'
+      
         break;
 
     }
@@ -389,12 +375,14 @@ const Configurator = () => {
 
   })
   buttontype.classList.add('active');
+  
   confrmlining.addEventListener('click', () => {
     document.getElementById('liningcontent').style.display = 'none'
     document.getElementById('lining-menu').style.display = 'none'
     document.getElementById('lining-color').style.display = 'none'
     monogrm.style.display = 'flex'
     confrmlining.style.display = 'none'
+    document.getElementById('waist').style.display='none'
 
 
 
@@ -403,6 +391,7 @@ const Configurator = () => {
     document.getElementById('lining-menu').style.display = 'flex'
     document.getElementById('lining-color').style.display = 'none'
     monogrm.style.display = 'none'
+    document.getElementById('waist').style.display='none'
 
 
   })
@@ -410,6 +399,7 @@ const Configurator = () => {
     document.getElementById('lining-color').style.display = 'flex'
     document.getElementById('lining-menu').style.display = 'none'
     monogrm.style.display = 'none'
+    document.getElementById('waist').style.display='none'
 
 
 
@@ -450,21 +440,23 @@ const Configurator = () => {
     document.getElementById('lapel-option').style.display = 'flex'
     monogrm.style.display = 'none'
     document.getElementById('confirmlapel').style.display = 'block'
-    lapelL.classList.add('active');
-    lapelW.classList.remove('active');
-    lapelB.classList.remove('active');
+    // document.getElementById('confrmlapel').style.display = 'block'
+
+    // lapelL.classList.add('active');
+   
   })
   document.getElementById('confrmlapel').addEventListener('click', () => {
+    monogrm.style.display = 'flex'
     document.getElementById('lapelContent').style.display = 'none'
     document.getElementById('lapel-option').style.display = 'none'
     document.getElementById('lapel-width').style.display = 'none'
     document.getElementById('lapel-buttonhole').style.display = 'none'
 
+    // document.getElementById('confrmlapel').style.display = 'none'
 
     document.getElementById('confirmlapel').style.display = 'none'
-    monogrm.style.display = 'flex'
   })
-  lapelL.classList.add('active');
+  // lapelL.classList.add('active');
   document.getElementById('closeButton').addEventListener('click', () => {
     document.getElementById('monogram-option').style.display = 'flex'
     document.getElementById('monograminitials').style.display = 'none'
@@ -477,20 +469,20 @@ const Configurator = () => {
         document.getElementById('confirmmonogram').style.display = 'block'
 
   })
-  document.getElementById('lapel_l').addEventListener('click', () => {
-    document.getElementById('lapel-option').style.display = 'flex'
+  // document.getElementById('lapel_l').addEventListener('click', () => {
+  //   document.getElementById('lapel-option').style.display = 'flex'
 
-  })
-  document.getElementById('lapel_w').addEventListener('click', () => {
-    document.getElementById('lapel-option').style.display = 'none'
-    document.getElementById('lapel-width').style.display = 'flex'
+  // })
+  // document.getElementById('lapel_w').addEventListener('click', () => {
+  //   document.getElementById('lapel-option').style.display = 'none'
+  //   document.getElementById('lapel-width').style.display = 'flex'
 
-  })
-  document.getElementById('lapel_b').addEventListener('click', () => {
-    document.getElementById('lapel-option').style.display = 'none'
-    document.getElementById('lapel-width').style.display = 'none'
-    document.getElementById('lapel-buttonhole').style.display = 'flex'
-  })
+  // })
+  // document.getElementById('lapel_b').addEventListener('click', () => {
+  //   document.getElementById('lapel-option').style.display = 'none'
+  //   document.getElementById('lapel-width').style.display = 'none'
+  //   document.getElementById('lapel-buttonhole').style.display = 'flex'
+  // })
   document.getElementById('shoulder').addEventListener('click', () => {
     document.getElementById('shoulder-option').style.display = 'flex'
     monogrm.style.display = 'none'

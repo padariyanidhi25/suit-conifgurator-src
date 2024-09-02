@@ -305,3 +305,10 @@ input:checked ~ .dott {
 .col{
   margin-left: 15vw;
 }
+#confirmation-modal {
+  display: none;
+}
+
+#overlay {
+  display: none;
+}

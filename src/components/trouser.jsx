@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import eventEmitter from './eventEmitter';
 
 export function Model(props) {
-  const { nodes, materials } = useGLTF('./models/trouser_N_E_W.glb')
+  const { nodes, materials } = useGLTF('./models/ntrsr.glb')
 
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -33,12 +33,13 @@ export function Model(props) {
     };
   }, [materials]);
   return (
-    <group {...props} dispose={null} scale={25} position={[0,1, 0.16157]}>
+    <group {...props} dispose={null}>
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.Pleat_None.geometry}
         material={materials.Pleat}
+        position={[0.005, -0.15, 0.016]}
         rotation={[Math.PI / 2, 0, 0]}
         scale={0.001}
       />
@@ -46,4 +47,4 @@ export function Model(props) {
   )
 }
 
-useGLTF.preload('./models/trouser_N_E_W.glb')
+useGLTF.preload('./models/ntrsr.glb')
