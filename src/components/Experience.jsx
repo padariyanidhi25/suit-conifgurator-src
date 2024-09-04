@@ -47,7 +47,7 @@ const Experience = ({ toggleCanvas }) => {
       setShowPocketSelector(true); // Show PocketSelector
       setShowUpperPocketSelector(true); // Show UpperPocketSelector
       setCollarType('notch'); 
-      setDefaultPeak('null'); 
+      setDefaultPeak('double'); 
       setshowvent(true)
       setshowlining(true)
       setshowcollar(true)
@@ -61,7 +61,7 @@ const Experience = ({ toggleCanvas }) => {
       setShowPocketSelector(true); // Show PocketSelector
       setShowUpperPocketSelector(true); // Show UpperPocketSelector
       setCollarType('notch'); 
-      setDefaultPeak('null'); 
+      setDefaultPeak('breasted'); 
       setshowvent(true)
       setshowlining(true)
       setshowcollar(true)
@@ -69,6 +69,9 @@ const Experience = ({ toggleCanvas }) => {
     };
 
     const handleConfirmClick = () => {
+      if (!selectedComponent) {
+        setSelectedPeak('breasted'); // Default to "breasted" if no component is selected
+      }
       document.getElementById('type_suit').style.display = 'none';
       document.getElementById('confirm').style.display = 'none';
       document.getElementById('main').style.display = 'block';
@@ -106,10 +109,12 @@ const Experience = ({ toggleCanvas }) => {
     };
     const handleNotchClick = () => {
       setCollarType('notch'); // Set collar type to 'notch'
+      // setDefaultPeak('null');
     };
 
     const handlePeakClick = () => {
       setCollarType('peak'); // Set collar type to 'peak'
+      // setDefaultNotch('null');
     };
 
     classicButton.addEventListener('click', handleClassicClick);
@@ -174,10 +179,13 @@ const Experience = ({ toggleCanvas }) => {
           {showPocketSelector && <PocketSelector />} 
          {showUpperPocketSelector && <UpperpocketSelector />}
          {collarType === 'notch' && <Kaaj />}
-          <NotchSelector defaultNotch={defaultNotch} /> 
+          {collarType == 'notch' ? <NotchSelector defaultNotch={defaultNotch}  collarType={collarType} selectedComponent={selectedComponent}/> : 
+          <PeakSelector defaultPeak={defaultPeak} collarType={collarType} selectedComponent={selectedComponent} />
+        }
+          {/* // <NotchSelector defaultNotch={defaultNotch}  collarType={collarType} selectedComponent={selectedComponent}/>  */}
          {showvent && <Double_vent/>}
-          {collarType === 'peak' && <PeakSelector defaultNotch={defaultNotch} />} 
-          {/* <PeakSelector defaultPeak={defaultPeak} /> */}
+          
+          {/* <PeakSelector defaultPeak={defaultPeak} collarType={collarType} selectedComponent={selectedComponent} /> */}
           {showlining && <LinigDisplay />}
          {showcollar && <CollarSelector />}
           {showTrouser ? <Model/> : (showClassic ? <Classic /> : <Chair />)}

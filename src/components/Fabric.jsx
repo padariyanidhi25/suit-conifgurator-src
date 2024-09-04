@@ -28,6 +28,8 @@ const FabComp = () => {
     setSelectedFabric(item);
     setSelectedFabricPrice(item.price);
     eventEmitter.emit('fabricSelected', item); // Emit event with selected fabric price
+    console.log("fabricselected");
+    
   };
 
   const handleConfirmClick = () => {

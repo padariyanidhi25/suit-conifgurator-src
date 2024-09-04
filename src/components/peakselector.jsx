@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Peakdoublebreasted, Peakdoublebtn, Peaksinglebtn } from './peakoption';
 import eventEmitter from './eventEmitter';
 
-const PeakSelector = ({ defaultPeak }) => {
+const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
     const [selectedPeak, setSelectedPeak] = useState(defaultPeak);
     const [fabricURL, setFabricURL] = useState(null);
 
@@ -27,7 +27,7 @@ const PeakSelector = ({ defaultPeak }) => {
     useEffect(() => {
         const handlePeakChange = (peakType) => {
             setSelectedPeak(peakType);
-            console.log(peakType);
+            // console.log('peak',peakType);
         };
 
         const singleBtn = document.getElementById('single_btn');
@@ -49,11 +49,17 @@ const PeakSelector = ({ defaultPeak }) => {
         setSelectedPeak(defaultPeak); // Update selected peak when defaultPeak changes
     }, [defaultPeak]);
 
+    // Conditional rendering based on selectedComponent and collarType
+    console.log('peak',collarType, selectedPeak);
+    
     return (
         <>
-            {selectedPeak === 'single' && <Peaksinglebtn />}
-            {selectedPeak === 'double' && <Peakdoublebtn />}
-            {selectedPeak === 'breasted' && <Peakdoublebreasted />}
+            {selectedComponent === 'Classic' && collarType === 'peak' || selectedPeak === 'double' &&<Peakdoublebtn />}
+            {selectedComponent === 'Breasted' && collarType === 'peak' || selectedPeak === 'breasted' &&<Peakdoublebreasted />}
+
+            {selectedPeak === 'single'  &&  collarType === 'peak' && <Peaksinglebtn />}
+            {selectedPeak === 'double' &&  collarType === 'peak' && <Peakdoublebtn />}
+            {selectedPeak === 'breasted'  &&  collarType === 'peak' && <Peakdoublebreasted />}
         </>
     );
 };

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Nochdoublebrested, Notchdoublebtn, Notchsinglebtn } from './notchoption';
 import eventEmitter from './eventEmitter';
 
-const NotchSelector = ({ defaultNotch }) => {
+const NotchSelector = ({ defaultNotch,collarType, selectedComponent }) => {
     const [selectedNotch, setSelectedNotch] = useState(defaultNotch);
     const [fabricURL, setFabricURL] = useState(null);
     const [buttonTextureURL, setButtonTextureURL] = useState(null);
@@ -49,6 +49,8 @@ const NotchSelector = ({ defaultNotch }) => {
     useEffect(() => {
         const handleNotchChange = (notchType) => {
             setSelectedNotch(notchType);
+            // console.log('notch',notchType);
+            
             if (buttonTextureURL) {
                 eventEmitter.emit('applyButtonTexture', { textureURL: buttonTextureURL });
             }
@@ -69,12 +71,16 @@ const NotchSelector = ({ defaultNotch }) => {
     useEffect(() => {
         setSelectedNotch(defaultNotch);
     }, [defaultNotch]);
+   
+    console.log('notch',collarType,selectedNotch);
 
     return (
         <>
-            {selectedNotch === 'single' && <Notchsinglebtn />}
-            {selectedNotch === 'double' && <Notchdoublebtn />}
-            {selectedNotch === 'breasted' && <Nochdoublebrested />}
+         {selectedComponent === 'Classic' && collarType === 'notch'||selectedNotch==='double'&& <Notchdoublebtn />}
+         {selectedComponent === 'Breasted' && collarType === 'notch' || selectedNotch==='breasted'&& <Nochdoublebrested />}
+            {selectedNotch === 'single' &&  collarType === 'notch' && <Notchsinglebtn />}
+            {selectedNotch === 'double' &&  collarType === 'notch' && <Notchdoublebtn />}
+            {selectedNotch === 'breasted' &&  collarType === 'notch' && <Nochdoublebrested />}
         </>
     );
 };

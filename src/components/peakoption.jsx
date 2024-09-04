@@ -6,7 +6,7 @@ import { useButtonTexture } from './Buttontexture';
 
 export function Peakdoublebreasted(props) {
   const { nodes, materials } = useGLTF('./clouseroption-peak/doublebreastedpeak.glb')
-  const [textureURL, setTextureURL] = React.useState(null);
+  
  
   useButtonTexture(materials,'Button.003')
 
@@ -70,7 +70,7 @@ useGLTF.preload('./clouseroption-peak/doublebreastedpeak.glb')
 
 export function Peakdoublebtn(props) {
     const { nodes, materials } = useGLTF('./clouseroption-peak/doublebuttonpeak.glb')
-    const [textureURL, setTextureURL] = React.useState(null);
+    const [textureURL, setTextureURL] = useState(null);
   
     useButtonTexture(materials,'Button.004')
     useEffect(() => {
