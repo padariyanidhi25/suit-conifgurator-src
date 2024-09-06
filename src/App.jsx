@@ -114,7 +114,8 @@ function App() {
 
           {/* Second Canvas */}
           {!showFirstCanvas && (
-            <Canvas>
+            
+            <Canvas  >
               <PerspectiveCamera
                 makeDefault={false}
                 far={1000}
@@ -125,6 +126,7 @@ function App() {
               <Experience toggleCanvas={toggleCanvas} setFabricPrice={setFabricPrice} />
             </Canvas>
           )}
+         
 
           {/* Configurator */}
           <Configurator />

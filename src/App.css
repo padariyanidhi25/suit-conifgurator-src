@@ -86,6 +86,11 @@ input:checked ~ .dott {
   background-color: black;
   color: white;
 }
+.scanvas{
+  position: relative;
+height: 50%;
+width: 10%;
+}
 .App {
   height: 65vh;
   width: 100vw;
@@ -96,7 +101,7 @@ input:checked ~ .dott {
 
 }
 .truser {
-  height: 65vh;
+  height: 45vh;
   width: 100vw;
   user-select: none;
   background-color: #EFEFEF;

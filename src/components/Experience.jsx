@@ -13,6 +13,9 @@ import NotchSelector from "./notchselector";
 import PeakSelector from "./peakselector";
 import { Double_vent } from "./doublevent";
 import { Kaaj } from "./kaaj";
+import PleatSelector from "./pleatselector";
+import TrouserPocketSelector from "./trouserpocketselector";
+import { Waistbend } from "./waistband";
 
 
 const Experience = ({ toggleCanvas }) => {
@@ -28,6 +31,9 @@ const Experience = ({ toggleCanvas }) => {
   const [showvent,setshowvent]=useState(true)
   const [showlining,setshowlining]=useState('null')
   const[showcollar,setshowcollar]=useState('null')
+  const [showPleatSelector, setShowPleatSelector] = useState(false); 
+const [showTrouserPocketSelector, setShowTrouserPocketSelector] = useState(false);
+const [showWaistband, setShowWaistband] = useState(false);
   
 
   useEffect(() => {
@@ -51,6 +57,9 @@ const Experience = ({ toggleCanvas }) => {
       setshowvent(true)
       setshowlining(true)
       setshowcollar(true)
+      setShowPleatSelector(false);
+      setShowTrouserPocketSelector(false);
+      setShowWaistband(false);
     };
 
     const handleBreastedClick = () => {
@@ -65,6 +74,9 @@ const Experience = ({ toggleCanvas }) => {
       setshowvent(true)
       setshowlining(true)
       setshowcollar(true)
+      setShowPleatSelector(false);
+      setShowTrouserPocketSelector(false);
+      setShowWaistband(false);
 
     };
 
@@ -94,6 +106,10 @@ const Experience = ({ toggleCanvas }) => {
       setshowvent(false)
       setshowlining(false)
       setshowcollar(false)
+      setShowPleatSelector(true);
+      setShowTrouserPocketSelector(true);
+      setShowWaistband(true);
+
     };
 
     const handleJacketClick = () => {
@@ -184,7 +200,10 @@ const Experience = ({ toggleCanvas }) => {
         }
           {/* // <NotchSelector defaultNotch={defaultNotch}  collarType={collarType} selectedComponent={selectedComponent}/>  */}
          {showvent && <Double_vent/>}
-          
+         {showPleatSelector && <PleatSelector/>}
+        {showTrouserPocketSelector && <TrouserPocketSelector/>}
+
+       {showWaistband && <Waistbend/>}
           {/* <PeakSelector defaultPeak={defaultPeak} collarType={collarType} selectedComponent={selectedComponent} /> */}
           {showlining && <LinigDisplay />}
          {showcollar && <CollarSelector />}
