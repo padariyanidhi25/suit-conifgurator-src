@@ -24,30 +24,29 @@ const TrouserPocketSelector = () => {
         }
       }, [selectedtrouserpocket, fabricURL]);
 
-    useEffect(() => {
+      useEffect(() => {
         const handlePocketChange = (PocketType) => {
-            setSelectedtrouserpocket(PocketType);
+          setSelectedtrouserpocket(PocketType);
+    
+          // Remove 'active' class from all pockets
+          document.getElementById('jetted').classList.remove('active');
+          document.getElementById('seam').classList.remove('active');
+          document.getElementById('slanted').classList.remove('active');
+    
+          // Add 'active' class to the selected pocket
+          document.getElementById(PocketType).classList.add('active');
         };
-
-        const jeted = document.getElementById('jetted');
-        const seam = document.getElementById('seam');
-        const slanted = document.getElementById('slanted');
-       
-
-        jeted.addEventListener('click', () => handlePocketChange('jetted'));
-        seam.addEventListener('click', () => handlePocketChange('seam'));
-        slanted.addEventListener('click', () => handlePocketChange('slanted'));
-        
-
-
+    
+        document.getElementById('jetted').addEventListener('click', () => handlePocketChange('jetted'));
+        document.getElementById('seam').addEventListener('click', () => handlePocketChange('seam'));
+        document.getElementById('slanted').addEventListener('click', () => handlePocketChange('slanted'));
+    
         return () => {
-            jeted.removeEventListener('click', () => handlePocketChange('jetted'));
-            seam.removeEventListener('click', () => handlePocketChange('seam'));
-            slanted.removeEventListener('click', () => handlePocketChange('slanted'));
-           
-
+          document.getElementById('jetted').removeEventListener('click', () => handlePocketChange('jetted'));
+          document.getElementById('seam').removeEventListener('click', () => handlePocketChange('seam'));
+          document.getElementById('slanted').removeEventListener('click', () => handlePocketChange('slanted'));
         };
-    }, []);
+      }, []);
 
     return (
         <>

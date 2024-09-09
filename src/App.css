@@ -237,6 +237,12 @@ width: 10%;
   font-weight: 500;
   color: black;
 }
+
+.active{
+  border-color: #a1a1aa; 
+  border-width: 1px; 
+  border-style: solid;
+}
 #potraitimg{
   z-index: 999;
     position: absolute;

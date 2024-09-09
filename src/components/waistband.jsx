@@ -1,9 +1,34 @@
 
-import React, { useRef } from 'react'
+import React, { useRef,useEffect } from 'react'
 import { useGLTF } from '@react-three/drei'
+import eventEmitter from './eventEmitter';
+import * as THREE from 'three'
 
 export function Waistbend(props) {
   const { nodes, materials } = useGLTF('./trouser/Pent_Belt.glb')
+
+  useEffect(() => {
+    const handleApplyFabric = ({ textureURL }) => {
+      if (textureURL) {
+        const loader = new THREE.TextureLoader();
+        loader.load(textureURL, (texture) => {
+          Object.keys(materials).forEach((key) => {
+            const material = materials[key];
+            if (material.map) {
+              material.map = texture;
+              material.needsUpdate = true;
+            }
+          });
+        });
+      }
+    };
+
+    eventEmitter.on('applyFabric', handleApplyFabric);
+
+    return () => {
+      eventEmitter.off('applyFabric', handleApplyFabric);
+    };
+  }, [materials]);
   return (
     <group {...props} dispose={null}>
       <mesh

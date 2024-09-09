@@ -84,7 +84,7 @@ function App() {
                 makeDefault={true}
                 far={1000}
                 near={0.1}
-                fov={22.895}
+                fov={70}
                 position={[0, 0.05, 0.334]}
               />
               
