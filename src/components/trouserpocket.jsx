@@ -39,7 +39,7 @@ export function Pocket_jeted(props) {
         material={materials.Pant}
         position={[-0.001, 0.211, 0]}
         rotation={[Math.PI / 2, 0, 0]}
-        scale={0.007}
+        scale={0.01}
       />
     </group>
   )

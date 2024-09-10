@@ -34,7 +34,7 @@ const Experience = ({ toggleCanvas }) => {
   const [showPleatSelector, setShowPleatSelector] = useState(false); 
 const [showTrouserPocketSelector, setShowTrouserPocketSelector] = useState(false);
 const [showWaistband, setShowWaistband] = useState(false);
-  
+const [showKaaj, setShowKaaj] = useState(true);
 
   useEffect(() => {
     const classicButton = document.getElementById('classic');
@@ -60,6 +60,7 @@ const [showWaistband, setShowWaistband] = useState(false);
       setShowPleatSelector(false);
       setShowTrouserPocketSelector(false);
       setShowWaistband(false);
+      setShowKaaj(true);
     };
 
     const handleBreastedClick = () => {
@@ -77,7 +78,7 @@ const [showWaistband, setShowWaistband] = useState(false);
       setShowPleatSelector(false);
       setShowTrouserPocketSelector(false);
       setShowWaistband(false);
-
+      setShowKaaj(true);
     };
 
     const handleConfirmClick = () => {
@@ -88,7 +89,7 @@ const [showWaistband, setShowWaistband] = useState(false);
       document.getElementById('confirm').style.display = 'none';
       document.getElementById('main').style.display = 'block';
       document.querySelector('.App').style.width = '70vw';
-      document.querySelector('.App').style.height = '50vw';
+      document.querySelector('.App').style.height = '40vw';
       document.querySelector('.App').style.top = '7vh';
       finish.style.display = 'block';
       confirm = true;
@@ -109,7 +110,7 @@ const [showWaistband, setShowWaistband] = useState(false);
       setShowPleatSelector(true);
       setShowTrouserPocketSelector(true);
       setShowWaistband(true);
-
+      setShowKaaj(false);
     };
 
     const handleJacketClick = () => {
@@ -194,7 +195,7 @@ const [showWaistband, setShowWaistband] = useState(false);
               {/* <Kaaj/> */}
           {showPocketSelector && <PocketSelector />} 
          {showUpperPocketSelector && <UpperpocketSelector />}
-         {collarType === 'notch' && <Kaaj />}
+         {collarType === 'notch' && showKaaj && <Kaaj />}
           {collarType == 'notch' ? <NotchSelector defaultNotch={defaultNotch}  collarType={collarType} selectedComponent={selectedComponent}/> : 
           <PeakSelector defaultPeak={defaultPeak} collarType={collarType} selectedComponent={selectedComponent} />
         }

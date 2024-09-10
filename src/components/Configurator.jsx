@@ -571,7 +571,7 @@ const Configurator = () => {
     document.getElementById('pocketside').classList.add('active')
     document.getElementById('pocketback').classList.remove('active')
     document.getElementById('pocketcoin').classList.remove('active')
-
+    document.getElementById('confrmpockett').style.display='block'
 
   })
   document.getElementById('pocketside').classList.add('active')

@@ -84,8 +84,8 @@ function App() {
                 makeDefault={true}
                 far={1000}
                 near={0.1}
-                fov={70}
-                position={[0, 0.05, 0.334]}
+                fov={22.895}
+                position={[0, 1, 10]}
               />
               
               
@@ -116,13 +116,7 @@ function App() {
           {!showFirstCanvas && (
             
             <Canvas  >
-              <PerspectiveCamera
-                makeDefault={false}
-                far={1000}
-                near={0.1}
-                fov={22.895}
-                position={[0, 0.162, 0.334]}
-              />
+              
               <Experience toggleCanvas={toggleCanvas} setFabricPrice={setFabricPrice} />
             </Canvas>
           )}
