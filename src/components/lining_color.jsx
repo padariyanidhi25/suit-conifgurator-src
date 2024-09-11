@@ -20,18 +20,18 @@ const LiningComponent = () => {
         console.error(err);
       });
   }, []);
-
-
+  
+ console.log(userData.filter(item => item.category === 'Lining-Color' && item.isActive));
+ 
   return (
-    <> {
-      userData
-        .filter(item => item.category === 'liningcolor' && item.isActive)
-        .map((item, index) => {
-          // Log the name and price of each item
-          // console.log(`Rendering Lining Item - Name: ${item.name}, Price: ${item.price}`);
+    <>
+    
 
+      {
 
-          return (
+        userData
+          .filter(item => item.category === 'Lining-Color' && item.isActive)
+          .map((item, index) => {
             <div
               key={index}
               className="p-4 rounded-lg flex items-center content-center space-x-4 xs:relative xs:flex-col xs:h-full xs:w-[33vw]"
@@ -46,8 +46,8 @@ const LiningComponent = () => {
                 <p className="text-sm xs:hidden">{item.price}</p>
               </div>
             </div>
-          );
-        })}
+
+          })}
     </>
   );
 };

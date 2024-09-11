@@ -36,10 +36,10 @@ fabRoot.render(
     <FabComp/>
   </React.StrictMode>
 )
-const lcolorRoot=createRoot(document.getElementById('lining-color'));
+// const lcolorRoot=createRoot(document.getElementById('lining-color'));
 
-lcolorRoot.render(
-  <React.StrictMode>
-    <LiningComponent/>
-  </React.StrictMode>
-)
+// lcolorRoot.render(
+//   <React.StrictMode>
+//     <LiningComponent/>
+//   </React.StrictMode>
+// )

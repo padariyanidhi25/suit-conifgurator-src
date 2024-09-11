@@ -16,9 +16,11 @@ import { Kaaj } from "./kaaj";
 import PleatSelector from "./pleatselector";
 import TrouserPocketSelector from "./trouserpocketselector";
 import { Waistbend } from "./waistband";
+import { Button } from "./waistbandbutton";
 
 
 const Experience = ({ toggleCanvas }) => {
+  
   const [showClassic, setShowClassic] = useState(false);
   const [showTrouser, setShowTrouser] = useState(false);
   const [selectedComponent, setSelectedComponent] = useState(null);
@@ -178,14 +180,14 @@ const [showKaaj, setShowKaaj] = useState(true);
     <>
       {progress < 100 && <SpinnerLoader />}
       <Suspense fallback={null} >
-        <Stage intensity={0} environment={null} shadows={false} >
+        {/* <Stage intensity={0} environment={null} shadows={false} animations={false} adjustCamera={false} > */}
           {/* <OrbitControls
             enableRotate={false}
             enablePan={true}
             panSpeed={0.5}
             zoomSpeed={0.3}
-            minDistance={9}
-            maxDistance={20}
+            minDistance={}
+            maxDistance={6}
             
           /> */}
           {/* <OrbitControls/> */}
@@ -203,13 +205,13 @@ const [showKaaj, setShowKaaj] = useState(true);
          {showvent && <Double_vent/>}
          {showPleatSelector && <PleatSelector/>}
         {showTrouserPocketSelector && <TrouserPocketSelector/>}
-
+        {/* <Button/> */}
        {showWaistband && <Waistbend/>}
           {/* <PeakSelector defaultPeak={defaultPeak} collarType={collarType} selectedComponent={selectedComponent} /> */}
           {showlining && <LinigDisplay />}
          {showcollar && <CollarSelector />}
           {showTrouser ? <Model/> : (showClassic ? <Classic /> : <Chair />)}
-        </Stage>
+        {/* </Stage> */}
       </Suspense>
     </>
   );

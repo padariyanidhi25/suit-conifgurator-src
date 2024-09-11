@@ -30,7 +30,7 @@ export function Forward_double_pleat(props) {
     };
   }, [materials]);
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} scale={15}>
       <mesh
         castShadow
         receiveShadow
@@ -73,7 +73,7 @@ export function Forward_single_pleat(props) {
     };
   }, [materials]);
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} scale={15}>
       <mesh
         castShadow
         receiveShadow
@@ -116,7 +116,7 @@ export function Pleat_none(props) {
     };
   }, [materials]);
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} scale={15}>
       <mesh
         castShadow
         receiveShadow
@@ -160,7 +160,8 @@ export function Standard_double_pleat(props) {
     };
   }, [materials]);
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null}  scale={15}>
+
       <mesh
         castShadow
         receiveShadow
@@ -203,7 +204,7 @@ export function Standard_single_pleat(props) {
     };
   }, [materials]);
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} scale={15}>
       <mesh
         castShadow
         receiveShadow

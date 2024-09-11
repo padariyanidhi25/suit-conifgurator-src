@@ -30,7 +30,7 @@ export function Waistbend(props) {
     };
   }, [materials]);
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} scale={15}>
       <mesh
         castShadow
         receiveShadow

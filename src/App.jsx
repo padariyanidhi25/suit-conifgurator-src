@@ -84,25 +84,27 @@ function App() {
                 makeDefault={true}
                 far={1000}
                 near={0.1}
-                fov={22.895}
-                position={[0, 1, 10]}
+                fov={25}
+                position={[0, 3.25, 8]}
+              // rotation={[0,Math.PI/10,0]}
+
               />
-              
-              
+
+
               <StaticDirectionalLight
-                position={[-0.45244,0.32952,0.27606]}
-                targetPosition={[4, -1, 0.1]} 
+                position={[-0.45244, 0.32952, 0.27606]}
+                targetPosition={[4, -1, 0.1]}
                 intensity={1}
               />
 
               <StaticDirectionalLight
-                position={[0.468164,0.42188, 0.17211]}
-                targetPosition={[-4, -1, 0.1]} 
+                position={[0.468164, 0.42188, 0.17211]}
+                targetPosition={[-4, -1, 0.1]}
                 intensity={1.5}
               />
               <StaticDirectionalLight
-                position={[0,0,12]}
-                targetPosition={[0,3,4]} 
+                position={[0, 0, 12]}
+                targetPosition={[0, 3, 4]}
                 intensity={0.3}
               />
 
@@ -114,13 +116,20 @@ function App() {
 
           {/* Second Canvas */}
           {!showFirstCanvas && (
-            
+
             <Canvas  >
+              {/* <PerspectiveCamera
+                makeDefault={true}
+                far={1000}
+                near={0.1}
+                fov={25}
+                position={[0, 3.25, 3]}  // Adjust the position as needed
+              /> */}
               
               <Experience toggleCanvas={toggleCanvas} setFabricPrice={setFabricPrice} />
             </Canvas>
           )}
-         
+
 
           {/* Configurator */}
           <Configurator />

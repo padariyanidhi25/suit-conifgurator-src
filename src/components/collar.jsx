@@ -30,7 +30,7 @@ export function Notch_Collar(props) {
   }, [materials]);
 
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} scale={20}>
       <mesh
         castShadow
         receiveShadow
@@ -70,7 +70,7 @@ export function Peak_Collor(props) {
   }, [materials]);
 
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} scale={20}>
     <mesh
       castShadow
       receiveShadow

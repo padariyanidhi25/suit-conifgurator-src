@@ -31,7 +31,7 @@ export function Pocket_jeted(props) {
     };
   }, [materials]);
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} scale={15}>
       <mesh
         castShadow
         receiveShadow
@@ -75,7 +75,7 @@ export function Pocket_seam(props) {
       };
     }, [materials]);
     return (
-      <group {...props} dispose={null}>
+      <group {...props} dispose={null} scale={15}>
         <mesh
           castShadow
           receiveShadow
@@ -118,7 +118,7 @@ export function Pocket_seam(props) {
       };
     }, [materials]);
     return (
-      <group {...props} dispose={null}>
+      <group {...props} dispose={null} scale={15}>
         <mesh
           castShadow
           receiveShadow
