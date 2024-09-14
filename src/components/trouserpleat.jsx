@@ -5,7 +5,6 @@ import * as THREE from 'three';
 
 export function Forward_double_pleat(props) {
   const { nodes, materials } = useGLTF('./trouser/pleat/forward_double_pleat.glb')
-  const [textureURL, setTextureURL] = useState(null);
 
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -135,7 +134,6 @@ useGLTF.preload('./trouser/pleat/pleat_none.glb')
 
 export function Standard_double_pleat(props) {
   const { nodes, materials } = useGLTF('./trouser/pleat/standard_double_pleat.glb')
-  const [textureURL, setTextureURL] = useState(null);
 
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {

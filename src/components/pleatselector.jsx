@@ -18,7 +18,7 @@ const PleatSelector = () => {
   
     // Event listener for 'confrmlapel' click to reset camera position
     useEffect(() => {
-      const handleConfirmLapelClick = () => {
+      const handleConfirmPleatClick = () => {
         // Set the camera back to its original position
         setTargetPosition(new Vector3(0, 2, 8));
   
@@ -29,17 +29,18 @@ const PleatSelector = () => {
   
       const confrmlapelBtn = document.getElementById('confrmpleat');
       if (confrmlapelBtn) {
-        confrmlapelBtn.addEventListener('click', handleConfirmLapelClick);
+        confrmlapelBtn.addEventListener('click', handleConfirmPleatClick);
       }
   
       return () => {
         if (confrmlapelBtn) {
-          confrmlapelBtn.removeEventListener('click', handleConfirmLapelClick);
+          confrmlapelBtn.removeEventListener('click', handleConfirmPleatClick);
         }
       };
     }, []);
 
     useEffect(() => {
+      
         const handleFabricSelection = (fabric) => {
           setFabricURL(fabric.textureURL);
         };
@@ -52,7 +53,12 @@ const PleatSelector = () => {
       }, []);
     
       useEffect(() => {
+        console.log('pleat fabric',selectedpleat);
+        console.log('fabric pleat',fabricURL);
+        
+        
         if (fabricURL) {
+          
           eventEmitter.emit('applyFabric', { textureURL: fabricURL });
         }
       }, [selectedpleat, fabricURL]);

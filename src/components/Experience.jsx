@@ -1,4 +1,4 @@
-import { OrbitControls, Stage,Environment, useProgress } from "@react-three/drei";
+import { OrbitControls, Stage, Environment, useProgress } from "@react-three/drei";
 import Chair from "./Chair";
 import { Suspense, useState, useEffect } from "react";
 import { Classic } from "./classic";
@@ -20,7 +20,7 @@ import { Button } from "./waistbandbutton";
 
 
 const Experience = ({ toggleCanvas }) => {
-  
+
   const [showClassic, setShowClassic] = useState(false);
   const [showTrouser, setShowTrouser] = useState(false);
   const [selectedComponent, setSelectedComponent] = useState(null);
@@ -30,13 +30,13 @@ const Experience = ({ toggleCanvas }) => {
   const [defaultPeak, setDefaultPeak] = useState('null');
   const [collarType, setCollarType] = useState('notch');
   const { progress } = useProgress();
-  const [showvent,setshowvent]=useState(true)
-  const [showlining,setshowlining]=useState('null')
-  const[showcollar,setshowcollar]=useState('null')
-  const [showPleatSelector, setShowPleatSelector] = useState(false); 
-const [showTrouserPocketSelector, setShowTrouserPocketSelector] = useState(false);
-const [showWaistband, setShowWaistband] = useState(false);
-const [showKaaj, setShowKaaj] = useState(true);
+  const [showvent, setshowvent] = useState(true)
+  const [showlining, setshowlining] = useState('null')
+  const [showcollar, setshowcollar] = useState('null')
+  const [showPleatSelector, setShowPleatSelector] = useState(false);
+  const [showTrouserPocketSelector, setShowTrouserPocketSelector] = useState(false);
+  const [showWaistband, setShowWaistband] = useState(false);
+  const [showKaaj, setShowKaaj] = useState(true);
 
   useEffect(() => {
     const classicButton = document.getElementById('classic');
@@ -54,8 +54,8 @@ const [showKaaj, setShowKaaj] = useState(true);
       setDefaultNotch('double'); // Set default notch for Classic
       setShowPocketSelector(true); // Show PocketSelector
       setShowUpperPocketSelector(true); // Show UpperPocketSelector
-      setCollarType('notch'); 
-      setDefaultPeak('double'); 
+      setCollarType('notch');
+      setDefaultPeak('double');
       setshowvent(true)
       setshowlining(true)
       setshowcollar(true)
@@ -72,8 +72,8 @@ const [showKaaj, setShowKaaj] = useState(true);
       setDefaultNotch('breasted'); // Set default notch for Breasted
       setShowPocketSelector(true); // Show PocketSelector
       setShowUpperPocketSelector(true); // Show UpperPocketSelector
-      setCollarType('notch'); 
-      setDefaultPeak('breasted'); 
+      setCollarType('notch');
+      setDefaultPeak('breasted');
       setshowvent(true)
       setshowlining(true)
       setshowcollar(true)
@@ -118,10 +118,10 @@ const [showKaaj, setShowKaaj] = useState(true);
     const handleJacketClick = () => {
       // handleClassicClick()
       // handleBreastedClick()
-      if(selectedComponent=="Classic"){
+      if (selectedComponent == "Classic") {
         handleClassicClick()
       }
-      else{
+      else {
         handleBreastedClick()
       }
       setShowTrouser(selectedComponent === 'Trouser');
@@ -176,12 +176,14 @@ const [showKaaj, setShowKaaj] = useState(true);
   }
 
   window.onresize = orientationChecker;
+  console.log(collarType);
+  
   return (
     <>
       {progress < 100 && <SpinnerLoader />}
       <Suspense fallback={null} >
         {/* <Stage intensity={0} environment={null} shadows={false} animations={false} adjustCamera={false} > */}
-          {/* <OrbitControls
+        {/* <OrbitControls
             enableRotate={false}
             enablePan={true}
             panSpeed={0.5}
@@ -190,27 +192,28 @@ const [showKaaj, setShowKaaj] = useState(true);
             maxDistance={6}
             
           /> */}
-          {/* <OrbitControls/> */}
-           
+        {/* <OrbitControls/> */}
 
-              {/* <Environment preset="studio" /> */}
-              {/* <Kaaj/> */}
-          {showPocketSelector && <PocketSelector />} 
-         {showUpperPocketSelector && <UpperpocketSelector />}
-         {collarType === 'notch' && showKaaj && <Kaaj />}
-          {collarType == 'notch' ? <NotchSelector defaultNotch={defaultNotch}  collarType={collarType} selectedComponent={selectedComponent}/> : 
+
+        {/* <Environment preset="studio" /> */}
+        {/* <Kaaj/> */}
+        {showPocketSelector && <PocketSelector />}
+        {showUpperPocketSelector && <UpperpocketSelector />}
+        {collarType === 'notch' && showKaaj && <Kaaj />}
+        {collarType == 'notch' ? <NotchSelector defaultNotch={defaultNotch} collarType={collarType} selectedComponent={selectedComponent} /> :
           <PeakSelector defaultPeak={defaultPeak} collarType={collarType} selectedComponent={selectedComponent} />
         }
-          {/* // <NotchSelector defaultNotch={defaultNotch}  collarType={collarType} selectedComponent={selectedComponent}/>  */}
-         {showvent && <Double_vent/>}
-         {showPleatSelector && <PleatSelector/>}
-        {showTrouserPocketSelector && <TrouserPocketSelector/>}
+        {showvent && <Double_vent />}
+        {showPleatSelector && <PleatSelector />}
+        {showTrouserPocketSelector && <TrouserPocketSelector />}
         {/* <Button/> */}
-       {showWaistband && <Waistbend/>}
-          {/* <PeakSelector defaultPeak={defaultPeak} collarType={collarType} selectedComponent={selectedComponent} /> */}
-          {showlining && <LinigDisplay />}
-         {showcollar && <CollarSelector />}
-          {showTrouser ? <Model/> : (showClassic ? <Classic /> : <Chair />)}
+        {showWaistband && <Waistbend />}
+       {/* <NotchSelector defaultNotch={defaultNotch}  collarType={collarType} selectedComponent={selectedComponent}/> 
+        <PeakSelector defaultPeak={defaultPeak} collarType={collarType} selectedComponent={selectedComponent} /> */}
+
+        {showlining && <LinigDisplay />}
+        {showcollar && <CollarSelector />}
+        {showTrouser ? <Model /> : (showClassic ? <Classic /> : <Chair />)}
         {/* </Stage> */}
       </Suspense>
     </>

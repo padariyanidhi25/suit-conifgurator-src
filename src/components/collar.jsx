@@ -42,7 +42,7 @@ export function Notch_Collar(props) {
     </group>
   )
 }
-
+useGLTF.preload('./collar/Notch_Collar.glb');
 export function Peak_Collor(props) {
   const { nodes, materials } = useGLTF('./collar/Peak_Collor.glb');
 
@@ -82,3 +82,4 @@ export function Peak_Collor(props) {
   </group>
 )
 }
+useGLTF.preload('./collar/Peak_Collor.glb')

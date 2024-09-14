@@ -19,7 +19,7 @@ const PocketSelector = () => {
   
     // Event listener for 'confrmlapel' click to reset camera position
     useEffect(() => {
-      const handleConfirmLapelClick = () => {
+      const handleConfirmPocketClick = () => {
         // Set the camera back to its original position
         setTargetPosition(new Vector3(0, 3.25, 8));
   
@@ -35,12 +35,12 @@ const PocketSelector = () => {
   
       const confrmlapelBtn = document.getElementById('confrmpkt');
       if (confrmlapelBtn) {
-        confrmlapelBtn.addEventListener('click', handleConfirmLapelClick);
+        confrmlapelBtn.addEventListener('click', handleConfirmPocketClick);
       }
   
       return () => {
         if (confrmlapelBtn) {
-          confrmlapelBtn.removeEventListener('click', handleConfirmLapelClick);
+          confrmlapelBtn.removeEventListener('click', handleConfirmPocketClick);
         }
       };
     }, []);
@@ -59,10 +59,24 @@ const PocketSelector = () => {
       }, []);
     
       useEffect(() => {
+          console.log('Selected Pocket:', selectedLowerPocket);
+      console.log('Fabric URL:', fabricURL);
         if (fabricURL) {
           eventEmitter.emit('applyFabric', { textureURL: fabricURL });
         }
       }, [selectedLowerPocket, fabricURL]);
+      
+      useEffect(() => {
+        localStorage.setItem('selectedLowerPocket', selectedLowerPocket);
+      }, [selectedLowerPocket]);
+    
+     useEffect(() => {
+        const savedLowerPocket = localStorage.getItem('selectedLowerPocket');
+        if (savedLowerPocket) {
+          setSelectedLowerPocket(savedLowerPocket);
+        }
+      }, []);
+
     useEffect(() => {
         const handleLowerPocketChange = (pocketType) => {
             setSelectedLowerPocket(pocketType);

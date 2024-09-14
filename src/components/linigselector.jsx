@@ -22,7 +22,7 @@ const LinigDisplay = () => {
       setShowLinig(true);
       setShowButterfly(false);
       setShowHalfLinning(false);
-
+      localStorage.setItem('selectedLinig', 'Full Linig');
       // Lerp to a new camera position when showing Linig
       setTargetPosition(new Vector3(0, 5, -10)); // Adjust as needed
     };
@@ -31,6 +31,7 @@ const LinigDisplay = () => {
       setShowLinig(false);
       setShowButterfly(false);
       setShowHalfLinning(false);
+      localStorage.setItem('selectedLinig','No ining');
 
       // Lerp back to the default camera position
       setTargetPosition(new Vector3(0, 5, -10)); // Default position
@@ -40,6 +41,7 @@ const LinigDisplay = () => {
       setShowButterfly(true);
       setShowLinig(false);
       setShowHalfLinning(false);
+      localStorage.setItem('selectedLinig', 'ButterflyLining');
 
       // Lerp to a new camera position when showing Butterfly Lining
       setTargetPosition(new Vector3(0, 5, -10)); // Adjust as needed
@@ -49,6 +51,7 @@ const LinigDisplay = () => {
       setShowHalfLinning(true);
       setShowLinig(false);
       setShowButterfly(false);
+      localStorage.setItem('selectedLinig', 'Half Linning');
 
       // Lerp to a new camera position when showing Half Linning
       setTargetPosition(new Vector3(0, 5, -10)); // Adjust as needed
@@ -76,7 +79,6 @@ const LinigDisplay = () => {
         document.getElementById("monogrm").style.display = "flex";
         confrmlining.style.display = "none";
         document.getElementById("waist").style.display = "none";
-
         // Lerp the camera back to the original position
         setTargetPosition(new Vector3(0, 3.25, 8));
       });

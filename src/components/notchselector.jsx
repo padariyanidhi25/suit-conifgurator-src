@@ -50,7 +50,6 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
       setFabricURL(fabric.textureURL);
     };
     eventEmitter.on('fabricSelected', handleFabricSelection);
-    console.log(fabricURL);
     
     return () => {
       eventEmitter.off('fabricSelected', handleFabricSelection);
@@ -79,6 +78,16 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
     }
   }, [selectedNotch, buttonTextureURL]);
 
+  useEffect(() => {
+    localStorage.setItem('selectedNotch', selectedNotch);
+  }, [selectedNotch]);
+
+ useEffect(() => {
+    const savedNotch = localStorage.getItem('selectedNotch');
+    if (savedNotch) {
+      setSelectedNotch(savedNotch);
+    }
+  }, []);
   useEffect(() => {
     const handleNotchChange = (notchType) => {
       setSelectedNotch(notchType);

@@ -4,7 +4,7 @@ import eventEmitter from './eventEmitter';
 
 const BtnsComp = () => {
   const [userData, setUserData] = useState([]);
-  const [selectedButtonId, setSelectedButtonId] = useState(null); // State to track the selected button's ID
+  const [selectedButtonName, setSelectedButtonName] = useState(null); // State to track the selected button's name
 
   useEffect(() => {
     getEntries()
@@ -15,16 +15,31 @@ const BtnsComp = () => {
             // console.log(`Button Item - Type: ${item.name}, Price: ${item.price}`);
           }
         });
+
+        // Load the previously selected button from local storage
+        const savedButtonName = localStorage.getItem('ButtonName');
+        if (savedButtonName) {
+          setSelectedButtonName(savedButtonName);
+        }
       })
       .catch((err) => {
         console.error(err);
       });
   }, []);
 
-  const handleButtonClick = (id, textureURL, price) => {
-    setSelectedButtonId(id); // Set the selected button's ID
+  const handleButtonClick = (id, name, textureURL, price) => {
+    // Store the previously selected button if it exists
+    if (selectedButtonName) {
+      localStorage.removeItem('ButtonName');
+    }
+
+    // Set the new selected button
+    setSelectedButtonName(name);
+    localStorage.setItem('ButtonName', name);
+
+    // Emit event
     eventEmitter.emit('buttonSelected', { textureURL, price });
-    console.log(textureURL, price);
+    console.log(name, textureURL, price);
   };
 
   return (
@@ -36,8 +51,8 @@ const BtnsComp = () => {
             <div
               key={index}
               id={item.id}
-              className={`bt p-4 flex flex-row xs:flex-col rounded-lg  cursor-pointer w-[25vw] content-center items-center ${selectedButtonId === item.id ? 'active' : ''}`}
-              onClick={() => handleButtonClick(item.id, item.textureURL, item.price)}
+              className={`bt p-4 flex flex-row xs:flex-col rounded-lg cursor-pointer w-[25vw] content-center items-center ${selectedButtonName === item.name ? 'active' : ''}`}
+              onClick={() => handleButtonClick(item.id, item.name, item.textureURL, item.price)}
             >
               <img
                 src={item.textureURL}
@@ -45,13 +60,12 @@ const BtnsComp = () => {
                 className="w-40 h-40 object-contain xs:h-20"
               />
               <div>
-
-              <p className=" mt-[0vw] ml-[2.7vw] xs:text-[0.8rem] xs:ml-0 xs:w-[10vw] xs:text-nowrap xs:overflow-hidden">
-                {item.name}
-              </p>
-              <p className="text-gray-600 mt-[0vw] ml-[2.7vw] xs:text-[0.8rem] xs:ml-0 xs:w-[10vw] xs:text-nowrap xs:overflow-hidden">
-                ${item.price}
-              </p>
+                <p className="mt-[0vw] ml-[2.7vw] xs:text-[0.8rem] xs:ml-0 xs:w-[10vw] xs:text-nowrap xs:overflow-hidden">
+                  {item.name}
+                </p>
+                <p className="text-gray-600 mt-[0vw] ml-[2.7vw] xs:text-[0.8rem] xs:ml-0 xs:w-[10vw] xs:text-nowrap xs:overflow-hidden">
+                  ${item.price}
+                </p>
               </div>
             </div>
           ))

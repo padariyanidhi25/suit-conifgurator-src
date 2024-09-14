@@ -54,6 +54,15 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
             eventEmitter.off('fabricSelected', handleFabricSelection);
         };
     }, []);
+    useEffect(() => {
+      const handleButtonTextureSelection = (textureURL) => {
+        setButtonTextureURL(textureURL);
+      };
+      eventEmitter.on('buttonSelected', handleButtonTextureSelection);
+      return () => {
+        eventEmitter.off('buttonSelected', handleButtonTextureSelection);
+      };
+    }, []);
 
     useEffect(() => {
         if (fabricURL) {
@@ -61,6 +70,16 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
         }
     }, [selectedPeak, fabricURL]);
 
+    useEffect(() => {
+      localStorage.setItem('selectedPeak', selectedPeak);
+    }, [selectedPeak]);
+  
+   useEffect(() => {
+      const savedPeak = localStorage.getItem('selectedPeak');
+      if (savedPeak) {
+        setSelectedPeak(savedPeak);
+      }
+    }, []); 
     useEffect(() => {
         const handlePeakChange = (peakType) => {
             setSelectedPeak(peakType);

@@ -18,7 +18,7 @@ const UpperpocketSelector = () => {
   
     // Event listener for 'confrmlapel' click to reset camera position
     useEffect(() => {
-      const handleConfirmLapelClick = () => {
+      const handleConfirmUpperPocketClick = () => {
         // Set the camera back to its original position
         setTargetPosition(new Vector3(0, 3.25, 8));
   
@@ -34,12 +34,12 @@ const UpperpocketSelector = () => {
   
       const confrmlapelBtn = document.getElementById('confrmpkt');
       if (confrmlapelBtn) {
-        confrmlapelBtn.addEventListener('click', handleConfirmLapelClick);
+        confrmlapelBtn.addEventListener('click', handleConfirmUpperPocketClick);
       }
   
       return () => {
         if (confrmlapelBtn) {
-          confrmlapelBtn.removeEventListener('click', handleConfirmLapelClick);
+          confrmlapelBtn.removeEventListener('click', handleConfirmUpperPocketClick);
         }
       };
     }, []);
@@ -62,10 +62,21 @@ const UpperpocketSelector = () => {
           eventEmitter.emit('applyFabric', { textureURL: fabricURL });
         }
       }, [selectedUpperPocket, fabricURL]);
+
+      useEffect(() => {
+        localStorage.setItem('selectedUpperPocket', selectedUpperPocket);
+      }, [selectedUpperPocket]);
+    
+     useEffect(() => {
+        const savedUpperPocket = localStorage.getItem('selectedUpperPocket');
+        if (savedUpperPocket) {
+          setSelectedUpperPocket(savedUpperPocket);
+        }
+      }, []);
     useEffect(() => {
         const handleUpperPocketChange = (pocketType) => {
             setSelectedUpperPocket(pocketType);
-            setTargetPosition(new Vector3(0, 5, -10));
+            setTargetPosition(new Vector3(0, 6, -5));
         };
         
 

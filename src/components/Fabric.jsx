@@ -28,8 +28,10 @@ const FabComp = () => {
     setSelectedFabric(item);
     setSelectedFabricPrice(item.price);
     eventEmitter.emit('fabricSelected', item); // Emit event with selected fabric price
-    console.log("fabricselected");
     
+    // Save the newly selected fabric name to localStorage
+    saveSelectedFabricName(item);
+    console.log("fabricselected");
   };
 
   const handleConfirmClick = () => {
@@ -40,6 +42,11 @@ const FabComp = () => {
     setSelectedCategory(null);
     setSelectedFabric(null);
     setSelectedFabricPrice(null);
+  };
+
+  const saveSelectedFabricName = (item) => {
+    // Save only the fabric name to localStorage
+    localStorage.setItem('selectedFabricName', item.name);
   };
 
   const allFabricsTextureURL = userData.find(item => item.category === 'Fabric' && item.isActive)?.textureURL;
@@ -97,35 +104,34 @@ const FabComp = () => {
       
       {/* Dropdown menu */}
       {showDropdown && (
-  <div
-    id="dropdown-menu"
-    className="absolute bg-white shadow-md p-3 mt-[-6vh] flex flex-col z-10 top-[7vh] left-minus-1vw h-full-110 w-screen xs:flex-row xs:mt-[-5vh] xs:h-[30vh] xs:w-[33rem]"
-    style={{ display: 'flex' }}
-  >
-    {filteredItems.map((item, index) => {
-      const isActive = selectedFabric && selectedFabric.id === item.id; // Check if this fabric is selected
-      return (
         <div
-          key={index}
-          id={`fabric${index + 1}`}
-          className={`fab p-4 w-[23vw] flex flex-row content-center rounded-lg cursor-pointer items-center xs:w-[7rem] xs:h-[9rem] xs:flex-col ${isActive ? 'active' : ''}`}
-          onClick={() => handleFabricClick(item)} // Set selected fabric on click
+          id="dropdown-menu"
+          className="absolute bg-white shadow-md p-3 mt-[-6vh] flex flex-col z-10 top-[7vh] left-minus-1vw h-full-110 w-screen xs:flex-row xs:mt-[-5vh] xs:h-[30vh] xs:w-[33rem]"
+          style={{ display: 'flex' }}
         >
-          <img
-            src={item.textureURL}
-            alt={`Fabric ${index + 1}`}
-            className="w-40 h-40 xs:w-20 xs:h-20"
-          />
-          <div>
-            <p className="fabrics xs:text-[1rem] xs:ml-0 xs:w-[10vw] xs:text-nowrap xs:overflow-hidden">{item.name}</p>
-            <p className="text-gray-600 ml-[2vw] xs:text-[0.8rem] xs:ml-0 xs:w-[10vw] xs:text-nowrap xs:overflow-hidden">${item.price}</p>
-          </div>
+          {filteredItems.map((item, index) => {
+            const isActive = selectedFabric && selectedFabric.id === item.id; // Check if this fabric is selected
+            return (
+              <div
+                key={index}
+                id={`fabric${index + 1}`}
+                className={`fab p-4 w-[23vw] flex flex-row content-center rounded-lg cursor-pointer items-center xs:w-[7rem] xs:h-[9rem] xs:flex-col ${isActive ? 'active' : ''}`}
+                onClick={() => handleFabricClick(item)} // Set selected fabric on click
+              >
+                <img
+                  src={item.textureURL}
+                  alt={`Fabric ${index + 1}`}
+                  className="w-40 h-40 xs:w-20 xs:h-20"
+                />
+                <div>
+                  <p className="fabrics xs:text-[1rem] xs:ml-0 xs:w-[10vw] xs:text-nowrap xs:overflow-hidden">{item.name}</p>
+                  <p className="text-gray-600 ml-[2vw] xs:text-[0.8rem] xs:ml-0 xs:w-[10vw] xs:text-nowrap xs:overflow-hidden">${item.price}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
-      );
-    })}
-  </div>
-)}
-
+      )}
 
       {/* Confirm button */}
       {showDropdown && (

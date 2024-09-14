@@ -60,7 +60,18 @@ const CollarSelector = () => {
       eventEmitter.emit('applyFabric', { textureURL: fabricURL });
     }
   }, [selectedCollar, fabricURL]);
+  
+  useEffect(() => {
+    localStorage.setItem('selectedCollar', selectedCollar);
+  }, [selectedCollar]);
 
+
+  useEffect(() => {
+    const savedCollar = localStorage.getItem('selectedCollar');
+    if (savedCollar) {
+      setSelectedCollar(savedCollar);
+    }
+  }, []);
   useEffect(() => {
     const handleCollarChange = (collarType) => {
       setSelectedCollar(collarType);
