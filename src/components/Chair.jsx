@@ -147,39 +147,39 @@ function Chair( ...props ) {
   })
  
   
-    return (
-      <group {...props} dispose={null} scale={20} >
-      {/* <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Full_Lined.geometry}
-        material={materials['Lining.001']}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={0.01}
-      /> */}
-      <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Mesh026.geometry}
-          material={materials['Jacket.019']}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Mesh026_1.geometry}
-          material={materials['Kaaj.009']}
-        />
-      </group>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Sleeves_Buttons.geometry}
-        material={materials['Button.011']}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={0.01}
-      />
-    </group>
+    return (<></>
+    //   <group {...props} dispose={null} scale={20} >
+    //   {/* <mesh
+    //     castShadow
+    //     receiveShadow
+    //     geometry={nodes.Full_Lined.geometry}
+    //     material={materials['Lining.001']}
+    //     rotation={[Math.PI / 2, 0, 0]}
+    //     scale={0.01}
+    //   /> */}
+    //   <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+    //     <mesh
+    //       castShadow
+    //       receiveShadow
+    //       geometry={nodes.Mesh026.geometry}
+    //       material={materials['Jacket.019']}
+    //     />
+    //     <mesh
+    //       castShadow
+    //       receiveShadow
+    //       geometry={nodes.Mesh026_1.geometry}
+    //       material={materials['Kaaj.009']}
+    //     />
+    //   </group>
+    //   <mesh
+    //     castShadow
+    //     receiveShadow
+    //     geometry={nodes.Sleeves_Buttons.geometry}
+    //     material={materials['Button.011']}
+    //     rotation={[Math.PI / 2, 0, 0]}
+    //     scale={0.01}
+    //   />
+    // </group>
     )
   }
   

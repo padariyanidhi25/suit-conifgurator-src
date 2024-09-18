@@ -4,7 +4,7 @@ import eventEmitter from './eventEmitter';
 import { useGLTF } from '@react-three/drei';
 
 export function Notch_Collar(props) {
-  const { nodes, materials } = useGLTF('./collar/Notch_Collar.glb');
+  const { nodes, materials } = useGLTF('./latest/jacket/Coat Noch & peak Revesion/Noch/notch_collar.glb');
 
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -30,11 +30,11 @@ export function Notch_Collar(props) {
   }, [materials]);
 
   return (
-    <group {...props} dispose={null} scale={20}>
+<group {...props} dispose={null} scale={20}>
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.Notch_Collar.geometry}
+        geometry={nodes.notch_collar.geometry}
         material={materials.Jacket}
         rotation={[Math.PI / 2, 0, 0]}
         scale={0.01}
@@ -42,9 +42,9 @@ export function Notch_Collar(props) {
     </group>
   )
 }
-useGLTF.preload('./collar/Notch_Collar.glb');
+useGLTF.preload('./latest/jacket/Coat Noch & peak Revesion/Noch/notch_collar.glb');
 export function Peak_Collor(props) {
-  const { nodes, materials } = useGLTF('./collar/Peak_Collor.glb');
+  const { nodes, materials } = useGLTF('./latest/jacket/Coat Noch & peak Revesion/Peak/peak_collar.glb');
 
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -74,7 +74,7 @@ export function Peak_Collor(props) {
     <mesh
       castShadow
       receiveShadow
-      geometry={nodes.Peak_Collor.geometry}
+      geometry={nodes.peak_collar1.geometry}
       material={materials.Jacket}
       rotation={[Math.PI / 2, 0, 0]}
       scale={0.01}
@@ -82,4 +82,4 @@ export function Peak_Collor(props) {
   </group>
 )
 }
-useGLTF.preload('./collar/Peak_Collor.glb')
+useGLTF.preload('./latest/jacket/Coat Noch & peak Revesion/Peak/peak_collar.glb')

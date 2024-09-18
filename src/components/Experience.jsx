@@ -15,8 +15,11 @@ import { Double_vent } from "./doublevent";
 import { Kaaj } from "./kaaj";
 import PleatSelector from "./pleatselector";
 import TrouserPocketSelector from "./trouserpocketselector";
-import { Waistbend } from "./waistband";
+// import { Single_Side_Closure_5cm, Waistbend } from "./waistband";
 import { Button } from "./waistbandbutton";
+import ShoulderSelector from "./ShoulderSelector";
+import WaistbandSelector from "./waistbandselector";
+import HemSelector from "./hemfinishselector";
 
 
 const Experience = ({ toggleCanvas }) => {
@@ -37,7 +40,8 @@ const Experience = ({ toggleCanvas }) => {
   const [showTrouserPocketSelector, setShowTrouserPocketSelector] = useState(false);
   const [showWaistband, setShowWaistband] = useState(false);
   const [showKaaj, setShowKaaj] = useState(true);
-
+  const [shoulder,setShoulder]=useState(true)
+const [showhem,setShowHem]=useState(false)
   useEffect(() => {
     const classicButton = document.getElementById('classic');
     const breastedButton = document.getElementById('breasted');
@@ -63,6 +67,8 @@ const Experience = ({ toggleCanvas }) => {
       setShowTrouserPocketSelector(false);
       setShowWaistband(false);
       setShowKaaj(true);
+      setShoulder(true)
+      setShowHem(false)
     };
 
     const handleBreastedClick = () => {
@@ -81,6 +87,9 @@ const Experience = ({ toggleCanvas }) => {
       setShowTrouserPocketSelector(false);
       setShowWaistband(false);
       setShowKaaj(true);
+      setShoulder(true)
+      setShowHem(false)
+
     };
 
     const handleConfirmClick = () => {
@@ -113,6 +122,9 @@ const Experience = ({ toggleCanvas }) => {
       setShowTrouserPocketSelector(true);
       setShowWaistband(true);
       setShowKaaj(false);
+      setShoulder(false)
+      setShowHem(true)
+
     };
 
     const handleJacketClick = () => {
@@ -198,6 +210,7 @@ const Experience = ({ toggleCanvas }) => {
         {/* <Environment preset="studio" /> */}
         {/* <Kaaj/> */}
         {showPocketSelector && <PocketSelector />}
+        {shoulder && <ShoulderSelector/>}
         {showUpperPocketSelector && <UpperpocketSelector />}
         {collarType === 'notch' && showKaaj && <Kaaj />}
         {collarType == 'notch' ? <NotchSelector defaultNotch={defaultNotch} collarType={collarType} selectedComponent={selectedComponent} /> :
@@ -207,10 +220,10 @@ const Experience = ({ toggleCanvas }) => {
         {showPleatSelector && <PleatSelector />}
         {showTrouserPocketSelector && <TrouserPocketSelector />}
         {/* <Button/> */}
-        {showWaistband && <Waistbend />}
+        {showWaistband && <WaistbandSelector />}
        {/* <NotchSelector defaultNotch={defaultNotch}  collarType={collarType} selectedComponent={selectedComponent}/> 
         <PeakSelector defaultPeak={defaultPeak} collarType={collarType} selectedComponent={selectedComponent} /> */}
-
+    {showhem && <HemSelector/>}
         {showlining && <LinigDisplay />}
         {showcollar && <CollarSelector />}
         {showTrouser ? <Model /> : (showClassic ? <Classic /> : <Chair />)}

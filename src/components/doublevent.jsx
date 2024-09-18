@@ -3,7 +3,7 @@ import { useGLTF } from '@react-three/drei'
 import * as THREE from 'three';
 import eventEmitter from './eventEmitter';
 export function Double_vent(props) {
-  const { nodes, materials } = useGLTF('/Double_vent.glb')
+  const { nodes, materials } = useGLTF('./latest/jacket/Coat Noch & peak Revesion/Double_vent.glb')
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
       if (textureURL) {
@@ -32,16 +32,17 @@ export function Double_vent(props) {
   }, [materials]);
   return (
     <group {...props} dispose={null} scale={20}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Double_vent.geometry}
-        material={materials.Jacket}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={0.01}
-      />
-    </group>
-  )
+    <mesh
+      castShadow
+      receiveShadow
+      geometry={nodes.Double_vent.geometry}
+      material={materials.Jacket}
+      rotation={[Math.PI / 2, 0, 0]}
+      scale={0.01}
+    />
+  </group>
+)
 }
 
-useGLTF.preload('/Double_vent.glb')
+
+useGLTF.preload('./latest/jacket/Coat Noch & peak Revesion/Double_vent.glb')
