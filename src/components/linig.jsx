@@ -6,7 +6,7 @@ export function Linig(props) {
   const { nodes, materials } = useGLTF('./latest/jacket/Coat Noch & peak Revesion/Linning/Full_Lined.glb');
 
   return (
-    <group {...props} dispose={null} scale={20}>
+    <group {...props} dispose={null} scale={20} position={[0,-2.5,0]}>
     <mesh
       castShadow
       receiveShadow
@@ -24,7 +24,7 @@ useGLTF.preload('./latest/jacket/Coat Noch & peak Revesion/Linning/Full_Lined.gl
 export function Butterfly_Lining(props) {
   const { nodes, materials } = useGLTF('./latest/jacket/Coat Noch & peak Revesion/Linning/Butterfly_Lining.glb')
   return (
-    <group {...props} dispose={null} scale={20}>
+    <group {...props} dispose={null} scale={20} position={[0,-2.5,0]}>
     <mesh
       castShadow
       receiveShadow
@@ -42,7 +42,7 @@ useGLTF.preload('./latest/jacket/Coat Noch & peak Revesion/Linning/Butterfly_Lin
 export function Half_Linning(props) {
   const { nodes, materials } = useGLTF('./latest/jacket/Coat Noch & peak Revesion/Linning/Half_Linning.glb')
   return (
-<group {...props} dispose={null} scale={20}>
+<group {...props} dispose={null} scale={20} position={[0,-2.5,0]}>
       <mesh
         castShadow
         receiveShadow

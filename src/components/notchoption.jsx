@@ -36,7 +36,7 @@ export function Nochdoublebrested(props) {
   }, [materials]);
 
   return (
-    <group {...props} dispose={null} scale={20}>
+    <group {...props} dispose={null} scale={20}  position={[0,-2.5,0]}>
     <mesh
       castShadow
       receiveShadow
@@ -99,7 +99,7 @@ export function Notchdoublebtn(props) {
       };
     }, [materials]);
     return (
-      <group {...props} dispose={null} scale={20}>
+      <group {...props} dispose={null} scale={20}  position={[0,-2.5,0]}>
       <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
         <mesh
           castShadow
@@ -169,7 +169,7 @@ export function Notchdoublebtn(props) {
       };
     }, [materials]);
     return (
-      <group {...props} dispose={null} scale={20}>
+      <group {...props} dispose={null} scale={20} position={[0,-2.5,0]}>
       <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
         <mesh
           castShadow

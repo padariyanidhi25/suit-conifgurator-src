@@ -36,7 +36,7 @@ export function Flap_Pocket(props) {
 
 
   return (
-    <group {...props} dispose={null} scale={20}>
+    <group {...props} dispose={null} scale={20} position={[0,-2.5,0]}>
     <mesh
       castShadow
       receiveShadow
@@ -81,7 +81,7 @@ export function Patch_Pocket(props) {
 
 
   return (
-    <group {...props} dispose={null} scale={20}>
+    <group {...props} dispose={null} scale={20} position={[0,-2.5,0]}>
       <mesh
         castShadow
         receiveShadow
@@ -124,7 +124,7 @@ export function Besom_Pocket(props) {
   }, [materials]);
 
   return (
-    <group {...props} dispose={null} scale={20}>
+    <group {...props} dispose={null} scale={20} position={[0,-2.5,0]}>
       <mesh
         castShadow
         receiveShadow
@@ -167,7 +167,7 @@ export function Upperpocket(props) {
   }, [materials]);
  
   return (
-    <group {...props} dispose={null} scale={20}>
+    <group {...props} dispose={null} scale={20} position={[0,-2.5,0]}>
     <mesh
       castShadow
       receiveShadow
@@ -209,7 +209,7 @@ export function Halfmoon(props) {
     };
   }, [materials]);
   return (
-    <group {...props} dispose={null} scale={20}>
+    <group {...props} dispose={null} scale={20} position={[0,-2.5,0]}>
     <mesh
       castShadow
       receiveShadow
@@ -250,7 +250,7 @@ export function Patch_Pocket_Upper(props) {
     };
   }, [materials]);
   return (
-    <group {...props} dispose={null} scale={20}>
+    <group {...props} dispose={null} scale={20} position={[0,-2.5,0]}>
     <mesh
       castShadow
       receiveShadow

@@ -4,7 +4,7 @@ import { useGLTF } from '@react-three/drei'
 export function Kaaj(props) {
   const { nodes, materials } = useGLTF('./clouseroption-noch/noch_kaaj.glb')
   return (
-    <group {...props} dispose={null} scale={10}>
+    <group {...props} dispose={null} scale={20} position={[0,-2.5,0]}>
       <mesh
         castShadow
         receiveShadow

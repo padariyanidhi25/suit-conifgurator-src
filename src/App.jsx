@@ -4,7 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import Experience from "./components/Experience";
 import Configurator from "./components/Configurator";
 import { CustomizationProvider } from "./contexts/Customization";
-import { Environment, PerspectiveCamera } from "@react-three/drei";
+import { Environment, OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { getEntries } from "./Firebase/userUtil";
 import eventEmitter from "./components/eventEmitter";
 import { Vector3 } from "three";
@@ -89,7 +89,7 @@ function App() {
               // rotation={[0,Math.PI/10,0]}
 
               />
-
+{/* <OrbitControls/> */}
 
               <StaticDirectionalLight
                 position={[-0.45244, 0.32952, 0.27606]}

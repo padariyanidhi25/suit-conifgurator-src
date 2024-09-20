@@ -100,7 +100,7 @@ const [showhem,setShowHem]=useState(false)
       document.getElementById('confirm').style.display = 'none';
       document.getElementById('main').style.display = 'block';
       document.querySelector('.App').style.width = '70vw';
-      document.querySelector('.App').style.height = '40vw';
+      document.querySelector('.App').style.height = '100%';
       document.querySelector('.App').style.top = '7vh';
       finish.style.display = 'block';
       confirm = true;
@@ -190,6 +190,8 @@ const [showhem,setShowHem]=useState(false)
   window.onresize = orientationChecker;
   console.log(collarType);
   
+
+  
   return (
     <>
       {progress < 100 && <SpinnerLoader />}
@@ -209,7 +211,17 @@ const [showhem,setShowHem]=useState(false)
 
         {/* <Environment preset="studio" /> */}
         {/* <Kaaj/> */}
-        {showPocketSelector && <PocketSelector />}
+        <OrbitControls
+  enableZoom={true}
+  enableRotate={true}   // Allow rotation if needed
+  panSpeed={0.5}        // Control panning speed
+  zoomSpeed={0.3}       // Control zoom speed
+  minPolarAngle={Math.PI / 3}  // Allow some vertical movement
+  maxPolarAngle={Math.PI / 1.5} // But restrict it
+  maxDistance={50}       // Control max zoom distance
+  minDistance={2}        // Control min zoom distance (adjust if needed)
+/>
+        {showPocketSelector && <PocketSelector  />}
         {shoulder && <ShoulderSelector/>}
         {showUpperPocketSelector && <UpperpocketSelector />}
         {collarType === 'notch' && showKaaj && <Kaaj />}

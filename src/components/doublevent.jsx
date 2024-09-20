@@ -31,7 +31,7 @@ export function Double_vent(props) {
     };
   }, [materials]);
   return (
-    <group {...props} dispose={null} scale={20}>
+    <group {...props} dispose={null} scale={20} position={[0,-2.5,0]}>
     <mesh
       castShadow
       receiveShadow

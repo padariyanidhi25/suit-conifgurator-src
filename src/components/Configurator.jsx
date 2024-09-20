@@ -1047,6 +1047,8 @@ const Configurator = () => {
     const selectedPeak = localStorage.getItem("selectedPeak");
     const selectedNotch = localStorage.getItem("selectedNotch");
     const selectedAmf = localStorage.getItem("selectedAmf");
+    const selectedWaistband=localStorage.getItem('selectedWaistband');
+
 
     // Display retrieved values in the UI (if available)
     const resultDiv = document.getElementById("result");
@@ -1064,6 +1066,9 @@ const Configurator = () => {
             <p>couser Peak Option: ${selectedPeak || "None selected"}</p> 
             <p>couser Notch Option: ${selectedNotch || "None selected"}</p> 
             <p>AMF Option: ${selectedAmf || "None selected"}</p> 
+            <p> Trouser:</p>
+            <p>Waistband Option: ${selectedWaistband || "None selected"}</p> 
+
 
 
         `;
@@ -1133,18 +1138,7 @@ const Configurator = () => {
     selectyourjacketsize.style.display = "none";
     sizeoption.style.display = "flex";
   });
-  //   document.querySelectorAll('#selectyourjacketsize button').forEach(button => {
-  //     button.addEventListener('click', () => {
-  //         // Remove 'selected' class from previously selected button
-  //         document.querySelectorAll('#selectyourjacketsize button').forEach(btn => btn.classList.remove('selected'));
 
-  //         // Add 'selected' class to the clicked button
-  //         button.classList.add('selected');
-
-  //         // Store selected size
-  //         selectedSize = button.textContent.trim();
-  //     });
-  // });
   sizeJguide.addEventListener("click", () => {
     jsizechart.style.display = "block";
     selectyourjacketsize.style.display = "none";
