@@ -123,31 +123,6 @@ const Configurator = () => {
   const linigm = document.getElementById("linigm");
   const tabSwitch = (tabId) => {
     switch (tabId) {
-      case "fabric":
-        isfabric = !isfabric;
-        // dropdown_menu.style.display = 'flex';
-        document.getElementById("fabric-type").style.display = "flex";
-        // buttonsContent.style.display='none';
-        button_menu.style.display = "none";
-        pocket_menu.style.display = "none";
-        // pocketContent.style.display = 'none';
-        upper_pocket.style.display = "none";
-        monogrm.style.display = "none";
-        trousr.style.display = "none";
-        sleeve_menu.style.display = "none";
-        confrm.style.display = "none";
-        document.getElementById("lining-menu").style.display = "none";
-        document.getElementById("liningcontent").style.display = "none";
-        document.getElementById("lining-color").style.display = "none";
-        document.getElementById("buttonContent").style.display = "none";
-        document.getElementById("confrmbtn").style.display = "none";
-        document.getElementById("lapel-buttonhole").style.display = "none";
-        document.getElementById("pocketContent").style.display = "none";
-
-        hideElements();
-
-        break;
-
       case "linigs":
         islinig = !islinig;
         isfabric = false;
@@ -318,6 +293,30 @@ const Configurator = () => {
         document.getElementById("waistcoat-button").style.display = "none";
         document.getElementById("confirmbuttonw").style.display = "none";
         document.getElementById("confirmlapel").style.display = "none";
+
+        break;
+      case "fabric":
+        isfabric = !isfabric;
+        // dropdown_menu.style.display = 'flex';
+        document.getElementById("fabric-type").style.display = "flex";
+        // buttonsContent.style.display='none';
+        button_menu.style.display = "none";
+        pocket_menu.style.display = "none";
+        // pocketContent.style.display = 'none';
+        upper_pocket.style.display = "none";
+        monogrm.style.display = "none";
+        trousr.style.display = "none";
+        sleeve_menu.style.display = "none";
+        confrm.style.display = "none";
+        document.getElementById("lining-menu").style.display = "none";
+        document.getElementById("liningcontent").style.display = "none";
+        document.getElementById("lining-color").style.display = "none";
+        document.getElementById("buttonContent").style.display = "none";
+        document.getElementById("confrmbtn").style.display = "none";
+        document.getElementById("lapel-buttonhole").style.display = "none";
+        document.getElementById("pocketContent").style.display = "none";
+
+        hideElements();
 
         break;
     }
@@ -507,6 +506,11 @@ const Configurator = () => {
   //   document.getElementById('lapel-width').style.display = 'none'
   //   document.getElementById('lapel-buttonhole').style.display = 'flex'
   // })
+
+  document.getElementById("wheight_5mm").addEventListener("click", () => {
+    // Save the ID when the div is clicked
+    localStorage.setItem("waistbandHeightOptionId", "wheight_5mm");
+  });
   document.getElementById("shoulder").addEventListener("click", () => {
     document.getElementById("shoulder-option").style.display = "flex";
     monogrm.style.display = "none";
@@ -1083,6 +1087,23 @@ const Configurator = () => {
     document.getElementById("customize").style.display = "block";
     document.getElementById("result").style.display = "block";
   });
+
+  function saveButtonId(buttonId) {
+    localStorage.setItem("legLiningOptionId", buttonId);
+  }
+
+  // Add event listeners to each button
+  document.getElementById("full").addEventListener("click", () => {
+    saveButtonId("full");
+  });
+
+  document.getElementById("half").addEventListener("click", () => {
+    saveButtonId("half");
+  });
+
+  document.getElementById("unline").addEventListener("click", () => {
+    saveButtonId("unline");
+  });
   //      //     //
   finish.addEventListener("click", () => {
     // Check if 'finish' element is working
@@ -1142,29 +1163,112 @@ const Configurator = () => {
     const selectedNotch = localStorage.getItem("selectedNotch");
     const selectedAmf = localStorage.getItem("selectedAmf");
     const selectedWaistband = localStorage.getItem("selectedWaistband");
+    const selectedpleat = localStorage.getItem("selectedpleat");
+    const selectedtrouserpocket = localStorage.getItem("selectedtrouserpocket");
+    const ButtontName = localStorage.getItem("ButtontName");
+    const selectedHem = localStorage.getItem("selectedHem");
+    const savedId = localStorage.getItem("waistbandHeightOptionId");
+    const savedleg = localStorage.getItem("legLiningOptionId");
 
+    // To retrieve the ID later
     // Display retrieved values in the UI (if available)
     const resultDiv = document.getElementById("result");
     if (resultDiv) {
       resultDiv.innerHTML = `
-            <p> Jacket :- </p>
-            <p>Button Name : ${ButtonName || "Default"}</p>
-            <p> Lower Pocket Name: ${selectedLowerPocket || "Default"}</p>
-            <p> Fabric Name: ${selectedFabricName || "Default"}</p>
-            <p> Upper Pocket Name: ${selectedUpperPocket || "Default"}</p>
-            <p> Lining Name: ${selectedLinig || "Default"}</p>
-            <p> Collar Name: ${selectedCollar || "Default"}</p>
-            <p>Canvas Option: ${selectedCanvas || "None selected"}</p> 
-            <p>Shoulder Option: ${selectedShoulder || "None selected"}</p> 
-            <p>couser Peak Option: ${selectedPeak || "None selected"}</p> 
-            <p>couser Notch Option: ${selectedNotch || "None selected"}</p> 
-            <p>AMF Option: ${selectedAmf || "None selected"}</p> 
-            <p> Trouser:</p>
-            <p>Waistband Option: ${selectedWaistband || "None selected"}</p> 
-
-
-
-        `;
+        <table border="1" cellspacing="0" cellpadding="5">
+          <thead>
+            <tr>
+              <th>Jacket</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Button </td>
+              <td>${ButtonName || "Default"}</td>
+            </tr>
+            <tr>
+              <td>Lower-Pocket </td>
+              <td>${selectedLowerPocket || "Default"}</td>
+            </tr>
+            <tr>
+              <td>Fabric </td>
+              <td>${selectedFabricName || "Default"}</td>
+            </tr>
+            <tr>
+              <td>Upper-Pocket </td>
+              <td>${selectedUpperPocket || "Default"}</td>
+            </tr>
+            <tr>
+              <td>Lining </td>
+              <td>${selectedLinig || "Default"}</td>
+            </tr>
+            <tr>
+              <td>Collar </td>
+              <td>${selectedCollar || "Default"}</td>
+            </tr>
+            <tr>
+              <td>Canvas </td>
+              <td>${selectedCanvas || "None selected"}</td>
+            </tr>
+            <tr>
+              <td>Shoulder </td>
+              <td>${selectedShoulder || "None selected"}</td>
+            </tr>
+            <tr>
+              <td>Couser-Peak </td>
+              <td>${selectedPeak || "None selected"}</td>
+            </tr>
+            <tr>
+              <td>Couser-Notch </td>
+              <td>${selectedNotch || "None selected"}</td>
+            </tr>
+            <tr>
+              <td>AMF </td>
+              <td>${selectedAmf || "None selected"}</td>
+            </tr>
+          </tbody>
+        </table>
+        <br/>
+        <table border="1" cellspacing="0" cellpadding="5">
+          <thead>
+            <tr>
+              <th>Trouser</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Waistband </td>
+              <td>${selectedWaistband || "None selected"}</td>
+            </tr>
+              <tr>
+              <td>Pleat</td>
+              <td>${selectedpleat || "None selected"}</td>
+            </tr>
+             <tr>
+              <td>Pocket</td>
+              <td>${selectedtrouserpocket || "None selected"}</td>
+            </tr>
+            <tr>
+              <td>Button</td>
+              <td>${ButtontName || "None selected"}</td>
+            </tr>
+            <tr>
+              <td>HemFinish</td>
+              <td>${selectedHem || "None selected"}</td>
+            </tr>
+             <tr>
+              <td>Waistband Height</td>
+              <td>${savedId || "None selected"}</td>
+            </tr>
+             <tr>
+              <td>Leg linig</td>
+              <td>${savedleg || "None selected"}</td>
+            </tr>
+          </tbody>
+        </table>
+      `;
       resultDiv.style.display = "block"; // Show the result div
     } else {
       console.log("Result div not found");

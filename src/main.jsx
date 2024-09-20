@@ -1,16 +1,15 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client'; // Import createRoot from react-dom/client
-import App from './App';
+import React from "react";
+import { createRoot } from "react-dom/client"; // Import createRoot from react-dom/client
+import App from "./App";
 // import MonogramComp from './components/Monogram';
-import './index.css';
-import BtnsComp from './components/buttons';
-import FabComp from './components/Fabric';
-import LiningComponent from './components/lining_color';
-import TBtnsComp from './components/trouserbutton';
-// import LiningColor from './components/lining_color';
-  
+import "./index.css";
+import BtnsComp from "./components/buttons";
+import FabComp from "./components/Fabric";
+// import LiningComponent from "./components/lining_color";
+import TBtnsComp from "./components/trouserbutton";
+
 // Create root for the main application
-const root = createRoot(document.getElementById('root'));
+const root = createRoot(document.getElementById("root"));
 
 // Render your main application inside the root
 root.render(
@@ -19,9 +18,8 @@ root.render(
   </React.StrictMode>
 );
 
-  
 // Create root for the main application
-const BtnsRoot = createRoot(document.getElementById('button-menu'));
+const BtnsRoot = createRoot(document.getElementById("button-menu"));
 
 // Render your main application inside the root
 BtnsRoot.render(
@@ -30,17 +28,17 @@ BtnsRoot.render(
   </React.StrictMode>
 );
 
-const fabRoot=createRoot(document.getElementById('fabric-type'));
+const fabRoot = createRoot(document.getElementById("fabric-type"));
 
 fabRoot.render(
   <React.StrictMode>
-    <FabComp/>
+    <FabComp />
   </React.StrictMode>
-)
-const lcolorRoot=createRoot(document.getElementById('button-menut'));
+);
+const liningRoot = createRoot(document.getElementById("button-menut"));
 
-lcolorRoot.render(
+liningRoot.render(
   <React.StrictMode>
-<TBtnsComp/>
-    </React.StrictMode>
-)
+    <TBtnsComp />
+  </React.StrictMode>
+);

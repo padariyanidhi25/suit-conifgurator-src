@@ -195,7 +195,7 @@ const Experience = ({ toggleCanvas }) => {
   return (
     <>
       {progress < 100 && <SpinnerLoader />}
-      <Suspense fallback={null}>
+      <Suspense fallback={<SpinnerLoader />}>
         {/* <Stage intensity={0} environment={null} shadows={false} animations={false} adjustCamera={false} > */}
         {/* <OrbitControls
             enableRotate={false}
