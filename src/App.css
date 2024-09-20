@@ -9,8 +9,6 @@
 * {
   margin: 0;
   user-select: none;
-
-
 }
 
 body {
@@ -29,7 +27,7 @@ body {
 
 @font-face {
   font-family: "Sora";
-  src: url('./assets/static/Sora-Regular.ttf');
+  src: url("./assets/static/Sora-Regular.ttf");
 }
 
 .dot {
@@ -37,7 +35,7 @@ body {
   /* Initial position */
 }
 
-input:checked~.dot {
+input:checked ~ .dot {
   transform: translateX(100%);
 }
 
@@ -83,7 +81,7 @@ input:checked~.dot {
   left: 0.25rem;
 }
 
-input:checked~.dott {
+input:checked ~ .dott {
   transform: translateX(100%);
 }
 
@@ -112,25 +110,26 @@ input:checked~.dott {
   height: 50%;
   width: 10%;
 }
-
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
 .App {
   height: 60vh;
   width: 100vw;
   user-select: none;
-  background-color: #EFEFEF;
+  background-color: #efefef;
   position: absolute;
   top: 5vh;
-
 }
 
 .truser {
   height: 45vh;
   width: 100vw;
   user-select: none;
-  background-color: #EFEFEF;
+  background-color: #efefef;
   position: absolute;
   top: 5vh;
-
 }
 
 .configurator {
@@ -201,13 +200,12 @@ input:checked~.dott {
   top: 100%;
   right: 10px;
   /* transform: translateY(-50%); */
-  z-Index: 1;
+  z-index: 1;
   /* padding: 10px; */
   background: rgba(255, 255, 255, 0.7);
   border: none;
   cursor: pointer;
 }
-
 
 /* #confirm{
     background-color: rgb(157 167 155);
@@ -222,7 +220,6 @@ input:checked~.dott {
   margin-top: -1vh;
   /* font-size: 20px; */
 }
-
 
 .tablinks {
   color: rgb(10, 10, 10);

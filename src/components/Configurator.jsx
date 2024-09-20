@@ -338,7 +338,6 @@ const Configurator = () => {
       tabSwitch(name);
     });
   });
-
   btnm.addEventListener("click", () => {
     buttonContent.style.display = "block";
     button_menu.style.display = "flex";
@@ -349,6 +348,8 @@ const Configurator = () => {
     monogrm.style.display = "none";
     buttontype.classList.add("active");
     sleevetype.classList.remove("active");
+    document.getElementById("tab").style.display = "none";
+    document.getElementById("finish").style.display = "none";
   });
   document.querySelector("#btnm").addEventListener("click", () => {
     buttonContent.style.display = "block";
@@ -366,6 +367,8 @@ const Configurator = () => {
     // confrmpkt.style.display='block'
     confrm.style.display = "block";
     trousr.style.display = "none";
+    document.getElementById("tab").style.display = "none";
+    document.getElementById("finish").style.display = "none";
     document.getElementById("upperpocketModel").classList.add("active");
     document.getElementById("lowerpocketmodel").classList.remove("active");
   });
@@ -386,6 +389,8 @@ const Configurator = () => {
     confirmcon.style.display = "none";
     monogrm.style.display = "flex";
     sleeve_menu.style.display = "none";
+    document.getElementById("tab").style.display = "block";
+    document.getElementById("finish").style.display = "block";
   });
   buttontype.classList.add("active");
 
@@ -396,6 +401,8 @@ const Configurator = () => {
     monogrm.style.display = "flex";
     confrmlining.style.display = "none";
     document.getElementById("waist").style.display = "none";
+    document.getElementById("tab").style.display = "block";
+    document.getElementById("finish").style.display = "block";
   });
   document.getElementById("linigtype").addEventListener("click", () => {
     document.getElementById("lining-menu").style.display = "flex";
@@ -414,36 +421,50 @@ const Configurator = () => {
     monogrm.style.display = "none";
     document.getElementById("collar-option").style.display = "flex";
     document.getElementById("confirmcolar").style.display = "block";
+    document.getElementById("tab").style.display = "none";
+    document.getElementById("finish").style.display = "none";
   });
   document.getElementById("confrmcollar").addEventListener("click", () => {
     document.getElementById("collar-option").style.display = "none";
     document.getElementById("confirmcolar").style.display = "none";
     monogrm.style.display = "flex";
+    document.getElementById("tab").style.display = "block";
+    document.getElementById("finish").style.display = "block";
   });
   document.getElementById("amf").addEventListener("click", () => {
     document.getElementById("amf-option").style.display = "flex";
     monogrm.style.display = "none";
     document.getElementById("confirmamf").style.display = "block";
+    document.getElementById("tab").style.display = "none";
+    document.getElementById("finish").style.display = "none";
   });
   document.getElementById("confrmamf").addEventListener("click", () => {
     document.getElementById("amf-option").style.display = "none";
     document.getElementById("confirmamf").style.display = "none";
     monogrm.style.display = "flex";
+    document.getElementById("tab").style.display = "block";
+    document.getElementById("finish").style.display = "block";
   });
   document.getElementById("closure").addEventListener("click", () => {
     document.getElementById("closure-option").style.display = "flex";
     monogrm.style.display = "none";
     document.getElementById("confirmclosure").style.display = "block";
+    document.getElementById("tab").style.display = "none";
+    document.getElementById("finish").style.display = "none";
   });
   document.getElementById("confrmclosure").addEventListener("click", () => {
     document.getElementById("closure-option").style.display = "none";
     document.getElementById("confirmclosure").style.display = "none";
     monogrm.style.display = "flex";
+    document.getElementById("tab").style.display = "block";
+    document.getElementById("finish").style.display = "block";
   });
   document.getElementById("lapel").addEventListener("click", () => {
     document.getElementById("lapelContent").style.display = "block";
     document.getElementById("lapel-option").style.display = "flex";
     monogrm.style.display = "none";
+    document.getElementById("tab").style.display = "none";
+    document.getElementById("finish").style.display = "none";
     document.getElementById("confirmlapel").style.display = "block";
     // document.getElementById('confrmlapel').style.display = 'block'
 
@@ -455,7 +476,8 @@ const Configurator = () => {
     document.getElementById("lapel-option").style.display = "none";
     document.getElementById("lapel-width").style.display = "none";
     document.getElementById("lapel-buttonhole").style.display = "none";
-
+    document.getElementById("tab").style.display = "block";
+    document.getElementById("finish").style.display = "block";
     // document.getElementById('confrmlapel').style.display = 'none'
 
     document.getElementById("confirmlapel").style.display = "none";
@@ -489,24 +511,34 @@ const Configurator = () => {
     document.getElementById("shoulder-option").style.display = "flex";
     monogrm.style.display = "none";
     document.getElementById("confirmshoulder").style.display = "block";
+    document.getElementById("tab").style.display = "none";
+    document.getElementById("finish").style.display = "none";
   });
   document.getElementById("confrmshoulder").addEventListener("click", () => {
     document.getElementById("shoulder-option").style.display = "none";
     document.getElementById("confirmshoulder").style.display = "none";
     monogrm.style.display = "flex";
+    document.getElementById("tab").style.display = "block";
+    document.getElementById("finish").style.display = "block";
   });
   document.getElementById("canvas").addEventListener("click", () => {
     document.getElementById("canvas-option").style.display = "flex";
     monogrm.style.display = "none";
+    document.getElementById("tab").style.display = "none";
+    document.getElementById("finish").style.display = "none";
     document.getElementById("confirmcanvas").style.display = "block";
   });
   document.getElementById("confrmcanvas").addEventListener("click", () => {
     document.getElementById("canvas-option").style.display = "none";
     document.getElementById("confirmcanvas").style.display = "none";
     monogrm.style.display = "flex";
+    document.getElementById("tab").style.display = "block";
+    document.getElementById("finish").style.display = "block";
   });
   document.getElementById("monogramid").addEventListener("click", () => {
     document.getElementById("monogram-option").style.display = "flex";
+    document.getElementById("tab").style.display = "none";
+    document.getElementById("finish").style.display = "none";
     monogrm.style.display = "none";
     document.getElementById("confirmmonogram").style.display = "block";
   });
@@ -514,6 +546,8 @@ const Configurator = () => {
     document.getElementById("monogram-option").style.display = "none";
     document.getElementById("confirmmonogram").style.display = "none";
     monogrm.style.display = "flex";
+    document.getElementById("tab").style.display = "block";
+    document.getElementById("finish").style.display = "block";
   });
   document.getElementById("confrm").addEventListener("click", () => {
     document.getElementById("closure-option").style.display = "none";
@@ -537,6 +571,8 @@ const Configurator = () => {
     document.getElementById("confirmwaistband").style.display = "block";
     document.getElementById("waistbandtype").classList.add("active");
     document.getElementById("waistbanddetails").classList.remove("active");
+    document.getElementById("tab").style.display = "none";
+    document.getElementById("finish").style.display = "none";
   });
   document.getElementById("waistbandtype").classList.add("active");
 
@@ -545,7 +581,8 @@ const Configurator = () => {
     document.getElementById("confirmwaistband").style.display = "none";
     document.getElementById("waistbandcontent").style.display = "none";
     document.getElementById("waistband-details").style.display = "none";
-
+    document.getElementById("tab").style.display = "block";
+    document.getElementById("finish").style.display = "block";
     trousr.style.display = "flex";
   });
   document.getElementById("waistbandtype").addEventListener("click", () => {
@@ -570,6 +607,8 @@ const Configurator = () => {
     document.getElementById("pocketback").classList.remove("active");
     document.getElementById("pocketcoin").classList.remove("active");
     document.getElementById("confrmpockett").style.display = "block";
+    document.getElementById("tab").style.display = "none";
+    document.getElementById("finish").style.display = "none";
   });
   document.getElementById("pocketside").classList.add("active");
 
@@ -580,6 +619,8 @@ const Configurator = () => {
     document.getElementById("pocketcontentt").style.display = "none";
     document.getElementById("pockett-back").style.display = "none";
     document.getElementById("pockett-coin").style.display = "none";
+    document.getElementById("tab").style.display = "block";
+    document.getElementById("finish").style.display = "block";
   });
   document.getElementById("pocketside").addEventListener("click", () => {
     document.getElementById("pockett-coin").style.display = "none";
@@ -600,16 +641,22 @@ const Configurator = () => {
     document.getElementById("pleat-option").style.display = "flex";
     document.getElementById("confirmpleat").style.display = "block";
     trousr.style.display = "none";
+    document.getElementById("tab").style.display = "none";
+    document.getElementById("finish").style.display = "none";
   });
   document.getElementById("confrmpleat").addEventListener("click", () => {
     document.getElementById("pleat-option").style.display = "none";
     document.getElementById("confirmpleat").style.display = "none";
     trousr.style.display = "flex";
+    document.getElementById("tab").style.display = "block";
+    document.getElementById("finish").style.display = "block";
   });
   document.getElementById("hemfinishing").addEventListener("click", () => {
     document.getElementById("hemfinishing-option").style.display = "flex";
     document.getElementById("confirmhemfinishing").style.display = "block";
     trousr.style.display = "none";
+    document.getElementById("tab").style.display = "none";
+    document.getElementById("finish").style.display = "none";
   });
   document
     .getElementById("confrmhemfinishing")
@@ -617,21 +664,29 @@ const Configurator = () => {
       document.getElementById("hemfinishing-option").style.display = "none";
       document.getElementById("confirmhemfinishing").style.display = "none";
       trousr.style.display = "flex";
+      document.getElementById("tab").style.display = "block";
+      document.getElementById("finish").style.display = "block";
     });
   document.getElementById("buttont").addEventListener("click", () => {
     document.getElementById("button-menut").style.display = "flex";
     document.getElementById("confirmbuttont").style.display = "block";
     trousr.style.display = "none";
+    document.getElementById("tab").style.display = "none";
+    document.getElementById("finish").style.display = "none";
   });
   document.getElementById("confrmbuttont").addEventListener("click", () => {
     document.getElementById("button-menut").style.display = "none";
     document.getElementById("confirmbuttont").style.display = "none";
     trousr.style.display = "flex";
+    document.getElementById("tab").style.display = "block";
+    document.getElementById("finish").style.display = "block";
   });
   document.getElementById("waistbandheight").addEventListener("click", () => {
     document.getElementById("waistbandheigth-option").style.display = "flex";
     document.getElementById("confirmwaistbandheight").style.display = "block";
     trousr.style.display = "none";
+    document.getElementById("tab").style.display = "none";
+    document.getElementById("finish").style.display = "none";
   });
   document
     .getElementById("confrmwaistbandheight")
@@ -639,11 +694,15 @@ const Configurator = () => {
       document.getElementById("waistbandheigth-option").style.display = "none";
       document.getElementById("confirmwaistbandheight").style.display = "none";
       trousr.style.display = "flex";
+      document.getElementById("tab").style.display = "block";
+      document.getElementById("finish").style.display = "block";
     });
   document.getElementById("suspenderbutton").addEventListener("click", () => {
     document.getElementById("suspenderbutton-option").style.display = "flex";
     document.getElementById("confirmsuspenderbtn").style.display = "block";
     trousr.style.display = "none";
+    document.getElementById("tab").style.display = "none";
+    document.getElementById("finish").style.display = "none";
   });
   document
     .getElementById("confrmsuspenderbtn")
@@ -651,16 +710,22 @@ const Configurator = () => {
       document.getElementById("suspenderbutton-option").style.display = "none";
       document.getElementById("confirmsuspenderbtn").style.display = "none";
       trousr.style.display = "flex";
+      document.getElementById("tab").style.display = "block";
+      document.getElementById("finish").style.display = "block";
     });
   document.getElementById("leglinig").addEventListener("click", () => {
     document.getElementById("leglinig-option").style.display = "flex";
     document.getElementById("confirmleglinig").style.display = "block";
     trousr.style.display = "none";
+    document.getElementById("tab").style.display = "none";
+    document.getElementById("finish").style.display = "none";
   });
   document.getElementById("confrmleglinig").addEventListener("click", () => {
     document.getElementById("leglinig-option").style.display = "none";
     document.getElementById("confirmleglinig").style.display = "none";
     trousr.style.display = "flex";
+    document.getElementById("tab").style.display = "block";
+    document.getElementById("finish").style.display = "block";
   });
   document.getElementById("addwaistcoat").addEventListener("click", () => {
     document.getElementById("waistcoatoption").style.display = "flex";
@@ -767,6 +832,8 @@ const Configurator = () => {
     monogrm.style.display = "flex";
     upper_pocket.style.display = "none";
     confrm.style.display = "none";
+    document.getElementById("tab").style.display = "block";
+    document.getElementById("finish").style.display = "block";
   });
   linigm.addEventListener("click", () => {
     document.getElementById("liningcontent").style.display = "flex";
@@ -774,6 +841,8 @@ const Configurator = () => {
     document.getElementById("lining-menu").style.display = "flex";
     confirml.style.display = "block";
     confrmlining.style.display = "block";
+    document.getElementById("tab").style.display = "none";
+    document.getElementById("finish").style.display = "none";
   });
 
   iconchest.addEventListener("click", () => {
@@ -1003,7 +1072,7 @@ const Configurator = () => {
   });
   sizeconfirm.addEventListener("click", () => {
     sizeoption.style.display = "none";
-    document.getElementById("result").style.display='none'
+    document.getElementById("result").style.display = "none";
     monogrm.style.display = "flex";
     // document.getElementById("tab").style.display = "flex";
     finish.style.display = "none";
@@ -1011,8 +1080,8 @@ const Configurator = () => {
     // document.getElementById("linigs").style.display = "flex";
     // document.getElementById("button").style.display = "flex";
     // document.getElementById("monogram").style.display = "flex";
-    document.getElementById('customize').style.display='block'
-    document.getElementById("result").style.display='block'
+    document.getElementById("customize").style.display = "block";
+    document.getElementById("result").style.display = "block";
   });
   //      //     //
   finish.addEventListener("click", () => {
@@ -1034,6 +1103,31 @@ const Configurator = () => {
     // document.getElementById('dropdown-menu').style.display = 'none';
     document.getElementById("tab").style.display = "none";
     document.getElementById("waistcoatoption").style.display = "none";
+    document.getElementById("liningcontent").style.display = "none";
+    document.getElementById("lining-menu").style.display = "none";
+    document.getElementById("confrmlining").style.display = "none";
+    document.getElementById("lining-color").style.display = "none";
+    document.getElementById("buttonContent").style.display = "none";
+    document.getElementById("button-menu").style.display = "none";
+    document.getElementById("confrmbtn").style.display = "none";
+    document.getElementById("sleeve-menu").style.display = "none";
+    document.getElementById("monogram-option").style.display = "none";
+    document.getElementById("confrmmonogram").style.display = "none";
+    document.getElementById("lapel-option").style.display = "none";
+    document.getElementById("confrmlapel").style.display = "none";
+    document.getElementById("lapelContent").style.display = "none";
+    document.getElementById("canvas-option").style.display = "none";
+    document.getElementById("confrmcanvas").style.display = "none";
+    document.getElementById("pocketContent").style.display = "none";
+    document.getElementById("pocket").style.display = "none";
+    document.getElementById("confrmpkt").style.display = "none";
+    document.getElementById("upper_pocket").style.display = "none";
+    document.getElementById("closure-option").style.display = "none";
+    document.getElementById("confrmclosure").style.display = "none";
+    document.getElementById("amf-option").style.display = "none";
+    document.getElementById("confrmamf").style.display = "none";
+    document.getElementById("collar-option").style.display = "none";
+    document.getElementById("confrmcollar").style.display = "none";
 
     // Check for the existence of values in localStorage
     const ButtonName = localStorage.getItem("ButtonName");
@@ -1047,8 +1141,7 @@ const Configurator = () => {
     const selectedPeak = localStorage.getItem("selectedPeak");
     const selectedNotch = localStorage.getItem("selectedNotch");
     const selectedAmf = localStorage.getItem("selectedAmf");
-    const selectedWaistband=localStorage.getItem('selectedWaistband');
-
+    const selectedWaistband = localStorage.getItem("selectedWaistband");
 
     // Display retrieved values in the UI (if available)
     const resultDiv = document.getElementById("result");
@@ -1131,8 +1224,7 @@ const Configurator = () => {
   jacketsize.addEventListener("click", () => {
     selectyourjacketsize.style.display = "flex";
     sizeoption.style.display = "none";
-    document.getElementById("result").style.display='none'
-
+    document.getElementById("result").style.display = "none";
   });
   close.addEventListener("click", () => {
     selectyourjacketsize.style.display = "none";

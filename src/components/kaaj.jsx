@@ -1,10 +1,10 @@
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import React, { useRef } from "react";
+import { useGLTF } from "@react-three/drei";
 
 export function Kaaj(props) {
-  const { nodes, materials } = useGLTF('./clouseroption-noch/noch_kaaj.glb')
+  const { nodes, materials } = useGLTF("./clouseroption-noch/noch_kaaj.glb");
   return (
-    <group {...props} dispose={null} scale={20} position={[0,-2.5,0]}>
+    <group {...props} dispose={null} scale={20}>
       <mesh
         castShadow
         receiveShadow
@@ -14,7 +14,7 @@ export function Kaaj(props) {
         scale={0.01}
       />
     </group>
-  )
+  );
 }
 
-useGLTF.preload('./clouseroption-noch/noch_kaaj.glb')
+useGLTF.preload("./clouseroption-noch/noch_kaaj.glb");

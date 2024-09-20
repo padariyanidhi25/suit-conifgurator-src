@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Nochdoublebrested, Notchdoublebtn, Notchsinglebtn } from './notchoption';
-import eventEmitter from './eventEmitter';
+import React, { useState, useEffect } from "react";
+import {
+  Nochdoublebrested,
+  Notchdoublebtn,
+  Notchsinglebtn,
+} from "./notchoption";
+import eventEmitter from "./eventEmitter";
 import { Vector3 } from "three";
-import { useThree, useFrame } from '@react-three/fiber';
+import { useThree, useFrame } from "@react-three/fiber";
 
 const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
   const [selectedNotch, setSelectedNotch] = useState(defaultNotch);
@@ -24,22 +28,22 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
       setTargetPosition(new Vector3(0, 3.25, 8));
 
       // Hide the relevant UI components
-      document.getElementById('lapelContent').style.display = 'none';
-      document.getElementById('lapel-option').style.display = 'none';
-      document.getElementById('lapel-width').style.display = 'none';
-      document.getElementById('lapel-buttonhole').style.display = 'none';
-      document.getElementById('confirmlapel').style.display = 'none';
-      document.getElementById('monogrm').style.display = 'flex';
+      document.getElementById("lapelContent").style.display = "none";
+      document.getElementById("lapel-option").style.display = "none";
+      document.getElementById("lapel-width").style.display = "none";
+      document.getElementById("lapel-buttonhole").style.display = "none";
+      document.getElementById("confirmlapel").style.display = "none";
+      document.getElementById("monogrm").style.display = "flex";
     };
 
-    const confrmlapelBtn = document.getElementById('confrmclosure');
+    const confrmlapelBtn = document.getElementById("confrmclosure");
     if (confrmlapelBtn) {
-      confrmlapelBtn.addEventListener('click', handleConfirmLapelClick);
+      confrmlapelBtn.addEventListener("click", handleConfirmLapelClick);
     }
 
     return () => {
       if (confrmlapelBtn) {
-        confrmlapelBtn.removeEventListener('click', handleConfirmLapelClick);
+        confrmlapelBtn.removeEventListener("click", handleConfirmLapelClick);
       }
     };
   }, []);
@@ -49,10 +53,10 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
     const handleFabricSelection = (fabric) => {
       setFabricURL(fabric.textureURL);
     };
-    eventEmitter.on('fabricSelected', handleFabricSelection);
-    
+    eventEmitter.on("fabricSelected", handleFabricSelection);
+
     return () => {
-      eventEmitter.off('fabricSelected', handleFabricSelection);
+      eventEmitter.off("fabricSelected", handleFabricSelection);
     };
   }, []);
 
@@ -60,30 +64,30 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
     const handleButtonTextureSelection = (textureURL) => {
       setButtonTextureURL(textureURL);
     };
-    eventEmitter.on('buttonSelected', handleButtonTextureSelection);
+    eventEmitter.on("buttonSelected", handleButtonTextureSelection);
     return () => {
-      eventEmitter.off('buttonSelected', handleButtonTextureSelection);
+      eventEmitter.off("buttonSelected", handleButtonTextureSelection);
     };
   }, []);
 
   useEffect(() => {
     if (fabricURL) {
-      eventEmitter.emit('applyFabric', { textureURL: fabricURL });
+      eventEmitter.emit("applyFabric", { textureURL: fabricURL });
     }
   }, [selectedNotch, fabricURL]);
 
   useEffect(() => {
     if (buttonTextureURL) {
-      eventEmitter.emit('applyButtonTexture', { textureURL: buttonTextureURL });
+      eventEmitter.emit("applyButtonTexture", { textureURL: buttonTextureURL });
     }
   }, [selectedNotch, buttonTextureURL]);
 
   useEffect(() => {
-    localStorage.setItem('selectedNotch', selectedNotch);
+    localStorage.setItem("selectedNotch", selectedNotch);
   }, [selectedNotch]);
 
- useEffect(() => {
-    const savedNotch = localStorage.getItem('selectedNotch');
+  useEffect(() => {
+    const savedNotch = localStorage.getItem("selectedNotch");
     if (savedNotch) {
       setSelectedNotch(savedNotch);
     }
@@ -93,18 +97,32 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
       setSelectedNotch(notchType);
       setTargetPosition(new Vector3(0, 3, 0));
       if (buttonTextureURL) {
-        eventEmitter.emit('applyButtonTexture', { textureURL: buttonTextureURL });
+        eventEmitter.emit("applyButtonTexture", {
+          textureURL: buttonTextureURL,
+        });
       }
     };
 
-    document.getElementById('single_btn').addEventListener('click', () => handleNotchChange('single'));
-    document.getElementById('double_btn').addEventListener('click', () => handleNotchChange('double'));
-    document.getElementById('doublebreasted').addEventListener('click', () => handleNotchChange('breasted'));
+    document
+      .getElementById("single_btn")
+      .addEventListener("click", () => handleNotchChange("single"));
+    document
+      .getElementById("double_btn")
+      .addEventListener("click", () => handleNotchChange("double"));
+    document
+      .getElementById("doublebreasted")
+      .addEventListener("click", () => handleNotchChange("breasted"));
 
     return () => {
-      document.getElementById('single_btn').removeEventListener('click', handleNotchChange);
-      document.getElementById('double_btn').removeEventListener('click', handleNotchChange);
-      document.getElementById('doublebreasted').removeEventListener('click', handleNotchChange);
+      document
+        .getElementById("single_btn")
+        .removeEventListener("click", handleNotchChange);
+      document
+        .getElementById("double_btn")
+        .removeEventListener("click", handleNotchChange);
+      document
+        .getElementById("doublebreasted")
+        .removeEventListener("click", handleNotchChange);
     };
   }, [buttonTextureURL]);
 
@@ -114,11 +132,23 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
 
   return (
     <>
-      {selectedComponent === 'Classic' && collarType === 'notch' || selectedNotch === 'double' && <Notchdoublebtn fabricURL={fabricURL} />}
-      {selectedComponent === 'Breasted' && collarType === 'notch' || selectedNotch === 'breasted' && <Nochdoublebrested fabricURL={fabricURL} />}
-      {selectedNotch === 'single' && collarType === 'notch' && <Notchsinglebtn fabricURL={fabricURL} />}
-      {selectedNotch === 'double' && collarType === 'notch' && <Notchdoublebtn  fabricURL={fabricURL}/>}
-      {selectedNotch === 'breasted' && collarType === 'notch' && <Nochdoublebrested  fabricURL={fabricURL}/>}
+      {(selectedComponent === "Classic" && collarType === "notch") ||
+        (selectedNotch === "double" && (
+          <Notchdoublebtn fabricURL={fabricURL} />
+        ))}
+      {(selectedComponent === "Breasted" && collarType === "notch") ||
+        (selectedNotch === "breasted" && (
+          <Nochdoublebrested fabricURL={fabricURL} />
+        ))}
+      {selectedNotch === "single" && collarType === "notch" && (
+        <Notchsinglebtn fabricURL={fabricURL} />
+      )}
+      {selectedNotch === "double" && collarType === "notch" && (
+        <Notchdoublebtn fabricURL={fabricURL} />
+      )}
+      {selectedNotch === "breasted" && collarType === "notch" && (
+        <Nochdoublebrested fabricURL={fabricURL} />
+      )}
     </>
   );
 };

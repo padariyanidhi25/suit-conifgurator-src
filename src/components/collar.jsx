@@ -1,10 +1,12 @@
-import { useEffect } from 'react';
-import * as THREE from 'three';
-import eventEmitter from './eventEmitter';
-import { useGLTF } from '@react-three/drei';
+import { useEffect } from "react";
+import * as THREE from "three";
+import eventEmitter from "./eventEmitter";
+import { useGLTF } from "@react-three/drei";
 
 export function Notch_Collar(props) {
-  const { nodes, materials } = useGLTF('./latest/jacket/Coat Noch & peak Revesion/Noch/notch_collar.glb');
+  const { nodes, materials } = useGLTF(
+    "./latest/jacket/Coat Noch & peak Revesion/Noch/notch_collar.glb"
+  );
 
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -22,15 +24,15 @@ export function Notch_Collar(props) {
       }
     };
 
-    eventEmitter.on('applyFabric', handleApplyFabric);
+    eventEmitter.on("applyFabric", handleApplyFabric);
 
     return () => {
-      eventEmitter.off('applyFabric', handleApplyFabric);
+      eventEmitter.off("applyFabric", handleApplyFabric);
     };
   }, [materials]);
 
   return (
-<group {...props} dispose={null} scale={20} position={[0,-2.5,0]}>
+    <group {...props} dispose={null} scale={20}>
       <mesh
         castShadow
         receiveShadow
@@ -40,11 +42,15 @@ export function Notch_Collar(props) {
         scale={0.01}
       />
     </group>
-  )
+  );
 }
-useGLTF.preload('./latest/jacket/Coat Noch & peak Revesion/Noch/notch_collar.glb');
+useGLTF.preload(
+  "./latest/jacket/Coat Noch & peak Revesion/Noch/notch_collar.glb"
+);
 export function Peak_Collor(props) {
-  const { nodes, materials } = useGLTF('./latest/jacket/Coat Noch & peak Revesion/Peak/peak_collar.glb');
+  const { nodes, materials } = useGLTF(
+    "./latest/jacket/Coat Noch & peak Revesion/Peak/peak_collar.glb"
+  );
 
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -62,24 +68,26 @@ export function Peak_Collor(props) {
       }
     };
 
-    eventEmitter.on('applyFabric', handleApplyFabric);
+    eventEmitter.on("applyFabric", handleApplyFabric);
 
     return () => {
-      eventEmitter.off('applyFabric', handleApplyFabric);
+      eventEmitter.off("applyFabric", handleApplyFabric);
     };
   }, [materials]);
 
   return (
-    <group {...props} dispose={null} scale={20} position={[0,-2.5,0]}>
-    <mesh
-      castShadow
-      receiveShadow
-      geometry={nodes.peak_collar1.geometry}
-      material={materials.Jacket}
-      rotation={[Math.PI / 2, 0, 0]}
-      scale={0.01}
-    />
-  </group>
-)
+    <group {...props} dispose={null} scale={20}>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.peak_collar1.geometry}
+        material={materials.Jacket}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+    </group>
+  );
 }
-useGLTF.preload('./latest/jacket/Coat Noch & peak Revesion/Peak/peak_collar.glb')
+useGLTF.preload(
+  "./latest/jacket/Coat Noch & peak Revesion/Peak/peak_collar.glb"
+);
