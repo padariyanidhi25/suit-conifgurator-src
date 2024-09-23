@@ -4,7 +4,7 @@ import { Butterfly_Lining, Half_Linning, Linig } from "./linig";
 import { Vector3 } from "three";
 
 const LinigDisplay = () => {
-  const [showLinig, setShowLinig] = useState(false);
+  const [showLinig, setShowLinig] = useState(true);
   const [showButterfly, setShowButterfly] = useState(false);
   const [showHalfLinning, setShowHalfLinning] = useState(false);
   const [targetPosition, setTargetPosition] = useState(new Vector3(0, 3.25, 8)); // Default position
