@@ -25,6 +25,7 @@ import { Button } from "./waistbandbutton";
 import ShoulderSelector from "./ShoulderSelector";
 import WaistbandSelector from "./waistbandselector";
 import HemSelector from "./hemfinishselector";
+import { Kaaj_Peak } from "./Kaaj_Peak";
 
 const Experience = ({ toggleCanvas }) => {
   const [showClassic, setShowClassic] = useState(false);
@@ -214,7 +215,7 @@ const Experience = ({ toggleCanvas }) => {
         {showPocketSelector && <PocketSelector />}
         {shoulder && <ShoulderSelector />}
         {showUpperPocketSelector && <UpperpocketSelector />}
-        {collarType === "notch" && showKaaj && <Kaaj />}
+        {collarType === "notch" && showKaaj ? (<Kaaj />): (<Kaaj_Peak/>)}
         {collarType == "notch" ? (
           <NotchSelector
             defaultNotch={defaultNotch}
