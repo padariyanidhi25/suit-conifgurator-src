@@ -43,17 +43,17 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
       };
     }, []);
 
-    useEffect(() => {
-        const handleFabricSelection = (fabric) => {
-            setFabricURL(fabric.textureURL);
-        };
+    // useEffect(() => {
+    //     const handleFabricSelection = (fabric) => {
+    //         setFabricURL(fabric.textureURL);
+    //     };
 
-        eventEmitter.on('fabricSelected', handleFabricSelection);
+    //     eventEmitter.on('fabricSelected', handleFabricSelection);
 
-        return () => {
-            eventEmitter.off('fabricSelected', handleFabricSelection);
-        };
-    }, []);
+    //     return () => {
+    //         eventEmitter.off('fabricSelected', handleFabricSelection);
+    //     };
+    // }, []);
     useEffect(() => {
       const handleButtonTextureSelection = (textureURL) => {
         setButtonTextureURL(textureURL);
@@ -65,9 +65,15 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
     }, []);
 
     useEffect(() => {
-        if (fabricURL) {
-            eventEmitter.emit('applyFabric', { textureURL: fabricURL });
-        }
+      const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
+      console.log('fabric name: ', selectedFabricName);
+      setFabricURL(selectedFabricName);
+  
+      if (selectedFabricName) {
+        eventEmitter.emit('applyFabric', { textureURL: selectedFabricName });
+      }
+      console.log('fabric url: ', fabricURL);
+  
     }, [selectedPeak, fabricURL]);
 
     useEffect(() => {
@@ -85,7 +91,8 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
             setSelectedPeak(peakType);
             setTargetPosition(new Vector3(0, 3, 0));
 
-            // console.log('peak',peakType);
+            // Emit the applyFabric event with the current fabric URL when the waistband changes
+       
         };
 
         const singleBtn = document.getElementById('single_btn');
@@ -112,8 +119,8 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
     
     return (
         <>
-            {selectedComponent === 'Classic' && collarType === 'peak' || selectedPeak === 'double' &&<Peakdoublebtn />}
-            {selectedComponent === 'Breasted' && collarType === 'peak' || selectedPeak === 'breasted' &&<Peakdoublebreasted />}
+            {/* {selectedComponent === 'Classic' && collarType === 'peak' || selectedPeak === 'double' &&<Peakdoublebtn />}
+            {selectedComponent === 'Breasted' && collarType === 'peak' || selectedPeak === 'breasted' &&<Peakdoublebreasted />} */}
 
             {selectedPeak === 'single'  &&  collarType === 'peak' && <Peaksinglebtn />}
             {selectedPeak === 'double' &&  collarType === 'peak' && <Peakdoublebtn />}

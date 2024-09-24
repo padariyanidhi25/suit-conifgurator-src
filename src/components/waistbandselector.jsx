@@ -6,7 +6,7 @@ import { useThree, useFrame } from '@react-three/fiber';
 
 const WaistbandSelector = () => {
   const [selectedWaistband, setSelectedWaistband] = useState('hidden4');
-  const [fabricURL, setFabricURL] = useState(null);
+  const [fabricURL, setFabricURL] = useState(undefined);
   const [targetPosition, setTargetPosition] = useState(new Vector3(0, 3.25, 8)); // Default camera position
   const { camera } = useThree(); // Access the camera
   const lerpSpeed = 0.05; // Speed for camera transition
@@ -37,22 +37,28 @@ const WaistbandSelector = () => {
     };
   }, []);
 
+  // useEffect(() => {
+  //   const handleFabricSelection = (fabric) => {
+  //     setFabricURL(fabric.textureURL);
+  //   };
+
+  //   eventEmitter.on('fabricSelected', handleFabricSelection);
+
+  //   return () => {
+  //     eventEmitter.off('fabricSelected', handleFabricSelection);
+  //   };
+  // }, [fabricURL]);
+
   useEffect(() => {
-    const handleFabricSelection = (fabric) => {
-      setFabricURL(fabric.textureURL);
-    };
+    const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
+    console.log('fabric name: ', selectedFabricName);
+    setFabricURL(selectedFabricName);
 
-    eventEmitter.on('fabricSelected', handleFabricSelection);
+    // if (selectedFabricName) {
+    //   eventEmitter.emit('applyFabric', { textureURL: selectedFabricName });
+    // }
+    console.log('fabric url: ', fabricURL);
 
-    return () => {
-      eventEmitter.off('fabricSelected', handleFabricSelection);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (fabricURL) {
-      eventEmitter.emit('applyFabric', { textureURL: fabricURL });
-    }
   }, [selectedWaistband, fabricURL]);
   
   useEffect(() => {
@@ -61,16 +67,22 @@ const WaistbandSelector = () => {
 
 
   useEffect(() => {
-    const savedCollar = localStorage.getItem('selectedWaistband');
-    if (savedCollar) {
-        setSelectedWaistband(savedCollar);
+    const savedWaistband = localStorage.getItem('selectedWaistband');
+    if (savedWaistband) {
+        setSelectedWaistband(savedWaistband);
     }
   }, []);
   useEffect(() => {
-    const handleWaistbandChange = (collarType) => {
-        setSelectedWaistband(collarType);
+    const handleWaistbandChange = (waistbandType) => {
+        setSelectedWaistband(waistbandType);
       setTargetPosition(new Vector3(0,7, -15));
+
+      //  // Emit the applyFabric event with the current fabric URL when the waistband changes
+      //  if (fabricURL) {
+      //   eventEmitter.emit('applyFabric', { textureURL: fabricURL });
+      // }
     };
+    
 
     document.getElementById('standard_hidden_button_4cm').addEventListener('click', () => {
         handleWaistbandChange('hidden4');
@@ -91,14 +103,20 @@ const WaistbandSelector = () => {
       document.getElementById('single_side_clouser').removeEventListener('click', handleWaistbandChange);
       document.getElementById('double_side_clouser').removeEventListener('click', handleWaistbandChange);
     };
-  }, []);
+  }, [fabricURL]);
+  // useEffect(() => {
+  //   if (fabricURL) {
+  //     // Emit the applyFabric event when the fabric URL changes.
+  //     eventEmitter.emit('applyFabric', { textureURL: fabricURL });
+  //   }
+  // }, [fabricURL]);
 
   return (
     <>
-      {selectedWaistband === 'hidden4' && <Singleside />}
-      {selectedWaistband === 'hidden5' && <Doubleside />}
-      {selectedWaistband === 'singlesideclouser' && <Standardhidden />}
-      {selectedWaistband === 'doublesideclouser' && <Standardhidden4cm />}
+      {selectedWaistband === 'hidden4' &&  <Standardhidden4cm />}
+      {selectedWaistband === 'hidden5' && <Standardhidden /> }
+      {selectedWaistband === 'singlesideclouser' && <Singleside /> }
+      {selectedWaistband === 'doublesideclouser' && <Doubleside /> }
     </>
   );
 };

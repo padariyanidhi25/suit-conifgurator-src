@@ -49,16 +49,16 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
   }, []);
 
   // Remaining functionality (notch and button selections) remains the same
-  useEffect(() => {
-    const handleFabricSelection = (fabric) => {
-      setFabricURL(fabric.textureURL);
-    };
-    eventEmitter.on("fabricSelected", handleFabricSelection);
+  // useEffect(() => {
+  //   const handleFabricSelection = (fabric) => {
+  //     setFabricURL(fabric.textureURL);
+  //   };
+  //   eventEmitter.on("fabricSelected", handleFabricSelection);
 
-    return () => {
-      eventEmitter.off("fabricSelected", handleFabricSelection);
-    };
-  }, []);
+  //   return () => {
+  //     eventEmitter.off("fabricSelected", handleFabricSelection);
+  //   };
+  // }, []);
 
   useEffect(() => {
     const handleButtonTextureSelection = (textureURL) => {
@@ -71,9 +71,17 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
   }, []);
 
   useEffect(() => {
-    if (fabricURL) {
-      eventEmitter.emit("applyFabric", { textureURL: fabricURL });
+    const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
+    console.log('fabric name: ', selectedFabricName);
+    setFabricURL(selectedFabricName);
+    
+    if (selectedFabricName) {
+      eventEmitter.emit('applyFabric', { textureURL: selectedFabricName });
     }
+    console.log('fabric url: ', fabricURL);
+    
+    console.log('fabric url: ', fabricURL);
+
   }, [selectedNotch, fabricURL]);
 
   useEffect(() => {
@@ -100,6 +108,10 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
         eventEmitter.emit("applyButtonTexture", {
           textureURL: buttonTextureURL,
         });
+      }
+       // Emit the applyFabric event with the current fabric URL when the waistband changes
+       if (fabricURL) {
+        eventEmitter.emit('applyFabric', { textureURL: fabricURL });
       }
     };
 
@@ -132,14 +144,14 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
 
   return (
     <>
-      {(selectedComponent === "Classic" && collarType === "notch") ||
+      {/* {(selectedComponent === "Classic" && collarType === "notch") ||
         (selectedNotch === "double" && (
           <Notchdoublebtn fabricURL={fabricURL} />
         ))}
       {(selectedComponent === "Breasted" && collarType === "notch") ||
         (selectedNotch === "breasted" && (
           <Nochdoublebrested fabricURL={fabricURL} />
-        ))}
+        ))} */}
       {selectedNotch === "single" && collarType === "notch" && (
         <Notchsinglebtn fabricURL={fabricURL} />
       )}

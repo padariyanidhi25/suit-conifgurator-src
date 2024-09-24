@@ -60,6 +60,18 @@ const CollarSelector = () => {
       eventEmitter.emit('applyFabric', { textureURL: fabricURL });
     }
   }, [selectedCollar, fabricURL]);
+
+  // useEffect(() => {
+  //   const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
+  //   console.log('fabric name: ', selectedFabricName);
+  //   setFabricURL(selectedFabricName);
+
+  //   if (selectedFabricName) {
+  //     eventEmitter.emit('applyFabric', { textureURL: selectedFabricName });
+  //   }
+  //   console.log('fabric url: ', fabricURL);
+
+  // }, [selectedCollar, fabricURL]);
   
   useEffect(() => {
     localStorage.setItem('selectedCollar', selectedCollar);

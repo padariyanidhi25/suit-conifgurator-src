@@ -126,6 +126,7 @@ const Configurator = () => {
       case "linigs":
         islinig = !islinig;
         isfabric = false;
+
         // dropdown_menu.style.display = 'none';
         document.getElementById("fabric-type").style.display = "none";
         document.getElementById("lining-menu").style.display = "none";
@@ -685,13 +686,13 @@ const Configurator = () => {
     document.getElementById("tab").style.display = "block";
     document.getElementById("finish").style.display = "block";
   });
-  document.getElementById("waistbandheight").addEventListener("click", () => {
-    document.getElementById("waistbandheigth-option").style.display = "flex";
-    document.getElementById("confirmwaistbandheight").style.display = "block";
-    trousr.style.display = "none";
-    document.getElementById("tab").style.display = "none";
-    document.getElementById("finish").style.display = "none";
-  });
+  // document.getElementById("waistbandheight").addEventListener("click", () => {
+  //   document.getElementById("waistbandheigth-option").style.display = "flex";
+  //   document.getElementById("confirmwaistbandheight").style.display = "block";
+  //   trousr.style.display = "none";
+  //   document.getElementById("tab").style.display = "none";
+  //   document.getElementById("finish").style.display = "none";
+  // });
   document
     .getElementById("confrmwaistbandheight")
     .addEventListener("click", () => {

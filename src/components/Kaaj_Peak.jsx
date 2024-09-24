@@ -3,7 +3,7 @@ import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export function Kaaj_Peak(props) {
-  const { nodes, materials } = useGLTF('./clouseroption-peak/Peak collar_kaaj.glb')
+  const { nodes, materials } = useGLTF('./latest/jacket/Coat Noch & peak Revesion/Peak/Peak collar_kaaj.glb')
   return (
     <group {...props} dispose={null} scale={20}>
       <mesh
@@ -19,4 +19,4 @@ export function Kaaj_Peak(props) {
   )
 }
 
-useGLTF.preload('./clouseroption-peak/Peak collar_kaaj.glb')
+useGLTF.preload('./latest/jacket/Coat Noch & peak Revesion/Peak/Peak collar_kaaj.glb')

@@ -196,7 +196,7 @@ const Experience = ({ toggleCanvas }) => {
   return (
     <>
       {progress < 100 && <SpinnerLoader />}
-      <Suspense fallback={<SpinnerLoader />}>
+      <Suspense fallback={null}>
         {/* <Stage intensity={0} environment={null} shadows={false} animations={false} adjustCamera={false} > */}
         {/* <OrbitControls
             enableRotate={false}
@@ -216,7 +216,7 @@ const Experience = ({ toggleCanvas }) => {
         {shoulder && <ShoulderSelector />}
         {showUpperPocketSelector && <UpperpocketSelector />}
         {collarType === "notch" && showKaaj ? (<Kaaj />): (<Kaaj_Peak/>)}
-        {collarType == "notch" ? (
+        {/* {collarType == "notch" ? (
           <NotchSelector
             defaultNotch={defaultNotch}
             collarType={collarType}
@@ -228,14 +228,14 @@ const Experience = ({ toggleCanvas }) => {
             collarType={collarType}
             selectedComponent={selectedComponent}
           />
-        )}
+        )} */}
         {showvent && <Double_vent />}
         {showPleatSelector && <PleatSelector />}
         {showTrouserPocketSelector && <TrouserPocketSelector />}
         {/* <Button/> */}
         {showWaistband && <WaistbandSelector />}
-        {/* <NotchSelector defaultNotch={defaultNotch}  collarType={collarType} selectedComponent={selectedComponent}/> 
-        <PeakSelector defaultPeak={defaultPeak} collarType={collarType} selectedComponent={selectedComponent} /> */}
+        <NotchSelector defaultNotch={defaultNotch}  collarType={collarType} selectedComponent={selectedComponent}/> 
+        <PeakSelector defaultPeak={defaultPeak} collarType={collarType} selectedComponent={selectedComponent} />
         {showhem && <HemSelector />}
         {showlining && <LinigDisplay />}
         {showcollar && <CollarSelector />}

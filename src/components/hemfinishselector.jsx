@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Notch_Collar, Peak_Collor } from './collar';
-import eventEmitter from './eventEmitter';
 import { Vector3 } from "three";
 import { useThree, useFrame } from '@react-three/fiber';
+import eventEmitter from './eventEmitter';
 import { Hemfinishing } from './hemfinishing';
 
 const HemSelector = () => {
-  const [selectedHem, setSelectedHem] = useState('null');
+  const [selectedHem, setSelectedHem] = useState(null); // Set initial state to null
   const [fabricURL, setFabricURL] = useState(null);
   const [targetPosition, setTargetPosition] = useState(new Vector3(0, 3.25, 8)); // Default camera position
   const { camera } = useThree(); // Access the camera
   const lerpSpeed = 0.05; // Speed for camera transition
 
-  // This function will smoothly move the camera to a target position
+  // Smoothly move the camera to a target position
   useFrame(() => {
     camera.position.lerp(targetPosition, lerpSpeed);
   });
@@ -22,8 +21,6 @@ const HemSelector = () => {
     const handleConfirmLapelClick = () => {
       // Set the camera back to its original position
       setTargetPosition(new Vector3(0, 3.25, 8));
-
-
     };
 
     const confrmlapelBtn = document.getElementById('confrmhemfinishing');
@@ -38,58 +35,75 @@ const HemSelector = () => {
     };
   }, []);
 
+  // Fabric selection handling
+  // useEffect(() => {
+  //   const handleFabricSelection = (fabric) => {
+  //     setFabricURL(fabric.textureURL);
+  //   };
+
+  //   eventEmitter.on('fabricSelected', handleFabricSelection);
+
+  //   return () => {
+  //     eventEmitter.off('fabricSelected', handleFabricSelection);
+  //   };
+  // }, []);
+
+  // Emit applyFabric event when selectedHem or fabricURL changes
   useEffect(() => {
-    const handleFabricSelection = (fabric) => {
-      setFabricURL(fabric.textureURL);
-    };
+    const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
+    console.log('fabric name: ', selectedFabricName);
+    setFabricURL(selectedFabricName);
 
-    eventEmitter.on('fabricSelected', handleFabricSelection);
-
-    return () => {
-      eventEmitter.off('fabricSelected', handleFabricSelection);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (fabricURL) {
-      eventEmitter.emit('applyFabric', { textureURL: fabricURL });
+    if (selectedFabricName) {
+      eventEmitter.emit('applyFabric', { textureURL: selectedFabricName });
     }
+    console.log('fabric url: ', fabricURL);
+
   }, [selectedHem, fabricURL]);
-  
+
+  // Save selected hem to localStorage
   useEffect(() => {
     localStorage.setItem('selectedHem', selectedHem);
   }, [selectedHem]);
 
-
+  // Retrieve selected hem from localStorage
   useEffect(() => {
     const saveHem = localStorage.getItem('selectedHem');
     if (saveHem) {
-        setSelectedHem(saveHem);
+      setSelectedHem(saveHem);
     }
   }, []);
+
+  // Handle hem change and unfinish selection
   useEffect(() => {
     const handleHemChange = (hemType) => {
-        setSelectedHem(hemType);
-      setTargetPosition(new Vector3(0,-1, -15));
+      if (hemType === 'unfinish') {
+        setSelectedHem(null); // Remove hem selection
+        setTargetPosition(new Vector3(0, -1, -15));
+
+      } else {
+        setSelectedHem(hemType); // Set new hem selection
+        setTargetPosition(new Vector3(0, -1, -15));
+        // Emit applyFabric event when hem type changes
+        if (fabricURL) {
+          eventEmitter.emit('applyFabric', { textureURL: fabricURL });
+        }
+      }
     };
 
-    document.getElementById('4mm').addEventListener('click', () => {
-        handleHemChange('hem');
-    });
-    // document.getElementById('peak_collar').addEventListener('click', () => {
-    //   handleCollarChange('peak');
-    // });
+    document.getElementById('4mm').addEventListener('click', () => handleHemChange('hem'));
+    document.getElementById('unfinish').addEventListener('click', () => handleHemChange('unfinish')); // Add event listener for unfinish
 
     return () => {
-      document.getElementById('4mm').removeEventListener('click', handleHemChange);
-    //   document.getElementById('peak_collar').removeEventListener('click', handleCollarChange);
+      document.getElementById('4mm').removeEventListener('click', () => handleHemChange('hem'));
+      document.getElementById('unfinish').removeEventListener('click', () => handleHemChange('unfinish'));
     };
   }, []);
 
   return (
     <>
       {selectedHem === 'hem' && <Hemfinishing />}
-      {/* {selectedCollar === 'peak' && <Peak_Collor />} */}
+      {/* Add additional components or render logic as needed */}
     </>
   );
 };

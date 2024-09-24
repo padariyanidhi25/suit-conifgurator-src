@@ -11,7 +11,7 @@ import { Vector3 } from "three";
 import { useThree, useFrame } from "@react-three/fiber";
 
 const PleatSelector = () => {
-  const [selectedpleat, setSelectedpleat] = useState("none"); // Default to 'flap'
+  const [selectedpleat, setSelectedpleat] = useState("none"); // Default to 'none'
   const [fabricURL, setFabricURL] = useState(null);
   const [targetPosition, setTargetPosition] = useState(new Vector3(0, 2, 8)); // Default camera position
   const { camera } = useThree(); // Access the camera
@@ -27,7 +27,6 @@ const PleatSelector = () => {
     const handleConfirmPleatClick = () => {
       // Set the camera back to its original position
       setTargetPosition(new Vector3(0, 2, 8));
-
       document.getElementById("pleat-option").style.display = "none";
       document.getElementById("confirmpleat").style.display = "none";
       document.getElementById("trousr").style.display = "flex";
@@ -45,25 +44,30 @@ const PleatSelector = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const handleFabricSelection = (fabric) => {
-      setFabricURL(fabric.textureURL);
-    };
+  // useEffect(() => {
+  //   const handleFabricSelection = (fabric) => {
+  //     setFabricURL(fabric.textureURL);
+  //     console.log("Fabric Selected:", fabric); // Log the entire fabric object
+  //   };
 
-    eventEmitter.on("fabricSelected", handleFabricSelection);
+  //   eventEmitter.on("fabricSelected", handleFabricSelection);
 
-    return () => {
-      eventEmitter.off("fabricSelected", handleFabricSelection);
-    };
-  }, []);
+  //   return () => {
+  //     eventEmitter.off("fabricSelected", handleFabricSelection);
+  //   };
+  // }, []);
 
-  useEffect(() => {
-    console.log("pleat fabric", selectedpleat);
-    console.log("fabric pleat", fabricURL);
+   // Emit applyFabric event when selectedHem or fabricURL changes
+   useEffect(() => {
+    const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
+    console.log('fabric name: ', selectedFabricName);
+    setFabricURL(selectedFabricName);
 
-    if (fabricURL) {
-      eventEmitter.emit("applyFabric", { textureURL: fabricURL });
+    if (selectedFabricName) {
+      eventEmitter.emit('applyFabric', { textureURL: selectedFabricName });
     }
+    console.log('fabric url: ', fabricURL);
+
   }, [selectedpleat, fabricURL]);
 
   useEffect(() => {
@@ -81,50 +85,31 @@ const PleatSelector = () => {
     const handlePleatChange = (pleatType) => {
       setSelectedpleat(pleatType);
       setTargetPosition(new Vector3(0, 4, -5));
+
+      // Emit the applyFabric event with the current fabric URL when the pleat changes
+      if (fabricURL) {
+        eventEmitter.emit("applyFabric", { textureURL: fabricURL });
+      }
     };
 
     const pleat_none = document.getElementById("pleat_none");
-    const standard_single_pleat = document.getElementById(
-      "standard_single_pleat"
-    );
-    const standard_double_pleat = document.getElementById(
-      "standard_double_pleat"
-    );
-    const forward_single_pleat = document.getElementById(
-      "forward_single_pleat"
-    );
-    const forward_double_pleat = document.getElementById(
-      "forward_double_pleat"
-    );
+    const standard_single_pleat = document.getElementById("standard_single_pleat");
+    const standard_double_pleat = document.getElementById("standard_double_pleat");
+    const forward_single_pleat = document.getElementById("forward_single_pleat");
+    const forward_double_pleat = document.getElementById("forward_double_pleat");
 
     pleat_none.addEventListener("click", () => handlePleatChange("none"));
-    standard_single_pleat.addEventListener("click", () =>
-      handlePleatChange("standard_single")
-    );
-    standard_double_pleat.addEventListener("click", () =>
-      handlePleatChange("standard_double")
-    );
-    forward_single_pleat.addEventListener("click", () =>
-      handlePleatChange("forward_single")
-    );
-    forward_double_pleat.addEventListener("click", () =>
-      handlePleatChange("forward_double")
-    );
+    standard_single_pleat.addEventListener("click", () => handlePleatChange("standard_single"));
+    standard_double_pleat.addEventListener("click", () => handlePleatChange("standard_double"));
+    forward_single_pleat.addEventListener("click", () => handlePleatChange("forward_single"));
+    forward_double_pleat.addEventListener("click", () => handlePleatChange("forward_double"));
 
     return () => {
       pleat_none.removeEventListener("click", () => handlePleatChange("none"));
-      standard_single_pleat.removeEventListener("click", () =>
-        handlePleatChange("standard_single")
-      );
-      standard_double_pleat.removeEventListener("click", () =>
-        handlePleatChange("standard_double")
-      );
-      forward_single_pleat.removeEventListener("click", () =>
-        handlePleatChange("forward_single")
-      );
-      forward_double_pleat.removeEventListener("click", () =>
-        handlePleatChange("forward_double")
-      );
+      standard_single_pleat.removeEventListener("click", () => handlePleatChange("standard_single"));
+      standard_double_pleat.removeEventListener("click", () => handlePleatChange("standard_double"));
+      forward_single_pleat.removeEventListener("click", () => handlePleatChange("forward_single"));
+      forward_double_pleat.removeEventListener("click", () => handlePleatChange("forward_double"));
     };
   }, []);
 

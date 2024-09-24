@@ -49,6 +49,8 @@ const FabComp = () => {
   const saveSelectedFabricName = (item) => {
     // Save only the fabric name to localStorage
     localStorage.setItem("selectedFabricName", item.name);
+    localStorage.setItem("selectedFabricURL", item.textureURL);
+
   };
 
   const allFabricsTextureURL = userData.find(

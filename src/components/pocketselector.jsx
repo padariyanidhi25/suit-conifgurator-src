@@ -46,25 +46,29 @@ const PocketSelector = () => {
     }, []);
 
 
+    // useEffect(() => {
+    //     const handleFabricSelection = (fabric) => {
+    //       setFabricURL(fabric.textureURL);
+    //     };
+    
+    //     eventEmitter.on('fabricSelected', handleFabricSelection);
+    
+    //     return () => {
+    //       eventEmitter.off('fabricSelected', handleFabricSelection);
+    //     };
+    //   }, []);
+    
     useEffect(() => {
-        const handleFabricSelection = (fabric) => {
-          setFabricURL(fabric.textureURL);
-        };
-    
-        eventEmitter.on('fabricSelected', handleFabricSelection);
-    
-        return () => {
-          eventEmitter.off('fabricSelected', handleFabricSelection);
-        };
-      }, []);
-    
-      useEffect(() => {
-          console.log('Selected Pocket:', selectedLowerPocket);
-      console.log('Fabric URL:', fabricURL);
-        if (fabricURL) {
-          eventEmitter.emit('applyFabric', { textureURL: fabricURL });
-        }
-      }, [selectedLowerPocket, fabricURL]);
+      const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
+      console.log('fabric name: ', selectedFabricName);
+      setFabricURL(selectedFabricName);
+  
+      if (selectedFabricName) {
+        eventEmitter.emit('applyFabric', { textureURL: selectedFabricName });
+      }
+      console.log('fabric url: ', fabricURL);
+  
+    }, [selectedLowerPocket, fabricURL]);
       
       useEffect(() => {
         localStorage.setItem('selectedLowerPocket', selectedLowerPocket);
@@ -81,7 +85,10 @@ const PocketSelector = () => {
         const handleLowerPocketChange = (pocketType) => {
             setSelectedLowerPocket(pocketType);
             setTargetPosition(new Vector3(0, 2, -10));
-
+ // Emit the applyFabric event with the current fabric URL when the waistband changes
+ if (fabricURL) {
+  eventEmitter.emit('applyFabric', { textureURL: fabricURL });
+}
         };
 
         const flapPocketButton = document.getElementById('flap-pocket');

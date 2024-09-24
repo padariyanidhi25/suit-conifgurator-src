@@ -45,23 +45,29 @@ const UpperpocketSelector = () => {
     }, []);
 
 
+    // useEffect(() => {
+    //     const handleFabricSelection = (fabric) => {
+    //       setFabricURL(fabric.textureURL);
+    //     };
+    
+    //     eventEmitter.on('fabricSelected', handleFabricSelection);
+    
+    //     return () => {
+    //       eventEmitter.off('fabricSelected', handleFabricSelection);
+    //     };
+    //   }, []);
+    
     useEffect(() => {
-        const handleFabricSelection = (fabric) => {
-          setFabricURL(fabric.textureURL);
-        };
-    
-        eventEmitter.on('fabricSelected', handleFabricSelection);
-    
-        return () => {
-          eventEmitter.off('fabricSelected', handleFabricSelection);
-        };
-      }, []);
-    
-      useEffect(() => {
-        if (fabricURL) {
-          eventEmitter.emit('applyFabric', { textureURL: fabricURL });
-        }
-      }, [selectedUpperPocket, fabricURL]);
+      const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
+      console.log('fabric name: ', selectedFabricName);
+      setFabricURL(selectedFabricName);
+  
+      if (selectedFabricName) {
+        eventEmitter.emit('applyFabric', { textureURL: selectedFabricName });
+      }
+      console.log('fabric url: ', fabricURL);
+  
+    }, [selectedUpperPocket, fabricURL]);
 
       useEffect(() => {
         localStorage.setItem('selectedUpperPocket', selectedUpperPocket);
@@ -77,6 +83,11 @@ const UpperpocketSelector = () => {
         const handleUpperPocketChange = (pocketType) => {
             setSelectedUpperPocket(pocketType);
             setTargetPosition(new Vector3(0, 6, -5));
+
+             // Emit the applyFabric event with the current fabric URL when the waistband changes
+       if (fabricURL) {
+        eventEmitter.emit('applyFabric', { textureURL: fabricURL });
+      }
         };
         
 
