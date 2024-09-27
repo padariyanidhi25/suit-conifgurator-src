@@ -3,6 +3,7 @@ import { Singleside,Doubleside,Standardhidden,Standardhidden4cm} from './waistba
 import eventEmitter from './eventEmitter';
 import { Vector3 } from "three";
 import { useThree, useFrame } from '@react-three/fiber';
+import { Hook4cm, Hook5cm } from './hook';
 
 const WaistbandSelector = () => {
   const [selectedWaistband, setSelectedWaistband] = useState('hidden4');
@@ -54,9 +55,9 @@ const WaistbandSelector = () => {
     console.log('fabric name: ', selectedFabricName);
     setFabricURL(selectedFabricName);
 
-    // if (selectedFabricName) {
-    //   eventEmitter.emit('applyFabric', { textureURL: selectedFabricName });
-    // }
+    if (selectedFabricName) {
+      eventEmitter.emit('applyFabric', { textureURL: selectedFabricName });
+    }
     console.log('fabric url: ', fabricURL);
 
   }, [selectedWaistband, fabricURL]);
@@ -113,8 +114,19 @@ const WaistbandSelector = () => {
 
   return (
     <>
-      {selectedWaistband === 'hidden4' &&  <Standardhidden4cm />}
-      {selectedWaistband === 'hidden5' && <Standardhidden /> }
+    
+    {selectedWaistband === 'hidden4' && (
+        <>
+          <Standardhidden4cm />
+          <Hook4cm /> {/* Show Hook4cm when hidden4 is selected */}
+        </>
+      )}
+ {selectedWaistband === 'hidden5' && (
+        <>
+          <Standardhidden />
+          <Hook5cm /> {/* Show Hook5cm when hidden5 is selected */}
+        </>
+      )}
       {selectedWaistband === 'singlesideclouser' && <Singleside /> }
       {selectedWaistband === 'doublesideclouser' && <Doubleside /> }
     </>

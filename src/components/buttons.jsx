@@ -5,6 +5,8 @@ import eventEmitter from './eventEmitter';
 const BtnsComp = () => {
   const [userData, setUserData] = useState([]);
   const [selectedButtonName, setSelectedButtonName] = useState(null); // State to track the selected button's name
+  const [selectedButtonPrice, setSelectedButtonPrice] = useState(null); 
+  const [selectedButtonURL, setSelectedButtonURL] = useState(null);
 
   useEffect(() => {
     getEntries()
@@ -18,8 +20,16 @@ const BtnsComp = () => {
 
         // Load the previously selected button from local storage
         const savedButtonName = localStorage.getItem('ButtonName');
+        const savedButtonPrice = localStorage.getItem('ButtonPrice');
+        const savedButtonURL = localStorage.getItem('ButtonURL');
         if (savedButtonName) {
           setSelectedButtonName(savedButtonName);
+        }
+        if (savedButtonPrice) {
+          setSelectedButtonPrice(savedButtonPrice);
+        }
+        if (savedButtonURL) {
+          setSelectedButtonURL(savedButtonURL);
         }
       })
       .catch((err) => {
@@ -32,11 +42,23 @@ const BtnsComp = () => {
     if (selectedButtonName) {
       localStorage.removeItem('ButtonName');
     }
+    if (selectedButtonPrice) {
+      localStorage.removeItem('ButtonPrice');
+    }
+
+    if (selectedButtonURL) {
+      localStorage.removeItem('ButtonURL');
+    }
+
 
     // Set the new selected button
     setSelectedButtonName(name);
-    localStorage.setItem('ButtonName', name);
+    setSelectedButtonPrice(price);
+    setSelectedButtonURL(textureURL);
 
+    localStorage.setItem('ButtonName', name);
+    localStorage.setItem('ButtonPrice', price);
+    localStorage.setItem('ButtonURL', textureURL);
     // Emit event
     eventEmitter.emit('buttonSelected', { textureURL, price });
     console.log(name, textureURL, price);

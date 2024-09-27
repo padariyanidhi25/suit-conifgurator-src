@@ -7,6 +7,7 @@ import BtnsComp from "./components/buttons";
 import FabComp from "./components/Fabric";
 // import LiningComponent from "./components/lining_color";
 import TBtnsComp from "./components/trouserbutton";
+import LiningComponent from "./components/lining_color";
 
 // Create root for the main application
 const root = createRoot(document.getElementById("root"));
@@ -40,5 +41,12 @@ const liningRoot = createRoot(document.getElementById("button-menut"));
 liningRoot.render(
   <React.StrictMode>
     <TBtnsComp />
+  </React.StrictMode>
+);
+const liningCRoot = createRoot(document.getElementById("lining-color"));
+
+liningCRoot.render(
+  <React.StrictMode>
+    <LiningComponent/>
   </React.StrictMode>
 );

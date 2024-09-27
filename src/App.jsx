@@ -40,9 +40,19 @@ function App() {
   const [fabricPrice, setFabricPrice] = useState(0);
   const [buttonPrice, setButtonPrice] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [fov, setFov] = useState(25);
 
   const toggleCanvas = () => {
     setShowFirstCanvas((prev) => !prev);
+  };
+  // Handle zoom with mouse scroll
+  const handleWheel = (event) => {
+    setFov((prevFov) => {
+      let newFov = prevFov - event.deltaY * 0.05; // Adjust fov based on scroll
+      if (newFov < 5) newFov = 5; // Minimum zoom (closer)
+      if (newFov > 20) newFov = 20; // Maximum zoom (farther)
+      return newFov;
+    });
   };
 
   useEffect(() => {
@@ -56,12 +66,30 @@ function App() {
   }, []);
 
   useEffect(() => {
+
+    const savedButtonPrice = localStorage.getItem('ButtonPrice');
+    const savedFabricPrice = localStorage.getItem('selectedFabricPrice');
+     // Set prices from local storage if they exist
+     if (savedButtonPrice) {
+      setButtonPrice(Number(savedButtonPrice));
+    }
+    if (savedFabricPrice) {
+      setFabricPrice(Number(savedFabricPrice));
+    }
+    
+  }, []);
+
+  useEffect(() => {
     const handleButtonSelected = ({ price }) => {
-      setButtonPrice(Number(price) || 0);
+      const buttonPrice = Number(price) || 0;
+      setButtonPrice(buttonPrice);
+      localStorage.setItem('ButtonPrice', buttonPrice); // Save to localStorage
     };
 
     const handleFabricSelected = ({ price }) => {
-      setFabricPrice(Number(price) || 0);
+      const fabricPrice = Number(price) || 0;
+      setFabricPrice(fabricPrice);
+      localStorage.setItem('FabricPrice', fabricPrice); // Save to localStorage
     };
 
     eventEmitter.on("buttonSelected", handleButtonSelected);
@@ -72,7 +100,6 @@ function App() {
       eventEmitter.off("fabricSelected", handleFabricSelected);
     };
   }, []);
-
   useEffect(() => {
     setTotalPrice(buttonPrice + fabricPrice);
   }, [buttonPrice, fabricPrice]);
@@ -80,7 +107,7 @@ function App() {
   return (
     <>
       <CustomizationProvider>
-        <div className="App">
+        <div className="App" onWheel={handleWheel}>
           {/* First Canvas */}
           {showFirstCanvas && (
             <Canvas>
@@ -88,7 +115,7 @@ function App() {
                 makeDefault={true}
                 far={1000}
                 near={0.1}
-                fov={25}
+                fov={fov}
                 position={[0, 3.25, 8]}
                 // rotation={[0,Math.PI/10,0]}
               />
@@ -154,4 +181,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

@@ -106,13 +106,12 @@ input:checked ~ .dott {
 }
 #result {
   display: none; /* Keep this if you want to control visibility with JavaScript */
-  height: 64%; /* Set your desired height */
+  height: 100%; /* Set your desired height */
   overflow-y: auto; /* Enable vertical scrolling */
-  border: 1px solid #ccc; /* Optional: add a border for visibility */
   padding: 10px; /* Optional: add some padding */
-  background-color: white; /* Optional: set a background color */
+  
   position: absolute; /* Retain the position if needed */
-  top: 0; /* Adjust as needed */
+  top: 3rem; /* Adjust as needed */
   left: 2vw; /* Adjust as needed */
   width: 24vw;
 }

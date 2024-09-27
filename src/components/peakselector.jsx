@@ -7,6 +7,8 @@ import { useThree, useFrame } from '@react-three/fiber';
 const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
     const [selectedPeak, setSelectedPeak] = useState(defaultPeak);
     const [fabricURL, setFabricURL] = useState(null);
+    const [buttonTextureURL, setButtonTextureURL] = useState(null);
+
     const [targetPosition, setTargetPosition] = useState(new Vector3(0, 3.25, 8)); // Default camera position
     const { camera } = useThree(); // Access the camera
     const lerpSpeed = 0.05; // Speed for camera transition
@@ -54,15 +56,15 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
     //         eventEmitter.off('fabricSelected', handleFabricSelection);
     //     };
     // }, []);
-    useEffect(() => {
-      const handleButtonTextureSelection = (textureURL) => {
-        setButtonTextureURL(textureURL);
-      };
-      eventEmitter.on('buttonSelected', handleButtonTextureSelection);
-      return () => {
-        eventEmitter.off('buttonSelected', handleButtonTextureSelection);
-      };
-    }, []);
+    // useEffect(() => {
+    //   const handleButtonTextureSelection = (textureURL) => {
+    //     setButtonTextureURL(textureURL);
+    //   };
+    //   eventEmitter.on('buttonSelected', handleButtonTextureSelection);
+    //   return () => {
+    //     eventEmitter.off('buttonSelected', handleButtonTextureSelection);
+    //   };
+    // }, []);
 
     useEffect(() => {
       const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
@@ -75,6 +77,14 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
       console.log('fabric url: ', fabricURL);
   
     }, [selectedPeak, fabricURL]);
+    useEffect(()=>{
+      const selectedbuttonurl=localStorage.getItem('ButtonURL')
+      console.log("button name:",selectedbuttonurl);
+      setButtonTextureURL(selectedbuttonurl)
+      if(selectedbuttonurl){
+        eventEmitter.emit("applyButtonTexture", { textureURL: selectedbuttonurl })    }
+      
+    },[selectedPeak, buttonTextureURL])
 
     useEffect(() => {
       localStorage.setItem('selectedPeak', selectedPeak);

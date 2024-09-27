@@ -26,6 +26,7 @@ import ShoulderSelector from "./ShoulderSelector";
 import WaistbandSelector from "./waistbandselector";
 import HemSelector from "./hemfinishselector";
 import { Kaaj_Peak } from "./Kaaj_Peak";
+import { Hook4cm } from "./hook";
 
 const Experience = ({ toggleCanvas }) => {
   const [showClassic, setShowClassic] = useState(false);
@@ -45,6 +46,8 @@ const Experience = ({ toggleCanvas }) => {
     useState(false);
   const [showWaistband, setShowWaistband] = useState(false);
   const [showKaaj, setShowKaaj] = useState(true);
+  const [showPKaaj, setPShowKaaj] = useState(true);
+
   const [shoulder, setShoulder] = useState(true);
   const [showhem, setShowHem] = useState(false);
   useEffect(() => {
@@ -63,7 +66,11 @@ const Experience = ({ toggleCanvas }) => {
       setDefaultNotch("double"); // Set default notch for Classic
       setShowPocketSelector(true); // Show PocketSelector
       setShowUpperPocketSelector(true); // Show UpperPocketSelector
+      // setCollarType("notch");
+       // Only set the default collar type if none was previously selected
+    if (!collarType) {
       setCollarType("notch");
+    }
       setDefaultPeak("double");
       setshowvent(true);
       setshowlining(true);
@@ -73,6 +80,7 @@ const Experience = ({ toggleCanvas }) => {
       setShowWaistband(false);
       setShowKaaj(true);
       setShoulder(true);
+      setPShowKaaj(true)
       setShowHem(false);
     };
 
@@ -83,7 +91,10 @@ const Experience = ({ toggleCanvas }) => {
       setDefaultNotch("breasted"); // Set default notch for Breasted
       setShowPocketSelector(true); // Show PocketSelector
       setShowUpperPocketSelector(true); // Show UpperPocketSelector
-      setCollarType("notch");
+      // setCollarType("notch");
+      if (!collarType) {
+        setCollarType("notch");
+      }
       setDefaultPeak("breasted");
       setshowvent(true);
       setshowlining(true);
@@ -94,6 +105,8 @@ const Experience = ({ toggleCanvas }) => {
       setShowKaaj(true);
       setShoulder(true);
       setShowHem(false);
+      setPShowKaaj(true)
+
     };
 
     const handleConfirmClick = () => {
@@ -128,6 +141,8 @@ const Experience = ({ toggleCanvas }) => {
       setShowKaaj(false);
       setShoulder(false);
       setShowHem(true);
+      setPShowKaaj(false)
+
     };
 
     const handleJacketClick = () => {
@@ -211,11 +226,12 @@ const Experience = ({ toggleCanvas }) => {
 
         {/* <Environment preset="studio" /> */}
         {/* <Kaaj/> */}
+        {/* <Hook4cm/> */}
 
         {showPocketSelector && <PocketSelector />}
         {shoulder && <ShoulderSelector />}
         {showUpperPocketSelector && <UpperpocketSelector />}
-        {collarType === "notch" && showKaaj ? (<Kaaj />): (<Kaaj_Peak/>)}
+        {collarType === "notch" && showKaaj ? (<Kaaj />):showPKaaj&& (<Kaaj_Peak/>)}
         {/* {collarType == "notch" ? (
           <NotchSelector
             defaultNotch={defaultNotch}

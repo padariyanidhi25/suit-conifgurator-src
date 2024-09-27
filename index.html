@@ -318,7 +318,7 @@
         <div id="lining-color"
           class="   p-3  z-10  flex flex-col  h-[100%]  xs:w-[110vw] xs:flex-row   xs:mt-[-1vh] "
           style="display: none;">
-          <div
+          <!-- <div
             class="p-4 rounded-lg flex items-center content-center space-x-4  xs:relative xs:flex-col xs:h-full  xs:w-[33vw] ">
             <img class="w-40 h-40  xs:h-20 xs:w-20 xs:mt-[3vh]"
               src="https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/custommade/thumbs2/lining_ui_v3/1098"
@@ -347,7 +347,7 @@
               <p class="font-semibold xs:text-[1rem] xs:ml-[0vw] xs:w-[28vw] ">Light Brown</p>
               <p class="text-sm  xs:hidden">1107</p>
             </div>
-          </div>
+          </div> -->
         </div>
         <div id="collar-option"
           class="hidden  p-3  z-10  flex flex-col  h-[100%]  xs:w-[100vw] xs:flex-row   xs:mt-[2.5vh] "
@@ -631,12 +631,12 @@
           <h1 class="text-xl font-semibold mb-4">Monogram Initials</h1>
           <div class="w-full max-w-md px-4">
             <div class="relative mb-6">
-              <input id="initialsInput" type="text" maxlength="15" placeholder="Enter your initials"
-                class="w-full p-3 border rounded-lg border-border text-input focus:outline-none focus:ring-2 focus:ring-ring" />
-              <span id="charCount"
-                class="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">0/15</span>
+                <input id="initialsInput" type="text" maxlength="15" placeholder="Enter your initials"
+                    class="w-full p-3 border rounded-lg border-border text-input focus:outline-none focus:ring-2 focus:ring-ring" />
+                <span id="charCount"
+                    class="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hidden">0/15</span>
             </div>
-          </div>
+        </div>
           <div
             class="fixed bottom-0 left-0 right-0 bg-card p-4 flex w-[23vw] xs:w-[100vw] ml-[75vw] xs:ml-[0vw] justify-between items-center xs:border-none border-t border-border">
             <button id="closeButton"
@@ -649,7 +649,7 @@
           <h1 class="text-xl font-semibold mb-4">Monogram Initials</h1>
           <div class="w-full max-w-md px-4">
             <div class="relative mb-6">
-              <input id="initialsInput" type="text" maxlength="15" placeholder="Enter your initials"
+              <input id="initialsInputu" type="text" maxlength="15" placeholder="Enter your initials"
                 class="w-full p-3 border rounded-lg border-border text-input focus:outline-none focus:ring-2 focus:ring-ring" />
               <span id="charCount"
                 class="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">0/15</span>
@@ -659,7 +659,7 @@
             class="fixed bottom-0 left-0 right-0 bg-card p-4 flex w-[23vw] xs:w-[100vw] ml-[75vw] xs:ml-[0vw]  justify-between items-center xs:border-none border-t border-border">
             <button id="closeButtonu"
               class="bg-white text-secondary-foreground border border-border rounded-full px-6 py-2">Close</button>
-            <button id="nextButton" class="bg-secondary text-secondary-foreground rounded-full px-6 py-2">Next</button>
+            <button id="nextButtonU" class="bg-secondary text-secondary-foreground rounded-full px-6 py-2">Next</button>
           </div>
         </div>
         <div id="lapelContent"
@@ -1728,13 +1728,28 @@
       style="display: none;">
      
       <div
-      class="p-4 rounded-lg flex items-center w-[25vw] content-center space-x-4 cursor-pointer xs:relative xs:flex-col xs:h-[8rem] xs:mt-5  xs:w-[33vw] ">
-      <img class="w-40 h-40  xs:h-20 xs:w-20 xs:mt-[0vh] "
+      id="no_sus"
+      class="p-4 rounded-lg flex items-center w-[25vw] content-center space-x-4 cursor-pointer xs:relative xs:flex-col xs:h-[8rem] xs:mt-5  xs:w-[33vw]"
+      onclick="handleSelection('No')">
+      <img class="w-40 h-40 xs:h-20 xs:w-20 xs:mt-[0vh]"
         src="https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/custommade/thumbs2/Trousers/SBN2"
         alt="Lining">
       <div>
-        <p class="font-semibold xs:text-[1rem] xs:ml-[0vw] xs:w-[25vw] xs:overflow-hidden xs:text-nowrap "> No</p>
+        <p class="font-semibold xs:text-[1rem] xs:ml-[0vw] xs:w-[25vw] xs:overflow-hidden xs:text-nowrap"> No</p>
         <p class="text-sm text-wrap w-[12vw] xs:hidden">This style is crafted with no interior suspender buttons.</p>
+      </div>
+    </div>
+    
+    <div
+      id="yes_sus"
+      class="p-4 rounded-lg flex items-center w-[25vw] content-center space-x-4 cursor-pointer xs:relative xs:flex-col xs:h-[8rem] xs:mt-5  xs:w-[33vw]"
+      onclick="handleSelection('Yes')">
+      <img class="w-40 h-40 xs:h-20 xs:w-20 xs:mt-[0vh]"
+        src="https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/suitconfig/S5057-38/Fabricthumbnail/SBY1"
+        alt="Lining">
+      <div>
+        <p class="font-semibold xs:text-[1rem] xs:ml-[0vw] xs:w-[25vw] xs:overflow-hidden xs:text-nowrap"> Yes</p>
+        <p class="text-sm text-wrap w-[12vw] xs:hidden">Made to be worn with suspenders, trousers with interior buttons allow for hidden fastening.</p>
       </div>
     </div>
     </div>
@@ -1768,7 +1783,7 @@
          
         </div>
         <div id="sizeoption"
-          class="fixed inset-0 ml-[72vw] mt-[32vh] flex items-center justify-center hidden bg-opacity-50 xs:mt-[-2vh] xs:ml-[-1vw] xs:bg-white">
+          class="fixed inset-0 ml-[70vw] mt-[0vh] flex items-center justify-center hidden bg-opacity-50 xs:mt-[-2vh] xs:ml-[-1vw] xs:bg-white">
           <div class=" p-6 rounded-lg  w-full max-w-md h-[100vh] mt-[77vh]">
            
             <div class="flex justify-between items-center mb-4">
@@ -1986,7 +2001,7 @@
         <h3 class="text-lg font-semibold">Selected Jacket Size: <span id="selectedSizeText">None</span></h3>
       </div>
       <div id="jsizechart"
-        class="hidden absolute z-[99] bg-card text-card-foreground p-6 ml-[-1vw] mt-[-83vh] rounded-lg shadow-lg max-w-lg mx-auto h-[96vh] overflow-y-scroll xs:mt-[-134vh] xs:bg-white">
+        class="hidden absolute z-[99] bg-card text-card-foreground p-6 ml-[-1vw] mt-[-83vh] rounded-lg  max-w-lg mx-auto h-[96vh] overflow-y-scroll xs:mt-[-134vh] xs:bg-white">
         <div class="flex justify-between items-center mb-4">
 
           <p class="text-4xl font-semibold ml-[9vw]">Size chart</p>
@@ -1999,7 +2014,7 @@
           </div>
         </div>
         <button id="Previous"
-          class="text-muted-foreground   absolute top-[25vh] left-[17vw] z-[99]  xs:top-[28vh] xs:left-[67vw]">
+          class="   absolute top-[23vh] left-[17vw] z-[99]  xs:top-[28vh] xs:left-[67vw]">
           <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             x="0px" y="0px" width="50px" height="30px" viewBox="0 0 122.883 122.882"
             enable-background="new 0 0 122.883 122.882" xml:space="preserve">
@@ -2011,7 +2026,7 @@
 
         </button>
         <button id="Next"
-          class="text-muted-foreground   absolute top-[25vh] left-[20vw] z-[99] xs:w-[5vw] xs:top-[28vh] xs:left-[78vw]">
+          class="   absolute top-[23vh] left-[20vw] z-[99] xs:w-[5vw] xs:top-[28vh] xs:left-[78vw]">
           <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             x="0px" y="0px" width="50px" height="30px" viewBox="0 0 122.88 122.88"
             enable-background="new 0 0 122.88 122.88" xml:space="preserve">
@@ -2083,7 +2098,7 @@
           <th class="border-b px-4 py-2 text-left">54<br /><span class="text-xs">6XL</span></th>
           <th class="border-b px-4 py-2 text-left">56<br /><span class="text-xs">7XL</span></th>
           <th class="border-b px-4 py-2 text-left">58<br /><span class="text-xs">8XL</span></th>
-          <th class="border-b px-4 py-2 text-left">60<br /><span class="text-xs">9XL</span></th>
+          <th class="border-b px-4 py-2 text-left" >60<br /><span class="text-xs">9XL</span></th>
 
 
 
@@ -2092,8 +2107,9 @@
         </thead>
         <tbody id="measurementTable">
           <tr>
+            
             <td class="border-b px-4 py-2 text-left text-primary sticky-col"><span id="iconchest"
-                class=" absolute top-[2.5vh] left-[-0.5vw] w-[1vw] h-[2vh] xs:w-[4vw] xs:left-[-1.65vw]">
+                class=" absolute top-[2.5vh] left-[-0.99vw] w-[1vw] h-[2vh] xs:w-[4vw] xs:left-[-1.65vw]">
                 <svg
                   xmlns="http://www.w3.org/2000/svg" fill="none"  viewBox="0 0 24 24"  stroke-width="1.5"
                   stroke="currentColor" class="size-5 bg-white ">
@@ -2121,7 +2137,7 @@
           </tr>
           <tr>
             <td class="border-b px-4 py-2 text-left text-primary sticky-col"><span id="iconwaistwidth"
-                class="absolute top-[2.5vh] left-[-0.5vw] w-[1vw] h-[2vh] xs:w-[4vw] xs:left-[-1.65vw]"><svg
+                class="absolute top-[2.5vh] left-[-0.99vw] w-[1vw] h-[2vh] xs:w-[4vw] xs:left-[-1.65vw]"><svg
                   xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="size-5 bg-white">
                   <path stroke-linecap="round" stroke-linejoin="round"
@@ -2148,7 +2164,7 @@
           </tr>
           <tr>
             <td class="border-b px-4 py-2 text-left text-primary sticky-col"><span id="iconshoulderwidth"
-                class="absolute top-[2.5vh] left-[-0.5vw] w-[1vw] h-[2vh] xs:w-[4vw] xs:left-[-1.65vw]"><svg
+                class="absolute top-[2.5vh] left-[-0.99vw] w-[1vw] h-[2vh] xs:w-[4vw] xs:left-[-1.65vw]"><svg
                   xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="size-5 bg-white">
                   <path stroke-linecap="round" stroke-linejoin="round"
@@ -2175,7 +2191,7 @@
           </tr>
           <tr>
             <td class="border-b px-4 py-2 text-left text-primary sticky-col"><span id="iconsleevelength"
-                class=" absolute top-[2.5vh] left-[-0.5vw] w-[1vw] h-[2vh] xs:w-[4vw] xs:left-[-1.65vw]"><svg
+                class=" absolute top-[2.5vh] left-[-0.99vw] w-[1vw] h-[2vh] xs:w-[4vw] xs:left-[-1.65vw]"><svg
                   xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="size-5 bg-white">
                   <path stroke-linecap="round" stroke-linejoin="round"
@@ -2201,7 +2217,7 @@
           </tr>
           <tr>
             <td class="border-b px-4 py-2 text-left text-primary sticky-col"><span id="iconjacketlength"
-                class=" absolute top-[2.5vh] left-[-0.5vw] w-[1vw] h-[2vh] xs:w-[4vw] xs:left-[-1.65vw]"><svg
+                class=" absolute top-[2.5vh] left-[-0.99vw] w-[1vw] h-[2vh] xs:w-[4vw] xs:left-[-1.65vw]"><svg
                   xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="size-5 bg-white">
                   <path stroke-linecap="round" stroke-linejoin="round"
@@ -2429,7 +2445,7 @@
         <h2 class="text-lg font-semibold text-foreground mb-4">Size conversions</h2>
         <div id="sizej" class="flex items-center mb-4">
           <button id="Previousjsizec"
-            class="text-muted-foreground  top-[74vh] absolute  left-[17vw] z-[99]  xs:left-[67vw] xs:top-[89vh]">
+            class="text-muted-foreground  top-[73vh] absolute  left-[17vw] z-[99]  xs:left-[67vw] xs:top-[89vh]">
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="50px" height="30px"
               viewBox="0 0 122.883 122.882" enable-background="new 0 0 122.883 122.882" xml:space="preserve">
@@ -2441,7 +2457,7 @@
 
           </button>
           <button id="Nextjsizec"
-            class="text-muted-foreground   absolute top-[74vh] left-[20vw] z-[99]  xs:left-[78vw] xs:top-[89vh]">
+            class="text-muted-foreground   absolute top-[73vh] left-[20vw] z-[99]  xs:left-[78vw] xs:top-[89vh]">
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="50px" height="30px"
               viewBox="0 0 122.88 122.88" enable-background="new 0 0 122.88 122.88" xml:space="preserve">
@@ -3416,12 +3432,12 @@ style="display: none;">
           </div>
           <div class="flex justify-between mt-4 sticky bottom-[-3vh] bg-white py-4 xs:bottom-[-5vh]">
             <button id="sizetguide" class="bg-gray-400 text-secondary-foreground   p-2 rounded">Size guide</button>
-            <button class="bg-gray-400 text-muted-foreground next-button p-2 rounded">Next</button>
+            <button id="tnext" class="bg-gray-400 text-muted-foreground next-button p-2 rounded">Next</button>
           </div>
         </div>
       </div>
       <div id="tsizechart"
-        class="hidden absolute z-[99] bg-card text-card-foreground p-6 ml-[-1vw] mt-[-83vh] rounded-lg shadow-lg max-w-lg mx-auto h-[96vh] overflow-y-scroll xs:mt-[-134vh] xs:bg-white">
+        class="hidden absolute z-[99] bg-card text-card-foreground p-6 ml-[-1vw] mt-[-83vh] rounded-lg  max-w-lg mx-auto h-[96vh] overflow-y-scroll xs:mt-[-134vh] xs:bg-white">
         <div class="flex justify-between items-center mb-4">
 
           <p class="text-4xl font-semibold ml-[9vw]">Size chart</p>
@@ -3434,7 +3450,7 @@ style="display: none;">
           </div>
         </div>
         <button id="Previoust"
-          class="text-muted-foreground   absolute top-[25vh] left-[17vw] z-[99]  xs:top-[28vh] xs:left-[67vw]">
+          class="text-muted-foreground   absolute top-[23vh] left-[17vw] z-[99]  xs:top-[28vh] xs:left-[67vw]">
           <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             x="0px" y="0px" width="50px" height="30px" viewBox="0 0 122.883 122.882"
             enable-background="new 0 0 122.883 122.882" xml:space="preserve">
@@ -3445,7 +3461,7 @@ style="display: none;">
           </svg>
         </button>
         <button id="Nextt"
-          class="text-muted-foreground   absolute top-[25vh] left-[20vw] z-[99]  xs:top-[28vh] xs:left-[78vw]">
+          class="text-muted-foreground   absolute top-[23vh] left-[20vw] z-[99]  xs:top-[28vh] xs:left-[78vw]">
           <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             x="0px" y="0px" width="50px" height="30px" viewBox="0 0 122.88 122.88"
             enable-background="new 0 0 122.88 122.88" xml:space="preserve">
@@ -3523,7 +3539,7 @@ style="display: none;">
         <tbody id="measurementTablet">
           <tr>
             <td class="border-b px-4 py-2 text-left text-primary sticky-col"><span id="iconwaist"
-                class=" absolute top-[2.5vh] left-[-0.5vw] w-[1vw] h-[2vh] xs:w-[4vw] xs:left-[-1.65vw]"><svg
+                class=" absolute top-[2.5vh] left-[-0.99vw] w-[1vw] h-[2vh] xs:w-[4vw] xs:left-[-1.65vw]"><svg
                   xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="size-5 bg-white">
                   <path stroke-linecap="round" stroke-linejoin="round"
@@ -3550,7 +3566,7 @@ style="display: none;">
           </tr>
           <tr>
             <td class="border-b px-4 py-2 text-left text-primary sticky-col"><span id="iconupperlegwidth"
-                class="absolute top-[4vh] left-[-0.5vw] w-[1vw] h-[2vh] xs:w-[4vw] xs:left-[-1.65vw]"><svg
+                class="absolute top-[4vh] left-[-0.99vw] w-[1vw] h-[2vh] xs:w-[4vw] xs:left-[-1.65vw]"><svg
                   xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="size-5 bg-white">
                   <path stroke-linecap="round" stroke-linejoin="round"
@@ -3576,7 +3592,7 @@ style="display: none;">
           </tr>
           <tr>
             <td class="border-b px-4 py-2 text-left text-primary sticky-col"><span id="iconinsideleg"
-                class=" absolute top-[2.5vh] left-[-0.5vw] w-[1vw] h-[2vh] xs:w-[4vw] xs:left-[-1.65vw]"><svg
+                class=" absolute top-[2.5vh] left-[-0.99vw] w-[1vw] h-[2vh] xs:w-[4vw] xs:left-[-1.65vw]"><svg
                   xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="size-5 bg-white">
                   <path stroke-linecap="round" stroke-linejoin="round"
@@ -3603,7 +3619,7 @@ style="display: none;">
           </tr>
           <tr>
             <td class="border-b px-4 py-2 text-left text-primary sticky-col "><span id="iconsleevelengtht"
-                class=" absolute top-[3.5vh] left-[-0.5vw] w-[1vw] h-[2vh] xs:w-[4vw] xs:left-[-1.65vw] "><svg
+                class=" absolute top-[3.5vh] left-[-0.99vw] w-[1vw] h-[2vh] xs:w-[4vw] xs:left-[-1.65vw] "><svg
                   xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="size-5 bg-white">
                   <path stroke-linecap="round" stroke-linejoin="round"
@@ -3820,7 +3836,7 @@ style="display: none;">
         <h2 class="text-lg font-semibold text-foreground mb-4">Size conversions</h2>
         <div id="sizet" class="flex items-center mb-4">
           <button id="Previoustsizec"
-            class="text-muted-foreground  top-[74vh] absolute  left-[17vw] z-[99]  xs:left-[67vw] xs:top-[87vh]">
+            class="text-muted-foreground  top-[72vh] absolute  left-[17vw] z-[99]  xs:left-[67vw] xs:top-[87vh]">
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="50px" height="30px"
               viewBox="0 0 122.883 122.882" enable-background="new 0 0 122.883 122.882" xml:space="preserve">
@@ -3832,7 +3848,7 @@ style="display: none;">
 
           </button>
           <button id="Nexttsizec"
-            class="text-muted-foreground   absolute top-[74vh] left-[20vw] z-[99] xs:left-[78vw] xs:top-[87vh]">
+            class="text-muted-foreground   absolute top-[72vh] left-[20vw] z-[99] xs:left-[78vw] xs:top-[87vh]">
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="50px" height="30px"
               viewBox="0 0 122.88 122.88" enable-background="new 0 0 122.88 122.88" xml:space="preserve">
@@ -4240,7 +4256,10 @@ style="display: none;">
 
     </div>
 
-
+    <!-- <div id="custm" class="hidden fixed-footer flex justify-between mt-4  bottom-[5vh] bg-white py-4 xs:bottom-[-5vh]">
+      <button id="im_done" class="bg-gray-400 text-secondary-foreground   p-2 rounded">Im</button>
+      <button id="customize" class="bg-gray-400 text-muted-foreground next-button p-2 rounded">customize</button>
+    </div> -->
 
 
     <script type="module" src="/src/main.jsx"></script>
@@ -4278,6 +4297,13 @@ style="display: none;">
     slider.addEventListener('mouseup', stopDragging, false);
     slider.addEventListener('mouseleave', stopDragging, false);
   });
+  function handleSelection(id) {
+    // Store the selected id in localStorage
+    localStorage.setItem('selectedSuspenderOption', id);
+
+    // Optional: You can log or use the selected id in any other logic
+    console.log('Selected ID:', id);
+  }
 
 </script>
 

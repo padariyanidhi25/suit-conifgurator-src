@@ -50,6 +50,8 @@ const FabComp = () => {
     // Save only the fabric name to localStorage
     localStorage.setItem("selectedFabricName", item.name);
     localStorage.setItem("selectedFabricURL", item.textureURL);
+    localStorage.setItem("selectedFabricPrice", item.price);
+
 
   };
 

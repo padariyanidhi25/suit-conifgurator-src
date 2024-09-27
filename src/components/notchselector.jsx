@@ -60,15 +60,15 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
   //   };
   // }, []);
 
-  useEffect(() => {
-    const handleButtonTextureSelection = (textureURL) => {
-      setButtonTextureURL(textureURL);
-    };
-    eventEmitter.on("buttonSelected", handleButtonTextureSelection);
-    return () => {
-      eventEmitter.off("buttonSelected", handleButtonTextureSelection);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const handleButtonTextureSelection = (textureURL) => {
+  //     setButtonTextureURL(textureURL);
+  //   };
+  //   eventEmitter.on("buttonSelected", handleButtonTextureSelection);
+  //   return () => {
+  //     eventEmitter.off("buttonSelected", handleButtonTextureSelection);
+  //   };
+  // }, []);
 
   useEffect(() => {
     const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
@@ -84,11 +84,20 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
 
   }, [selectedNotch, fabricURL]);
 
-  useEffect(() => {
-    if (buttonTextureURL) {
-      eventEmitter.emit("applyButtonTexture", { textureURL: buttonTextureURL });
-    }
-  }, [selectedNotch, buttonTextureURL]);
+  useEffect(()=>{
+    const selectedbuttonurl=localStorage.getItem('ButtonURL')
+    console.log("button name:",selectedbuttonurl);
+    setButtonTextureURL(selectedbuttonurl)
+    if(selectedbuttonurl){
+      eventEmitter.emit("applyButtonTexture", { textureURL: selectedbuttonurl })    }
+    
+  },[selectedNotch, buttonTextureURL])
+
+  // useEffect(() => {
+  //   if (buttonTextureURL) {
+  //     eventEmitter.emit("applyButtonTexture", { textureURL: buttonTextureURL });
+  //   }
+  // }, [selectedNotch, buttonTextureURL]);
 
   useEffect(() => {
     localStorage.setItem("selectedNotch", selectedNotch);
