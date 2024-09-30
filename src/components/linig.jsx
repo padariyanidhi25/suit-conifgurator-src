@@ -1,12 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
+import eventEmitter from './eventEmitter';
+
 
 export function Linig(props) {
   const { nodes, materials } = useGLTF(
     "./latest/jacket/Coat Noch & peak Revesion/Linning/Full_Lined.glb"
   );
+  useEffect(() => {
+    const handleApplyLiningColor = ({ textureURL }) => {
+      if (textureURL) {
+        const loader = new THREE.TextureLoader();
+        loader.load(textureURL, (texture) => {
+          Object.keys(materials).forEach((key) => {
+            const material = materials[key];
+            if (material.map) {
+              material.map = texture;
+              material.needsUpdate = true;
+            }
+          });
+        });
+      }
+    };
 
+    eventEmitter.on("applyLiningColor", handleApplyLiningColor);
+
+    return () => {
+      eventEmitter.off("applyLiningColor", handleApplyLiningColor);
+    };
+  }, [materials]);
   return (
     <group {...props} dispose={null} scale={20}>
       <mesh
@@ -29,6 +52,28 @@ export function Butterfly_Lining(props) {
   const { nodes, materials } = useGLTF(
     "./latest/jacket/Coat Noch & peak Revesion/Linning/Butterfly_Lining.glb"
   );
+  useEffect(() => {
+    const handleApplyLiningColor = ({ textureURL }) => {
+      if (textureURL) {
+        const loader = new THREE.TextureLoader();
+        loader.load(textureURL, (texture) => {
+          Object.keys(materials).forEach((key) => {
+            const material = materials[key];
+            if (material.map) {
+              material.map = texture;
+              material.needsUpdate = true;
+            }
+          });
+        });
+      }
+    };
+
+    eventEmitter.on("applyLiningColor", handleApplyLiningColor);
+
+    return () => {
+      eventEmitter.off("applyLiningColor", handleApplyLiningColor);
+    };
+  }, [materials]);
   return (
     <group {...props} dispose={null} scale={20}>
       <mesh
@@ -51,6 +96,30 @@ export function Half_Linning(props) {
   const { nodes, materials } = useGLTF(
     "./latest/jacket/Coat Noch & peak Revesion/Linning/Half_Linning.glb"
   );
+  useEffect(() => {
+    const handleApplyLiningColor = ({ textureURL }) => {
+      console.log('gfhudg');
+      
+      if (textureURL) {
+        const loader = new THREE.TextureLoader();
+        loader.load(textureURL, (texture) => {
+          Object.keys(materials).forEach((key) => {
+            const material = materials[key];
+            if (material.map) {
+              material.map = texture;
+              material.needsUpdate = true;
+            }
+          });
+        });
+      }
+    };
+
+    eventEmitter.on("applyLiningColor", handleApplyLiningColor);
+
+    return () => {
+      eventEmitter.off("applyLiningColor", handleApplyLiningColor);
+    };
+  }, [materials]);
   return (
     <group {...props} dispose={null} scale={20}>
       <mesh

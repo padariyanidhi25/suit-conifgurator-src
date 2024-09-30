@@ -13,6 +13,7 @@ const FabComp = () => {
     getEntries()
       .then((result) => {
         setUserData(result);
+        console.log(result);
       })
       .catch((err) => {
         console.error(err);
@@ -29,7 +30,10 @@ const FabComp = () => {
     setSelectedFabricPrice(item.price);
     eventEmitter.emit("fabricSelected", item); // Emit event with selected fabric price
 
-    // Save the newly selected fabric name to localStorage
+    // Log the texture URL when a fabric is selected
+    console.log("Selected Fabric Texture URL:", item.textureURL); // Use textureURL
+
+    // Save the newly selected fabric name and texture URL to localStorage
     saveSelectedFabricName(item);
     console.log("fabricselected");
   };
@@ -47,17 +51,15 @@ const FabComp = () => {
   };
 
   const saveSelectedFabricName = (item) => {
-    // Save only the fabric name to localStorage
+    // Save only the fabric name and texture URL to localStorage
     localStorage.setItem("selectedFabricName", item.name);
     localStorage.setItem("selectedFabricURL", item.textureURL);
     localStorage.setItem("selectedFabricPrice", item.price);
-
-
   };
 
-  const allFabricsTextureURL = userData.find(
+  const allFabricsThumbnailURL = userData.find(
     (item) => item.category === "Fabric" && item.isActive
-  )?.textureURL;
+  )?.thumbnailURL;
 
   const getLatestFabrics = (items) => {
     const latestFabrics = {};
@@ -91,10 +93,11 @@ const FabComp = () => {
       {/* Default "All Fabrics" div */}
       <div
         className="p-4 rounded-lg flex items-center content-center space-x-4 cursor-pointer xs:relative xs:flex-col xs:h-full xs:w-[33vw] active"
-        onClick={() => handleCategoryClick("All Fabrics")}>
+        onClick={() => handleCategoryClick("All Fabrics")}
+      >
         <img
           className="w-40 h-40 object-contain xs:h-full"
-          src={allFabricsTextureURL}
+          src={allFabricsThumbnailURL} // Show thumbnailURL
           alt="All Fabrics"
         />
         <div>
@@ -110,11 +113,12 @@ const FabComp = () => {
           <div
             key={index}
             id={item.id}
-            className="p-4 rounded-lg flex items-center content-center space-x-4 cursor-pointer xs:relative xs:flex-col xs:h-full xs:w-[33vw]  active"
-            onClick={() => handleCategoryClick(item.type)}>
+            className="p-4 rounded-lg flex items-center content-center space-x-4 cursor-pointer xs:relative xs:flex-col xs:h-full xs:w-[33vw] active"
+            onClick={() => handleCategoryClick(item.type)}
+          >
             <img
               className="w-40 h-40 object-contain xs:h-full"
-              src={item.textureURL}
+              src={item.thumbnailURL} // Show thumbnailURL
               alt="Fabric"
             />
             <div>
@@ -129,8 +133,9 @@ const FabComp = () => {
       {showDropdown && (
         <div
           id="dropdown-menu"
-          className="absolute bg-white  p-3 mt-[-6vh] flex flex-col z-10 top-[7vh] left-minus-1vw h-full-110 w-screen xs:flex-row xs:mt-[-5vh] xs:h-[30vh] xs:w-[33rem]"
-          style={{ display: "flex" }}>
+          className="absolute bg-white p-3 mt-[-6vh] flex flex-col z-10 top-[7vh] left-minus-1vw h-full-110 w-screen xs:flex-row xs:mt-[-5vh] xs:h-[30vh] xs:w-[33rem]"
+          style={{ display: "flex" }}
+        >
           {filteredItems.map((item, index) => {
             const isActive = selectedFabric && selectedFabric.id === item.id; // Check if this fabric is selected
             return (
@@ -143,7 +148,7 @@ const FabComp = () => {
                 onClick={() => handleFabricClick(item)} // Set selected fabric on click
               >
                 <img
-                  src={item.textureURL}
+                  src={item.thumbnailURL} // Show thumbnailURL
                   alt={`Fabric ${index + 1}`}
                   className="w-40 h-40 xs:w-20 xs:h-20"
                 />
@@ -167,14 +172,16 @@ const FabComp = () => {
           <button
             style={{ backgroundColor: "#2d2d2c" }}
             className="relative rounded-full w-[20vw] h-10 font-semibold text-lg xs:text-[0.8rem] xs:w-[12vw] xs:ml-[14vw]"
-            onClick={handleConfirmClick}>
+            onClick={handleConfirmClick}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth="1"
               stroke="white"
-              className="w-6 h-6 absolute top-[1vh] left-[6vw] xs:w-auto transform -translate-x-1/2">
+              className="w-6 h-6 absolute top-[1vh] left-[6vw] xs:w-auto transform -translate-x-1/2"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"

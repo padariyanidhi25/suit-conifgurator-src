@@ -127,6 +127,13 @@ function Chair( ...props ) {
       tab.classList.add('active');
     })
   })
+
+  // document.querySelectorAll('.links').forEach((tab) => {
+  //   tab.addEventListener('click', () => {
+  //     document.querySelectorAll('.links').forEach((tab) => tab.classList.remove('active'));
+  //     tab.classList.add('active');
+  //   })
+  // })
   document.querySelectorAll('.subtablinks').forEach((tab) => {
     tab.addEventListener('click', () => {
       document.querySelectorAll('.subtablinks').forEach((tab) => tab.classList.remove('active'));

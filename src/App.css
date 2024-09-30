@@ -111,7 +111,7 @@ input:checked ~ .dott {
   padding: 10px; /* Optional: add some padding */
   
   position: absolute; /* Retain the position if needed */
-  top: 3rem; /* Adjust as needed */
+  top: 1rem; /* Adjust as needed */
   left: 2vw; /* Adjust as needed */
   width: 24vw;
 }
@@ -270,6 +270,12 @@ input:checked ~ .dott {
 }
 
 .sublinks.active {
+  background-color: rgb(239 234 234);
+  font-weight: 500;
+  color: black;
+}
+
+.links.active {
   background-color: rgb(239 234 234);
   font-weight: 500;
   color: black;

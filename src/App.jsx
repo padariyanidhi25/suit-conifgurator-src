@@ -40,6 +40,7 @@ function App() {
   const [fabricPrice, setFabricPrice] = useState(0);
   const [buttonPrice, setButtonPrice] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [liningPrice, setLiningPrice] = useState(0);
   const [fov, setFov] = useState(25);
 
   const toggleCanvas = () => {
@@ -69,12 +70,17 @@ function App() {
 
     const savedButtonPrice = localStorage.getItem('ButtonPrice');
     const savedFabricPrice = localStorage.getItem('selectedFabricPrice');
+    const savedLiningPrice = localStorage.getItem('LiningColorPrice');
+
      // Set prices from local storage if they exist
      if (savedButtonPrice) {
       setButtonPrice(Number(savedButtonPrice));
     }
     if (savedFabricPrice) {
       setFabricPrice(Number(savedFabricPrice));
+    }
+    if (savedLiningPrice) {
+      setLiningPrice(Number(savedLiningPrice));
     }
     
   }, []);
@@ -91,18 +97,24 @@ function App() {
       setFabricPrice(fabricPrice);
       localStorage.setItem('FabricPrice', fabricPrice); // Save to localStorage
     };
-
+    const handleLiningColorSelected = ({ price }) => {
+      const liningPrice = Number(price) || 0;
+      setLiningPrice(liningPrice);
+      localStorage.setItem('LiningColorPrice', liningPrice);
+    };
     eventEmitter.on("buttonSelected", handleButtonSelected);
     eventEmitter.on("fabricSelected", handleFabricSelected);
+    eventEmitter.on("applyLiningColor", handleLiningColorSelected);
 
     return () => {
       eventEmitter.off("buttonSelected", handleButtonSelected);
       eventEmitter.off("fabricSelected", handleFabricSelected);
+      eventEmitter.off("applyLiningColor", handleLiningColorSelected);
     };
   }, []);
   useEffect(() => {
-    setTotalPrice(buttonPrice + fabricPrice);
-  }, [buttonPrice, fabricPrice]);
+    setTotalPrice(buttonPrice + fabricPrice + liningPrice);
+  }, [buttonPrice, fabricPrice, liningPrice]);
 
   return (
     <>
@@ -128,12 +140,12 @@ function App() {
               />
 
               <StaticDirectionalLight
-                position={[0.468164, 0.42188, 0.17211]}
+                position={[0.168164, 0.42188, 0.17211]}
                 targetPosition={[-4, -1, 0.1]}
                 intensity={1.5}
               />
               <StaticDirectionalLight
-                position={[0, 0, 12]}
+                position={[0, 0, 10]}
                 targetPosition={[0, 3, 4]}
                 intensity={0.3}
               />
@@ -169,10 +181,10 @@ function App() {
           <Configurator />
 
           {/* Div to display the total price */}
-          <div className="storeprice absolute text-black z-[9] left-[2vw] top-[5vh] w-[5vw] h-[5vh] xs:w-[22vw] text-nowrap xs:left-1 xs:top-0 flex items-center justify-center">
+          <div className="storeprice absolute text-black z-[9] font-bold left-[2vw] top-[5vh] w-[5vw] h-[5vh] xs:w-[22vw] text-nowrap xs:left-1 xs:top-0 flex items-center justify-center">
             Total: ${Number(totalPrice).toFixed(2)}
           </div>
-          <p className="absolute top-20 left-6 text-sm xs:top-7 xs:left-1">
+          <p className="absolute top-20 left-8 text-sm xs:top-7 xs:left-1">
             2-3 weeks delivery
           </p>
         </div>

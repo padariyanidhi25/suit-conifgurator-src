@@ -399,6 +399,9 @@ const Configurator = () => {
     document.getElementById("lining-menu").style.display = "none";
     document.getElementById("lining-color").style.display = "none";
     monogrm.style.display = "flex";
+   
+
+
     confrmlining.style.display = "none";
     document.getElementById("waist").style.display = "none";
     document.getElementById("tab").style.display = "block";
@@ -1124,6 +1127,14 @@ const Configurator = () => {
     // document.getElementById("monogram").style.display = "flex";
     document.getElementById("customize").style.display = "block";
     document.getElementById("result").style.display = "block";
+
+       // Retrieve saved values from localStorage
+       const ButtonPrice = Number(localStorage.getItem("ButtonPrice")) || 0;
+       const FabricPrice = Number(localStorage.getItem("selectedFabricPrice")) || 0;
+       const LiningPrice = Number(localStorage.getItem("LiningColorPrice")) || 0;
+   
+       // Calculate the total price
+       const TotalPrice = ButtonPrice + FabricPrice + LiningPrice;
        // Check for the existence of values in localStorage
        const ButtonName = localStorage.getItem("ButtonName");
        const selectedLowerPocket = localStorage.getItem("selectedLowerPocket");
@@ -1271,6 +1282,7 @@ const Configurator = () => {
                 
              </tbody>
            </table>
+           <p style="font-size: 20px; font-weight:bold; text-align: start; margin-top: 20px;">Total Price: $${TotalPrice.toFixed(2)}</p>
          `;
          resultDiv.style.display = "block"; // Show the result div
        } else {

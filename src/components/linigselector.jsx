@@ -2,9 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Butterfly_Lining, Half_Linning, Linig } from "./linig";
 import { Vector3 } from "three";
-
+import eventEmitter from './eventEmitter';
 const LinigDisplay = () => {
   const [showLinig, setShowLinig] = useState(true);
+  const [linigURL, setLiningURL] = useState(null);
+
   const [showButterfly, setShowButterfly] = useState(false);
   const [showHalfLinning, setShowHalfLinning] = useState(false);
   const [targetPosition, setTargetPosition] = useState(new Vector3(0, 3.25, 8)); // Default position
@@ -93,6 +95,13 @@ const LinigDisplay = () => {
       if (confrmlining) confrmlining.removeEventListener("click", () => {});
     };
   }, []);
+
+  useEffect(() => {
+    const selectedFabricName = localStorage.getItem("LiningColorURL");
+    setLiningURL(selectedFabricName);
+    console.log("linig color",selectedFabricName);
+    
+  }, [linigURL]); // Run whenever linigURL changes
 
   return (
     <>
