@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useCustomization } from "../contexts/Customization";
+import { addOrder } from "../Firebase/userUtil";
 
 let isfabric = false;
 let selectedSize = null;
@@ -1115,180 +1116,199 @@ const Configurator = () => {
       behavior: "smooth",
     });
   });
-  sizeconfirm.addEventListener("click", () => {
+  sizeconfirm.addEventListener("click", async () => {
+    const name = document.getElementById('name').value;
+    const mobileNo = document.getElementById('mno').value;
+
+    // Check if inputs are not empty
+    if (name.trim() === "" || mobileNo.trim() === "") {
+        alert('Please enter Name and Mobile No.');
+        return;
+    }
+
+    // Store values in local storage
+    localStorage.setItem('name', name);
+    localStorage.setItem('mobileNo', mobileNo);
+
     sizeoption.style.display = "none";
-    // document.getElementById("result").style.display = "none";
-    monogrm.style.display = "flex";
-    // document.getElementById("tab").style.display = "flex";
+    monogrm.style.display = "none";
     finish.style.display = "none";
-    // document.getElementById("fabric").style.display = "flex";
-    // document.getElementById("linigs").style.display = "flex";
-    // document.getElementById("button").style.display = "flex";
-    // document.getElementById("monogram").style.display = "flex";
     document.getElementById("customize").style.display = "block";
     document.getElementById("result").style.display = "block";
 
-       // Retrieve saved values from localStorage
-       const ButtonPrice = Number(localStorage.getItem("ButtonPrice")) || 0;
-       const FabricPrice = Number(localStorage.getItem("selectedFabricPrice")) || 0;
-       const LiningPrice = Number(localStorage.getItem("LiningColorPrice")) || 0;
-   
-       // Calculate the total price
-       const TotalPrice = ButtonPrice + FabricPrice + LiningPrice;
-       // Check for the existence of values in localStorage
-       const ButtonName = localStorage.getItem("ButtonName");
-       const selectedLowerPocket = localStorage.getItem("selectedLowerPocket");
-       const selectedFabricName = localStorage.getItem("selectedFabricName"); // Example, adjust if needed
-       const selectedUpperPocket = localStorage.getItem("selectedUpperPocket");
-       const selectedLinig = localStorage.getItem("selectedLinig");
-       const selectedCollar = localStorage.getItem("selectedCollar");
-       const selectedCanvas = localStorage.getItem("selectedCanvas");
-       const selectedShoulder = localStorage.getItem("selectedShoulder");
-       const selectedPeak = localStorage.getItem("selectedPeak");
-       const selectedNotch = localStorage.getItem("selectedNotch");
-       const selectedAmf = localStorage.getItem("selectedAmf");
-       const selectedWaistband = localStorage.getItem("selectedWaistband");
-       const selectedpleat = localStorage.getItem("selectedpleat");
-       const selectedtrouserpocket = localStorage.getItem("selectedtrouserpocket");
-       const ButtontName = localStorage.getItem("ButtontName");
-       const selectedHem = localStorage.getItem("selectedHem");
-       const savedId = localStorage.getItem("waistbandHeightOptionId");
-       const savedleg = localStorage.getItem("legLiningOptionId");
-       const selectedSize = localStorage.getItem("selectedSize");
-       const selectedTrouserSize = localStorage.getItem("selectedTrouserSize");
-       const undersidecollar=localStorage.getItem('Underside collar')
-      const jacketinside= localStorage.getItem('inside jacket')
-      const liningcolorName = localStorage.getItem("LiningColor")
+    // Retrieve saved values from localStorage
+    const ButtonPrice = Number(localStorage.getItem("ButtonPrice")) || 0;
+    const FabricPrice = Number(localStorage.getItem("selectedFabricPrice")) || 0;
+    const LiningPrice = Number(localStorage.getItem("LiningColorPrice")) || 0;
 
-        const savedSelection = localStorage.getItem('selectedSuspenderOption');
-       
-    
-       // To retrieve the ID later
-       // Display retrieved values in the UI (if available)
-       const resultDiv = document.getElementById("result");
-       if (resultDiv) {
-         resultDiv.innerHTML = `
-           <table border="1" cellspacing="0" cellpadding="5" style="width:100%">
-             <thead>
-               <tr>
-                 <th style="font-size: 24px; text-align: center;" >Jacket</th>
-                 <th></th>
-               </tr>
-             </thead>
-             <tbody>
-               <tr>
-                 <td>Button </td>
-                 <td>${ButtonName || "Default"}</td>
-               </tr>
-               <tr>
-                 <td>Lower-Pocket </td>
-                 <td>${selectedLowerPocket || "Default"}</td>
-               </tr>
-               <tr>
-                 <td>Fabric </td>
-                 <td>${selectedFabricName || "Default"}</td>
-               </tr>
-               <tr>
-                 <td>Upper-Pocket </td>
-                 <td>${selectedUpperPocket || "Default"}</td>
-               </tr>
-               <tr>
-                 <td>Lining </td>
-                 <td>${selectedLinig || "Default"}</td>
-               </tr>
-               <tr>
-                 <td>Lining Color </td>
-                 <td>${liningcolorName || "Default"}</td>
-               </tr>
-               <tr>
-                 <td>Collar </td>
-                 <td>${selectedCollar || "Default"}</td>
-               </tr>
-               <tr>
-                 <td>Canvas </td>
-                 <td>${selectedCanvas || "None selected"}</td>
-               </tr>
-               <tr>
-                 <td>Shoulder </td>
-                 <td>${selectedShoulder || "None selected"}</td>
-               </tr>
-               <tr>
-                 <td>Couser-Peak </td>
-                 <td>${selectedPeak || "None selected"}</td>
-               </tr>
-               <tr>
-                 <td>Couser-Notch </td>
-                 <td>${selectedNotch || "None selected"}</td>
-               </tr>
-               <tr>
-                 <td>AMF </td>
-                 <td>${selectedAmf || "None selected"}</td>
-               </tr>
-               <tr>
-                 <td>Jacket size </td>
-                 <td>${selectedSize || "None selected"}</td>
-               </tr>
-               <tr>
-                 <td>Underside Collar </td>
-                 <td>${undersidecollar || "None selected"}</td>
-               </tr>
-               <tr>
-                 <td>Inside Jacket </td>
-                 <td>${jacketinside || "None selected"}</td>
-               </tr>
-             </tbody>
-           </table>
-           <br/>
-           <table border="1" cellspacing="0" cellpadding="5"  style="width:80%" >
-             <thead>
-               <tr>
-                 <th style="font-size: 24px; text-align: center;">Trouser</th>
-                 <th></th>
-               </tr>
-             </thead>
-             <tbody>
-               <tr>
-                 <td>Waistband </td>
-                 <td>${selectedWaistband || "None selected"}</td>
-               </tr>
-                 <tr>
-                 <td>Pleat</td>
-                 <td>${selectedpleat || "None selected"}</td>
-               </tr>
-                <tr>
-                 <td>Pocket</td>
-                 <td>${selectedtrouserpocket || "None selected"}</td>
-               </tr>
-               <tr>
-                 <td>Button</td>
-                 <td>${ButtontName || "None selected"}</td>
-               </tr>
-               <tr>
-                 <td>HemFinish</td>
-                 <td>${selectedHem || "None selected"}</td>
-               </tr>   
-                <tr>
-                 <td>Leg linig</td>
-                 <td>${savedleg || "None selected"}</td>
-               </tr>
-               <tr>
-                 <td>Suspender Button </td>
-                 <td>${savedSelection || "None selected"}</td>
-               </tr>
-                <tr>
-                 <td> Trouser size </td>
-                 <td>${selectedTrouserSize || "None selected"}</td>
-               </tr>
-                
-             </tbody>
-           </table>
-           <p style="font-size: 20px; font-weight:bold; text-align: start; margin-top: 20px;">Total Price: $${TotalPrice.toFixed(2)}</p>
-         `;
-         resultDiv.style.display = "block"; // Show the result div
-       } else {
-         console.log("Result div not found");
-       }
-  });
+    // Calculate the total price
+    const TotalPrice = ButtonPrice + FabricPrice + LiningPrice;
+
+    // Prepare order data
+    const orderData = {
+        name,
+        mobileNo,
+        ButtonName: localStorage.getItem("ButtonName") || "Default",
+        selectedLowerPocket: localStorage.getItem("selectedLowerPocket") || "Default",
+        selectedFabricName: localStorage.getItem("selectedFabricName") || "Default",
+        selectedUpperPocket: localStorage.getItem("selectedUpperPocket") || "Default",
+        selectedLinig: localStorage.getItem("selectedLinig") || "Default",
+        liningColorName: localStorage.getItem("LiningColor") || "Default",
+        selectedCollar: localStorage.getItem("selectedCollar") || "Default",
+        selectedCanvas: localStorage.getItem("selectedCanvas") || "None selected",
+        selectedShoulder: localStorage.getItem("selectedShoulder") || "None selected",
+        selectedPeak: localStorage.getItem("selectedPeak") || "None selected",
+        selectedNotch: localStorage.getItem("selectedNotch") || "None selected",
+        selectedAmf: localStorage.getItem("selectedAmf") || "None selected",
+        selectedSize: localStorage.getItem("selectedSize") || "None selected",
+        undersideCollar: localStorage.getItem('Underside collar') || "None selected",
+        jacketInside: localStorage.getItem('inside jacket') || "None selected",
+        selectedWaistband: localStorage.getItem("selectedWaistband") || "None selected",
+        selectedPleat: localStorage.getItem("selectedpleat") || "None selected",
+        selectedTrouserPocket: localStorage.getItem("selectedtrouserpocket") || "None selected",
+        ButtontName: localStorage.getItem("ButtontName") || "None selected",
+        selectedHem: localStorage.getItem("selectedHem") || "None selected",
+        savedLeg: localStorage.getItem("legLiningOptionId") || "None selected",
+        savedSelection: localStorage.getItem('selectedSuspenderOption') || "None selected",
+        selectedTrouserSize: localStorage.getItem("selectedTrouserSize") || "None selected",
+        TotalPrice: TotalPrice.toFixed(2)
+    };
+
+    // Call the function to add the order to Firestore
+    await addOrder(orderData);
+
+    // Display the result
+    const resultDiv = document.getElementById("result");
+    if (resultDiv) {
+        resultDiv.innerHTML = `
+            <table border="1" cellspacing="0" cellpadding="5" style="width:100%">
+                <thead>
+                    <tr>
+                        <th style="font-size: 24px; text-align: center;">Jacket</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Name</strong></td>
+                        <td>${name || "None"}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mobile No</strong></td>
+                        <td>${mobileNo || "None"}</td>
+                    </tr>
+                    <tr>
+                        <td>Button</td>
+                        <td>${orderData.ButtonName}</td>
+                    </tr>
+                    <tr>
+                        <td>Lower-Pocket</td>
+                        <td>${orderData.selectedLowerPocket}</td>
+                    </tr>
+                    <tr>
+                        <td>Fabric</td>
+                        <td>${orderData.selectedFabricName}</td>
+                    </tr>
+                    <tr>
+                        <td>Upper-Pocket</td>
+                        <td>${orderData.selectedUpperPocket}</td>
+                    </tr>
+                    <tr>
+                        <td>Lining</td>
+                        <td>${orderData.selectedLinig}</td>
+                    </tr>
+                    <tr>
+                        <td>Lining Color</td>
+                        <td>${orderData.liningColorName}</td>
+                    </tr>
+                    <tr>
+                        <td>Collar</td>
+                        <td>${orderData.selectedCollar}</td>
+                    </tr>
+                    <tr>
+                        <td>Canvas</td>
+                        <td>${orderData.selectedCanvas}</td>
+                    </tr>
+                    <tr>
+                        <td>Shoulder</td>
+                        <td>${orderData.selectedShoulder}</td>
+                    </tr>
+                    <tr>
+                        <td>Couser-Peak</td>
+                        <td>${orderData.selectedPeak}</td>
+                    </tr>
+                    <tr>
+                        <td>Couser-Notch</td>
+                        <td>${orderData.selectedNotch}</td>
+                    </tr>
+                    <tr>
+                        <td>AMF</td>
+                        <td>${orderData.selectedAmf}</td>
+                    </tr>
+                    <tr>
+                        <td>Jacket size</td>
+                        <td>${orderData.selectedSize}</td>
+                    </tr>
+                    <tr>
+                        <td>Underside Collar</td>
+                        <td>${orderData.undersideCollar}</td>
+                    </tr>
+                    <tr>
+                        <td>Inside Jacket</td>
+                        <td>${orderData.jacketInside}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br/>
+            <table border="1" cellspacing="0" cellpadding="5" style="width:80%">
+                <thead>
+                    <tr>
+                        <th style="font-size: 24px; text-align: center;">Trouser</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Waistband</td>
+                        <td>${orderData.selectedWaistband}</td>
+                    </tr>
+                    <tr>
+                        <td>Pleat</td>
+                        <td>${orderData.selectedPleat}</td>
+                    </tr>
+                    <tr>
+                        <td>Pocket</td>
+                        <td>${orderData.selectedTrouserPocket}</td>
+                    </tr>
+                    <tr>
+                        <td>Button</td>
+                        <td>${orderData.ButtontName}</td>
+                    </tr>
+                    <tr>
+                        <td>HemFinish</td>
+                        <td>${orderData.selectedHem}</td>
+                    </tr>
+                    <tr>
+                        <td>Leg lining</td>
+                        <td>${orderData.savedLeg}</td>
+                    </tr>
+                    <tr>
+                        <td>Suspender Button</td>
+                        <td>${orderData.savedSelection}</td>
+                    </tr>
+                    <tr>
+                        <td>Trouser size</td>
+                        <td>${orderData.selectedTrouserSize}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size: 20px; font-weight:bold; text-align: start; margin-top: 20px;">Total Price: $${orderData.TotalPrice}</p>
+        `;
+        resultDiv.style.display = "block"; // Show the result div
+    } else {
+        console.log("Result div not found");
+    }
+});
 
   function saveButtonId(buttonId) {
     localStorage.setItem("legLiningOptionId", buttonId);

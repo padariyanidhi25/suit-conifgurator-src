@@ -1,5 +1,5 @@
 import { firestore } from './firebase.jsx';
-import { doc, updateDoc, getDocs, collection, deleteDoc } from 'firebase/firestore';
+import { doc, updateDoc, getDocs, collection, deleteDoc, setDoc } from 'firebase/firestore';
 
 // Function to get user photo URL from Firestore
 export const getUserPhotoURL = async (uid) => {
@@ -44,6 +44,26 @@ export const getSingleEntry = async (uid) => {
     return userDoc
 };
 
+
 export const deleteEntry = async (id) => {
     await deleteDoc(doc(firestore, 'entries', id));
 }
+
+export const addOrder = async (orderData) => {
+    try {
+        // Create a new document in the 'orders' collection
+        const orderRef = doc(collection(firestore, 'orders'));
+        await setDoc(orderRef, orderData);
+        console.log("Order successfully written!");
+    } catch (error) {
+        console.error("Error adding order: ", error);
+    }
+};
+// export const getOrders = async () => {
+//     const orders = [];
+//     const querySnapshot = await getDocs(collection(firestore, "orders"));
+//     querySnapshot.forEach((doc) => {
+//         orders.push({ id: doc.id, ...doc.data() });  // Include the order ID with the data
+//     });
+//     return orders;
+// };

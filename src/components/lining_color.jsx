@@ -11,7 +11,7 @@ const LiningComponent = () => {
   useEffect(() => {
     getEntries()
       .then((result) => {
-        console.log("Data fetched from Firebase:", result); // Log the raw data fetched
+        // console.log("Data fetched from Firebase:", result); // Log the raw data fetched
         setUserData(result);
 
         const saveLiningColor = localStorage.getItem('LiningColor');

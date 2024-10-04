@@ -67,13 +67,12 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const savedButtonPrice = localStorage.getItem("ButtonPrice");
+    const savedFabricPrice = localStorage.getItem("selectedFabricPrice");
+    const savedLiningPrice = localStorage.getItem("LiningColorPrice");
 
-    const savedButtonPrice = localStorage.getItem('ButtonPrice');
-    const savedFabricPrice = localStorage.getItem('selectedFabricPrice');
-    const savedLiningPrice = localStorage.getItem('LiningColorPrice');
-
-     // Set prices from local storage if they exist
-     if (savedButtonPrice) {
+    // Set prices from local storage if they exist
+    if (savedButtonPrice) {
       setButtonPrice(Number(savedButtonPrice));
     }
     if (savedFabricPrice) {
@@ -82,25 +81,24 @@ function App() {
     if (savedLiningPrice) {
       setLiningPrice(Number(savedLiningPrice));
     }
-    
   }, []);
 
   useEffect(() => {
     const handleButtonSelected = ({ price }) => {
       const buttonPrice = Number(price) || 0;
       setButtonPrice(buttonPrice);
-      localStorage.setItem('ButtonPrice', buttonPrice); // Save to localStorage
+      localStorage.setItem("ButtonPrice", buttonPrice); // Save to localStorage
     };
 
     const handleFabricSelected = ({ price }) => {
       const fabricPrice = Number(price) || 0;
       setFabricPrice(fabricPrice);
-      localStorage.setItem('FabricPrice', fabricPrice); // Save to localStorage
+      localStorage.setItem("FabricPrice", fabricPrice); // Save to localStorage
     };
     const handleLiningColorSelected = ({ price }) => {
       const liningPrice = Number(price) || 0;
       setLiningPrice(liningPrice);
-      localStorage.setItem('LiningColorPrice', liningPrice);
+      localStorage.setItem("LiningColorPrice", liningPrice);
     };
     eventEmitter.on("buttonSelected", handleButtonSelected);
     eventEmitter.on("fabricSelected", handleFabricSelected);
@@ -133,23 +131,37 @@ function App() {
               />
               {/* <OrbitControls/> */}
 
-              <StaticDirectionalLight
+              {/* <StaticDirectionalLight
                 position={[-0.45244, 0.32952, 0.27606]}
-                targetPosition={[4, -1, 0.1]}
-                intensity={1}
+                targetPosition={[-6, -1, 0.1]}
+                intensity={0.8}
               />
-
               <StaticDirectionalLight
                 position={[0.168164, 0.42188, 0.17211]}
-                targetPosition={[-4, -1, 0.1]}
-                intensity={1.5}
+                targetPosition={[6, 0.5, -0.1]}
+                intensity={0.8}
               />
               <StaticDirectionalLight
                 position={[0, 0, 10]}
                 targetPosition={[0, 3, 4]}
-                intensity={0.3}
+                intensity={0.4}
+              />  */}
+              <StaticDirectionalLight
+                position={[-0.621883, 0.32952, 0.268164]}
+                targetPosition={[-0.75, -1, -3]}
+                intensity={0.75}
               />
 
+              <StaticDirectionalLight
+                position={[0.629522, 0.42188, -0.652444]}
+                targetPosition={[2, 0.5, 4]}
+                intensity={0.75}
+              />
+              <StaticDirectionalLight
+                position={[0, -10, 5]}
+                targetPosition={[0, -3, 4]}
+                intensity={0.3}
+              />
               {/* <Environment preset="studio" intensity={4}/> */}
 
               <Experience
@@ -193,4 +205,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
