@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useCustomization } from "../contexts/Customization";
 import { addOrder } from "../Firebase/userUtil";
+import $ from "jquery";
+// import { sendOrderEmail } from "./mail";
 
 let isfabric = false;
 let selectedSize = null;
@@ -63,6 +65,32 @@ const Configurator = () => {
       }
     });
   }
+
+  const sendMail = (name, email, msg, mobNo) => {
+    var data = {
+      service_id: "service_0wlwdeo",
+      template_id: "template_khpicyt",
+      user_id: "6kLRNwW_LX6yEoyVJ",
+      template_params: {
+        from_name: name,
+        from_email: email,
+        mob_no: mobNo,
+        message: msg,
+      },
+    };
+
+    $.ajax("https://api.emailjs.com/api/v1.0/email/send", {
+      type: "POST",
+      data: JSON.stringify(data),
+      contentType: "application/json",
+    })
+      .done(function () {
+        alert("Your mail is sent!");
+      })
+      .fail(function (error) {
+        alert("Oops... " + JSON.stringify(error));
+      });
+  };
 
   let isfabricmenu = false;
   const lapelL = document.getElementById("lapel_l");
@@ -400,8 +428,6 @@ const Configurator = () => {
     document.getElementById("lining-menu").style.display = "none";
     document.getElementById("lining-color").style.display = "none";
     monogrm.style.display = "flex";
-   
-
 
     confrmlining.style.display = "none";
     document.getElementById("waist").style.display = "none";
@@ -459,6 +485,20 @@ const Configurator = () => {
   document.getElementById("confrmclosure").addEventListener("click", () => {
     document.getElementById("closure-option").style.display = "none";
     document.getElementById("confirmclosure").style.display = "none";
+    monogrm.style.display = "flex";
+    document.getElementById("tab").style.display = "block";
+    document.getElementById("finish").style.display = "block";
+  });
+  document.getElementById("Shawl").addEventListener("click", () => {
+    document.getElementById("shawl_option").style.display = "flex";
+    monogrm.style.display = "none";
+    document.getElementById("confirmshawl").style.display = "block";
+    document.getElementById("tab").style.display = "none";
+    document.getElementById("finish").style.display = "none";
+  });
+  document.getElementById("confrmshawl").addEventListener("click", () => {
+    document.getElementById("shawl_option").style.display = "none";
+    document.getElementById("confirmshawl").style.display = "none";
     monogrm.style.display = "flex";
     document.getElementById("tab").style.display = "block";
     document.getElementById("finish").style.display = "block";
@@ -815,7 +855,7 @@ const Configurator = () => {
     input.addEventListener("input", function () {
       const currentLength = input.value.length;
       charCount.textContent = `${currentLength}/15 `;
-      localStorage.setItem('initials', input.value); 
+      localStorage.setItem("initials", input.value);
     });
   });
 
@@ -823,20 +863,17 @@ const Configurator = () => {
   const initialsInputu = document.getElementById("initialsInputu");
 
   const nextButton = document.getElementById("nextButton");
-  const nextButtonu=document.getElementById('nextButtonU')
-
+  const nextButtonu = document.getElementById("nextButtonU");
 
   initialsInput.addEventListener("input", () => {
     const inputValue = initialsInput.value.trim().length;
     console.log(initialsInput.value);
-    
 
     if (inputValue > 0) {
       nextButton.classList.add("bg-gray-300"); // Apply gray background
     } else {
       nextButton.classList.remove("bg-gray-300"); // Remove gray background
     }
-
   });
 
   initialsInputu.addEventListener("input", () => {
@@ -847,24 +884,22 @@ const Configurator = () => {
     } else {
       nextButtonu.classList.remove("bg-gray-300"); // Remove gray background
     }
-
   });
-  nextButton.addEventListener('click',()=>{
-    const values=initialsInput.value
-    localStorage.setItem('inside jacket', values)
-    document.getElementById('monograminitials').style.display='none' 
-    document.getElementById('monogram-option').style.display='flex'
+  nextButton.addEventListener("click", () => {
+    const values = initialsInput.value;
+    localStorage.setItem("inside jacket", values);
+    document.getElementById("monograminitials").style.display = "none";
+    document.getElementById("monogram-option").style.display = "flex";
     document.getElementById("confirmmonogram").style.display = "block";
-  })
-  document.getElementById('nextButtonU').addEventListener('click',()=>{
-    const values_u=initialsInputu.value
-    localStorage.setItem('Underside collar', values_u)
+  });
+  document.getElementById("nextButtonU").addEventListener("click", () => {
+    const values_u = initialsInputu.value;
+    localStorage.setItem("Underside collar", values_u);
 
-    document.getElementById('monograminitialsu').style.display='none' 
-    document.getElementById('monogram-option').style.display='flex'
+    document.getElementById("monograminitialsu").style.display = "none";
+    document.getElementById("monogram-option").style.display = "flex";
     document.getElementById("confirmmonogram").style.display = "block";
-
-  })
+  });
   confrmpkt.addEventListener("click", () => {
     pocket_menu.style.display = "none";
     pocketContent.style.display = "none";
@@ -1041,9 +1076,6 @@ const Configurator = () => {
     sizeoption.style.display = "flex";
   });
 
-
-
-
   const buttons = document.querySelectorAll(".button");
   const nextButtons = document.querySelectorAll(".next-button");
 
@@ -1116,19 +1148,25 @@ const Configurator = () => {
       behavior: "smooth",
     });
   });
-  sizeconfirm.addEventListener("click", async () => {
-    const name = document.getElementById('name').value;
-    const mobileNo = document.getElementById('mno').value;
+  // const mail =()=>{
+  //   <>
+  //   <sendOrderEmail/>
 
+  //   </>
+
+  // }
+  sizeconfirm.addEventListener("click", async () => {
+    const name = document.getElementById("name").value;
+    const mobileNo = document.getElementById("mno").value;
     // Check if inputs are not empty
     if (name.trim() === "" || mobileNo.trim() === "") {
-        alert('Please enter Name and Mobile No.');
-        return;
+      alert("Please enter Name and Mobile No.");
+      return;
     }
 
     // Store values in local storage
-    localStorage.setItem('name', name);
-    localStorage.setItem('mobileNo', mobileNo);
+    localStorage.setItem("name", name);
+    localStorage.setItem("mobileNo", mobileNo);
 
     sizeoption.style.display = "none";
     monogrm.style.display = "none";
@@ -1138,7 +1176,8 @@ const Configurator = () => {
 
     // Retrieve saved values from localStorage
     const ButtonPrice = Number(localStorage.getItem("ButtonPrice")) || 0;
-    const FabricPrice = Number(localStorage.getItem("selectedFabricPrice")) || 0;
+    const FabricPrice =
+      Number(localStorage.getItem("selectedFabricPrice")) || 0;
     const LiningPrice = Number(localStorage.getItem("LiningColorPrice")) || 0;
 
     // Calculate the total price
@@ -1146,32 +1185,41 @@ const Configurator = () => {
 
     // Prepare order data
     const orderData = {
-        name,
-        mobileNo,
-        ButtonName: localStorage.getItem("ButtonName") || "Default",
-        selectedLowerPocket: localStorage.getItem("selectedLowerPocket") || "Default",
-        selectedFabricName: localStorage.getItem("selectedFabricName") || "Default",
-        selectedUpperPocket: localStorage.getItem("selectedUpperPocket") || "Default",
-        selectedLinig: localStorage.getItem("selectedLinig") || "Default",
-        liningColorName: localStorage.getItem("LiningColor") || "Default",
-        selectedCollar: localStorage.getItem("selectedCollar") || "Default",
-        selectedCanvas: localStorage.getItem("selectedCanvas") || "None selected",
-        selectedShoulder: localStorage.getItem("selectedShoulder") || "None selected",
-        selectedPeak: localStorage.getItem("selectedPeak") || "None selected",
-        selectedNotch: localStorage.getItem("selectedNotch") || "None selected",
-        selectedAmf: localStorage.getItem("selectedAmf") || "None selected",
-        selectedSize: localStorage.getItem("selectedSize") || "None selected",
-        undersideCollar: localStorage.getItem('Underside collar') || "None selected",
-        jacketInside: localStorage.getItem('inside jacket') || "None selected",
-        selectedWaistband: localStorage.getItem("selectedWaistband") || "None selected",
-        selectedPleat: localStorage.getItem("selectedpleat") || "None selected",
-        selectedTrouserPocket: localStorage.getItem("selectedtrouserpocket") || "None selected",
-        ButtontName: localStorage.getItem("ButtontName") || "None selected",
-        selectedHem: localStorage.getItem("selectedHem") || "None selected",
-        savedLeg: localStorage.getItem("legLiningOptionId") || "None selected",
-        savedSelection: localStorage.getItem('selectedSuspenderOption') || "None selected",
-        selectedTrouserSize: localStorage.getItem("selectedTrouserSize") || "None selected",
-        TotalPrice: TotalPrice.toFixed(2)
+      name,
+      mobileNo,
+      ButtonName: localStorage.getItem("ButtonName") || "Default",
+      selectedLowerPocket:
+        localStorage.getItem("selectedLowerPocket") || "Default",
+      selectedFabricName:
+        localStorage.getItem("selectedFabricName") || "Default",
+      selectedUpperPocket:
+        localStorage.getItem("selectedUpperPocket") || "Default",
+      selectedLinig: localStorage.getItem("selectedLinig") || "Default",
+      liningColorName: localStorage.getItem("LiningColor") || "Default",
+      selectedCollar: localStorage.getItem("selectedCollar") || "Default",
+      selectedCanvas: localStorage.getItem("selectedCanvas") || "None selected",
+      selectedShoulder:
+        localStorage.getItem("selectedShoulder") || "None selected",
+      selectedPeak: localStorage.getItem("selectedPeak") || "None selected",
+      selectedNotch: localStorage.getItem("selectedNotch") || "None selected",
+      selectedAmf: localStorage.getItem("selectedAmf") || "None selected",
+      selectedSize: localStorage.getItem("selectedSize") || "None selected",
+      undersideCollar:
+        localStorage.getItem("Underside collar") || "None selected",
+      jacketInside: localStorage.getItem("inside jacket") || "None selected",
+      selectedWaistband:
+        localStorage.getItem("selectedWaistband") || "None selected",
+      selectedPleat: localStorage.getItem("selectedpleat") || "None selected",
+      selectedTrouserPocket:
+        localStorage.getItem("selectedtrouserpocket") || "None selected",
+      ButtontName: localStorage.getItem("ButtontName") || "None selected",
+      selectedHem: localStorage.getItem("selectedHem") || "None selected",
+      savedLeg: localStorage.getItem("legLiningOptionId") || "None selected",
+      savedSelection:
+        localStorage.getItem("selectedSuspenderOption") || "None selected",
+      selectedTrouserSize:
+        localStorage.getItem("selectedTrouserSize") || "None selected",
+      TotalPrice: TotalPrice.toFixed(2),
     };
 
     // Call the function to add the order to Firestore
@@ -1180,7 +1228,7 @@ const Configurator = () => {
     // Display the result
     const resultDiv = document.getElementById("result");
     if (resultDiv) {
-        resultDiv.innerHTML = `
+      resultDiv.innerHTML = `
             <table border="1" cellspacing="0" cellpadding="5" style="width:100%">
                 <thead>
                     <tr>
@@ -1302,13 +1350,54 @@ const Configurator = () => {
                     </tr>
                 </tbody>
             </table>
-            <p style="font-size: 20px; font-weight:bold; text-align: start; margin-top: 20px;">Total Price: $${orderData.TotalPrice}</p>
+            <p style="font-size: 20px; font-weight:bold; text-align: start; margin-top: 20px;">Total Price: $${
+              orderData.TotalPrice
+            }</p>
         `;
-        resultDiv.style.display = "block"; // Show the result div
+      resultDiv.style.display = "block"; // Show the result div
+
+      const orderJson = {
+        Jacket: {
+          Name: `${name || 'None'}`,
+          MobileNo: `${mobileNo || 'None'}`,
+          Button: `${orderData.ButtonName}`,
+          LowerPocket: `${orderData.selectedLowerPocket}`,
+          Fabric: `${orderData.selectedFabricName}`,
+          UpperPocket: `${orderData.selectedUpperPocket}`,
+          Lining: `${orderData.selectedLinig}`,
+          LiningColor: `${orderData.liningColorName}`,
+          Collar: `${orderData.selectedCollar}`,
+          Canvas: `${orderData.selectedCanvas}`,
+          Shoulder: `${orderData.selectedShoulder}`,
+          CouserPeak: `${orderData.selectedPeak}`,
+          CouserNotch: `${orderData.selectedNotch}`,
+          AMF: `${orderData.selectedAmf}`,
+          JacketSize: `${orderData.selectedSize}`,
+          UndersideCollar: `${orderData.undersideCollar}`,
+          InsideJacket: `${orderData.jacketInside}`,
+        },
+        Trouser: {
+          Waistband: `${orderData.selectedWaistband}`,
+          Pleat: `${orderData.selectedPleat}`,
+          Pocket: `${orderData.selectedTrouserPocket}`,
+          Button: `${orderData.ButtontName}`,
+          HemFinish: `${orderData.selectedHem}`,
+          LegLining: `${orderData.savedLeg}`,
+          SuspenderButton: `${orderData.savedSelection}`,
+          TrouserSize: `${orderData.selectedTrouserSize}`,
+        },
+        TotalPrice: `${orderData.TotalPrice}`,
+      };
+
+      sendMail(
+        name,
+        "faiz@equanimoustech.com",
+        mobileNo,
+      );
     } else {
-        console.log("Result div not found");
+      console.log("Result div not found");
     }
-});
+  });
 
   function saveButtonId(buttonId) {
     localStorage.setItem("legLiningOptionId", buttonId);
@@ -1326,8 +1415,6 @@ const Configurator = () => {
   document.getElementById("unline").addEventListener("click", () => {
     saveButtonId("unline");
   });
-
-
 
   //      //     //
   finish.addEventListener("click", () => {
@@ -1374,141 +1461,6 @@ const Configurator = () => {
     document.getElementById("confrmamf").style.display = "none";
     document.getElementById("collar-option").style.display = "none";
     document.getElementById("confrmcollar").style.display = "none";
-
-    // // Check for the existence of values in localStorage
-    // const ButtonName = localStorage.getItem("ButtonName");
-    // const selectedLowerPocket = localStorage.getItem("selectedLowerPocket");
-    // const selectedFabricName = localStorage.getItem("selectedFabricName"); // Example, adjust if needed
-    // const selectedUpperPocket = localStorage.getItem("selectedUpperPocket");
-    // const selectedLinig = localStorage.getItem("selectedLinig");
-    // const selectedCollar = localStorage.getItem("selectedCollar");
-    // const selectedCanvas = localStorage.getItem("selectedCanvas");
-    // const selectedShoulder = localStorage.getItem("selectedShoulder");
-    // const selectedPeak = localStorage.getItem("selectedPeak");
-    // const selectedNotch = localStorage.getItem("selectedNotch");
-    // const selectedAmf = localStorage.getItem("selectedAmf");
-    // const selectedWaistband = localStorage.getItem("selectedWaistband");
-    // const selectedpleat = localStorage.getItem("selectedpleat");
-    // const selectedtrouserpocket = localStorage.getItem("selectedtrouserpocket");
-    // const ButtontName = localStorage.getItem("ButtontName");
-    // const selectedHem = localStorage.getItem("selectedHem");
-    // const savedId = localStorage.getItem("waistbandHeightOptionId");
-    // const savedleg = localStorage.getItem("legLiningOptionId");
-    // const selectedSize = localStorage.getItem("selectedSize");
-    // const selectedTrouserSize = localStorage.getItem("selectedTrouserSize");
-
-
-    // // To retrieve the ID later
-    // // Display retrieved values in the UI (if available)
-    // const resultDiv = document.getElementById("result");
-    // if (resultDiv) {
-    //   resultDiv.innerHTML = `
-    //     <table border="1" cellspacing="0" cellpadding="5" style="width:100%">
-    //       <thead>
-    //         <tr>
-    //           <th style="font-size: 24px; text-align: center;" >Jacket</th>
-    //           <th></th>
-    //         </tr>
-    //       </thead>
-    //       <tbody>
-    //         <tr>
-    //           <td>Button </td>
-    //           <td>${ButtonName || "Default"}</td>
-    //         </tr>
-    //         <tr>
-    //           <td>Lower-Pocket </td>
-    //           <td>${selectedLowerPocket || "Default"}</td>
-    //         </tr>
-    //         <tr>
-    //           <td>Fabric </td>
-    //           <td>${selectedFabricName || "Default"}</td>
-    //         </tr>
-    //         <tr>
-    //           <td>Upper-Pocket </td>
-    //           <td>${selectedUpperPocket || "Default"}</td>
-    //         </tr>
-    //         <tr>
-    //           <td>Lining </td>
-    //           <td>${selectedLinig || "Default"}</td>
-    //         </tr>
-    //         <tr>
-    //           <td>Collar </td>
-    //           <td>${selectedCollar || "Default"}</td>
-    //         </tr>
-    //         <tr>
-    //           <td>Canvas </td>
-    //           <td>${selectedCanvas || "None selected"}</td>
-    //         </tr>
-    //         <tr>
-    //           <td>Shoulder </td>
-    //           <td>${selectedShoulder || "None selected"}</td>
-    //         </tr>
-    //         <tr>
-    //           <td>Couser-Peak </td>
-    //           <td>${selectedPeak || "None selected"}</td>
-    //         </tr>
-    //         <tr>
-    //           <td>Couser-Notch </td>
-    //           <td>${selectedNotch || "None selected"}</td>
-    //         </tr>
-    //         <tr>
-    //           <td>AMF </td>
-    //           <td>${selectedAmf || "None selected"}</td>
-    //         </tr>
-    //         <tr>
-    //           <td>Jacket size </td>
-    //           <td>${selectedSize || "None selected"}</td>
-    //         </tr>
-    //       </tbody>
-    //     </table>
-    //     <br/>
-    //     <table border="1" cellspacing="0" cellpadding="5"  style="width:65%" >
-    //       <thead>
-    //         <tr>
-    //           <th style="font-size: 24px; text-align: center;">Trouser</th>
-    //           <th></th>
-    //         </tr>
-    //       </thead>
-    //       <tbody>
-    //         <tr>
-    //           <td>Waistband </td>
-    //           <td>${selectedWaistband || "None selected"}</td>
-    //         </tr>
-    //           <tr>
-    //           <td>Pleat</td>
-    //           <td>${selectedpleat || "None selected"}</td>
-    //         </tr>
-    //          <tr>
-    //           <td>Pocket</td>
-    //           <td>${selectedtrouserpocket || "None selected"}</td>
-    //         </tr>
-    //         <tr>
-    //           <td>Button</td>
-    //           <td>${ButtontName || "None selected"}</td>
-    //         </tr>
-    //         <tr>
-    //           <td>HemFinish</td>
-    //           <td>${selectedHem || "None selected"}</td>
-    //         </tr>
-    //          <tr>
-    //           <td>Waistband Height</td>
-    //           <td>${savedId || "None selected"}</td>
-    //         </tr>
-    //          <tr>
-    //           <td>Leg linig</td>
-    //           <td>${savedleg || "None selected"}</td>
-    //         </tr>
-    //          <tr>
-    //           <td>Selected Trouser size </td>
-    //           <td>${selectedTrouserSize || "None selected"}</td>
-    //         </tr>
-    //       </tbody>
-    //     </table>
-    //   `;
-    //   resultDiv.style.display = "block"; // Show the result div
-    // } else {
-    //   console.log("Result div not found");
-    // }
   });
 
   //save canvas option in local
@@ -1570,7 +1522,6 @@ const Configurator = () => {
     selectyourjacketsize.style.display = "none";
     sizeoption.style.display = "flex";
     // document.getElementById("result").style.display = "block";
-
   });
 
   sizeJguide.addEventListener("click", () => {
@@ -1580,87 +1531,94 @@ const Configurator = () => {
   });
 
   // Select all buttons in the size options
-  document.querySelectorAll('#selectyourjacketsize .button').forEach(button => {
-    button.addEventListener('click', () => {
+  document
+    .querySelectorAll("#selectyourjacketsize .button")
+    .forEach((button) => {
+      button.addEventListener("click", () => {
         // Get the size from the parent row (first cell)
-        const size = button.closest('tr').querySelector('td.text-muted-foreground').textContent.trim();
+        const size = button
+          .closest("tr")
+          .querySelector("td.text-muted-foreground")
+          .textContent.trim();
         // Get the number from the button text
         const number = button.textContent.trim();
-        
+
         // Combine size and number
         const selectedValue = size + number; // e.g., "XXXS30"
 
         // Store in local storage
-        localStorage.setItem('selectedSize', selectedValue);
+        localStorage.setItem("selectedSize", selectedValue);
 
         // Update the jacket size display
-        const jacketSizeDisplay = document.getElementById('jacketsize');
+        const jacketSizeDisplay = document.getElementById("jacketsize");
         if (jacketSizeDisplay) {
-            jacketSizeDisplay.textContent = `Selected Jacket Size: ${selectedValue}`; // Update with selected size
+          jacketSizeDisplay.textContent = `Selected Jacket Size: ${selectedValue}`; // Update with selected size
         }
 
-        console.log('Stored in localStorage:', selectedValue); // Debugging
+        console.log("Stored in localStorage:", selectedValue); // Debugging
+      });
     });
-});
 
+  // Select all buttons in the trouser size options
+  document
+    .querySelectorAll("#selectyourtrousersize .button")
+    .forEach((button) => {
+      button.addEventListener("click", () => {
+        // Get the size from the parent row (first cell)
+        const size = button
+          .closest("tr")
+          .querySelector("td.text-muted-foreground")
+          .textContent.trim();
+        // Get the number from the button text
+        const number = button.textContent.trim();
 
+        // Combine size and number
+        const selectedValue = size + number; // e.g., "XXXS24"
 
-// Select all buttons in the trouser size options
-document.querySelectorAll('#selectyourtrousersize .button').forEach(button => {
-  button.addEventListener('click', () => {
-      // Get the size from the parent row (first cell)
-      const size = button.closest('tr').querySelector('td.text-muted-foreground').textContent.trim();
-      // Get the number from the button text
-      const number = button.textContent.trim();
-      
-      // Combine size and number
-      const selectedValue = size + number; // e.g., "XXXS24"
+        // Store in local storage
+        localStorage.setItem("selectedTrouserSize", selectedValue);
 
-      // Store in local storage
-      localStorage.setItem('selectedTrouserSize', selectedValue);
-      
-      console.log('Stored in localStorage:', selectedValue); // For debugging
+        console.log("Stored in localStorage:", selectedValue); // For debugging
 
-      // Update the trouser size display
-      const trouserSizeDisplay = document.getElementById('trousersize'); // Adjust the ID as needed
-      if (trouserSizeDisplay) {
+        // Update the trouser size display
+        const trouserSizeDisplay = document.getElementById("trousersize"); // Adjust the ID as needed
+        if (trouserSizeDisplay) {
           trouserSizeDisplay.textContent = `Selected Trouser Size: ${selectedValue}`; // Update with selected size
-      }
-  });
-});
+        }
+      });
+    });
 
+  // document.getElementById('shawl').addEventListener('click',()=>{
+  //   console.log('click');
 
+  //   document.getElementById('shawl_option').style.display='flex'
+  // })
 
+  // Optional: Retrieve the stored value when needed
+  // document.getElementById('finish').addEventListener("click", () => {
+  //   const selectedSize = localStorage.getItem("selectedSize");
+  //   console.log('Retrieved Size:', selectedSize); // For debugging
+  //   // sole.warn('No size selected!');
 
-// Optional: Retrieve the stored value when needed
-// document.getElementById('finish').addEventListener("click", () => {
-//   const selectedSize = localStorage.getItem("selectedSize");
-//   console.log('Retrieved Size:', selectedSize); // For debugging
-//   // sole.warn('No size selected!');
-  
-// });
+  // });
 
-   document.getElementById('next').addEventListener('click',()=>{
+  document.getElementById("next").addEventListener("click", () => {
     // const selectedTrouserSize = localStorage.getItem("selectedTrouserSize");
 
     // document.getElementById('sizetable').style.display = 'none'
-    selectyourjacketsize.style.display = 'none'
+    selectyourjacketsize.style.display = "none";
     // document.getElementById("custm").style.display = "block";
-    sizeoption.style.display='flex'
-
-
-   })
-   document.getElementById('tnext').addEventListener('click',()=>{
+    sizeoption.style.display = "flex";
+  });
+  document.getElementById("tnext").addEventListener("click", () => {
     const selectedTrouserSize = localStorage.getItem("selectedTrouserSize");
 
     // document.getElementById('sizetable').style.display = 'none'
-    selectyourtrousersize.style.display = 'none'
+    selectyourtrousersize.style.display = "none";
     // document.getElementById("result").style.display = "block";
-    sizeoption.style.display='flex'
+    sizeoption.style.display = "flex";
+  });
 
-
-   })
-  
   document.getElementById("closesizechart").addEventListener("click", () => {
     jsizechart.style.display = "none";
     selectyourjacketsize.style.display = "flex";

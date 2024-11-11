@@ -5,7 +5,7 @@ import eventEmitter from "./eventEmitter";
 
 export function Lightly_padded(props) {
   const { nodes, materials } = useGLTF(
-    "./latest/jacket/Coat Noch & peak Revesion/Shoulder/Lightly_padded.glb"
+    "./Coat GLB New modify/Shoulder/Lightly_Padded.glb"
   );
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -35,7 +35,7 @@ export function Lightly_padded(props) {
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.Lightly_padded.geometry}
+        geometry={nodes.Lightly_padded001.geometry}
         material={materials.Jacket}
         rotation={[Math.PI / 2, 0, 0]}
         scale={0.01}
@@ -44,13 +44,11 @@ export function Lightly_padded(props) {
   );
 }
 
-useGLTF.preload(
-  "./latest/jacket/Coat Noch & peak Revesion/Shoulder/Lightly_padded.glb"
-);
+useGLTF.preload("./Coat GLB New modify/Shoulder/Lightly_Padded.glb");
 
 export function Structured(props) {
   const { nodes, materials } = useGLTF(
-    "./latest/jacket/Coat Noch & peak Revesion/Shoulder/Structured.glb"
+    "./Coat GLB New modify/Shoulder/Structured.glb"
   );
 
   useEffect(() => {
@@ -80,7 +78,7 @@ export function Structured(props) {
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.Structured.geometry}
+        geometry={nodes.Structured001.geometry}
         material={materials.Jacket}
         rotation={[Math.PI / 2, 0, 0]}
         scale={0.01}
@@ -89,6 +87,4 @@ export function Structured(props) {
   );
 }
 
-useGLTF.preload(
-  "./latest/jacket/Coat Noch & peak Revesion/Shoulder/Structured.glb"
-);
+useGLTF.preload("./Coat GLB New modify/Shoulder/Structured.glb");

@@ -6,7 +6,7 @@ import { useButtonTexture } from "./Buttontexture";
 
 export function Nochdoublebrested(props) {
   const { nodes, materials } = useGLTF(
-    "./latest/jacket/Coat Noch & peak Revesion/Noch/breasted.glb"
+    "./Coat GLB New modify/Noch/noch_double_breasted.glb"
   );
 
   useButtonTexture(materials, "Button");
@@ -39,37 +39,29 @@ export function Nochdoublebrested(props) {
 
   return (
     <group {...props} dispose={null} scale={20}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.double_breasted_buttons.geometry}
-        material={materials.Button}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={0.01}
-      />
       <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Mesh026.geometry}
-          material={materials["Jacket.001"]}
+          geometry={nodes.Mesh015.geometry}
+          material={materials.Jacket}
         />
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Mesh026_1.geometry}
-          material={materials["Kaaj.001"]}
+          geometry={nodes.Mesh015_1.geometry}
+          material={materials.Kaaj}
         />
       </group>
     </group>
   );
 }
 
-useGLTF.preload("./latest/jacket/Coat Noch & peak Revesion/Noch/breasted.glb");
+useGLTF.preload("./Coat GLB New modify/Noch/noch_double_breasted.glb");
 
 export function Notchdoublebtn(props) {
   const { nodes, materials } = useGLTF(
-    "./latest/jacket/Coat Noch & peak Revesion/Noch/double.glb"
+    "./Coat GLB New modify/Noch/Notch_Double_Button.glb"
   );
   const [textureURL, setTextureURL] = useState(null);
 
@@ -102,43 +94,29 @@ export function Notchdoublebtn(props) {
   }, [materials]);
   return (
     <group {...props} dispose={null} scale={20}>
-      <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Mesh003.geometry}
-          material={materials["Jacket.003"]}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Mesh003_1.geometry}
-          material={materials["Button.001"]}
-        />
-      </group>
-      <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Mesh025.geometry}
-          material={materials["Jacket.004"]}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Mesh025_1.geometry}
-          material={materials["Kaaj.003"]}
-        />
-      </group>
+    <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Mesh014.geometry}
+        material={materials.Jacket}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Mesh014_1.geometry}
+        material={materials.Kaaj}
+      />
     </group>
+  </group>
   );
 }
 
-useGLTF.preload("./latest/jacket/Coat Noch & peak Revesion/Noch/double.glb");
+useGLTF.preload("./Coat GLB New modify/Noch/Notch_Double_Button.glb");
 
 export function Notchsinglebtn(props) {
   const { nodes, materials } = useGLTF(
-    "./latest/jacket/Coat Noch & peak Revesion/Noch/single.glb"
+    "./Coat GLB New modify/Noch/notch_single_button.glb"
   );
   const [textureURL, setTextureURL] = useState(null);
 
@@ -171,36 +149,23 @@ export function Notchsinglebtn(props) {
   }, [materials]);
   return (
     <group {...props} dispose={null} scale={20}>
-      <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Mesh001.geometry}
-          material={materials["Jacket.005"]}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Mesh001_1.geometry}
-          material={materials["Button.002"]}
-        />
-      </group>
-      <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Mesh023.geometry}
-          material={materials["Jacket.007"]}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Mesh023_1.geometry}
-          material={materials["Kaaj.005"]}
-        />
-      </group>
+    <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Mesh013.geometry}
+        material={materials.Jacket}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Mesh013_1.geometry}
+        material={materials.Kaaj}
+      />
     </group>
+  </group>
+ 
   );
 }
 
-useGLTF.preload("./latest/jacket/Coat Noch & peak Revesion/Noch/single.glb");
+useGLTF.preload("./Coat GLB New modify/Noch/notch_single_button.glb");

@@ -4,7 +4,7 @@ import * as THREE from "three";
 import eventEmitter from "./eventEmitter";
 export function Double_vent(props) {
   const { nodes, materials } = useGLTF(
-    "./latest/jacket/Coat Noch & peak Revesion/Double_vent.glb"
+    "./Coat GLB New modify/Vent/Double_vent.glb"
   );
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -45,4 +45,4 @@ export function Double_vent(props) {
   );
 }
 
-useGLTF.preload("./latest/jacket/Coat Noch & peak Revesion/Double_vent.glb");
+useGLTF.preload("./Coat GLB New modify/Vent/Double_vent.glb");

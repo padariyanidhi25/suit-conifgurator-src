@@ -7,6 +7,7 @@ import {
 import eventEmitter from "./eventEmitter";
 import { Vector3 } from "three";
 import { useThree, useFrame } from "@react-three/fiber";
+import { Breastedbutton, Doublebutton, Singlebutton } from "./buttonglb";
 
 const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
   const [selectedNotch, setSelectedNotch] = useState(defaultNotch);
@@ -162,13 +163,22 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
           <Nochdoublebrested fabricURL={fabricURL} />
         ))} */}
       {selectedNotch === "single" && collarType === "notch" && (
+        <>
         <Notchsinglebtn fabricURL={fabricURL} />
+        <Singlebutton/>
+        </>
       )}
       {selectedNotch === "double" && collarType === "notch" && (
+        <>
         <Notchdoublebtn fabricURL={fabricURL} />
+        <Doublebutton/>
+        </>
       )}
       {selectedNotch === "breasted" && collarType === "notch" && (
+        <>
         <Nochdoublebrested fabricURL={fabricURL} />
+        <Breastedbutton/>
+        </>
       )}
     </>
   );

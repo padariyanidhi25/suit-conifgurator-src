@@ -27,6 +27,9 @@ import WaistbandSelector from "./waistbandselector";
 import HemSelector from "./hemfinishselector";
 import { Kaaj_Peak } from "./Kaaj_Peak";
 import { Hook4cm } from "./hook";
+import { Breastedbutton, Doublebutton, Singlebutton } from "./buttonglb";
+import { Shawldouble, Shawlsingle } from "./shawl";
+import ShawlSelector from "./shawlselector";
 
 const Experience = ({ toggleCanvas }) => {
   const [showClassic, setShowClassic] = useState(false);
@@ -36,6 +39,8 @@ const Experience = ({ toggleCanvas }) => {
   const [showPocketSelector, setShowPocketSelector] = useState(true); // State for PocketSelector visibility
   const [showUpperPocketSelector, setShowUpperPocketSelector] = useState(true); // State for UpperPocketSelector visibility
   const [defaultPeak, setDefaultPeak] = useState("null");
+  const [showShawlSelector, setShowShawlSelector] = useState("single");
+  
   const [collarType, setCollarType] = useState("notch");
   const { progress } = useProgress();
   const [showvent, setshowvent] = useState(true);
@@ -50,6 +55,29 @@ const Experience = ({ toggleCanvas }) => {
 
   const [shoulder, setShoulder] = useState(true);
   const [showhem, setShowHem] = useState(false);
+
+
+  useEffect(() => {
+    const shawlButton = document.getElementById("shawl_single");
+    
+    const handleShawlClick = () => {
+      setShowShawlSelector(true);
+      setDefaultNotch("none"); // Set default notch to 'none'
+      setDefaultPeak("none");  // Set default peak to 'none'
+      setCollarType("none");
+      setshowcollar(false)  // Set collar type to 'shawl'
+      setPShowKaaj(false)
+      setShowKaaj(true);
+
+
+    };
+
+    shawlButton.addEventListener("click", handleShawlClick);
+
+    return () => {
+      shawlButton.removeEventListener("click", handleShawlClick);
+    };
+  }, []);
   useEffect(() => {
     const classicButton = document.getElementById("classic");
     const breastedButton = document.getElementById("breasted");
@@ -70,6 +98,7 @@ const Experience = ({ toggleCanvas }) => {
        // Only set the default collar type if none was previously selected
     if (!collarType) {
       setCollarType("notch");
+      
     }
       setDefaultPeak("double");
       setshowvent(true);
@@ -94,6 +123,7 @@ const Experience = ({ toggleCanvas }) => {
       // setCollarType("notch");
       if (!collarType) {
         setCollarType("notch");
+        
       }
       setDefaultPeak("breasted");
       setshowvent(true);
@@ -142,6 +172,8 @@ const Experience = ({ toggleCanvas }) => {
       setShoulder(false);
       setShowHem(true);
       setPShowKaaj(false)
+      setShowShawlSelector(false);
+
 
     };
 
@@ -157,13 +189,16 @@ const Experience = ({ toggleCanvas }) => {
     };
     const handleNotchClick = () => {
       setCollarType("notch"); // Set collar type to 'notch'
-      // setDefaultPeak('null');
+      setDefaultNotch("double"); // Set default notch to 'double'
+      setShowShawlSelector(false); // Hide ShawlSelector when Notch is selected
+      setshowcollar(true); // Show collar type when Notch is selected
     };
 
     const handlePeakClick = () => {
       setCollarType("peak"); // Set collar type to 'peak'
-      // setDefaultNotch('null');
-    };
+      setDefaultPeak("double"); // Set default peak to 'double'
+      setShowShawlSelector(false); // Hide ShawlSelector when Peak is selected
+      setshowcollar(true);     };
 
     classicButton.addEventListener("click", handleClassicClick);
     breastedButton.addEventListener("click", handleBreastedClick);
@@ -184,6 +219,7 @@ const Experience = ({ toggleCanvas }) => {
     };
   }, [selectedComponent]);
 
+  
   function getOrientation() {
     const orientation =
       window.innerWidth > window.innerHeight ? "Landscape" : "Portrait";
@@ -212,51 +248,28 @@ const Experience = ({ toggleCanvas }) => {
     <>
       {progress < 100 && <SpinnerLoader />}
       <Suspense fallback={null}>
-        {/* <Stage intensity={0} environment={null} shadows={false} animations={false} adjustCamera={false} > */}
-        {/* <OrbitControls
-            enableRotate={false}
-            enablePan={true}
-            panSpeed={0.5}
-            zoomSpeed={0.3}
-            minDistance={}
-            maxDistance={6}
-            
-          /> */}
-        {/* <OrbitControls/> */}
-
-        {/* <Environment preset="studio" /> */}
-        {/* <Kaaj/> */}
-        {/* <Hook4cm/> */}
+        
 
         {showPocketSelector && <PocketSelector />}
         {shoulder && <ShoulderSelector />}
         {showUpperPocketSelector && <UpperpocketSelector />}
         {collarType === "notch" && showKaaj ? (<Kaaj />):showPKaaj&& (<Kaaj_Peak/>)}
-        {/* {collarType == "notch" ? (
-          <NotchSelector
-            defaultNotch={defaultNotch}
-            collarType={collarType}
-            selectedComponent={selectedComponent}
-          />
-        ) : (
-          <PeakSelector
-            defaultPeak={defaultPeak}
-            collarType={collarType}
-            selectedComponent={selectedComponent}
-          />
-        )} */}
+      
         {showvent && <Double_vent />}
         {showPleatSelector && <PleatSelector />}
         {showTrouserPocketSelector && <TrouserPocketSelector />}
-        {/* <Button/> */}
+        {/* { <Doublebutton/>}
+        <Singlebutton/>
+        <Breastedbutton/> */}
+        {/* <Shawlsingle/> */}
         {showWaistband && <WaistbandSelector />}
-        <NotchSelector defaultNotch={defaultNotch}  collarType={collarType} selectedComponent={selectedComponent}/> 
+        <NotchSelector defaultNotch={defaultNotch}  collarType={collarType} selectedComponent={selectedComponent} /> 
         <PeakSelector defaultPeak={defaultPeak} collarType={collarType} selectedComponent={selectedComponent} />
+        {showShawlSelector && (<ShawlSelector/>)}
         {showhem && <HemSelector />}
         {showlining && <LinigDisplay />}
         {showcollar && <CollarSelector />}
         {showTrouser ? <Model /> : showClassic ? <Classic /> : <Chair />}
-        {/* </Stage> */}
       </Suspense>
     </>
   );

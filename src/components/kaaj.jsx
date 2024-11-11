@@ -4,7 +4,7 @@ import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export function Kaaj(props) {
-  const { nodes, materials } = useGLTF('./latest/jacket/Coat Noch & peak Revesion/Noch/noch_collar kaaj.glb')
+  const { nodes, materials } = useGLTF('./Coat GLB New modify/Noch/Noch_Collar_kaaj.glb')
   return (
     <group {...props} dispose={null} scale={20}>
     <mesh
@@ -20,4 +20,4 @@ export function Kaaj(props) {
 )
 }
 
-useGLTF.preload('./latest/jacket/Coat Noch & peak Revesion/Noch/noch_collar kaaj.glb')
+useGLTF.preload('./Coat GLB New modify/Noch/Noch_Collar_kaaj.glb')

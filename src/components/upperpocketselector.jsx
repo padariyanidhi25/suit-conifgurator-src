@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Flap_Pocket, Patch_Pocket, Besom_Pocket, Upperpocket, Halfmoon, Patch_Pocket_Upper } from "./pockets";
+import { Flap_Pocket, Patch_Pocket, Besom_Pocket, Upperpocket, Halfmoon,  } from "./pockets";
 import eventEmitter from './eventEmitter';
 import { Vector3 } from "three";
 import { useThree, useFrame } from '@react-three/fiber';
@@ -97,14 +97,14 @@ const UpperpocketSelector = () => {
         document.getElementById('half-pocket').addEventListener('click', () => {
             handleUpperPocketChange('halfmoon');
         });
-        document.getElementById('patch-pocket-upper').addEventListener('click', () => {
-          handleUpperPocketChange('patch_U');
-      });
+      //   document.getElementById('patch-pocket-upper').addEventListener('click', () => {
+      //     handleUpperPocketChange('patch_U');
+      // });
 
         return () => {
               document.getElementById('uppr-pocket').removeEventListener('click', handleUpperPocketChange);
             document.getElementById('half-pocket').removeEventListener('click', handleUpperPocketChange);
-            document.getElementById('patch-pocket-upper').removeEventListener('click', handleUpperPocketChange);
+            // document.getElementById('patch-pocket-upper').removeEventListener('click', handleUpperPocketChange);
 
         };
     }, []);
@@ -114,7 +114,7 @@ const UpperpocketSelector = () => {
             
             {selectedUpperPocket === 'upper' && <Upperpocket />}
             {selectedUpperPocket === 'halfmoon' && <Halfmoon />}
-            {selectedUpperPocket === 'patch_U' && <Patch_Pocket_Upper />}
+            {/* {selectedUpperPocket === 'patch_U' && <Patch_Pocket_Upper />} */}
         </>
     );
 };

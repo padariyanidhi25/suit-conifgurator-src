@@ -3,6 +3,7 @@ import { Peakdoublebreasted, Peakdoublebtn, Peaksinglebtn } from './peakoption';
 import eventEmitter from './eventEmitter';
 import { Vector3 } from "three";
 import { useThree, useFrame } from '@react-three/fiber';
+import { Breastedbutton, Doublebutton, Singlebutton } from './buttonglb';
 
 const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
     const [selectedPeak, setSelectedPeak] = useState(defaultPeak);
@@ -132,9 +133,20 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
             {/* {selectedComponent === 'Classic' && collarType === 'peak' || selectedPeak === 'double' &&<Peakdoublebtn />}
             {selectedComponent === 'Breasted' && collarType === 'peak' || selectedPeak === 'breasted' &&<Peakdoublebreasted />} */}
 
-            {selectedPeak === 'single'  &&  collarType === 'peak' && <Peaksinglebtn />}
-            {selectedPeak === 'double' &&  collarType === 'peak' && <Peakdoublebtn />}
-            {selectedPeak === 'breasted'  &&  collarType === 'peak' && <Peakdoublebreasted />}
+            {selectedPeak === 'single'  &&  collarType === 'peak' && (
+              <>
+              <Peaksinglebtn />
+              <Singlebutton/>
+              </>
+            )}
+            {selectedPeak === 'double' &&  collarType === 'peak' && (<>
+            <Peakdoublebtn />
+            <Doublebutton/>
+            </>)}
+            {selectedPeak === 'breasted'  &&  collarType === 'peak' && (<>
+              <Peakdoublebreasted />
+              <Breastedbutton/>
+            </>)}
         </>
     );
 };

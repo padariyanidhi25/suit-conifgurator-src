@@ -6,7 +6,7 @@ import eventEmitter from './eventEmitter';
 
 export function Linig(props) {
   const { nodes, materials } = useGLTF(
-    "./latest/jacket/Coat Noch & peak Revesion/Linning/Full_Lined.glb"
+    "./Coat GLB New modify/Lining/Full_Linning.glb"
   );
   useEffect(() => {
     const handleApplyLiningColor = ({ textureURL }) => {
@@ -45,12 +45,12 @@ export function Linig(props) {
 }
 
 useGLTF.preload(
-  "./latest/jacket/Coat Noch & peak Revesion/Linning/Full_Lined.glb"
+  "./Coat GLB New modify/Lining/Full_Linning.glb"
 );
 
 export function Butterfly_Lining(props) {
   const { nodes, materials } = useGLTF(
-    "./latest/jacket/Coat Noch & peak Revesion/Linning/Butterfly_Lining.glb"
+    "./Coat GLB New modify/Lining/Butterfly_Lining.glb"
   );
   useEffect(() => {
     const handleApplyLiningColor = ({ textureURL }) => {
@@ -89,12 +89,12 @@ export function Butterfly_Lining(props) {
 }
 
 useGLTF.preload(
-  "./latest/jacket/Coat Noch & peak Revesion/Linning/Butterfly_Lining.glb"
+  "./Coat GLB New modify/Lining/Butterfly_Lining.glb"
 );
 
 export function Half_Linning(props) {
   const { nodes, materials } = useGLTF(
-    "./latest/jacket/Coat Noch & peak Revesion/Linning/Half_Linning.glb"
+    "./Coat GLB New modify/Lining/Half_Linning.glb"
   );
   useEffect(() => {
     const handleApplyLiningColor = ({ textureURL }) => {
@@ -135,5 +135,5 @@ export function Half_Linning(props) {
 }
 
 useGLTF.preload(
-  "./latest/jacket/Coat Noch & peak Revesion/Linning/Half_Linning.glb"
+  "./Coat GLB New modify/Lining/Half_Linning.glb"
 );

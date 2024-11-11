@@ -133,7 +133,7 @@ export function Besom_Pocket(props) {
 useGLTF.preload("./pockets/Besom_Pocket.glb");
 
 export function Upperpocket(props) {
-  const { nodes, materials } = useGLTF("./pockets/upper_Normal_pocket.glb");
+  const { nodes, materials } = useGLTF("./Coat GLB New modify/Pockets/upper_Normal_pocket.glb");
   const [textureURL, setTextureURL] = useState(null);
 
   useEffect(() => {
@@ -161,22 +161,22 @@ export function Upperpocket(props) {
 
   return (
     <group {...props} dispose={null} scale={20}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.upper_Normal_pocket.geometry}
-        material={materials.Jacket}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={0.01}
-      />
-    </group>
+    <mesh
+      castShadow
+      receiveShadow
+      geometry={nodes.upper_Normal_pocket.geometry}
+      material={materials.Jacket}
+      rotation={[Math.PI / 2, 0, 0]}
+      scale={0.01}
+    />
+  </group>
   );
 }
 
-useGLTF.preload("./pockets/upper_Normal_pocket.glb");
+useGLTF.preload("./Coat GLB New modify/Pockets/upper_Normal_pocket.glb");
 
 export function Halfmoon(props) {
-  const { nodes, materials } = useGLTF("./pockets/upper_halfmoon_pocket.glb");
+  const { nodes, materials } = useGLTF("./Coat GLB New modify/Pockets/upper_halfmoon_pocket.glb");
   const [textureURL, setTextureURL] = useState(null);
 
   useEffect(() => {
@@ -206,8 +206,9 @@ export function Halfmoon(props) {
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.upper_halfmoon_pocket.geometry}
+        geometry={nodes.upper_halfmoon_pocket2.geometry}
         material={materials.Jacket}
+        position={[0.018, 0.191, 0.013]}
         rotation={[Math.PI / 2, 0, 0]}
         scale={0.01}
       />
@@ -215,45 +216,45 @@ export function Halfmoon(props) {
   );
 }
 
-useGLTF.preload("./pockets/upper_halfmoon_pocket.glb");
-export function Patch_Pocket_Upper(props) {
-  const { nodes, materials } = useGLTF("./pockets/Patch_Pocket Upper.glb");
-  const [textureURL, setTextureURL] = useState(null);
+useGLTF.preload("./Coat GLB New modify/Pockets/upper_halfmoon_pocket.glb");
+// export function Patch_Pocket_Upper(props) {
+//   const { nodes, materials } = useGLTF("./pockets/Patch_Pocket Upper.glb");
+//   const [textureURL, setTextureURL] = useState(null);
 
-  useEffect(() => {
-    const handleApplyFabric = ({ textureURL }) => {
-      if (textureURL) {
-        const loader = new THREE.TextureLoader();
-        loader.load(textureURL, (texture) => {
-          Object.keys(materials).forEach((key) => {
-            const material = materials[key];
-            if (material.map) {
-              material.map = texture;
-              material.needsUpdate = true;
-            }
-          });
-        });
-      }
-    };
+//   useEffect(() => {
+//     const handleApplyFabric = ({ textureURL }) => {
+//       if (textureURL) {
+//         const loader = new THREE.TextureLoader();
+//         loader.load(textureURL, (texture) => {
+//           Object.keys(materials).forEach((key) => {
+//             const material = materials[key];
+//             if (material.map) {
+//               material.map = texture;
+//               material.needsUpdate = true;
+//             }
+//           });
+//         });
+//       }
+//     };
 
-    eventEmitter.on("applyFabric", handleApplyFabric);
+//     eventEmitter.on("applyFabric", handleApplyFabric);
 
-    return () => {
-      eventEmitter.off("applyFabric", handleApplyFabric);
-    };
-  }, [materials]);
-  return (
-    <group {...props} dispose={null} scale={20}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Patch_Pocket_Upper.geometry}
-        material={materials.Jacket}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={0.01}
-      />
-    </group>
-  );
-}
+//     return () => {
+//       eventEmitter.off("applyFabric", handleApplyFabric);
+//     };
+//   }, [materials]);
+//   return (
+//     <group {...props} dispose={null} scale={20}>
+//       <mesh
+//         castShadow
+//         receiveShadow
+//         geometry={nodes.Patch_Pocket_Upper.geometry}
+//         material={materials.Jacket}
+//         rotation={[Math.PI / 2, 0, 0]}
+//         scale={0.01}
+//       />
+//     </group>
+//   );
+// }
 
-useGLTF.preload("./pockets/Patch_Pocket Upper.glb");
+// useGLTF.preload("./pockets/Patch_Pocket Upper.glb");
