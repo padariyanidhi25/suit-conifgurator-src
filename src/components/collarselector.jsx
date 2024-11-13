@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { Notch_Collar, Notch_Wide, Peak_Collor, Peak_Wide } from './collar';
-import eventEmitter from './eventEmitter';
+import React, { useState, useEffect } from "react";
+import { Notch_Collar, Notch_Wide, Peak_Collor, Peak_Wide } from "./collar";
+import eventEmitter from "./eventEmitter";
 import { Vector3 } from "three";
-import { useThree, useFrame } from '@react-three/fiber';
-import { Shawldouble, Shawlsingle } from './shawl';
+import { useThree, useFrame } from "@react-three/fiber";
+import { Shawldouble, Shawlsingle } from "./shawl";
+import { Amf6mmCollar, Amf6mmWidecollar, AmfnotchCollar, AmfnotchcollarWide } from "./amf";
 
 const CollarSelector = () => {
-  const [selectedCollar, setSelectedCollar] = useState('notch');
+  const [selectedCollar, setSelectedCollar] = useState("notch");
   const [fabricURL, setFabricURL] = useState(null);
+  const [is2mmSelected, setIs2mmSelected] = useState(false);
+  const [is6mmSelected, setIs6mmSelected] = useState(false);
+
+
   const [targetPosition, setTargetPosition] = useState(new Vector3(0, 3.25, 8)); // Default camera position
   const { camera } = useThree(); // Access the camera
   const lerpSpeed = 0.05; // Speed for camera transition
@@ -24,53 +29,86 @@ const CollarSelector = () => {
       setTargetPosition(new Vector3(0, 3.25, 8));
 
       // Hide the relevant UI components
-      document.getElementById('lapelContent').style.display = 'none';
-      document.getElementById('lapel-option').style.display = 'none';
-      document.getElementById('lapel-width').style.display = 'none';
-      document.getElementById('lapel-buttonhole').style.display = 'none';
-      document.getElementById('confirmlapel').style.display = 'none';
-      document.getElementById('monogrm').style.display = 'flex';
+      document.getElementById("lapelContent").style.display = "none";
+      document.getElementById("lapel-option").style.display = "none";
+      document.getElementById("lapel-width").style.display = "none";
+      document.getElementById("lapel-buttonhole").style.display = "none";
+      document.getElementById("confirmlapel").style.display = "none";
+      document.getElementById("monogrm").style.display = "flex";
     };
 
-    const confrmlapelBtn = document.getElementById('confrmlapel');
+    const confrmlapelBtn = document.getElementById("confrmlapel");
     if (confrmlapelBtn) {
-      confrmlapelBtn.addEventListener('click', handleConfirmLapelClick);
+      confrmlapelBtn.addEventListener("click", handleConfirmLapelClick);
     }
 
     return () => {
       if (confrmlapelBtn) {
-        confrmlapelBtn.removeEventListener('click', handleConfirmLapelClick);
+        confrmlapelBtn.removeEventListener("click", handleConfirmLapelClick);
       }
     };
   }, []);
 
   useEffect(() => {
+    const handle2mmClick = () => {
+      setIs2mmSelected(true);
+      setIs6mmSelected(false); // Unselect 6mm when 2mm is selected
+    };
+
+    const element2mm = document.getElementById("2mm");
+    if (element2mm) {
+      element2mm.addEventListener("click", handle2mmClick);
+    }
+
+    return () => {
+      if (element2mm) {
+        element2mm.removeEventListener("click", handle2mmClick);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const handle6mmClick = () => {
+      setIs6mmSelected(true);
+      setIs2mmSelected(false); // Unselect 2mm when 6mm is selected
+    };
+
+    const element6mm = document.getElementById("6mm");
+    if (element6mm) {
+      element6mm.addEventListener("click", handle6mmClick);
+    }
+
+    return () => {
+      if (element6mm) {
+        element6mm.removeEventListener("click", handle6mmClick);
+      }
+    };
+  }, []);
+  
+  useEffect(() => {
     const handleFabricSelection = (fabric) => {
       setFabricURL(fabric.textureURL);
     };
 
-    eventEmitter.on('fabricSelected', handleFabricSelection);
+    eventEmitter.on("fabricSelected", handleFabricSelection);
 
     return () => {
-      eventEmitter.off('fabricSelected', handleFabricSelection);
+      eventEmitter.off("fabricSelected", handleFabricSelection);
     };
   }, []);
 
   useEffect(() => {
     if (fabricURL) {
-      eventEmitter.emit('applyFabric', { textureURL: fabricURL });
+      eventEmitter.emit("applyFabric", { textureURL: fabricURL });
     }
   }, [selectedCollar, fabricURL]);
 
-  
-  
   useEffect(() => {
-    localStorage.setItem('selectedCollar', selectedCollar);
+    localStorage.setItem("selectedCollar", selectedCollar);
   }, [selectedCollar]);
 
-
   useEffect(() => {
-    const savedCollar = localStorage.getItem('selectedCollar');
+    const savedCollar = localStorage.getItem("selectedCollar");
     if (savedCollar) {
       setSelectedCollar(savedCollar);
     }
@@ -78,20 +116,20 @@ const CollarSelector = () => {
   useEffect(() => {
     const handleCollarChange = (collarType) => {
       setSelectedCollar(collarType);
-      setTargetPosition(new Vector3(0,7, -15));
+      setTargetPosition(new Vector3(0, 7, -15));
     };
 
-    document.getElementById('notch_collar').addEventListener('click', () => {
-      handleCollarChange('notch');
+    document.getElementById("notch_collar").addEventListener("click", () => {
+      handleCollarChange("notch");
     });
-    document.getElementById('peak_collar').addEventListener('click', () => {
-      handleCollarChange('peak');
+    document.getElementById("peak_collar").addEventListener("click", () => {
+      handleCollarChange("peak");
     });
-    document.getElementById('notch_wide').addEventListener('click', () => {
-      handleCollarChange('notchwide');
+    document.getElementById("notch_wide").addEventListener("click", () => {
+      handleCollarChange("notchwide");
     });
-    document.getElementById('peak_wide').addEventListener('click', () => {
-      handleCollarChange('peakwide');
+    document.getElementById("peak_wide").addEventListener("click", () => {
+      handleCollarChange("peakwide");
     });
     // document.getElementById('shawl_single').addEventListener('click', () => {
     //   handleCollarChange('shawlsingle');
@@ -100,28 +138,43 @@ const CollarSelector = () => {
     //   handleCollarChange('shawldouble');
     // });
 
-
     return () => {
-      document.getElementById('notch_collar').removeEventListener('click', handleCollarChange);
-      document.getElementById('peak_collar').removeEventListener('click', handleCollarChange);
-      document.getElementById('notch_wide').removeEventListener('click', handleCollarChange);
-      document.getElementById('peak_wide').removeEventListener('click', handleCollarChange);
+      document
+        .getElementById("notch_collar")
+        .removeEventListener("click", handleCollarChange);
+      document
+        .getElementById("peak_collar")
+        .removeEventListener("click", handleCollarChange);
+      document
+        .getElementById("notch_wide")
+        .removeEventListener("click", handleCollarChange);
+      document
+        .getElementById("peak_wide")
+        .removeEventListener("click", handleCollarChange);
       // document.getElementById('shawl_single').removeEventListener('click', handleCollarChange);
       // document.getElementById('shawl_double').removeEventListener('click', handleCollarChange);
-
-
     };
   }, []);
 
   return (
     <>
-      {selectedCollar === 'notch' && <Notch_Collar />}
-      {selectedCollar === 'peak' && <Peak_Collor />}
-      {selectedCollar === 'notchwide' && <Notch_Wide />}
-      {selectedCollar === 'peakwide' && <Peak_Wide/>}
+      {selectedCollar === "notch" && (
+        <>
+          <Notch_Collar />
+          {is2mmSelected &&<AmfnotchCollar />}
+          {is6mmSelected&&<Amf6mmCollar/>}
+        </>
+      )}
+      {selectedCollar === "peak" && <Peak_Collor />}
+      {selectedCollar === "notchwide" && 
+       <>
+       <Notch_Wide />
+       {is2mmSelected &&<AmfnotchcollarWide />}
+       {is6mmSelected&&<Amf6mmWidecollar/>}
+     </>}
+      {selectedCollar === "peakwide" && <Peak_Wide />}
       {/* {selectedCollar === 'shawlsingle' && <Shawlsingle/>}
       {selectedCollar === 'shawldouble' && <Shawldouble/>} */}
-
     </>
   );
 };

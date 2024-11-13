@@ -3,7 +3,7 @@ import { Peakdoublebreasted, Peakdoublebtn, Peaksinglebtn } from './peakoption';
 import eventEmitter from './eventEmitter';
 import { Vector3 } from "three";
 import { useThree, useFrame } from '@react-three/fiber';
-import { Breastedbutton, Doublebutton, Singlebutton } from './buttonglb';
+import { Breastedbutton, Doublebutton, Shawlbutton, Singlebutton } from './buttonglb';
 import { Shawldouble, Shawlsingle } from './shawl';
 
 const ShawlSelector = ({ defaultShawl, collarType, selectedComponent }) => {
@@ -114,12 +114,12 @@ const ShawlSelector = ({ defaultShawl, collarType, selectedComponent }) => {
             {selectedShawl === 'single'  &&    (
               <>
               <Shawlsingle />
-              <Singlebutton/>
+              <Shawlbutton/>
               </>
             )}
             {selectedShawl === 'double' &&    (<>
             <Shawldouble />
-            <Singlebutton/>
+            <Shawlbutton/>
             </>)}
             
         </>

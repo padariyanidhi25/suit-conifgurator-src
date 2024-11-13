@@ -8,9 +8,12 @@ import eventEmitter from "./eventEmitter";
 import { Vector3 } from "three";
 import { useThree, useFrame } from "@react-three/fiber";
 import { Breastedbutton, Doublebutton, Singlebutton } from "./buttonglb";
+import { Amf6mmDoublebreasted, Amf6mmdoubleButton, Amf6mmsingleButton, AmfnotchBreasted, AmfnotchDouble, Amfnotchsingle } from "./amf";
 
 const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
   const [selectedNotch, setSelectedNotch] = useState(defaultNotch);
+  const [is2mmSelected, setIs2mmSelected] = useState(false);
+  const [is6mmSelected, setIs6mmSelected] = useState(false);
   const [fabricURL, setFabricURL] = useState(null);
   const [buttonTextureURL, setButtonTextureURL] = useState(null);
   const [targetPosition, setTargetPosition] = useState(new Vector3(0, 3.25, 8)); // Default camera position
@@ -25,10 +28,7 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
   // Event listener for 'confrmlapel' click to reset camera position
   useEffect(() => {
     const handleConfirmLapelClick = () => {
-      // Set the camera back to its original position
       setTargetPosition(new Vector3(0, 3.25, 8));
-
-      // Hide the relevant UI components
       document.getElementById("lapelContent").style.display = "none";
       document.getElementById("lapel-option").style.display = "none";
       document.getElementById("lapel-width").style.display = "none";
@@ -49,56 +49,41 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
     };
   }, []);
 
-  // Remaining functionality (notch and button selections) remains the same
-  // useEffect(() => {
-  //   const handleFabricSelection = (fabric) => {
-  //     setFabricURL(fabric.textureURL);
-  //   };
-  //   eventEmitter.on("fabricSelected", handleFabricSelection);
+  useEffect(() => {
+    const handle2mmClick = () => {
+      setIs2mmSelected(true);
+      setIs6mmSelected(false); // Unselect 6mm when 2mm is selected
+    };
 
-  //   return () => {
-  //     eventEmitter.off("fabricSelected", handleFabricSelection);
-  //   };
-  // }, []);
+    const element2mm = document.getElementById("2mm");
+    if (element2mm) {
+      element2mm.addEventListener("click", handle2mmClick);
+    }
 
-  // useEffect(() => {
-  //   const handleButtonTextureSelection = (textureURL) => {
-  //     setButtonTextureURL(textureURL);
-  //   };
-  //   eventEmitter.on("buttonSelected", handleButtonTextureSelection);
-  //   return () => {
-  //     eventEmitter.off("buttonSelected", handleButtonTextureSelection);
-  //   };
-  // }, []);
+    return () => {
+      if (element2mm) {
+        element2mm.removeEventListener("click", handle2mmClick);
+      }
+    };
+  }, []);
 
   useEffect(() => {
-    const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
-    console.log('fabric name: ', selectedFabricName);
-    setFabricURL(selectedFabricName);
-    
-    if (selectedFabricName) {
-      eventEmitter.emit('applyFabric', { textureURL: selectedFabricName });
+    const handle6mmClick = () => {
+      setIs6mmSelected(true);
+      setIs2mmSelected(false); // Unselect 2mm when 6mm is selected
+    };
+
+    const element6mm = document.getElementById("6mm");
+    if (element6mm) {
+      element6mm.addEventListener("click", handle6mmClick);
     }
-    console.log('fabric url: ', fabricURL);
-    
-    console.log('fabric url: ', fabricURL);
 
-  }, [selectedNotch, fabricURL]);
-
-  useEffect(()=>{
-    const selectedbuttonurl=localStorage.getItem('ButtonURL')
-    console.log("button name:",selectedbuttonurl);
-    setButtonTextureURL(selectedbuttonurl)
-    if(selectedbuttonurl){
-      eventEmitter.emit("applyButtonTexture", { textureURL: selectedbuttonurl })    }
-    
-  },[selectedNotch, buttonTextureURL])
-
-  // useEffect(() => {
-  //   if (buttonTextureURL) {
-  //     eventEmitter.emit("applyButtonTexture", { textureURL: buttonTextureURL });
-  //   }
-  // }, [selectedNotch, buttonTextureURL]);
+    return () => {
+      if (element6mm) {
+        element6mm.removeEventListener("click", handle6mmClick);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("selectedNotch", selectedNotch);
@@ -110,6 +95,7 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
       setSelectedNotch(savedNotch);
     }
   }, []);
+
   useEffect(() => {
     const handleNotchChange = (notchType) => {
       setSelectedNotch(notchType);
@@ -119,8 +105,7 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
           textureURL: buttonTextureURL,
         });
       }
-       // Emit the applyFabric event with the current fabric URL when the waistband changes
-       if (fabricURL) {
+      if (fabricURL) {
         eventEmitter.emit('applyFabric', { textureURL: fabricURL });
       }
     };
@@ -154,30 +139,28 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
 
   return (
     <>
-      {/* {(selectedComponent === "Classic" && collarType === "notch") ||
-        (selectedNotch === "double" && (
-          <Notchdoublebtn fabricURL={fabricURL} />
-        ))}
-      {(selectedComponent === "Breasted" && collarType === "notch") ||
-        (selectedNotch === "breasted" && (
-          <Nochdoublebrested fabricURL={fabricURL} />
-        ))} */}
       {selectedNotch === "single" && collarType === "notch" && (
         <>
-        <Notchsinglebtn fabricURL={fabricURL} />
-        <Singlebutton/>
+          <Notchsinglebtn fabricURL={fabricURL} />
+          <Singlebutton />
+          {is2mmSelected && <Amfnotchsingle />}
+          {is6mmSelected && <Amf6mmsingleButton />}
         </>
       )}
       {selectedNotch === "double" && collarType === "notch" && (
         <>
-        <Notchdoublebtn fabricURL={fabricURL} />
-        <Doublebutton/>
+          <Notchdoublebtn fabricURL={fabricURL} />
+          <Doublebutton />
+          {is2mmSelected && <AmfnotchDouble />}
+          {is6mmSelected && <Amf6mmdoubleButton />}
         </>
       )}
       {selectedNotch === "breasted" && collarType === "notch" && (
         <>
-        <Nochdoublebrested fabricURL={fabricURL} />
-        <Breastedbutton/>
+          <Nochdoublebrested fabricURL={fabricURL} />
+          <Breastedbutton />
+          {is2mmSelected && <AmfnotchBreasted />}
+          {is6mmSelected && <Amf6mmDoublebreasted />}
         </>
       )}
     </>

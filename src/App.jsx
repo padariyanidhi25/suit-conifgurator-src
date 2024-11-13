@@ -42,7 +42,8 @@ function App() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [liningPrice, setLiningPrice] = useState(0);
   const [fov, setFov] = useState(25);
-
+  const canvasRef = useRef(null);
+  const glRef = useRef();
   const toggleCanvas = () => {
     setShowFirstCanvas((prev) => !prev);
   };
@@ -55,7 +56,26 @@ function App() {
       return newFov;
     });
   };
+  const takeScreenshot = () => {
+    // Check if all necessary properties are available
+    if (canvasRef.current && canvasRef.current.gl && canvasRef.current.scene && canvasRef.current.camera) {
+      const { gl, scene, camera } = canvasRef.current;
 
+      // Render the scene for the latest frame before capturing
+      gl.render(scene, camera);
+
+      // Capture the canvas as a data URL
+      const imageURL = gl.domElement.toDataURL("image/png");
+
+      // Create a link to download the image
+      const link = document.createElement("a");
+      link.href = imageURL;
+      link.download = "canvas-screenshot.png";
+      link.click();
+    } else {
+      console.error("Canvas properties are not ready for screenshot.");
+    }
+  };
   useEffect(() => {
     getEntries()
       .then((result) => {
@@ -118,9 +138,17 @@ function App() {
     <>
       <CustomizationProvider>
         <div className="App" onWheel={handleWheel}>
+          {/* <button onClick={takeScreenshot} className="screenshot-btn bg-black text-white">
+            Take Screenshot
+          </button> */}
           {/* First Canvas */}
           {showFirstCanvas && (
-            <Canvas>
+            <Canvas
+            ref={canvasRef}
+            onCreated={({ gl, scene, camera }) => {
+              canvasRef.current = { gl, scene, camera }; // Store scene, camera, and renderer (gl)
+            }}
+            >
               <PerspectiveCamera
                 makeDefault={true}
                 far={1000}
@@ -173,7 +201,7 @@ function App() {
 
           {/* Second Canvas */}
           {!showFirstCanvas && (
-            <Canvas>
+            <Canvas >
               {/* <PerspectiveCamera
                 makeDefault={true}
                 far={1000}

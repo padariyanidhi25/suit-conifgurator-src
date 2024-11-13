@@ -30,12 +30,14 @@ import { Hook4cm } from "./hook";
 import { Breastedbutton, Doublebutton, Singlebutton } from "./buttonglb";
 import { Shawldouble, Shawlsingle } from "./shawl";
 import ShawlSelector from "./shawlselector";
+import NotchWideSelector from "./notchwideselector";
 
 const Experience = ({ toggleCanvas }) => {
   const [showClassic, setShowClassic] = useState(false);
   const [showTrouser, setShowTrouser] = useState(false);
   const [selectedComponent, setSelectedComponent] = useState(null);
   const [defaultNotch, setDefaultNotch] = useState("breasted"); // New state for default notch
+  const[defaultwideNotch,setDefaultwideNotch]=useState(null)
   const [showPocketSelector, setShowPocketSelector] = useState(true); // State for PocketSelector visibility
   const [showUpperPocketSelector, setShowUpperPocketSelector] = useState(true); // State for UpperPocketSelector visibility
   const [defaultPeak, setDefaultPeak] = useState("null");
@@ -63,6 +65,7 @@ const Experience = ({ toggleCanvas }) => {
     const handleShawlClick = () => {
       setShowShawlSelector(true);
       setDefaultNotch("none"); // Set default notch to 'none'
+      setDefaultwideNotch('none')
       setDefaultPeak("none");  // Set default peak to 'none'
       setCollarType("none");
       setshowcollar(false)  // Set collar type to 'shawl'

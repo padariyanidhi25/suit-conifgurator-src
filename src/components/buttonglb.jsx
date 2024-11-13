@@ -74,3 +74,31 @@ export function Doublebutton(props) {
   }
   
   useGLTF.preload('./Coat GLB New modify/singlebutton.glb')
+
+
+  export function Shawlbutton(props){
+    const { nodes, materials } = useGLTF('./Coat GLB New modify/Shawl/Single_Shall_Button.glb')
+    useButtonTexture(materials, "Button")
+
+    return (
+      <group {...props} dispose={null} scale={20}>
+        <group position={[0.003, -0.009, 0.002]} rotation={[Math.PI / 2, 0, 0.166]} scale={0.01}>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Mesh024.geometry}
+            material={materials.Jacket}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Mesh024_1.geometry}
+            material={materials.Button}
+          />
+        </group>
+      </group>
+    )
+  }
+  
+  useGLTF.preload('./Coat GLB New modify/Shawl/Single_Shall_Button.glb')
+ 
