@@ -4,12 +4,14 @@ import eventEmitter from './eventEmitter';
 import { Vector3 } from "three";
 import { useThree, useFrame } from '@react-three/fiber';
 import { Breastedbutton, Doublebutton, Singlebutton } from './buttonglb';
+import { AmfPeakbreasted2mm, AmfPeakbreasted6mm, AmfPeakDoublebtn2mm, AmfPeakDoublebtn6mm, AmfPeaksinglebtn2mm, AmfPeaksinglebtn6mm } from './amfpeak';
 
 const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
     const [selectedPeak, setSelectedPeak] = useState(defaultPeak);
     const [fabricURL, setFabricURL] = useState(null);
     const [buttonTextureURL, setButtonTextureURL] = useState(null);
-
+    const [is2mmSelected, setIs2mmSelected] = useState(false);
+    const [is6mmSelected, setIs6mmSelected] = useState(false);
     const [targetPosition, setTargetPosition] = useState(new Vector3(0, 3.25, 8)); // Default camera position
     const { camera } = useThree(); // Access the camera
     const lerpSpeed = 0.05; // Speed for camera transition
@@ -45,27 +47,65 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
         }
       };
     }, []);
+    useEffect(() => {
+      const handleConfirmAmfClick = () => {
+        // Set the camera back to its original position
+        setTargetPosition(new Vector3(0, 3.25, 8));
+  
+    
+      };
+  
+      const confrmamfBtn = document.getElementById("confrmamf");
+      if (confrmamfBtn) {
+        confrmamfBtn.addEventListener("click", handleConfirmAmfClick);
+      }
+  
+      return () => {
+        if (confrmamfBtn) {
+          confrmamfBtn.removeEventListener("click", handleConfirmAmfClick);
+        }
+      };
+    }, []);
 
-    // useEffect(() => {
-    //     const handleFabricSelection = (fabric) => {
-    //         setFabricURL(fabric.textureURL);
-    //     };
+    useEffect(() => {
+      const handle2mmClick = () => {
+        setIs2mmSelected(true);
+        setIs6mmSelected(false); // Unselect 6mm when 2mm is selected
+        setTargetPosition(new Vector3(0, 5, 8));
 
-    //     eventEmitter.on('fabricSelected', handleFabricSelection);
+      };
+  
+      const element2mm = document.getElementById("2mm");
+      if (element2mm) {
+        element2mm.addEventListener("click", handle2mmClick);
+      }
+  
+      return () => {
+        if (element2mm) {
+          element2mm.removeEventListener("click", handle2mmClick);
+        }
+      };
+    }, []);
+  
+    useEffect(() => {
+      const handle6mmClick = () => {
+        setIs6mmSelected(true);
+        setIs2mmSelected(false); // Unselect 2mm when 6mm is selected
+        setTargetPosition(new Vector3(0, 5, 8));
 
-    //     return () => {
-    //         eventEmitter.off('fabricSelected', handleFabricSelection);
-    //     };
-    // }, []);
-    // useEffect(() => {
-    //   const handleButtonTextureSelection = (textureURL) => {
-    //     setButtonTextureURL(textureURL);
-    //   };
-    //   eventEmitter.on('buttonSelected', handleButtonTextureSelection);
-    //   return () => {
-    //     eventEmitter.off('buttonSelected', handleButtonTextureSelection);
-    //   };
-    // }, []);
+      };
+  
+      const element6mm = document.getElementById("6mm");
+      if (element6mm) {
+        element6mm.addEventListener("click", handle6mmClick);
+      }
+  
+      return () => {
+        if (element6mm) {
+          element6mm.removeEventListener("click", handle6mmClick);
+        }
+      };
+    }, []);
 
     useEffect(() => {
       const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
@@ -103,6 +143,9 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
             setTargetPosition(new Vector3(0, 3, 0));
 
             // Emit the applyFabric event with the current fabric URL when the waistband changes
+            if (fabricURL) {
+              eventEmitter.emit("applyFabric", { textureURL: fabricURL });
+            }
        
         };
 
@@ -137,15 +180,21 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
               <>
               <Peaksinglebtn />
               <Singlebutton/>
+              {is2mmSelected &&<AmfPeaksinglebtn2mm/>}
+              {is6mmSelected&&<AmfPeaksinglebtn6mm/>}
               </>
             )}
             {selectedPeak === 'double' &&  collarType === 'peak' && (<>
             <Peakdoublebtn />
             <Doublebutton/>
+            {is2mmSelected &&<AmfPeakDoublebtn2mm/>}
+            {is6mmSelected&&<AmfPeakDoublebtn6mm/>}
             </>)}
             {selectedPeak === 'breasted'  &&  collarType === 'peak' && (<>
               <Peakdoublebreasted />
               <Breastedbutton/>
+              {is2mmSelected &&<AmfPeakbreasted2mm/>}
+              {is6mmSelected&&<AmfPeakbreasted6mm/>}
             </>)}
         </>
     );

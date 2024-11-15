@@ -5,6 +5,7 @@ import { Vector3 } from "three";
 import { useThree, useFrame } from "@react-three/fiber";
 import { Shawldouble, Shawlsingle } from "./shawl";
 import { Amf6mmCollar, Amf6mmWidecollar, AmfnotchCollar, AmfnotchcollarWide } from "./amf";
+import { AmfPeakcollar2mm, AmfPeakcollar2mmWide, AmfPeakcollar6mm, AmfPeakcollar6mmWide } from "./amfpeak";
 
 const CollarSelector = () => {
   const [selectedCollar, setSelectedCollar] = useState("notch");
@@ -116,6 +117,8 @@ const CollarSelector = () => {
   useEffect(() => {
     const handleCollarChange = (collarType) => {
       setSelectedCollar(collarType);
+      console.log(collarType,"collarType");
+      
       setTargetPosition(new Vector3(0, 7, -15));
     };
 
@@ -161,18 +164,31 @@ const CollarSelector = () => {
       {selectedCollar === "notch" && (
         <>
           <Notch_Collar />
-          {is2mmSelected &&<AmfnotchCollar />}
-          {is6mmSelected&&<Amf6mmCollar/>}
+          {is2mmSelected &&<AmfnotchCollar  textureURL={fabricURL}/>}
+          {is6mmSelected&&<Amf6mmCollar textureURL={fabricURL}/>}
         </>
       )}
-      {selectedCollar === "peak" && <Peak_Collor />}
+      {selectedCollar === "peak" && 
+     (<> 
+     <Peak_Collor />
+     {is2mmSelected &&<AmfPeakcollar2mm textureURL={fabricURL}/>}
+          {is6mmSelected&&<AmfPeakcollar6mm textureURL={fabricURL}/>}
+     </>
+     )
+      }
       {selectedCollar === "notchwide" && 
        <>
        <Notch_Wide />
-       {is2mmSelected &&<AmfnotchcollarWide />}
-       {is6mmSelected&&<Amf6mmWidecollar/>}
+       {is2mmSelected &&<AmfnotchcollarWide textureURL={fabricURL}/>}
+       {is6mmSelected&&<Amf6mmWidecollar textureURL={fabricURL}/>}
      </>}
-      {selectedCollar === "peakwide" && <Peak_Wide />}
+      {selectedCollar === "peakwide" && (
+        <>
+        <Peak_Wide />
+        {is2mmSelected &&<AmfPeakcollar2mmWide textureURL={fabricURL}/>}
+       {is6mmSelected&&<AmfPeakcollar6mmWide textureURL={fabricURL}/>}
+        </>
+      )}
       {/* {selectedCollar === 'shawlsingle' && <Shawlsingle/>}
       {selectedCollar === 'shawldouble' && <Shawldouble/>} */}
     </>

@@ -4,7 +4,7 @@ import eventEmitter from "./eventEmitter";
 import * as THREE from "three";
 import { useButtonTexture } from "./Buttontexture";
 
-export function Notchbreasted(props) {
+export function Notchbreastedwide(props) {
   const { nodes, materials } = useGLTF(
     "./Coat GLB New modify/Noch wide/noch_double_breasted_wide.glb"
   );
@@ -59,7 +59,7 @@ export function Notchbreasted(props) {
 
 useGLTF.preload("./Coat GLB New modify/Noch wide/noch_double_breasted_wide.glb");
 
-export function NotchDoublebutton(props) {
+export function NotchDoublebuttonwide(props) {
     const { nodes, materials } = useGLTF( "./Coat GLB New modify/Noch wide/notch_double_button_wide.glb");
   
     useButtonTexture(materials, "Button.003");
@@ -112,7 +112,7 @@ export function NotchDoublebutton(props) {
   
   useGLTF.preload("./Coat GLB New modify/Noch wide/notch_double_button_wide.glb");
 
-  export function NotchSinlebutton(props) {
+  export function NotchSingleButtonWide(props) {
     const { nodes, materials } = useGLTF( "./Coat GLB New modify/Noch wide/notch_single_button_wide.glb");
   
     useButtonTexture(materials, "Button.003");

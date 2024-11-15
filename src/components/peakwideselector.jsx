@@ -5,12 +5,15 @@ import { Vector3 } from "three";
 import { useThree, useFrame } from '@react-three/fiber';
 import { PeakwideBreasted, PeakwideDouble, PeakWidesingle } from './peakwide';
 import { Breastedbutton, Doublebutton, Singlebutton } from './buttonglb';
+import { AmfPeakbreasted2mm, AmfPeakbreasted6mm, AmfPeakDoublebtn2mmWide, AmfPeakDoublebtn6mmWide, AmfPeaksinglebtn2mm, AmfPeaksinglebtn2mmWide, AmfPeaksinglebtn6mmWide } from './amfpeak';
+import { PeakwideKaaj } from './Kaaj_Peak';
 
-const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
-    const [selectedPeak, setSelectedPeak] = useState(defaultPeak);
+const PeakWideSelector = ({ defaultwidePeak, collarType, selectedComponent }) => {
+    const [selectedwidePeak, setSelectedwidePeak] = useState(defaultwidePeak);
     const [fabricURL, setFabricURL] = useState(null);
     const [buttonTextureURL, setButtonTextureURL] = useState(null);
-
+    const [is2mmSelected, setIs2mmSelected] = useState(false);
+    const [is6mmSelected, setIs6mmSelected] = useState(false);
     const [targetPosition, setTargetPosition] = useState(new Vector3(0, 3.25, 8)); // Default camera position
     const { camera } = useThree(); // Access the camera
     const lerpSpeed = 0.05; // Speed for camera transition
@@ -47,26 +50,65 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
       };
     }, []);
 
-    // useEffect(() => {
-    //     const handleFabricSelection = (fabric) => {
-    //         setFabricURL(fabric.textureURL);
-    //     };
+    useEffect(() => {
+      const handleConfirmAmfClick = () => {
+        // Set the camera back to its original position
+        setTargetPosition(new Vector3(0, 3.25, 8));
+  
+    
+      };
+  
+      const confrmamfBtn = document.getElementById("confrmamf");
+      if (confrmamfBtn) {
+        confrmamfBtn.addEventListener("click", handleConfirmAmfClick);
+      }
+  
+      return () => {
+        if (confrmamfBtn) {
+          confrmamfBtn.removeEventListener("click", handleConfirmAmfClick);
+        }
+      };
+    }, []);
 
-    //     eventEmitter.on('fabricSelected', handleFabricSelection);
+    useEffect(() => {
+      const handle2mmClick = () => {
+        setIs2mmSelected(true);
+        setIs6mmSelected(false); // Unselect 6mm when 2mm is selected
+        setTargetPosition(new Vector3(0, 5, 8));
 
-    //     return () => {
-    //         eventEmitter.off('fabricSelected', handleFabricSelection);
-    //     };
-    // }, []);
-    // useEffect(() => {
-    //   const handleButtonTextureSelection = (textureURL) => {
-    //     setButtonTextureURL(textureURL);
-    //   };
-    //   eventEmitter.on('buttonSelected', handleButtonTextureSelection);
-    //   return () => {
-    //     eventEmitter.off('buttonSelected', handleButtonTextureSelection);
-    //   };
-    // }, []);
+      };
+  
+      const element2mm = document.getElementById("2mm");
+      if (element2mm) {
+        element2mm.addEventListener("click", handle2mmClick);
+      }
+  
+      return () => {
+        if (element2mm) {
+          element2mm.removeEventListener("click", handle2mmClick);
+        }
+      };
+    }, []);
+  
+    useEffect(() => {
+      const handle6mmClick = () => {
+        setIs6mmSelected(true);
+        setIs2mmSelected(false); // Unselect 2mm when 6mm is selected
+        setTargetPosition(new Vector3(0, 5, 8));
+
+      };
+  
+      const element6mm = document.getElementById("6mm");
+      if (element6mm) {
+        element6mm.addEventListener("click", handle6mmClick);
+      }
+  
+      return () => {
+        if (element6mm) {
+          element6mm.removeEventListener("click", handle6mmClick);
+        }
+      };
+    }, []);
 
     useEffect(() => {
       const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
@@ -78,7 +120,7 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
       }
       console.log('fabric url: ', fabricURL);
   
-    }, [selectedPeak, fabricURL]);
+    }, [selectedwidePeak, fabricURL]);
     useEffect(()=>{
       const selectedbuttonurl=localStorage.getItem('ButtonURL')
       console.log("button name:",selectedbuttonurl);
@@ -86,24 +128,27 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
       if(selectedbuttonurl){
         eventEmitter.emit("applyButtonTexture", { textureURL: selectedbuttonurl })    }
       
-    },[selectedPeak, buttonTextureURL])
+    },[selectedwidePeak, buttonTextureURL])
 
     useEffect(() => {
-      localStorage.setItem('selectedPeak', selectedPeak);
-    }, [selectedPeak]);
+      localStorage.setItem('selectedwidePeak', selectedwidePeak);
+    }, [selectedwidePeak]);
   
    useEffect(() => {
-      const savedPeak = localStorage.getItem('selectedPeak');
+      const savedPeak = localStorage.getItem('selectedwidePeak');
       if (savedPeak) {
-        setSelectedPeak(savedPeak);
+        setSelectedwidePeak(savedPeak);
       }
     }, []); 
     useEffect(() => {
         const handlePeakChange = (peakType) => {
-            setSelectedPeak(peakType);
+          setSelectedwidePeak(peakType);
             setTargetPosition(new Vector3(0, 3, 0));
 
             // Emit the applyFabric event with the current fabric URL when the waistband changes
+            if (fabricURL) {
+              eventEmitter.emit("applyFabric", { textureURL: fabricURL });
+            }
        
         };
 
@@ -123,32 +168,43 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
     }, []);
 
     useEffect(() => {
-        setSelectedPeak(defaultPeak); // Update selected peak when defaultPeak changes
-    }, [defaultPeak]);
+      setSelectedwidePeak(defaultwidePeak); // Update selected peak when defaultPeak changes
+    }, [defaultwidePeak]);
 
     // Conditional rendering based on selectedComponent and collarType
-    console.log('peak',collarType, selectedPeak);
+    console.log('peak',collarType, selectedwidePeak);
     
     return (
         <>
             {/* {selectedComponent === 'Classic' && collarType === 'peak' || selectedPeak === 'double' &&<Peakdoublebtn />}
             {selectedComponent === 'Breasted' && collarType === 'peak' || selectedPeak === 'breasted' &&<Peakdoublebreasted />} */}
 
-            {selectedPeak === 'single'  &&  collarType === 'peakwide' && (<>
+            {selectedwidePeak === 'single'  &&  collarType === 'peakwide' && (<>
             <PeakWidesingle />
             <Singlebutton/>
+            <PeakwideKaaj/>
+            {is2mmSelected &&<AmfPeaksinglebtn2mmWide/>}
+         {is6mmSelected&&<AmfPeaksinglebtn6mmWide/>}
             </>)}
-            {selectedPeak === 'double' &&  collarType === 'peakwide' && (<>
+            {selectedwidePeak === 'double' &&  collarType === 'peakwide' && (<>
             <PeakwideDouble />
             <Doublebutton/>
+            <PeakwideKaaj/>
+
+            {is2mmSelected &&<AmfPeakDoublebtn2mmWide/>}
+            {is6mmSelected&&<AmfPeakDoublebtn6mmWide/>}
             </>)}
-            {selectedPeak === 'breasted'  &&  collarType === 'peakwide' && (
+            {selectedwidePeak === 'breasted'  &&  collarType === 'peakwide' && (
                 <>
                 <PeakwideBreasted />
                 <Breastedbutton/>
+                <PeakwideKaaj/>
+
+                {is2mmSelected &&<AmfPeakbreasted2mm/>}
+                {is6mmSelected&&<AmfPeakbreasted6mm/>}
                 </>)}
         </>
     );
 };
 
-export default PeakSelector;
+export default PeakWideSelector;

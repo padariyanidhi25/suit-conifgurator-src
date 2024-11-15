@@ -17,7 +17,7 @@ import CollarSelector from "./collarselector";
 import NotchSelector from "./notchselector";
 import PeakSelector from "./peakselector";
 import { Double_vent } from "./doublevent";
-import { Kaaj } from "./kaaj";
+import { Kaaj, NotchwideKaaj } from "./kaaj";
 import PleatSelector from "./pleatselector";
 import TrouserPocketSelector from "./trouserpocketselector";
 // import { Single_Side_Closure_5cm, Waistbend } from "./waistband";
@@ -25,19 +25,23 @@ import { Button } from "./waistbandbutton";
 import ShoulderSelector from "./ShoulderSelector";
 import WaistbandSelector from "./waistbandselector";
 import HemSelector from "./hemfinishselector";
-import { Kaaj_Peak } from "./Kaaj_Peak";
+import { Kaaj_Peak, PeakwideKaaj } from "./Kaaj_Peak";
 import { Hook4cm } from "./hook";
 import { Breastedbutton, Doublebutton, Singlebutton } from "./buttonglb";
 import { Shawldouble, Shawlsingle } from "./shawl";
 import ShawlSelector from "./shawlselector";
 import NotchWideSelector from "./notchwideselector";
+import PeakWideSelector from "./peakwideselector";
+import NotchwideSelector from "./notchwideselector";
 
 const Experience = ({ toggleCanvas }) => {
   const [showClassic, setShowClassic] = useState(false);
   const [showTrouser, setShowTrouser] = useState(false);
-  const [selectedComponent, setSelectedComponent] = useState(null);
+  const [selectedComponent, setSelectedComponent] = useState("null");
   const [defaultNotch, setDefaultNotch] = useState("breasted"); // New state for default notch
-  const[defaultwideNotch,setDefaultwideNotch]=useState(null)
+  const[defaultwideNotch,setDefaultwideNotch]=useState("null")
+  const[defaultwidePeak,setDefaultwidePeak]=useState("null")
+
   const [showPocketSelector, setShowPocketSelector] = useState(true); // State for PocketSelector visibility
   const [showUpperPocketSelector, setShowUpperPocketSelector] = useState(true); // State for UpperPocketSelector visibility
   const [defaultPeak, setDefaultPeak] = useState("null");
@@ -54,6 +58,8 @@ const Experience = ({ toggleCanvas }) => {
   const [showWaistband, setShowWaistband] = useState(false);
   const [showKaaj, setShowKaaj] = useState(true);
   const [showPKaaj, setPShowKaaj] = useState(true);
+  const [shownwKaaj, setShownwKaaj] = useState(false);
+  const [showPwKaaj, setPwShowKaaj] = useState(false);
 
   const [shoulder, setShoulder] = useState(true);
   const [showhem, setShowHem] = useState(false);
@@ -66,11 +72,13 @@ const Experience = ({ toggleCanvas }) => {
       setShowShawlSelector(true);
       setDefaultNotch("none"); // Set default notch to 'none'
       setDefaultwideNotch('none')
+      setDefaultwidePeak('none')
       setDefaultPeak("none");  // Set default peak to 'none'
       setCollarType("none");
       setshowcollar(false)  // Set collar type to 'shawl'
-      setPShowKaaj(false)
-      setShowKaaj(true);
+      setShownwKaaj(false)
+      setPwShowKaaj(false)
+      setShowKaaj(false);
 
 
     };
@@ -89,6 +97,9 @@ const Experience = ({ toggleCanvas }) => {
     const jacketButton = document.getElementById("linigs");
     const notchButton = document.getElementById("notch_collar");
     const peakButton = document.getElementById("peak_collar");
+    const PeakWideButton=document.getElementById('peak_wide')
+    const NotchWideButton=document.getElementById('notch_wide')
+
 
     const handleClassicClick = () => {
       setShowClassic(true);
@@ -112,7 +123,9 @@ const Experience = ({ toggleCanvas }) => {
       setShowWaistband(false);
       setShowKaaj(true);
       setShoulder(true);
-      setPShowKaaj(true)
+      setPShowKaaj(true);
+      setShownwKaaj(false)
+      setPwShowKaaj(false)
       setShowHem(false);
     };
 
@@ -139,6 +152,8 @@ const Experience = ({ toggleCanvas }) => {
       setShoulder(true);
       setShowHem(false);
       setPShowKaaj(true)
+      setShownwKaaj(false)
+      setPwShowKaaj(false)
 
     };
 
@@ -175,7 +190,11 @@ const Experience = ({ toggleCanvas }) => {
       setShoulder(false);
       setShowHem(true);
       setPShowKaaj(false)
+      setShownwKaaj(false)
+      setPwShowKaaj(false)
       setShowShawlSelector(false);
+      setDefaultwideNotch(false)
+      setDefaultwidePeak(false)
 
 
     };
@@ -194,14 +213,36 @@ const Experience = ({ toggleCanvas }) => {
       setCollarType("notch"); // Set collar type to 'notch'
       setDefaultNotch("double"); // Set default notch to 'double'
       setShowShawlSelector(false); // Hide ShawlSelector when Notch is selected
-      setshowcollar(true); // Show collar type when Notch is selected
+      setshowcollar(true);
+      setShownwKaaj(false)
+      setPwShowKaaj(false) // Show collar type when Notch is selected
     };
 
     const handlePeakClick = () => {
       setCollarType("peak"); // Set collar type to 'peak'
       setDefaultPeak("double"); // Set default peak to 'double'
       setShowShawlSelector(false); // Hide ShawlSelector when Peak is selected
-      setshowcollar(true);     };
+      setshowcollar(true);  
+      setShownwKaaj(false)
+      setPwShowKaaj(false)   };
+
+      const handleNotchWideClick=()=>{
+        setCollarType("notchwide");
+        setDefaultwideNotch('double')
+        setShowShawlSelector(false); // Hide ShawlSelector when Notch is selected
+      setshowcollar(true);
+      setShownwKaaj(true)
+      setPwShowKaaj(false)
+      }
+
+      const handlePeakWideClick=()=>{
+        setCollarType("peakwide");
+        setDefaultwidePeak("double")
+        setShowShawlSelector(false); // Hide ShawlSelector when Notch is selected
+        setshowcollar(true);
+        setShownwKaaj(false)
+      setPwShowKaaj(true)
+      }
 
     classicButton.addEventListener("click", handleClassicClick);
     breastedButton.addEventListener("click", handleBreastedClick);
@@ -210,6 +251,8 @@ const Experience = ({ toggleCanvas }) => {
     jacketButton.addEventListener("click", handleJacketClick);
     notchButton.addEventListener("click", handleNotchClick);
     peakButton.addEventListener("click", handlePeakClick);
+    PeakWideButton.addEventListener("click",handlePeakWideClick)
+    NotchWideButton.addEventListener('click',handleNotchWideClick)
 
     return () => {
       classicButton.removeEventListener("click", handleClassicClick);
@@ -219,6 +262,8 @@ const Experience = ({ toggleCanvas }) => {
       jacketButton.removeEventListener("click", handleJacketClick);
       notchButton.removeEventListener("click", handleNotchClick);
       peakButton.removeEventListener("click", handlePeakClick);
+      PeakWideButton.removeEventListener("click",handlePeakWideClick)
+      NotchWideButton.removeEventListener('click',handleNotchClick)
     };
   }, [selectedComponent]);
 
@@ -257,7 +302,9 @@ const Experience = ({ toggleCanvas }) => {
         {shoulder && <ShoulderSelector />}
         {showUpperPocketSelector && <UpperpocketSelector />}
         {collarType === "notch" && showKaaj ? (<Kaaj />):showPKaaj&& (<Kaaj_Peak/>)}
-      
+        {/* {collarType === "notchwide" && shownwKaaj ? (<NotchwideKaaj />):showPwKaaj&& (<PeakwideKaaj/>)} */}
+
+      {/* <NotchSinlebutton/> */}
         {showvent && <Double_vent />}
         {showPleatSelector && <PleatSelector />}
         {showTrouserPocketSelector && <TrouserPocketSelector />}
@@ -266,7 +313,10 @@ const Experience = ({ toggleCanvas }) => {
         <Breastedbutton/> */}
         {/* <Shawlsingle/> */}
         {showWaistband && <WaistbandSelector />}
+        <NotchwideSelector defaultwideNotch={defaultwideNotch} collarType={collarType} selectedComponent={selectedComponent} />
+        <PeakWideSelector defaultwidePeak={defaultwidePeak} collarType={collarType} selectedComponent={selectedComponent}/>
         <NotchSelector defaultNotch={defaultNotch}  collarType={collarType} selectedComponent={selectedComponent} /> 
+
         <PeakSelector defaultPeak={defaultPeak} collarType={collarType} selectedComponent={selectedComponent} />
         {showShawlSelector && (<ShawlSelector/>)}
         {showhem && <HemSelector />}

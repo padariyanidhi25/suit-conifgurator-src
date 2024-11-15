@@ -82,6 +82,7 @@ const ShawlSelector = ({ defaultShawl, collarType, selectedComponent }) => {
         const handleShawlChange = (shawlType) => {
             setSelectedShawl(shawlType);
             setTargetPosition(new Vector3(0, 3, 0));
+            console.log('Selected shawl type:', shawlType);
 
             // Emit the applyFabric event with the current fabric URL when the waistband changes
        

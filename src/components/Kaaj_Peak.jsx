@@ -20,3 +20,22 @@ export function Kaaj_Peak(props) {
 }
 
 useGLTF.preload('./Coat GLB New modify/Peak/Peak_Collar_kaaj.glb')
+
+export function PeakwideKaaj(props) {
+  const { nodes, materials } = useGLTF('./Coat GLB New modify/Noch wide/untitled.glb')
+  return (
+    <group {...props} dispose={null} scale={20}>
+    <mesh
+      castShadow
+      receiveShadow
+      geometry={nodes.peak_kaaj_wide1.geometry}
+      material={materials['Kaaj.001']}
+      position={[-0.165, 0.159, -0.073]}
+      rotation={[2.495, -1.167, 1.917]}
+      scale={0.01}
+    />
+  </group>
+  )
+}
+
+useGLTF.preload('./Coat GLB New modify/Noch wide/untitled.glb')
