@@ -85,7 +85,7 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
       setIs2mmSelected(true);
       setIs6mmSelected(false); // Unselect 6mm when 2mm is selected
       applyFabricTexture();
-      setTargetPosition(new Vector3(0, 5, 8));
+      setTargetPosition(new Vector3(0, 1, -5));
 
     };
 
@@ -106,7 +106,7 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
       setIs6mmSelected(true);
       setIs2mmSelected(false); // Unselect 2mm when 6mm is selected
       applyFabricTexture();
-      setTargetPosition(new Vector3(0, 5, 8));
+      setTargetPosition(new Vector3(0, 1, -5));
 
     };
 
@@ -180,7 +180,11 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
     setSelectedNotch(defaultNotch);
   }, [defaultNotch]);
 
-  console.log(fabricURL);
+  useEffect(() => {
+    if (fabricURL) {
+      eventEmitter.emit("applyFabric", { textureURL: fabricURL });
+    }
+  }, [is2mmSelected, is6mmSelected]);
   
 
   return (

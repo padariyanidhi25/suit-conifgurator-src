@@ -1,128 +1,123 @@
 import React, { useState, useEffect } from 'react';
-import { Peakdoublebreasted, Peakdoublebtn, Peaksinglebtn } from './peakoption';
-import eventEmitter from './eventEmitter';
 import { Vector3 } from "three";
 import { useThree, useFrame } from '@react-three/fiber';
-import { Breastedbutton, Doublebutton, Shawlbutton, Singlebutton } from './buttonglb';
 import { Shawldouble, Shawlsingle } from './shawl';
+import { Shawlbutton } from './buttonglb';
+import eventEmitter from './eventEmitter';
 
-const ShawlSelector = ({ defaultShawl, collarType, selectedComponent }) => {
-    const [selectedShawl, setSelectedShawl] = useState(defaultShawl);
+const ShawlSelector = ({ defaultShawl = 'wide' }) => {
+    const [selectedShawl, setSelectedShawl] = useState(localStorage.getItem('selectedShawl') || defaultShawl);
     const [fabricURL, setFabricURL] = useState(null);
     const [buttonTextureURL, setButtonTextureURL] = useState(null);
-
     const [targetPosition, setTargetPosition] = useState(new Vector3(0, 3.25, 8)); // Default camera position
     const { camera } = useThree(); // Access the camera
     const lerpSpeed = 0.05; // Speed for camera transition
-  
-    // This function will smoothly move the camera to a target position
+
+    // Smooth camera transition
     useFrame(() => {
-      camera.position.lerp(targetPosition, lerpSpeed);
+        camera.position.lerp(targetPosition, lerpSpeed);
     });
-  
-    // Event listener for 'confrmlapel' click to reset camera position
+
+    // Reset camera position and UI on 'confirmshawl' button click
     useEffect(() => {
-      const handleConfirmLapelClick = () => {
-        // Set the camera back to its original position
-        setTargetPosition(new Vector3(0, 3.25, 8));
-  
-        // Hide the relevant UI components
-        document.getElementById('lapelContent').style.display = 'none';
-        document.getElementById('lapel-option').style.display = 'none';
-        document.getElementById('lapel-width').style.display = 'none';
-        document.getElementById('lapel-buttonhole').style.display = 'none';
-        document.getElementById('confirmlapel').style.display = 'none';
-        document.getElementById('monogrm').style.display = 'flex';
-      };
-  
-      const confrmlapelBtn = document.getElementById('confrmshawl');
-      if (confrmlapelBtn) {
-        confrmlapelBtn.addEventListener('click', handleConfirmLapelClick);
-      }
-  
-      return () => {
-        if (confrmlapelBtn) {
-          confrmlapelBtn.removeEventListener('click', handleConfirmLapelClick);
+        const handleConfirmShawlClick = () => {
+            setTargetPosition(new Vector3(0, 3.25, 8));
+            document.getElementById('lapelContent').style.display = 'none';
+            document.getElementById('lapel-option').style.display = 'none';
+            document.getElementById('lapel-width').style.display = 'none';
+            document.getElementById('lapel-buttonhole').style.display = 'none';
+            document.getElementById('confirmlapel').style.display = 'none';
+            document.getElementById('monogrm').style.display = 'flex';
+        };
+
+        const confirmShawlBtn = document.getElementById('confrmshawl');
+        if (confirmShawlBtn) {
+            confirmShawlBtn.addEventListener('click', handleConfirmShawlClick);
         }
-      };
+
+        return () => {
+            if (confirmShawlBtn) {
+                confirmShawlBtn.removeEventListener('click', handleConfirmShawlClick);
+            }
+        };
     }, []);
 
-
+    // Fetch fabric and button textures from localStorage
     useEffect(() => {
-      const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
-      console.log('fabric name: ', selectedFabricName);
-      setFabricURL(selectedFabricName);
-  
-      if (selectedFabricName) {
-        eventEmitter.emit('applyFabric', { textureURL: selectedFabricName });
-      }
-      console.log('fabric url: ', fabricURL);
-  
-    }, [selectedShawl, fabricURL]);
-    useEffect(()=>{
-      const selectedbuttonurl=localStorage.getItem('ButtonURL')
-      console.log("button name:",selectedbuttonurl);
-      setButtonTextureURL(selectedbuttonurl)
-      if(selectedbuttonurl){
-        eventEmitter.emit("applyButtonTexture", { textureURL: selectedbuttonurl })    }
-      
-    },[selectedShawl, buttonTextureURL])
+        const selectedFabricName = localStorage.getItem("selectedFabricURL");
+        setFabricURL(selectedFabricName);
 
-    useEffect(() => {
-      localStorage.setItem('selectedShawl', selectedShawl);
+        if (selectedFabricName) {
+            eventEmitter.emit('applyFabric', { textureURL: selectedFabricName });
+        }
     }, [selectedShawl]);
-  
-   useEffect(() => {
-      const savedshawl = localStorage.getItem('selectedShawl');
-      if (savedshawl) {
-        setSelectedShawl(savedshawl);
-      }
-    }, []); 
+
+    useEffect(() => {
+        const selectedButtonURL = localStorage.getItem('ButtonURL');
+        setButtonTextureURL(selectedButtonURL);
+
+        if (selectedButtonURL) {
+            eventEmitter.emit("applyButtonTexture", { textureURL: selectedButtonURL });
+        }
+    }, [selectedShawl]);
+
+    // Persist selected shawl in localStorage
+    useEffect(() => {
+        localStorage.setItem('selectedShawl', selectedShawl);
+    }, [selectedShawl]);
+
+    // Restore selected shawl from localStorage on load
+    useEffect(() => {
+        const savedShawl = localStorage.getItem('selectedShawl');
+        if (savedShawl) {
+            setSelectedShawl(savedShawl);
+        }
+    }, []);
+
+    // Handle shawl change events
     useEffect(() => {
         const handleShawlChange = (shawlType) => {
             setSelectedShawl(shawlType);
             setTargetPosition(new Vector3(0, 3, 0));
-            console.log('Selected shawl type:', shawlType);
-
-            // Emit the applyFabric event with the current fabric URL when the waistband changes
-       
+            if (fabricURL) {
+                eventEmitter.emit("applyFabric", { textureURL: fabricURL });
+            }
         };
 
         const singleBtn = document.getElementById('shawl_single');
         const doubleBtn = document.getElementById('shawl_double');
 
-        singleBtn.addEventListener('click', () => handleShawlChange('single'));
-        doubleBtn.addEventListener('click', () => handleShawlChange('double'));
+        const handleSingleClick = () => handleShawlChange('wide');
+        const handleDoubleClick = () => handleShawlChange('single');
+
+        singleBtn.addEventListener('click', handleSingleClick);
+        doubleBtn.addEventListener('click', handleDoubleClick);
 
         return () => {
-            singleBtn.removeEventListener('click', () => handleShawlChange('single'));
-            doubleBtn.removeEventListener('click', () => handleShawlChange('double'));
+            singleBtn.removeEventListener('click', handleSingleClick);
+            doubleBtn.removeEventListener('click', handleDoubleClick);
         };
-    }, []);
+    }, [fabricURL]);
 
+    // Debugging log for selectedShawl
     useEffect(() => {
-        setSelectedShawl(defaultShawl); // Update selected peak when defaultPeak changes
-    }, [defaultShawl]);
+        console.log('Selected Shawl:', selectedShawl);
+    }, [selectedShawl]);
 
-    // Conditional rendering based on selectedComponent and collarType
-    // console.log('peak',collarType, selectedShawl);
-    
     return (
         <>
-            {/* {selectedComponent === 'Classic' && collarType === 'peak' || selectedPeak === 'double' &&<Peakdoublebtn />}
-            {selectedComponent === 'Breasted' && collarType === 'peak' || selectedPeak === 'breasted' &&<Peakdoublebreasted />} */}
-
-            {selectedShawl === 'single'  &&    (
-              <>
-              <Shawlsingle />
-              <Shawlbutton/>
-              </>
+            {selectedShawl === 'wide' && (
+                <>
+                    <Shawlsingle />
+                    <Shawlbutton />
+                </>
             )}
-            {selectedShawl === 'double' &&    (<>
-            <Shawldouble />
-            <Shawlbutton/>
-            </>)}
-            
+            {selectedShawl === 'single' && (
+                <>
+                    <Shawldouble />
+                    <Shawlbutton />
+                </>
+            )}
         </>
     );
 };

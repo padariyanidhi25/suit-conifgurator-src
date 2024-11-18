@@ -120,6 +120,10 @@ const CollarSelector = () => {
       console.log(collarType,"collarType");
       
       setTargetPosition(new Vector3(0, 7, -15));
+
+      if (fabricURL) {
+        eventEmitter.emit("applyFabric", { textureURL: fabricURL });
+      }
     };
 
     document.getElementById("notch_collar").addEventListener("click", () => {
@@ -134,12 +138,7 @@ const CollarSelector = () => {
     document.getElementById("peak_wide").addEventListener("click", () => {
       handleCollarChange("peakwide");
     });
-    // document.getElementById('shawl_single').addEventListener('click', () => {
-    //   handleCollarChange('shawlsingle');
-    // });
-    // document.getElementById('shawl_double').addEventListener('click', () => {
-    //   handleCollarChange('shawldouble');
-    // });
+   
 
     return () => {
       document
@@ -154,11 +153,14 @@ const CollarSelector = () => {
       document
         .getElementById("peak_wide")
         .removeEventListener("click", handleCollarChange);
-      // document.getElementById('shawl_single').removeEventListener('click', handleCollarChange);
-      // document.getElementById('shawl_double').removeEventListener('click', handleCollarChange);
+      
     };
   }, []);
-
+  useEffect(() => {
+    if (fabricURL) {
+      eventEmitter.emit("applyFabric", { textureURL: fabricURL });
+    }
+  }, [is2mmSelected, is6mmSelected]);
   return (
     <>
       {selectedCollar === "notch" && (

@@ -71,7 +71,7 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
       const handle2mmClick = () => {
         setIs2mmSelected(true);
         setIs6mmSelected(false); // Unselect 6mm when 2mm is selected
-        setTargetPosition(new Vector3(0, 5, 8));
+        setTargetPosition(new Vector3(0, 5, 2));
 
       };
   
@@ -91,7 +91,7 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
       const handle6mmClick = () => {
         setIs6mmSelected(true);
         setIs2mmSelected(false); // Unselect 2mm when 6mm is selected
-        setTargetPosition(new Vector3(0, 5, 8));
+        setTargetPosition(new Vector3(0, 5, 2));
 
       };
   
@@ -162,15 +162,18 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
             doubleBtn.removeEventListener('click', () => handlePeakChange('double'));
             doubleBreastedBtn.removeEventListener('click', () => handlePeakChange('breasted'));
         };
-    }, []);
+    }, [buttonTextureURL, fabricURL, selectedComponent]);
 
     useEffect(() => {
         setSelectedPeak(defaultPeak); // Update selected peak when defaultPeak changes
     }, [defaultPeak]);
 
-    // Conditional rendering based on selectedComponent and collarType
-    console.log('peak',collarType, selectedPeak);
     
+    useEffect(() => {
+      if (fabricURL) {
+        eventEmitter.emit("applyFabric", { textureURL: fabricURL });
+      }
+    }, [is2mmSelected, is6mmSelected]);
     return (
         <>
             {/* {selectedComponent === 'Classic' && collarType === 'peak' || selectedPeak === 'double' &&<Peakdoublebtn />}

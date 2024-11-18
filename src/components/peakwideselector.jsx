@@ -74,7 +74,7 @@ const PeakWideSelector = ({ defaultwidePeak, collarType, selectedComponent }) =>
       const handle2mmClick = () => {
         setIs2mmSelected(true);
         setIs6mmSelected(false); // Unselect 6mm when 2mm is selected
-        setTargetPosition(new Vector3(0, 5, 8));
+        setTargetPosition(new Vector3(0, 5, 2));
 
       };
   
@@ -94,7 +94,7 @@ const PeakWideSelector = ({ defaultwidePeak, collarType, selectedComponent }) =>
       const handle6mmClick = () => {
         setIs6mmSelected(true);
         setIs2mmSelected(false); // Unselect 2mm when 6mm is selected
-        setTargetPosition(new Vector3(0, 5, 8));
+        setTargetPosition(new Vector3(0, 5, 2));
 
       };
   
@@ -170,9 +170,12 @@ const PeakWideSelector = ({ defaultwidePeak, collarType, selectedComponent }) =>
     useEffect(() => {
       setSelectedwidePeak(defaultwidePeak); // Update selected peak when defaultPeak changes
     }, [defaultwidePeak]);
-
+    useEffect(() => {
+      if (fabricURL) {
+        eventEmitter.emit("applyFabric", { textureURL: fabricURL });
+      }
+    }, [is2mmSelected, is6mmSelected]);
     // Conditional rendering based on selectedComponent and collarType
-    console.log('peak',collarType, selectedwidePeak);
     
     return (
         <>
@@ -182,14 +185,14 @@ const PeakWideSelector = ({ defaultwidePeak, collarType, selectedComponent }) =>
             {selectedwidePeak === 'single'  &&  collarType === 'peakwide' && (<>
             <PeakWidesingle />
             <Singlebutton/>
-            <PeakwideKaaj/>
+            {/* <PeakwideKaaj/> */}
             {is2mmSelected &&<AmfPeaksinglebtn2mmWide/>}
          {is6mmSelected&&<AmfPeaksinglebtn6mmWide/>}
             </>)}
             {selectedwidePeak === 'double' &&  collarType === 'peakwide' && (<>
             <PeakwideDouble />
             <Doublebutton/>
-            <PeakwideKaaj/>
+            {/* <PeakwideKaaj/> */}
 
             {is2mmSelected &&<AmfPeakDoublebtn2mmWide/>}
             {is6mmSelected&&<AmfPeakDoublebtn6mmWide/>}
@@ -198,7 +201,7 @@ const PeakWideSelector = ({ defaultwidePeak, collarType, selectedComponent }) =>
                 <>
                 <PeakwideBreasted />
                 <Breastedbutton/>
-                <PeakwideKaaj/>
+                {/* <PeakwideKaaj/> */}
 
                 {is2mmSelected &&<AmfPeakbreasted2mm/>}
                 {is6mmSelected&&<AmfPeakbreasted6mm/>}

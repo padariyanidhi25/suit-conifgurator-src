@@ -159,22 +159,24 @@ function App() {
               />
               {/* <OrbitControls/> */}
 
-              {/* <StaticDirectionalLight
+              <StaticDirectionalLight
                 position={[-0.45244, 0.32952, 0.27606]}
-                targetPosition={[-6, -1, 0.1]}
-                intensity={0.8}
+                targetPosition={[-5, -2, -5]}
+                intensity={0.5}
               />
               <StaticDirectionalLight
                 position={[0.168164, 0.42188, 0.17211]}
-                targetPosition={[6, 0.5, -0.1]}
-                intensity={0.8}
+                targetPosition={[5, 2, 5]}
+                intensity={0.3}
               />
               <StaticDirectionalLight
                 position={[0, 0, 10]}
-                targetPosition={[0, 3, 4]}
-                intensity={0.4}
-              />  */}
-              <StaticDirectionalLight
+                targetPosition={[0, 0.2, 4]}
+                intensity={0.3}
+              /> 
+
+              {/* settings of lights */}
+              {/* <StaticDirectionalLight
                 position={[-0.621883, 0.32952, 0.268164]}
                 targetPosition={[-0.75, -1, -3]}
                 intensity={0.75}
@@ -189,7 +191,7 @@ function App() {
                 position={[0, -10, 5]}
                 targetPosition={[0, -3, 4]}
                 intensity={0.3}
-              />
+              /> */}
               {/* <Environment preset="studio" intensity={4}/> */}
 
               <Experience

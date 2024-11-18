@@ -3,17 +3,8 @@ import { Peakdoublebreasted, Peakdoublebtn, Peaksinglebtn } from "./peakoption";
 import eventEmitter from "./eventEmitter";
 import { Vector3 } from "three";
 import { useThree, useFrame } from "@react-three/fiber";
-import { PeakwideBreasted, PeakwideDouble, PeakWidesingle } from "./peakwide";
 import { Breastedbutton, Doublebutton, Singlebutton } from "./buttonglb";
-import {
-  AmfPeakbreasted2mm,
-  AmfPeakbreasted6mm,
-  AmfPeakDoublebtn2mmWide,
-  AmfPeakDoublebtn6mmWide,
-  AmfPeaksinglebtn2mm,
-  AmfPeaksinglebtn2mmWide,
-  AmfPeaksinglebtn6mmWide,
-} from "./amfpeak";
+
 import {
   Notchbreastedwide,
   NotchDoublebuttonwide,
@@ -80,8 +71,6 @@ const NotchwideSelector = ({
     const handleConfirmAmfClick = () => {
       // Set the camera back to its original position
       setTargetPosition(new Vector3(0, 3.25, 8));
-
-  
     };
 
     const confrmamfBtn = document.getElementById("confrmamf");
@@ -100,7 +89,7 @@ const NotchwideSelector = ({
     const handle2mmClick = () => {
       setIs2mmSelected(true);
       setIs6mmSelected(false); // Unselect 6mm when 2mm is selected
-      setTargetPosition(new Vector3(0, 7, -30));
+      setTargetPosition(new Vector3(0,5, -15));
       if (fabricURL) {
         eventEmitter.emit("applyFabric", { textureURL: fabricURL });
       }
@@ -122,7 +111,7 @@ const NotchwideSelector = ({
     const handle6mmClick = () => {
       setIs6mmSelected(true);
       setIs2mmSelected(false); // Unselect 2mm when 6mm is selected
-      setTargetPosition(new Vector3(0, 7,-30));
+      setTargetPosition(new Vector3(0, 5, -15));
       if (fabricURL) {
         eventEmitter.emit("applyFabric", { textureURL: fabricURL });
       }
@@ -178,7 +167,8 @@ const NotchwideSelector = ({
 
       if (fabricURL) {
         eventEmitter.emit("applyFabric", { textureURL: fabricURL });
-      }    };
+      }
+    };
 
     const singleBtn = document.getElementById("single_btn");
     const doubleBtn = document.getElementById("double_btn");
@@ -203,6 +193,12 @@ const NotchwideSelector = ({
     setSelectedwideNotch(defaultwideNotch); // Update selected peak when defaultPeak changes
   }, [defaultwideNotch]);
 
+  useEffect(() => {
+    if (fabricURL) {
+      eventEmitter.emit("applyFabric", { textureURL: fabricURL });
+    }
+  }, [is2mmSelected, is6mmSelected]);
+
   // Conditional rendering based on selectedComponent and collarType
   console.log("notchwide", collarType, selectedwideNotch);
 
@@ -215,7 +211,7 @@ const NotchwideSelector = ({
         <>
           <NotchSingleButtonWide />
           <Singlebutton />
-          <NotchwideKaaj/>
+          {/* <NotchwideKaaj/> */}
           {is2mmSelected && <AmfnotchwideSingle />}
           {is6mmSelected && <Amf6mmSinglebuttonWide />}
         </>
@@ -224,7 +220,7 @@ const NotchwideSelector = ({
         <>
           <NotchDoublebuttonwide />
           <Doublebutton />
-          <NotchwideKaaj/>
+          {/* <NotchwideKaaj/> */}
 
           {is2mmSelected && <AmfnotchwideDouble />}
           {is6mmSelected && <Amf6mmdoublebuttonWide />}
@@ -234,7 +230,7 @@ const NotchwideSelector = ({
         <>
           <Notchbreastedwide />
           <Breastedbutton />
-          <NotchwideKaaj/>
+          {/* <NotchwideKaaj/> */}
 
           {is2mmSelected && <AmfnotchBreastedwide />}
           {is6mmSelected && <Amf6mmwidedoubleBreastedwide />}
