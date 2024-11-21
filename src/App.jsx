@@ -1,22 +1,20 @@
+
 import React, { useState, useEffect, useRef } from "react";
+import { useHelper } from "@react-three/drei";
 import "./App.css";
 import { Canvas } from "@react-three/fiber";
 import Experience from "./components/Experience";
 import Configurator from "./components/Configurator";
 import { CustomizationProvider } from "./contexts/Customization";
-import {
-  Environment,
-  OrbitControls,
-  PerspectiveCamera,
-} from "@react-three/drei";
+import { DirectionalLightHelper } from "three";
+import { Environment, OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { getEntries } from "./Firebase/userUtil";
 import eventEmitter from "./components/eventEmitter";
-import { Vector3 } from "three";
 
-function StaticDirectionalLight({ position, targetPosition, intensity }) {
+function StaticDirectionalLight({ position, targetPosition, intensity, helperColor }) {
   const lightRef = useRef();
   const targetRef = useRef();
-
+  // useHelper(lightRef, DirectionalLightHelper, 1, helperColor);
   useEffect(() => {
     if (lightRef.current && targetRef.current) {
       lightRef.current.target = targetRef.current;
@@ -29,6 +27,7 @@ function StaticDirectionalLight({ position, targetPosition, intensity }) {
         ref={lightRef}
         position={position}
         intensity={intensity}
+        castShadow={true}
       />
       <mesh ref={targetRef} position={targetPosition} />
     </>
@@ -42,44 +41,41 @@ function App() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [liningPrice, setLiningPrice] = useState(0);
   const [fov, setFov] = useState(25);
+  const [canvasReady, setCanvasReady] = useState(false); // Tracks if the canvas is ready
   const canvasRef = useRef(null);
   const glRef = useRef();
+
   const toggleCanvas = () => {
     setShowFirstCanvas((prev) => !prev);
   };
-  // Handle zoom with mouse scroll
+
   const handleWheel = (event) => {
     setFov((prevFov) => {
-      let newFov = prevFov - event.deltaY * 0.05; // Adjust fov based on scroll
-      if (newFov < 5) newFov = 5; // Minimum zoom (closer)
-      if (newFov > 20) newFov = 20; // Maximum zoom (farther)
-      return newFov;
+      let newFov = prevFov - event.deltaY * 0.05;
+      return Math.min(Math.max(newFov, 5), 20);
     });
   };
+
   const takeScreenshot = () => {
-    // Check if all necessary properties are available
-    if (canvasRef.current && canvasRef.current.gl && canvasRef.current.scene && canvasRef.current.camera) {
-      const { gl, scene, camera } = canvasRef.current;
-
-      // Render the scene for the latest frame before capturing
-      gl.render(scene, camera);
-
-      // Capture the canvas as a data URL
-      const imageURL = gl.domElement.toDataURL("image/png");
-
-      // Create a link to download the image
-      const link = document.createElement("a");
-      link.href = imageURL;
-      link.download = "canvas-screenshot.png";
-      link.click();
-    } else {
+    if (!canvasRef.current) {
       console.error("Canvas properties are not ready for screenshot.");
+      return;
     }
+
+    const { gl, scene, camera } = canvasRef.current;
+    gl.render(scene, camera);
+    const imageURL = gl.domElement.toDataURL("image/png");
+
+    const link = document.createElement("a");
+    link.href = imageURL;
+    link.download = "canvas-screenshot.png";
+    link.click();
   };
+
   useEffect(() => {
     getEntries()
       .then((result) => {
-        // Process your results here if needed
+        // Handle results
       })
       .catch((err) => {
         console.error(err);
@@ -91,35 +87,27 @@ function App() {
     const savedFabricPrice = localStorage.getItem("selectedFabricPrice");
     const savedLiningPrice = localStorage.getItem("LiningColorPrice");
 
-    // Set prices from local storage if they exist
-    if (savedButtonPrice) {
-      setButtonPrice(Number(savedButtonPrice));
-    }
-    if (savedFabricPrice) {
-      setFabricPrice(Number(savedFabricPrice));
-    }
-    if (savedLiningPrice) {
-      setLiningPrice(Number(savedLiningPrice));
-    }
+    if (savedButtonPrice) setButtonPrice(Number(savedButtonPrice));
+    if (savedFabricPrice) setFabricPrice(Number(savedFabricPrice));
+    if (savedLiningPrice) setLiningPrice(Number(savedLiningPrice));
   }, []);
 
   useEffect(() => {
     const handleButtonSelected = ({ price }) => {
-      const buttonPrice = Number(price) || 0;
-      setButtonPrice(buttonPrice);
-      localStorage.setItem("ButtonPrice", buttonPrice); // Save to localStorage
+      setButtonPrice(Number(price) || 0);
+      localStorage.setItem("ButtonPrice", price);
     };
 
     const handleFabricSelected = ({ price }) => {
-      const fabricPrice = Number(price) || 0;
-      setFabricPrice(fabricPrice);
-      localStorage.setItem("FabricPrice", fabricPrice); // Save to localStorage
+      setFabricPrice(Number(price) || 0);
+      localStorage.setItem("FabricPrice", price);
     };
+
     const handleLiningColorSelected = ({ price }) => {
-      const liningPrice = Number(price) || 0;
-      setLiningPrice(liningPrice);
-      localStorage.setItem("LiningColorPrice", liningPrice);
+      setLiningPrice(Number(price) || 0);
+      localStorage.setItem("LiningColorPrice", price);
     };
+
     eventEmitter.on("buttonSelected", handleButtonSelected);
     eventEmitter.on("fabricSelected", handleFabricSelected);
     eventEmitter.on("applyLiningColor", handleLiningColorSelected);
@@ -130,108 +118,59 @@ function App() {
       eventEmitter.off("applyLiningColor", handleLiningColorSelected);
     };
   }, []);
+
   useEffect(() => {
     setTotalPrice(buttonPrice + fabricPrice + liningPrice);
   }, [buttonPrice, fabricPrice, liningPrice]);
 
   return (
-    <>
-      <CustomizationProvider>
-        <div className="App" onWheel={handleWheel}>
-          {/* <button onClick={takeScreenshot} className="screenshot-btn bg-black text-white">
-            Take Screenshot
-          </button> */}
-          {/* First Canvas */}
-          {showFirstCanvas && (
-            <Canvas
-            ref={canvasRef}
+    <CustomizationProvider>
+      <div className="App" onWheel={handleWheel}>
+        {/* <button
+          onClick={takeScreenshot}
+          className={`screenshot-btn bg-black text-white ${!canvasReady ? "opacity-50 cursor-not-allowed" : ""}`}
+          disabled={!canvasReady} // Disable button if canvas isn't ready
+        >
+          Take Screenshot
+        </button> */}
+        {showFirstCanvas && (
+          <Canvas
             onCreated={({ gl, scene, camera }) => {
-              canvasRef.current = { gl, scene, camera }; // Store scene, camera, and renderer (gl)
+              canvasRef.current = { gl, scene, camera };
+              setCanvasReady(true); // Mark canvas as ready
             }}
-            >
-              <PerspectiveCamera
-                makeDefault={true}
-                far={1000}
-                near={0.1}
-                fov={fov}
-                position={[0, 3.25, 8]}
-                // rotation={[0,Math.PI/10,0]}
-              />
-              {/* <OrbitControls/> */}
-
-              <StaticDirectionalLight
-                position={[-0.45244, 0.32952, 0.27606]}
-                targetPosition={[-5, -2, -5]}
-                intensity={0.5}
-              />
-              <StaticDirectionalLight
-                position={[0.168164, 0.42188, 0.17211]}
-                targetPosition={[5, 2, 5]}
-                intensity={0.3}
-              />
-              <StaticDirectionalLight
-                position={[0, 0, 10]}
-                targetPosition={[0, 0.2, 4]}
-                intensity={0.3}
-              /> 
-
-              {/* settings of lights */}
-              {/* <StaticDirectionalLight
+          >
+            <PerspectiveCamera makeDefault fov={fov} position={[0, 3.25, 8]} />
+            <StaticDirectionalLight
                 position={[-0.621883, 0.32952, 0.268164]}
                 targetPosition={[-0.75, -1, -3]}
-                intensity={0.75}
+                intensity={0.15}
               />
 
               <StaticDirectionalLight
                 position={[0.629522, 0.42188, -0.652444]}
                 targetPosition={[2, 0.5, 4]}
-                intensity={0.75}
+                intensity={0.15}
               />
               <StaticDirectionalLight
                 position={[0, -10, 5]}
                 targetPosition={[0, -3, 4]}
-                intensity={0.3}
-              /> */}
-              {/* <Environment preset="studio" intensity={4}/> */}
-
-              <Experience
-                toggleCanvas={toggleCanvas}
-                setFabricPrice={setFabricPrice}
+                intensity={0.15}
               />
-            </Canvas>
-          )}
-
-          {/* Second Canvas */}
-          {!showFirstCanvas && (
-            <Canvas >
-              {/* <PerspectiveCamera
-                makeDefault={true}
-                far={1000}
-                near={0.1}
-                fov={25}
-                position={[0, 3.25, 3]}  // Adjust the position as needed
-              /> */}
-
-              <Experience
-                toggleCanvas={toggleCanvas}
-                setFabricPrice={setFabricPrice}
-              />
-            </Canvas>
-          )}
-
-          {/* Configurator */}
-          <Configurator />
-
-          {/* Div to display the total price */}
-          <div className="storeprice absolute text-black z-[9] font-bold left-[2vw] top-[5vh] w-[5vw] h-[5vh] xs:w-[22vw] text-nowrap xs:left-1 xs:top-0 flex items-center justify-center">
-            Total: ${Number(totalPrice).toFixed(2)}
-          </div>
-          <p className="absolute top-20 left-8 text-sm xs:top-7 xs:left-1">
-            2-3 weeks delivery
-          </p>
+            <Environment preset="city" intensity={0.2} />
+            <Experience toggleCanvas={toggleCanvas} setFabricPrice={setFabricPrice} />
+          </Canvas>
+        )}
+        {!showFirstCanvas && <Canvas ref={glRef}><Experience /></Canvas>}
+        <Configurator takeScreenshot={takeScreenshot} />
+        <div className="storeprice absolute text-black z-[9] font-bold left-[2vw] top-[5vh] w-[5vw] h-[5vh] xs:w-[22vw] text-nowrap xs:left-1 xs:top-0 flex items-center justify-center">
+          Total: ${Number(totalPrice).toFixed(2)}
         </div>
-      </CustomizationProvider>
-    </>
+        <p className="absolute top-20 left-8 text-sm xs:top-7 xs:left-1">
+          2-3 weeks delivery
+        </p>
+      </div>
+    </CustomizationProvider>
   );
 }
 

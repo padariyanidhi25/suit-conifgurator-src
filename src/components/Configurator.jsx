@@ -11,7 +11,7 @@ let isbutton = false;
 let ismonogram = false;
 const tablinks = document.querySelectorAll(".tablinks");
 
-const Configurator = () => {
+const Configurator = ({takeCanvasScreenshot}) => {
   const {} = useCustomization();
   useEffect(() => {
     tabSwitch("linigs"); // Set "linigs" tab as the default open tab
@@ -1422,6 +1422,8 @@ const Configurator = () => {
     // console.log('Finish button clicked!');
 
     // Hide various elements
+    takeCanvasScreenshot(canvasRef1);
+    takeCanvasScreenshot(canvasRef2);
     monogrm.style.display = "none";
     document.getElementById("fabric").style.display = "none";
     document.getElementById("linigs").style.display = "none";
