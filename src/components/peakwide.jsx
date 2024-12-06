@@ -39,21 +39,21 @@ export function PeakwideBreasted(props) {
 
   return (
     <group {...props} dispose={null} scale={20}>
-    <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Mesh004.geometry}
-        material={materials.Jacket}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Mesh004_1.geometry}
-        material={materials.Kaaj}
-      />
+      <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Mesh011.geometry}
+          material={materials.Jacket}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Mesh011_1.geometry}
+          material={materials.Kaaj}
+        />
+      </group>
     </group>
-  </group>
   );
 }
 

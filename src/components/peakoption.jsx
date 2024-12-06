@@ -18,7 +18,6 @@ export function Peakdoublebreasted(props) {
         loader.load(textureURL, (texture) => {
           Object.keys(materials).forEach((key) => {
             if (!key.includes("Button")) {
-              // Skip button materials
               const material = materials[key];
               if (material.map) {
                 material.map = texture;
@@ -66,6 +65,7 @@ export function Peakdoublebtn(props) {
   const [textureURL, setTextureURL] = useState(null);
 
   useButtonTexture(materials, "Button.004");
+
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
       if (textureURL) {
@@ -73,7 +73,6 @@ export function Peakdoublebtn(props) {
         loader.load(textureURL, (texture) => {
           Object.keys(materials).forEach((key) => {
             if (!key.includes("Button")) {
-              // Skip button materials
               const material = materials[key];
               if (material.map) {
                 material.map = texture;
@@ -91,6 +90,7 @@ export function Peakdoublebtn(props) {
       eventEmitter.off("applyFabric", handleApplyFabric);
     };
   }, [materials]);
+
   return (
     <group {...props} dispose={null} scale={20}>
       <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
@@ -119,7 +119,7 @@ export function Peaksinglebtn(props) {
   );
   const [textureURL, setTextureURL] = useState(null);
 
-  useButtonTexture(materials, "Button.005");
+  useButtonTexture(materials, "Button.002");
 
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -128,7 +128,6 @@ export function Peaksinglebtn(props) {
         loader.load(textureURL, (texture) => {
           Object.keys(materials).forEach((key) => {
             if (!key.includes("Button")) {
-              // Skip button materials
               const material = materials[key];
               if (material.map) {
                 material.map = texture;
@@ -149,21 +148,21 @@ export function Peaksinglebtn(props) {
 
   return (
     <group {...props} dispose={null} scale={20}>
-    <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Mesh016.geometry}
-        material={materials.Jacket}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Mesh016_1.geometry}
-        material={materials.Kaaj}
-      />
+      <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Mesh016.geometry}
+          material={materials.Jacket}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Mesh016_1.geometry}
+          material={materials.Kaaj}
+        />
+      </group>
     </group>
-  </group>
   );
 }
 

@@ -1422,8 +1422,8 @@ const Configurator = ({takeCanvasScreenshot}) => {
     // console.log('Finish button clicked!');
 
     // Hide various elements
-    takeCanvasScreenshot(canvasRef1);
-    takeCanvasScreenshot(canvasRef2);
+    // takeCanvasScreenshot(canvasRef1.current);
+    // takeCanvasScreenshot(canvasRef2.current);
     monogrm.style.display = "none";
     document.getElementById("fabric").style.display = "none";
     document.getElementById("linigs").style.display = "none";

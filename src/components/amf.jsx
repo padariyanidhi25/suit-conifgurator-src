@@ -370,7 +370,7 @@ export function AmfnotchcollarWide(props) {
 }
 
 useGLTF.preload("./Coat GLB New modify/Noch AMF GLB/GLB/notch_collar_wide_AMF 2mm.glb");
-
+//  /////////
 export function Amf6mmDoublebreasted(props) {
   const { nodes, materials } = useGLTF(
     "./Coat GLB New modify/Noch AMF GLB/GLB/noch_double_breasted_AMF 6mm.glb"
@@ -418,6 +418,8 @@ useGLTF.preload(
   "./Coat GLB New modify/Noch AMF GLB/GLB/noch_double_breasted_AMF 6mm.glb"
 );
 
+
+//  /////////////
 export function Amf6mmwidedoubleBreastedwide(props) {
   const { nodes, materials } = useGLTF(
     "./Coat GLB New modify/Noch AMF GLB/GLB/noch_double_breasted_wide_AMF 6mm.glb"

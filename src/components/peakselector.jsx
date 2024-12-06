@@ -21,184 +21,204 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
       camera.position.lerp(targetPosition, lerpSpeed);
     });
   
-    // Event listener for 'confrmlapel' click to reset camera position
+    // Load initial fabric URL from localStorage
     useEffect(() => {
-      const handleConfirmLapelClick = () => {
-        // Set the camera back to its original position
-        setTargetPosition(new Vector3(0, 3.25, 8));
-  
-        // Hide the relevant UI components
-        document.getElementById('lapelContent').style.display = 'none';
-        document.getElementById('lapel-option').style.display = 'none';
-        document.getElementById('lapel-width').style.display = 'none';
-        document.getElementById('lapel-buttonhole').style.display = 'none';
-        document.getElementById('confirmlapel').style.display = 'none';
-        document.getElementById('monogrm').style.display = 'flex';
-      };
-  
-      const confrmlapelBtn = document.getElementById('confrmclosure');
-      if (confrmlapelBtn) {
-        confrmlapelBtn.addEventListener('click', handleConfirmLapelClick);
-      }
-  
-      return () => {
-        if (confrmlapelBtn) {
-          confrmlapelBtn.removeEventListener('click', handleConfirmLapelClick);
+        const selectedFabricUrl = localStorage.getItem("selectedFabricURL");
+        console.log("Initial fabric URL:", selectedFabricUrl);
+        if (selectedFabricUrl) {
+            setFabricURL(selectedFabricUrl);
+            setTimeout(() => {
+                eventEmitter.emit("applyFabric", { textureURL: selectedFabricUrl });
+            }, 100);
         }
-      };
-    }, []);
-    useEffect(() => {
-      const handleConfirmAmfClick = () => {
-        // Set the camera back to its original position
-        setTargetPosition(new Vector3(0, 3.25, 8));
-  
-    
-      };
-  
-      const confrmamfBtn = document.getElementById("confrmamf");
-      if (confrmamfBtn) {
-        confrmamfBtn.addEventListener("click", handleConfirmAmfClick);
-      }
-  
-      return () => {
-        if (confrmamfBtn) {
-          confrmamfBtn.removeEventListener("click", handleConfirmAmfClick);
-        }
-      };
     }, []);
 
+    // Listen for fabric changes
     useEffect(() => {
-      const handle2mmClick = () => {
-        setIs2mmSelected(true);
-        setIs6mmSelected(false); // Unselect 6mm when 2mm is selected
-        setTargetPosition(new Vector3(0, 5, 2));
+        const handleFabricChange = () => {
+            const selectedFabricUrl = localStorage.getItem("selectedFabricURL");
+            console.log("Fabric changed:", selectedFabricUrl);
+            if (selectedFabricUrl) {
+                setFabricURL(selectedFabricUrl);
+                eventEmitter.emit("applyFabric", { textureURL: selectedFabricUrl });
+            }
+        };
 
-      };
-  
-      const element2mm = document.getElementById("2mm");
-      if (element2mm) {
-        element2mm.addEventListener("click", handle2mmClick);
-      }
-  
-      return () => {
-        if (element2mm) {
-          element2mm.removeEventListener("click", handle2mmClick);
-        }
-      };
-    }, []);
-  
-    useEffect(() => {
-      const handle6mmClick = () => {
-        setIs6mmSelected(true);
-        setIs2mmSelected(false); // Unselect 2mm when 6mm is selected
-        setTargetPosition(new Vector3(0, 5, 2));
-
-      };
-  
-      const element6mm = document.getElementById("6mm");
-      if (element6mm) {
-        element6mm.addEventListener("click", handle6mmClick);
-      }
-  
-      return () => {
-        if (element6mm) {
-          element6mm.removeEventListener("click", handle6mmClick);
-        }
-      };
+        window.addEventListener("storage", handleFabricChange);
+        return () => window.removeEventListener("storage", handleFabricChange);
     }, []);
 
+    // Apply fabric when peak type changes
     useEffect(() => {
-      const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
-      console.log('fabric name: ', selectedFabricName);
-      setFabricURL(selectedFabricName);
-  
-      if (selectedFabricName) {
-        eventEmitter.emit('applyFabric', { textureURL: selectedFabricName });
-      }
-      console.log('fabric url: ', fabricURL);
-  
+        if (fabricURL) {
+            console.log("Applying fabric on peak change:", fabricURL);
+            eventEmitter.emit("applyFabric", { textureURL: fabricURL });
+        }
     }, [selectedPeak, fabricURL]);
-    useEffect(()=>{
-      const selectedbuttonurl=localStorage.getItem('ButtonURL')
-      console.log("button name:",selectedbuttonurl);
-      setButtonTextureURL(selectedbuttonurl)
-      if(selectedbuttonurl){
-        eventEmitter.emit("applyButtonTexture", { textureURL: selectedbuttonurl })    }
-      
-    },[selectedPeak, buttonTextureURL])
 
-    useEffect(() => {
-      localStorage.setItem('selectedPeak', selectedPeak);
-    }, [selectedPeak]);
-  
-   useEffect(() => {
-      const savedPeak = localStorage.getItem('selectedPeak');
-      if (savedPeak) {
-        setSelectedPeak(savedPeak);
-      }
-    }, []); 
+    const applyFabricTexture = () => {
+        if (fabricURL) {
+            eventEmitter.emit("applyFabric", { textureURL: fabricURL });
+        }
+    };
+
     useEffect(() => {
         const handlePeakChange = (peakType) => {
             setSelectedPeak(peakType);
             setTargetPosition(new Vector3(0, 3, 0));
-
-            // Emit the applyFabric event with the current fabric URL when the waistband changes
-            if (fabricURL) {
-              eventEmitter.emit("applyFabric", { textureURL: fabricURL });
+            const currentFabric = localStorage.getItem("selectedFabricURL");
+            if (currentFabric) {
+                console.log("Applying fabric on peak type change:", currentFabric);
+                eventEmitter.emit("applyFabric", { textureURL: currentFabric });
             }
-       
         };
 
         const singleBtn = document.getElementById('single_btn');
         const doubleBtn = document.getElementById('double_btn');
         const doubleBreastedBtn = document.getElementById('doublebreasted');
 
-        singleBtn.addEventListener('click', () => handlePeakChange('single'));
-        doubleBtn.addEventListener('click', () => handlePeakChange('double'));
-        doubleBreastedBtn.addEventListener('click', () => handlePeakChange('breasted'));
+        if (singleBtn && doubleBtn && doubleBreastedBtn) {
+            const handleSingle = () => handlePeakChange('single');
+            const handleDouble = () => handlePeakChange('double');
+            const handleBreasted = () => handlePeakChange('breasted');
+
+            singleBtn.addEventListener('click', handleSingle);
+            doubleBtn.addEventListener('click', handleDouble);
+            doubleBreastedBtn.addEventListener('click', handleBreasted);
+
+            return () => {
+                singleBtn.removeEventListener('click', handleSingle);
+                doubleBtn.removeEventListener('click', handleDouble);
+                doubleBreastedBtn.removeEventListener('click', handleBreasted);
+            };
+        }
+    }, []);
+
+    useEffect(() => {
+        const handle2mmClick = () => {
+            setIs2mmSelected(true);
+            setIs6mmSelected(false);
+            applyFabricTexture();
+            setTargetPosition(new Vector3(0, 5, 2));
+        };
+
+        const element2mm = document.getElementById("2mm");
+        if (element2mm) {
+            element2mm.addEventListener("click", handle2mmClick);
+            return () => element2mm.removeEventListener("click", handle2mmClick);
+        }
+    }, [fabricURL]);
+
+    useEffect(() => {
+        const handle6mmClick = () => {
+            setIs6mmSelected(true);
+            setIs2mmSelected(false);
+            applyFabricTexture();
+            setTargetPosition(new Vector3(0, 5, 2));
+        };
+
+        const element6mm = document.getElementById("6mm");
+        if (element6mm) {
+            element6mm.addEventListener("click", handle6mmClick);
+            return () => element6mm.removeEventListener("click", handle6mmClick);
+        }
+    }, [fabricURL]);
+
+    useEffect(() => {
+        const handleConfirmLapelClick = () => {
+            // Set the camera back to its original position
+            setTargetPosition(new Vector3(0, 3.25, 8));
+
+            // Hide the relevant UI components
+            document.getElementById('lapelContent').style.display = 'none';
+            document.getElementById('lapel-option').style.display = 'none';
+            document.getElementById('lapel-width').style.display = 'none';
+            document.getElementById('lapel-buttonhole').style.display = 'none';
+            document.getElementById('confirmlapel').style.display = 'none';
+            document.getElementById('monogrm').style.display = 'flex';
+        };
+
+        const confrmlapelBtn = document.getElementById('confrmclosure');
+        if (confrmlapelBtn) {
+            confrmlapelBtn.addEventListener('click', handleConfirmLapelClick);
+        }
 
         return () => {
-            singleBtn.removeEventListener('click', () => handlePeakChange('single'));
-            doubleBtn.removeEventListener('click', () => handlePeakChange('double'));
-            doubleBreastedBtn.removeEventListener('click', () => handlePeakChange('breasted'));
+            if (confrmlapelBtn) {
+                confrmlapelBtn.removeEventListener('click', handleConfirmLapelClick);
+            }
         };
-    }, [buttonTextureURL, fabricURL, selectedComponent]);
+    }, []);
+
+    useEffect(() => {
+        const handleConfirmAmfClick = () => {
+            // Set the camera back to its original position
+            setTargetPosition(new Vector3(0, 3.25, 8));
+        };
+
+        const confrmamfBtn = document.getElementById("confrmamf");
+        if (confrmamfBtn) {
+            confrmamfBtn.addEventListener("click", handleConfirmAmfClick);
+        }
+
+        return () => {
+            if (confrmamfBtn) {
+                confrmamfBtn.removeEventListener("click", handleConfirmAmfClick);
+            }
+        };
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('selectedPeak', selectedPeak);
+    }, [selectedPeak]);
+
+    useEffect(() => {
+        const savedPeak = localStorage.getItem('selectedPeak');
+        if (savedPeak) {
+            setSelectedPeak(savedPeak);
+        }
+    }, []);
+
+    useEffect(()=>{
+        const selectedbuttonurl=localStorage.getItem('ButtonURL')
+        console.log("button name:",selectedbuttonurl);
+        setButtonTextureURL(selectedbuttonurl)
+        if(selectedbuttonurl){
+            eventEmitter.emit("applyButtonTexture", { textureURL: selectedbuttonurl })    
+        }
+        
+    },[selectedPeak, buttonTextureURL])
 
     useEffect(() => {
         setSelectedPeak(defaultPeak); // Update selected peak when defaultPeak changes
     }, [defaultPeak]);
 
-    
-    useEffect(() => {
-      if (fabricURL) {
-        eventEmitter.emit("applyFabric", { textureURL: fabricURL });
-      }
-    }, [is2mmSelected, is6mmSelected]);
     return (
         <>
-            {/* {selectedComponent === 'Classic' && collarType === 'peak' || selectedPeak === 'double' &&<Peakdoublebtn />}
-            {selectedComponent === 'Breasted' && collarType === 'peak' || selectedPeak === 'breasted' &&<Peakdoublebreasted />} */}
-
-            {selectedPeak === 'single'  &&  collarType === 'peak' && (
-              <>
-              <Peaksinglebtn />
-              <Singlebutton/>
-              {is2mmSelected &&<AmfPeaksinglebtn2mm/>}
-              {is6mmSelected&&<AmfPeaksinglebtn6mm/>}
-              </>
+            {selectedPeak === 'single' && collarType === 'peak' && (
+                <>
+                    <Peaksinglebtn  />
+                    <Singlebutton/>
+                    {is2mmSelected &&<AmfPeaksinglebtn2mm />}
+                    {is6mmSelected&&<AmfPeaksinglebtn6mm />}
+                </>
             )}
-            {selectedPeak === 'double' &&  collarType === 'peak' && (<>
-            <Peakdoublebtn />
-            <Doublebutton/>
-            {is2mmSelected &&<AmfPeakDoublebtn2mm/>}
-            {is6mmSelected&&<AmfPeakDoublebtn6mm/>}
-            </>)}
-            {selectedPeak === 'breasted'  &&  collarType === 'peak' && (<>
-              <Peakdoublebreasted />
-              <Breastedbutton/>
-              {is2mmSelected &&<AmfPeakbreasted2mm/>}
-              {is6mmSelected&&<AmfPeakbreasted6mm/>}
-            </>)}
+            {selectedPeak === 'double' && collarType === 'peak' && (
+                <>
+                    <Peakdoublebtn  />
+                    <Doublebutton/>
+                    {is2mmSelected &&<AmfPeakDoublebtn2mm />}
+                    {is6mmSelected&&<AmfPeakDoublebtn6mm />}
+                </>
+            )}
+            {selectedPeak === 'breasted' && collarType === 'peak' && (
+                <>
+                    <Peakdoublebreasted  />
+                    <Breastedbutton/>
+                    {is2mmSelected &&<AmfPeakbreasted2mm />}
+                    {is6mmSelected&&<AmfPeakbreasted6mm />}
+                </>
+            )}
         </>
     );
 };

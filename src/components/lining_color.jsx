@@ -44,6 +44,7 @@ const LiningComponent = () => {
     if (selectedLiningColorUrl) {
       localStorage.removeItem('LiningColorURL');
     }
+    console.log(`Selected Lining Color: ${name}, Price: ${price}, Texture URL: ${textureURL}`);
 
     // Set the new selected values
     setSelectedLiningColor(name);

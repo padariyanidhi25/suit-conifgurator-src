@@ -44,6 +44,8 @@ function App() {
   const [canvasReady, setCanvasReady] = useState(false); // Tracks if the canvas is ready
   const canvasRef = useRef(null);
   const glRef = useRef();
+  const canvasRef1 = useRef(null);
+const canvasRef2 = useRef(null);
 
   const toggleCanvas = () => {
     setShowFirstCanvas((prev) => !prev);
@@ -56,22 +58,30 @@ function App() {
     });
   };
 
-  const takeScreenshot = () => {
-    if (!canvasRef.current) {
-      console.error("Canvas properties are not ready for screenshot.");
-      return;
-    }
+  // Add this function after your existing takeScreenshot function
+// const takeScreenshotOfBothCanvases = () => {
+//   // First canvas
+//   if (canvasRef1.current) {
+//     const { gl: gl1, scene: scene1, camera: camera1 } = canvasRef1.current;
+//     gl1.render(scene1, camera1);
+//     const imageURL1 = gl1.domElement.toDataURL("image/png");
+//     const link1 = document.createElement("a");
+//     link1.href = imageURL1;
+//     link1.download = "front-view-screenshot.png";
+//     link1.click();
+//   }
 
-    const { gl, scene, camera } = canvasRef.current;
-    gl.render(scene, camera);
-    const imageURL = gl.domElement.toDataURL("image/png");
-
-    const link = document.createElement("a");
-    link.href = imageURL;
-    link.download = "canvas-screenshot.png";
-    link.click();
-  };
-
+//   // Second canvas
+//   if (canvasRef2.current) {
+//     const { gl: gl2, scene: scene2, camera: camera2 } = canvasRef2.current;
+//     gl2.render(scene2, camera2);
+//     const imageURL2 = gl2.domElement.toDataURL("image/png");
+//     const link2 = document.createElement("a");
+//     link2.href = imageURL2;
+//     link2.download = "back-view-screenshot.png";
+//     link2.click();
+//   }
+// };
   useEffect(() => {
     getEntries()
       .then((result) => {
@@ -127,7 +137,7 @@ function App() {
     <CustomizationProvider>
       <div className="App" onWheel={handleWheel}>
         {/* <button
-          onClick={takeScreenshot}
+          onClick={takeScreenshotOfBothCanvases}
           className={`screenshot-btn bg-black text-white ${!canvasReady ? "opacity-50 cursor-not-allowed" : ""}`}
           disabled={!canvasReady} // Disable button if canvas isn't ready
         >
@@ -136,7 +146,7 @@ function App() {
         {showFirstCanvas && (
           <Canvas
             onCreated={({ gl, scene, camera }) => {
-              canvasRef.current = { gl, scene, camera };
+              canvasRef1.current = { gl, scene, camera }
               setCanvasReady(true); // Mark canvas as ready
             }}
           >
@@ -161,8 +171,13 @@ function App() {
             <Experience toggleCanvas={toggleCanvas} setFabricPrice={setFabricPrice} />
           </Canvas>
         )}
-        {!showFirstCanvas && <Canvas ref={glRef}><Experience /></Canvas>}
-        <Configurator takeScreenshot={takeScreenshot} />
+        {!showFirstCanvas &&   <Canvas
+    onCreated={({ gl, scene, camera }) => {
+      canvasRef2.current = { gl, scene, camera };
+    }}
+  ><Experience /></Canvas>}
+        <Configurator 
+   />
         <div className="storeprice absolute text-black z-[9] font-bold left-[2vw] top-[5vh] w-[5vw] h-[5vh] xs:w-[22vw] text-nowrap xs:left-1 xs:top-0 flex items-center justify-center">
           Total: ${Number(totalPrice).toFixed(2)}
         </div>

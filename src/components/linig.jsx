@@ -32,15 +32,15 @@ export function Linig(props) {
   }, [materials]);
   return (
     <group {...props} dispose={null} scale={20}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Full_Lined.geometry}
-        material={materials.Lining}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={0.01}
-      />
-    </group>
+    <mesh
+      castShadow
+      receiveShadow
+      geometry={nodes.Full_Lined.geometry}
+      material={materials.Lining}
+      rotation={[Math.PI / 2, 0, 0]}
+      scale={0.01}
+    />
+  </group>
   );
 }
 
@@ -122,15 +122,15 @@ export function Half_Linning(props) {
   }, [materials]);
   return (
     <group {...props} dispose={null} scale={20}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Half_Linning.geometry}
-        material={materials.Lining}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={0.01}
-      />
-    </group>
+    <mesh
+      castShadow
+      receiveShadow
+      geometry={nodes.Half_Linning.geometry}
+      material={materials.Lining}
+      rotation={[Math.PI / 2, 0, 0]}
+      scale={0.01}
+    />
+  </group>
   );
 }
 
