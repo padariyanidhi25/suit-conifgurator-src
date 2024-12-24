@@ -371,6 +371,8 @@ export function AmfnotchcollarWide(props) {
 
 useGLTF.preload("./Coat GLB New modify/Noch AMF GLB/GLB/notch_collar_wide_AMF 2mm.glb");
 //  /////////
+
+
 export function Amf6mmDoublebreasted(props) {
   const { nodes, materials } = useGLTF(
     "./Coat GLB New modify/Noch AMF GLB/GLB/noch_double_breasted_AMF 6mm.glb"
@@ -450,16 +452,16 @@ export function Amf6mmwidedoubleBreastedwide(props) {
     };
   }, [materials]);
   return (
-    <group {...props} dispose={null} scale={20}>
-    <mesh
-      castShadow
-      receiveShadow
-      geometry={nodes.noch_double_breasted_wide_suit_AMF.geometry}
-      material={materials.AMF}
-      rotation={[Math.PI / 2, 0, 0]}
-      scale={0.01}
-    />
-  </group>
+ <group {...props} dispose={null} scale={20}>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.noch_double_breasted_wide_suit_AMF.geometry}
+        material={materials.AMF}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+    </group>
   );
 }
 
@@ -545,15 +547,15 @@ export function Amf6mmdoublebuttonWide(props) {
   }, [materials]);
   return (
     <group {...props} dispose={null} scale={20}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.notch_double_button_wide_AMF.geometry}
-        material={materials.AMF}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={0.01}
-      />
-    </group>
+    <mesh
+      castShadow
+      receiveShadow
+      geometry={nodes.notch_double_button_wide_AMF.geometry}
+      material={materials.AMF}
+      rotation={[Math.PI / 2, 0, 0]}
+      scale={0.01}
+    />
+  </group>
   );
 }
 
@@ -592,15 +594,15 @@ export function Amf6mmsingleButton(props) {
   }, [materials]);
   return (
     <group {...props} dispose={null} scale={20}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.notch_single_button_AMF.geometry}
-        material={materials.AMF}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={0.01}
-      />
-    </group>
+    <mesh
+      castShadow
+      receiveShadow
+      geometry={nodes.notch_single_button_AMF.geometry}
+      material={materials.AMF}
+      rotation={[Math.PI / 2, 0, 0]}
+      scale={0.01}
+    />
+  </group>
   );
 }
 
