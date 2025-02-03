@@ -101,7 +101,7 @@ const ShawlSelector = ({ defaultShawl = 'wide' }) => {
 
     // Debugging log for selectedShawl
     useEffect(() => {
-        console.log('Selected Shawl:', selectedShawl);
+        // console.log('Selected Shawl:', selectedShawl);
     }, [selectedShawl]);
 
     return (

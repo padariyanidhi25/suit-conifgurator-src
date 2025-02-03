@@ -4,7 +4,7 @@ import eventEmitter from "./eventEmitter";
 import * as THREE from "three";
 
 export function Shawlsingle(props) {
-  const { nodes, materials } = useGLTF('./Coat GLB New modify/Shawl/single_shawl_button_wide.glb')
+  const { nodes, materials } = useGLTF('./GLB NEW (26-1-25)/Shawl/shawl_single_button_wide.glb')
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
       if (textureURL) {
@@ -32,29 +32,29 @@ export function Shawlsingle(props) {
   }, [materials]);
   return (
     <group {...props} dispose={null} scale={20}>
-    <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Mesh.geometry}
-        material={materials.Jacket_Collar}
-      />
-      <mesh castShadow receiveShadow geometry={nodes.Mesh_1.geometry} material={materials.Kaaj} />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Mesh_2.geometry}
-        material={materials.Jacket}
-      />
-    </group>
+     <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+        <mesh castShadow receiveShadow geometry={nodes.Mesh054.geometry} material={materials.AMF} />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Mesh054_1.geometry}
+          material={materials.Jacket_Collar}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Mesh054_2.geometry}
+          material={materials.Jacket}
+        />
+      </group>
   </group>
   )
 }
 
-useGLTF.preload('./Coat GLB New modify/Shawl/single_shawl_button_wide.glb')
+useGLTF.preload('./GLB NEW (26-1-25)/Shawl/shawl_single_button_wide.glb')
 
 export function Shawldouble(props) {
-    const { nodes, materials } = useGLTF('./Coat GLB New modify/Shawl/single_shawl_button.glb')
+    const { nodes, materials } = useGLTF('./GLB NEW (26-1-25)/Shawl/shawl_single_button.glb')
     useEffect(() => {
         const handleApplyFabric = ({ textureURL }) => {
           if (textureURL) {
@@ -83,28 +83,23 @@ export function Shawldouble(props) {
     return (
         <group {...props} dispose={null} scale={20}>
         <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.Mesh011.geometry}
-            material={materials.Jacket}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.Mesh011_1.geometry}
-            material={materials.Kaaj}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.Mesh011_2.geometry}
-            material={materials.Jacket}
-          />
-        </group>
+        <mesh castShadow receiveShadow geometry={nodes.Mesh053.geometry} material={materials.AMF} />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Mesh053_1.geometry}
+          material={materials.Jacket_Collar}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Mesh053_2.geometry}
+          material={materials.Jacket}
+        />
+      </group>
       </group>
     )
   }
   
-  useGLTF.preload('./Coat GLB New modify/Shawl/single_shawl_button.glb')
+  useGLTF.preload('./GLB NEW (26-1-25)/Shawl/shawl_single_button.glb')
   

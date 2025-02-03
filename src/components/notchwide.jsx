@@ -5,9 +5,7 @@ import * as THREE from "three";
 import { useButtonTexture } from "./Buttontexture";
 
 export function Notchbreastedwide(props) {
-  const { nodes, materials } = useGLTF(
-    "./Coat GLB New modify/Noch wide/noch_double_breasted_wide.glb"
-  );
+  const { nodes, materials } = useGLTF("./GLB NEW (26-1-25)/Noch Wide/noch_double_breasted_wide.glb");
 
   useButtonTexture(materials, "Button.003");
 
@@ -39,28 +37,28 @@ export function Notchbreastedwide(props) {
 
   return (
     <group {...props} dispose={null} scale={20}>
-      <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+     <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Mesh010.geometry}
+          geometry={nodes.Mesh024.geometry}
           material={materials.Jacket}
         />
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Mesh010_1.geometry}
-          material={materials.Kaaj}
+          geometry={nodes.Mesh024_1.geometry}
+          material={materials.AMF}
         />
       </group>
     </group>
   );
 }
 
-useGLTF.preload("./Coat GLB New modify/Noch wide/noch_double_breasted_wide.glb");
+useGLTF.preload("./GLB NEW (26-1-25)/Noch Wide/noch_double_breasted_wide.glb");
 
 export function NotchDoublebuttonwide(props) {
-    const { nodes, materials } = useGLTF( "./Coat GLB New modify/Noch wide/notch_double_button_wide.glb");
+    const { nodes, materials } = useGLTF( "./GLB NEW (26-1-25)/Noch Wide/notch_double_button_wide.glb");
   
     useButtonTexture(materials, "Button.003");
   
@@ -96,24 +94,24 @@ export function NotchDoublebuttonwide(props) {
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Mesh009.geometry}
+          geometry={nodes.Mesh023.geometry}
           material={materials.Jacket}
         />
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Mesh009_1.geometry}
-          material={materials.Kaaj}
+          geometry={nodes.Mesh023_1.geometry}
+          material={materials.AMF}
         />
       </group>
     </group>
     );
   }
   
-  useGLTF.preload("./Coat GLB New modify/Noch wide/notch_double_button_wide.glb");
+  useGLTF.preload("./GLB NEW (26-1-25)/Noch Wide/notch_double_button_wide.glb");
 
   export function NotchSingleButtonWide(props) {
-    const { nodes, materials } = useGLTF( "./Coat GLB New modify/Noch wide/notch_single_button_wide.glb");
+    const { nodes, materials } = useGLTF( "./GLB NEW (26-1-25)/Noch Wide/notch_single_button_wide.glb");
   
     useButtonTexture(materials, "Button.003");
   
@@ -145,22 +143,22 @@ export function NotchDoublebuttonwide(props) {
   
     return (
         <group {...props} dispose={null} scale={20}>
-        <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.Mesh007.geometry}
-            material={materials.Jacket}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.Mesh007_1.geometry}
-            material={materials.Kaaj}
-          />
-        </group>
+       <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Mesh022.geometry}
+          material={materials.Jacket}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Mesh022_1.geometry}
+          material={materials.AMF}
+        />
+      </group>
       </group>
     );
   }
   
-  useGLTF.preload("./Coat GLB New modify/Noch wide/notch_single_button_wide.glb");
+  useGLTF.preload("./GLB NEW (26-1-25)/Noch Wide/notch_single_button_wide.glb");

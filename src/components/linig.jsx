@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
-import eventEmitter from './eventEmitter';
-
+import eventEmitter from "./eventEmitter";
 
 export function Linig(props) {
-  const { nodes, materials } = useGLTF(
-    "./Coat GLB New modify/Lining/Full_Linning.glb"
-  );
+  const { nodes, materials } = useGLTF("./GLB NEW (26-1-25)/Lining/Full__Lined.glb");
   useEffect(() => {
     const handleApplyLiningColor = ({ textureURL }) => {
       if (textureURL) {
@@ -32,26 +29,22 @@ export function Linig(props) {
   }, [materials]);
   return (
     <group {...props} dispose={null} scale={20}>
-    <mesh
-      castShadow
-      receiveShadow
-      geometry={nodes.Full_Lined.geometry}
-      material={materials.Lining}
-      rotation={[Math.PI / 2, 0, 0]}
-      scale={0.01}
-    />
-  </group>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Full__Lined.geometry}
+        material={materials.Lining}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+    </group>
   );
 }
 
-useGLTF.preload(
-  "./Coat GLB New modify/Lining/Full_Linning.glb"
-);
+useGLTF.preload("./GLB NEW (26-1-25)/Lining/Full__Lined.glb");
 
 export function Butterfly_Lining(props) {
-  const { nodes, materials } = useGLTF(
-    "./Coat GLB New modify/Lining/Butterfly_Lining.glb"
-  );
+  const { nodes, materials } = useGLTF( "./GLB NEW (26-1-25)/Lining/Butterfly_Lining.glb" );
   useEffect(() => {
     const handleApplyLiningColor = ({ textureURL }) => {
       if (textureURL) {
@@ -88,18 +81,14 @@ export function Butterfly_Lining(props) {
   );
 }
 
-useGLTF.preload(
-  "./Coat GLB New modify/Lining/Butterfly_Lining.glb"
-);
+useGLTF.preload("./GLB NEW (26-1-25)/Lining/Butterfly_Lining.glb");
 
 export function Half_Linning(props) {
-  const { nodes, materials } = useGLTF(
-    "./Coat GLB New modify/Lining/Half_Linning.glb"
-  );
+  const { nodes, materials } = useGLTF("./GLB NEW (26-1-25)/Lining/Half_Linning.glb" );
   useEffect(() => {
     const handleApplyLiningColor = ({ textureURL }) => {
-      console.log('gfhudg');
-      
+      // console.log('gfhudg');
+
       if (textureURL) {
         const loader = new THREE.TextureLoader();
         loader.load(textureURL, (texture) => {
@@ -122,18 +111,16 @@ export function Half_Linning(props) {
   }, [materials]);
   return (
     <group {...props} dispose={null} scale={20}>
-    <mesh
-      castShadow
-      receiveShadow
-      geometry={nodes.Half_Linning.geometry}
-      material={materials.Lining}
-      rotation={[Math.PI / 2, 0, 0]}
-      scale={0.01}
-    />
-  </group>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Half_Linning.geometry}
+        material={materials.Lining}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+    </group>
   );
 }
 
-useGLTF.preload(
-  "./Coat GLB New modify/Lining/Half_Linning.glb"
-);
+useGLTF.preload("./GLB NEW (26-1-25)/Lining/Half_Linning.glb");

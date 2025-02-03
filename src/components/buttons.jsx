@@ -61,7 +61,7 @@ const BtnsComp = () => {
     localStorage.setItem('ButtonURL', textureURL);
     // Emit event
     eventEmitter.emit('buttonSelected', { textureURL, price });
-    console.log(name, textureURL, price);
+    // console.log(name, textureURL, price);
   };
 
   return (

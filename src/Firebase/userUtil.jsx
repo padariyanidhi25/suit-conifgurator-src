@@ -54,7 +54,7 @@ export const addOrder = async (orderData) => {
         // Create a new document in the 'orders' collection
         const orderRef = doc(collection(firestore, 'orders'));
         await setDoc(orderRef, orderData);
-        console.log("Order successfully written!");
+        // console.log("Order successfully written!");
     } catch (error) {
         console.error("Error adding order: ", error);
     }

@@ -131,17 +131,17 @@ const NotchwideSelector = ({
 
   useEffect(() => {
     const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
-    console.log("fabric name: ", selectedFabricName);
+    // console.log("fabric name: ", selectedFabricName);
     setFabricURL(selectedFabricName);
 
     if (selectedFabricName) {
       eventEmitter.emit("applyFabric", { textureURL: selectedFabricName });
     }
-    console.log("fabric url: ", fabricURL);
+    // console.log("fabric url: ", fabricURL);
   }, [selectedwideNotch, fabricURL]);
   useEffect(() => {
     const selectedbuttonurl = localStorage.getItem("ButtonURL");
-    console.log("button name:", selectedbuttonurl);
+    // console.log("button name:", selectedbuttonurl);
     setButtonTextureURL(selectedbuttonurl);
     if (selectedbuttonurl) {
       eventEmitter.emit("applyButtonTexture", {
@@ -200,7 +200,7 @@ const NotchwideSelector = ({
   }, [is2mmSelected, is6mmSelected]);
 
   // Conditional rendering based on selectedComponent and collarType
-  console.log("notchwide", collarType, selectedwideNotch);
+  // console.log("notchwide", collarType, selectedwideNotch);
 
   return (
     <>

@@ -447,7 +447,7 @@ const Configurator = ({takeCanvasScreenshot}) => {
     document.getElementById("waist").style.display = "none";
   });
   document.getElementById("collarfelt").addEventListener("click", () => {
-    console.log("click");
+    // console.log("click");
     monogrm.style.display = "none";
     document.getElementById("collar-option").style.display = "flex";
     document.getElementById("confirmcolar").style.display = "block";
@@ -780,16 +780,16 @@ const Configurator = ({takeCanvasScreenshot}) => {
     document.getElementById("waistcoatoption").style.display = "flex";
     document.getElementById("waist").style.display = "none";
   });
-  document.getElementById("closure-waistcoat").addEventListener("click", () => {
-    document.getElementById("waistcoat-closure").style.display = "flex";
-    document.getElementById("waistcoatoption").style.display = "none";
-    document.getElementById("confirmclosurew").style.display = "block";
-  });
-  document.getElementById("confrmclosurew").addEventListener("click", () => {
-    document.getElementById("waistcoat-closure").style.display = "none";
-    document.getElementById("confirmclosurew").style.display = "none";
-    document.getElementById("waistcoatoption").style.display = "flex";
-  });
+  // document.getElementById("closure-waistcoat").addEventListener("click", () => {
+  //   document.getElementById("waistcoat-closure").style.display = "flex";
+  //   document.getElementById("waistcoatoption").style.display = "none";
+  //   document.getElementById("confirmclosurew").style.display = "block";
+  // });
+  // document.getElementById("confrmclosurew").addEventListener("click", () => {
+  //   document.getElementById("waistcoat-closure").style.display = "none";
+  //   document.getElementById("confirmclosurew").style.display = "none";
+  //   document.getElementById("waistcoatoption").style.display = "flex";
+  // });
   document.getElementById("style-waistcoat").addEventListener("click", () => {
     document.getElementById("waistcoat-style").style.display = "flex";
     document.getElementById("waistcoatoption").style.display = "none";
@@ -867,7 +867,7 @@ const Configurator = ({takeCanvasScreenshot}) => {
 
   initialsInput.addEventListener("input", () => {
     const inputValue = initialsInput.value.trim().length;
-    console.log(initialsInput.value);
+    // console.log(initialsInput.value);
 
     if (inputValue > 0) {
       nextButton.classList.add("bg-gray-300"); // Apply gray background
@@ -1395,7 +1395,7 @@ const Configurator = ({takeCanvasScreenshot}) => {
         mobileNo,
       );
     } else {
-      console.log("Result div not found");
+      // console.log("Result div not found");
     }
   });
 
@@ -1478,7 +1478,7 @@ const Configurator = ({takeCanvasScreenshot}) => {
 
   const savedCanvas = localStorage.getItem("selectedCanvas");
   if (savedCanvas) {
-    console.log("Previously selected canvas:", savedCanvas);
+    // console.log("Previously selected canvas:", savedCanvas);
   }
   //save shoulder option in local
 
@@ -1496,7 +1496,7 @@ const Configurator = ({takeCanvasScreenshot}) => {
 
   const savedShoulder = localStorage.getItem("selectedShoulder");
   if (savedShoulder) {
-    console.log("Previously selected canvas:", savedShoulder);
+    // console.log("Previously selected canvas:", savedShoulder);
   }
 
   //save amf option in local
@@ -1512,7 +1512,7 @@ const Configurator = ({takeCanvasScreenshot}) => {
 
   const savedAmf = localStorage.getItem("selectedAmf");
   if (savedAmf) {
-    console.log("Previously selected canvas:", savedAmf);
+    // console.log("Previously selected canvas:", savedAmf);
   }
 
   jacketsize.addEventListener("click", () => {
@@ -1557,7 +1557,7 @@ const Configurator = ({takeCanvasScreenshot}) => {
           jacketSizeDisplay.textContent = `Selected Jacket Size: ${selectedValue}`; // Update with selected size
         }
 
-        console.log("Stored in localStorage:", selectedValue); // Debugging
+        // console.log("Stored in localStorage:", selectedValue); // Debugging
       });
     });
 
@@ -1580,7 +1580,7 @@ const Configurator = ({takeCanvasScreenshot}) => {
         // Store in local storage
         localStorage.setItem("selectedTrouserSize", selectedValue);
 
-        console.log("Stored in localStorage:", selectedValue); // For debugging
+        // console.log("Stored in localStorage:", selectedValue); // For debugging
 
         // Update the trouser size display
         const trouserSizeDisplay = document.getElementById("trousersize"); // Adjust the ID as needed

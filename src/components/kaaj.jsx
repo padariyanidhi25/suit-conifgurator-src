@@ -4,15 +4,14 @@ import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export function Kaaj(props) {
-  const { nodes, materials } = useGLTF('./Coat GLB New modify/Noch/Noch_Collar_kaaj.glb')
+  const { nodes, materials } = useGLTF('./GLB NEW (26-1-25)/Noch/noch_collar_kaaj.glb')
   return (
     <group {...props} dispose={null} scale={20}>
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.noch_collar_kaaj.geometry}
-        material={materials.Kaaj}
-        position={[0.017, 0.203, 0.009]}
+        geometry={nodes.noch_kaaj.geometry}
+        material={materials.AMF}
         rotation={[Math.PI / 2, 0, 0]}
         scale={0.01}
       />
@@ -20,18 +19,17 @@ export function Kaaj(props) {
 )
 }
 
-useGLTF.preload('./Coat GLB New modify/Noch/Noch_Collar_kaaj.glb')
+useGLTF.preload('./GLB NEW (26-1-25)/Noch/noch_collar_kaaj.glb')
 
 export function NotchwideKaaj(props) {
-  const { nodes, materials } = useGLTF('./Coat GLB New modify/Noch wide/noch_kaaj_wide.glb')
+  const { nodes, materials } = useGLTF('./GLB NEW (26-1-25)/Noch Wide/noch_Colar kaaj_wide.glb')
   return (
     <group {...props} dispose={null} scale={20}>
-      <mesh
+       <mesh
         castShadow
         receiveShadow
         geometry={nodes.noch_kaaj_wide1.geometry}
-        material={materials.Kaaj}
-        position={[0.002, -0.003, 0.002]}
+        material={materials.AMF}
         rotation={[Math.PI / 2, 0, 0]}
         scale={0.01}
       />
@@ -39,6 +37,6 @@ export function NotchwideKaaj(props) {
   )
 }
 
-useGLTF.preload('./Coat GLB New modify/Noch wide/noch_kaaj_wide.glb')
+useGLTF.preload('./GLB NEW (26-1-25)/Noch Wide/noch_Colar kaaj_wide.glb')
 
 

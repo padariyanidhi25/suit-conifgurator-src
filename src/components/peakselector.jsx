@@ -24,7 +24,7 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
     // Load initial fabric URL from localStorage
     useEffect(() => {
         const selectedFabricUrl = localStorage.getItem("selectedFabricURL");
-        console.log("Initial fabric URL:", selectedFabricUrl);
+        // console.log("Initial fabric URL:", selectedFabricUrl);
         if (selectedFabricUrl) {
             setFabricURL(selectedFabricUrl);
             setTimeout(() => {
@@ -51,7 +51,7 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
     // Apply fabric when peak type changes
     useEffect(() => {
         if (fabricURL) {
-            console.log("Applying fabric on peak change:", fabricURL);
+            // console.log("Applying fabric on peak change:", fabricURL);
             eventEmitter.emit("applyFabric", { textureURL: fabricURL });
         }
     }, [selectedPeak, fabricURL]);
@@ -67,8 +67,8 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
             setSelectedPeak(peakType);
             setTargetPosition(new Vector3(0, 3, 0));
             const currentFabric = localStorage.getItem("selectedFabricURL");
+            console.log("Applying fabric on peak type change:", currentFabric);
             if (currentFabric) {
-                console.log("Applying fabric on peak type change:", currentFabric);
                 eventEmitter.emit("applyFabric", { textureURL: currentFabric });
             }
         };
@@ -181,7 +181,7 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
 
     useEffect(()=>{
         const selectedbuttonurl=localStorage.getItem('ButtonURL')
-        console.log("button name:",selectedbuttonurl);
+        // console.log("button name:",selectedbuttonurl);
         setButtonTextureURL(selectedbuttonurl)
         if(selectedbuttonurl){
             eventEmitter.emit("applyButtonTexture", { textureURL: selectedbuttonurl })    

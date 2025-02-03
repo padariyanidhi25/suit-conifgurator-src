@@ -51,13 +51,13 @@ const HemSelector = () => {
   // Emit applyFabric event when selectedHem or fabricURL changes
   useEffect(() => {
     const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
-    console.log('fabric name: ', selectedFabricName);
+    // console.log('fabric name: ', selectedFabricName);
     setFabricURL(selectedFabricName);
 
     if (selectedFabricName) {
       eventEmitter.emit('applyFabric', { textureURL: selectedFabricName });
     }
-    console.log('fabric url: ', fabricURL);
+    // console.log('fabric url: ', fabricURL);
 
   }, [selectedHem, fabricURL]);
 

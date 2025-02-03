@@ -99,7 +99,7 @@ const LinigDisplay = () => {
   useEffect(() => {
     const selectedFabricName = localStorage.getItem("LiningColorURL");
     setLiningURL(selectedFabricName);
-    console.log("linig color",selectedFabricName);
+    // console.log("linig color",selectedFabricName);
     
   }, [linigURL]); // Run whenever linigURL changes
 

@@ -117,12 +117,14 @@ const CollarSelector = () => {
   useEffect(() => {
     const handleCollarChange = (collarType) => {
       setSelectedCollar(collarType);
-      console.log(collarType,"collarType");
-      
       setTargetPosition(new Vector3(0, 7, -15));
-
-      if (fabricURL) {
-        eventEmitter.emit("applyFabric", { textureURL: fabricURL });
+    
+      const currentFabric = localStorage.getItem("selectedFabricURL");
+      console.log("Applying fabric on collar type change:", currentFabric, collarType);
+      
+      if (currentFabric) {
+        setFabricURL(currentFabric); // Update the fabric URL
+        eventEmitter.emit("applyFabric", { textureURL: currentFabric });
       }
     };
 

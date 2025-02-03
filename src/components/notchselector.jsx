@@ -16,6 +16,7 @@ import {
   AmfnotchDouble,
   Amfnotchsingle,
 } from "./amf";
+import { texture } from "three/examples/jsm/nodes/Nodes.js";
 
 const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
   const [selectedNotch, setSelectedNotch] = useState(defaultNotch);
@@ -26,7 +27,7 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
   const [targetPosition, setTargetPosition] = useState(new Vector3(0, 3.25, 8)); // Default camera position
   const { camera } = useThree(); // Access the camera
   const lerpSpeed = 0.05; // Speed for camera transition
-
+  
   // This function will smoothly move the camera to a target position
   useFrame(() => {
     camera.position.lerp(targetPosition, lerpSpeed);
@@ -56,6 +57,8 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
     };
   }, []);
   const applyFabricTexture = () => {
+    console.log('notch selector', fabricURL);
+    
     if (fabricURL) {
         eventEmitter.emit("applyFabric", { textureURL: fabricURL });
     }

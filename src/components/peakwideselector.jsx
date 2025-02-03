@@ -6,7 +6,6 @@ import { useThree, useFrame } from '@react-three/fiber';
 import { PeakwideBreasted, PeakwideDouble, PeakWidesingle } from './peakwide';
 import { Breastedbutton, Doublebutton, Singlebutton } from './buttonglb';
 import { AmfPeakbreasted2mm, AmfPeakbreasted6mm, AmfPeakDoublebtn2mmWide, AmfPeakDoublebtn6mmWide, AmfPeaksinglebtn2mm, AmfPeaksinglebtn2mmWide, AmfPeaksinglebtn6mmWide } from './amfpeak';
-import { PeakwideKaaj } from './Kaaj_Peak';
 
 const PeakWideSelector = ({ defaultwidePeak, collarType, selectedComponent }) => {
     const [selectedwidePeak, setSelectedwidePeak] = useState(defaultwidePeak);
@@ -112,18 +111,18 @@ const PeakWideSelector = ({ defaultwidePeak, collarType, selectedComponent }) =>
 
     useEffect(() => {
       const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
-      console.log('fabric name: ', selectedFabricName);
+      // console.log('fabric name: ', selectedFabricName);
       setFabricURL(selectedFabricName);
   
       if (selectedFabricName) {
         eventEmitter.emit('applyFabric', { textureURL: selectedFabricName });
       }
-      console.log('fabric url: ', fabricURL);
+      // console.log('fabric url: ', fabricURL);
   
     }, [selectedwidePeak, fabricURL]);
     useEffect(()=>{
       const selectedbuttonurl=localStorage.getItem('ButtonURL')
-      console.log("button name:",selectedbuttonurl);
+      // console.log("button name:",selectedbuttonurl);
       setButtonTextureURL(selectedbuttonurl)
       if(selectedbuttonurl){
         eventEmitter.emit("applyButtonTexture", { textureURL: selectedbuttonurl })    }
@@ -141,7 +140,7 @@ const PeakWideSelector = ({ defaultwidePeak, collarType, selectedComponent }) =>
       }
     }, []); 
     useEffect(() => {
-        const handlePeakChange = (peakType) => {
+        const handlePeakwideChange = (peakType) => {
           setSelectedwidePeak(peakType);
             setTargetPosition(new Vector3(0, 3, 0));
 
@@ -156,14 +155,14 @@ const PeakWideSelector = ({ defaultwidePeak, collarType, selectedComponent }) =>
         const doubleBtn = document.getElementById('double_btn');
         const doubleBreastedBtn = document.getElementById('doublebreasted');
 
-        singleBtn.addEventListener('click', () => handlePeakChange('single'));
-        doubleBtn.addEventListener('click', () => handlePeakChange('double'));
-        doubleBreastedBtn.addEventListener('click', () => handlePeakChange('breasted'));
+        singleBtn.addEventListener('click', () => handlePeakwideChange('single'));
+        doubleBtn.addEventListener('click', () => handlePeakwideChange('double'));
+        doubleBreastedBtn.addEventListener('click', () => handlePeakwideChange('breasted'));
 
         return () => {
-            singleBtn.removeEventListener('click', () => handlePeakChange('single'));
-            doubleBtn.removeEventListener('click', () => handlePeakChange('double'));
-            doubleBreastedBtn.removeEventListener('click', () => handlePeakChange('breasted'));
+            singleBtn.removeEventListener('click', () => handlePeakwideChange('single'));
+            doubleBtn.removeEventListener('click', () => handlePeakwideChange('double'));
+            doubleBreastedBtn.removeEventListener('click', () => handlePeakwideChange('breasted'));
         };
     }, []);
 

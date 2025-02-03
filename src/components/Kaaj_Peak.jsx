@@ -3,39 +3,37 @@ import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export function Kaaj_Peak(props) {
-  const { nodes, materials } = useGLTF('./Coat GLB New modify/Peak/Peak_Collar_kaaj.glb')
+  const { nodes, materials } = useGLTF('./GLB NEW (26-1-25)/Peak/Peak_Collar Kaaj.glb')
   return (
     <group {...props} dispose={null} scale={20}>
     <mesh
-      castShadow
-      receiveShadow
-      geometry={nodes.Peak_collar_kaaj.geometry}
-      material={materials.Kaaj}
-      position={[0.019, 0.205, 0.007]}
-      rotation={[2.093, 0.606, -0.859]}
-      scale={0.01}
-    />
+        castShadow
+        receiveShadow
+        geometry={nodes.Peak_Kaaj.geometry}
+        material={materials.AMF}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
   </group>
   )
 }
 
-useGLTF.preload('./Coat GLB New modify/Peak/Peak_Collar_kaaj.glb')
+useGLTF.preload('./GLB NEW (26-1-25)/Peak/Peak_Collar Kaaj.glb')
 
 export function PeakwideKaaj(props) {
-  const { nodes, materials } = useGLTF('./Coat GLB New modify/Noch wide/untitled.glb')
+  const { nodes, materials } = useGLTF('./GLB NEW (26-1-25)/Peak Wide/peak_collar kaaj_wide.glb')
   return (
     <group {...props} dispose={null} scale={20}>
-    <mesh
-      castShadow
-      receiveShadow
-      geometry={nodes.peak_kaaj_wide1.geometry}
-      material={materials['Kaaj.001']}
-      position={[-0.165, 0.159, -0.073]}
-      rotation={[2.495, -1.167, 1.917]}
-      scale={0.01}
-    />
+     <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.peak_kaaj_wide.geometry}
+        material={materials.AMF}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
   </group>
   )
 }
 
-useGLTF.preload('./Coat GLB New modify/Noch wide/untitled.glb')
+useGLTF.preload('./GLB NEW (26-1-25)/Peak Wide/peak_collar kaaj_wide.glb')

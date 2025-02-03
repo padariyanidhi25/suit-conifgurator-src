@@ -3,9 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import eventEmitter from "./eventEmitter";
 export function Double_vent(props) {
-  const { nodes, materials } = useGLTF(
-    "./Coat GLB New modify/Vent/Double_vent.glb"
-  );
+  const { nodes, materials } = useGLTF("./GLB NEW (26-1-25)/Vent/Double_vent.glb");
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
       if (textureURL) {
@@ -33,7 +31,7 @@ export function Double_vent(props) {
   }, [materials]);
   return (
     <group {...props} dispose={null} scale={20}>
-      <mesh
+       <mesh
         castShadow
         receiveShadow
         geometry={nodes.Double_vent.geometry}
@@ -45,4 +43,4 @@ export function Double_vent(props) {
   );
 }
 
-useGLTF.preload("./Coat GLB New modify/Vent/Double_vent.glb");
+useGLTF.preload("./GLB NEW (26-1-25)/Vent/Double_vent.glb");

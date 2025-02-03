@@ -57,7 +57,7 @@ const Experience = ({ toggleCanvas }) => {
   const [showTrouserPocketSelector, setShowTrouserPocketSelector] =
     useState(false);
   const [showWaistband, setShowWaistband] = useState(false);
-  const [showKaaj, setShowKaaj] = useState(false);
+  const [showKaaj, setShowKaaj] = useState(true);
   const [showPKaaj, setPShowKaaj] = useState(false);
   const [shownwKaaj, setShownwKaaj] = useState(false);
   const [showPwKaaj, setPwShowKaaj] = useState(false);
@@ -147,7 +147,7 @@ const Experience = ({ toggleCanvas }) => {
       document.querySelector(".App").style.top = "7vh";
       finish.style.display = "block";
       confirm = true;
-      console.log("Selected Component:", selectedComponent);
+      // console.log("Selected Component:", selectedComponent);
       orientationChecker();
     };
 
@@ -282,7 +282,7 @@ const Experience = ({ toggleCanvas }) => {
   }
 
   window.onresize = orientationChecker;
-  console.log(collarType);
+  // console.log(collarType);
 
   return (
     <>
@@ -292,16 +292,16 @@ const Experience = ({ toggleCanvas }) => {
         {shoulder && <ShoulderSelector />}
         {showUpperPocketSelector && <UpperpocketSelector />}
         {collarType === "notch" && showKaaj ? (
-          <Kaaj />
-        ) : (
-          showPKaaj && <Kaaj_Peak />
-        )}
-        {collarType === "notchwide" && shownwKaaj ? (
-          <NotchwideKaaj />
-        ) : (
-          showPwKaaj && <PeakwideKaaj />
-        )}
-
+  <Kaaj />
+) : collarType === "peak" && showPKaaj ? (
+  <Kaaj_Peak />
+) : null}
+         {/* {collarType === 'notch' && showKaaj === <Kaaj/>} */}
+         {collarType === "notchwide" && shownwKaaj ? (
+  <NotchwideKaaj />
+) : collarType === "peakwide" && showPwKaaj ? (
+  <PeakwideKaaj />
+) : null}
         {showvent && <Double_vent />}
         {showPleatSelector && <PleatSelector />}
         {showTrouserPocketSelector && <TrouserPocketSelector />}

@@ -5,7 +5,7 @@ import * as THREE from "three";
 
 export function AmfnotchwideSingle(props) {
   const { nodes, materials } = useGLTF(
-    "./Coat GLB New modify/Noch AMF GLB/GLB/notch_single_button_wide_AMF 2mm.glb"
+    "./GLB NEW (26-1-25)/AMF/Noch Wide AMF/notch_single_button_wide_AMF 2mm.glb"
   );
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -35,24 +35,24 @@ export function AmfnotchwideSingle(props) {
   return (
     <group {...props} dispose={null} scale={20}>
     <mesh
-      castShadow
-      receiveShadow
-      geometry={nodes.notch_single_button_wide_AMF.geometry}
-      material={materials.AMF}
-      rotation={[Math.PI / 2, 0, 0]}
-      scale={0.01}
-    />
+        castShadow
+        receiveShadow
+        geometry={nodes.notch_single_button_wide_AMF2.geometry}
+        material={materials.AMF}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
   </group>
   );
 }
 
 useGLTF.preload(
-  "./Coat GLB New modify/Noch AMF GLB/GLB/notch_single_button_wide_AMF 2mm.glb"
+  "./GLB NEW (26-1-25)/AMF/Noch Wide AMF/notch_single_button_wide_AMF 2mm.glb"
 );
 
 export function Amfnotchsingle(props) {
   const { nodes, materials } = useGLTF(
-    "./Coat GLB New modify/Noch AMF GLB/GLB/notch_single_button_AMF 2mm.glb"
+    "./GLB NEW (26-1-25)/AMF/Noch AMF/notch_single_button_AMF 2mm.glb"
   );
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -82,24 +82,24 @@ export function Amfnotchsingle(props) {
   return (
     <group {...props} dispose={null} scale={20}>
     <mesh
-      castShadow
-      receiveShadow
-      geometry={nodes.notch_single_button_AMF.geometry}
-      material={materials.AMF}
-      rotation={[Math.PI / 2, 0, 0]}
-      scale={0.01}
-    />
+        castShadow
+        receiveShadow
+        geometry={nodes.notch_single_button_AMF1.geometry}
+        material={materials.AMF}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
   </group>
   );
 }
 
 useGLTF.preload(
-  "./Coat GLB New modify/Noch AMF GLB/GLB/notch_single_button_AMF 2mm.glb"
+  "./GLB NEW (26-1-25)/AMF/Noch AMF/notch_single_button_AMF 2mm.glb"
 );
 
 export function AmfnotchwideDouble(props) {
   const { nodes, materials } = useGLTF(
-    "./Coat GLB New modify/Noch AMF GLB/GLB/notch_double_button_wide_AMF 2mm.glb"
+    "./GLB NEW (26-1-25)/AMF/Noch Wide AMF/notch_double_button_wide_AMF 2mm.glb"
   );
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -129,24 +129,24 @@ export function AmfnotchwideDouble(props) {
   return (
     <group {...props} dispose={null} scale={20}>
     <mesh
-      castShadow
-      receiveShadow
-      geometry={nodes.notch_double_button_wide_AMF.geometry}
-      material={materials.AMF}
-      rotation={[Math.PI / 2, 0, 0]}
-      scale={0.01}
-    />
+        castShadow
+        receiveShadow
+        geometry={nodes.notch_double_button_wide_AMF1.geometry}
+        material={materials.AMF}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
   </group>
   );
 }
 
 useGLTF.preload(
-  "./Coat GLB New modify/Noch AMF GLB/GLB/notch_double_button_wide_AMF 2mm.glb"
+  "./GLB NEW (26-1-25)/AMF/Noch Wide AMF/notch_double_button_wide_AMF 2mm.glb"
 );
 
 export function AmfnotchDouble(props) {
   const { nodes, materials } = useGLTF(
-    "./Coat GLB New modify/Noch AMF GLB/GLB/notch_double_button_AMF 2mm.glb"
+    "./GLB NEW (26-1-25)/AMF/Noch AMF/notch_double_button_AMF 2mm.glb"
   );
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -178,7 +178,7 @@ export function AmfnotchDouble(props) {
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.notch_double_button_AMF.geometry}
+        geometry={nodes.notch_double_button_AMF1.geometry}
         material={materials.AMF}
         rotation={[Math.PI / 2, 0, 0]}
         scale={0.01}
@@ -188,11 +188,11 @@ export function AmfnotchDouble(props) {
 }
 
 useGLTF.preload(
-  "./Coat GLB New modify/Noch AMF GLB/GLB/notch_double_button_AMF 2mm.glb"
+  "./GLB NEW (26-1-25)/AMF/Noch AMF/notch_double_button_AMF 2mm.glb"
 );
 
 export function AmfnotchBreasted(props) {
-  const { nodes, materials } = useGLTF("./Coat GLB New modify/Noch AMF GLB/GLB/noch_double_breasted_AMF 2mm.glb");
+  const { nodes, materials } = useGLTF("./GLB NEW (26-1-25)/AMF/Noch AMF/noch_double_breasted_suit_AMF 2mm.glb");
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
       if (textureURL) {
@@ -220,23 +220,23 @@ export function AmfnotchBreasted(props) {
   }, [materials]);
   return (
     <group {...props} dispose={null} scale={20}>
-    <mesh
-      castShadow
-      receiveShadow
-      geometry={nodes.noch_double_breasted_suit_AMF.geometry}
-      material={materials.AMF}
-      rotation={[Math.PI / 2, 0, 0]}
-      scale={0.01}
-    />
-  </group>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.noch_double_breasted_suit_AMF1.geometry}
+        material={materials.AMF}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+    </group>
   );
 }
 
-useGLTF.preload("./Coat GLB New modify/Noch AMF GLB/GLB/noch_double_breasted_AMF 2mm.glb");
+useGLTF.preload("./GLB NEW (26-1-25)/AMF/Noch AMF/noch_double_breasted_suit_AMF 2mm.glb");
 
 export function AmfnotchBreastedwide(props) {
   const { nodes, materials } = useGLTF(
-    "./Coat GLB New modify/Noch AMF GLB/GLB/noch_double_breasted_wide_AMF 2mm.glb"
+    "./GLB NEW (26-1-25)/AMF/Noch Wide AMF/noch_double_breasted_wide_suit_AMF 2mm.glb"
   );
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -266,24 +266,24 @@ export function AmfnotchBreastedwide(props) {
   return (
     <group {...props} dispose={null} scale={20}>
     <mesh
-      castShadow
-      receiveShadow
-      geometry={nodes.noch_double_breasted_wide_suit_AMF.geometry}
-      material={materials.AMF}
-      rotation={[Math.PI / 2, 0, 0]}
-      scale={0.01}
-    />
+        castShadow
+        receiveShadow
+        geometry={nodes.noch_double_breasted_wide_suit_AMF1.geometry}
+        material={materials.AMF}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
   </group>
   );
 }
 
 useGLTF.preload(
-  "./Coat GLB New modify/Noch AMF GLB/GLB/noch_double_breasted_wide_AMF 2mm.glb"
+  "./GLB NEW (26-1-25)/AMF/Noch Wide AMF/noch_double_breasted_wide_suit_AMF 2mm.glb"
 );
 
 export function AmfnotchCollar(props) {
   const { nodes, materials } = useGLTF(
-    "./Coat GLB New modify/Noch AMF GLB/GLB/notch_collar_AMF 2mm.glb"
+    "./GLB NEW (26-1-25)/AMF/Noch AMF/notch_collar_AMF 2mm.glb"
   );
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -315,7 +315,7 @@ export function AmfnotchCollar(props) {
     <mesh
       castShadow
       receiveShadow
-      geometry={nodes.notch_collar_AMF.geometry}
+      geometry={nodes.notch_collar_AMF1.geometry}
       material={materials.AMF}
       rotation={[Math.PI / 2, 0, 0]}
       scale={0.01}
@@ -324,11 +324,11 @@ export function AmfnotchCollar(props) {
   );
 }
 
-useGLTF.preload("./Coat GLB New modify/Noch AMF GLB/GLB/notch_collar_AMF 2mm.glb");
+useGLTF.preload("./GLB NEW (26-1-25)/AMF/Noch AMF/notch_collar_AMF 2mm.glb");
 
 export function AmfnotchcollarWide(props) {
   const { nodes, materials } = useGLTF(
-    "./Coat GLB New modify/Noch AMF GLB/GLB/notch_collar_wide_AMF 2mm.glb"
+    "./GLB NEW (26-1-25)/AMF/Noch Wide AMF/notch_collar_wide_AMF 2mm.glb"
   );
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -358,24 +358,24 @@ export function AmfnotchcollarWide(props) {
   return (
     <group {...props} dispose={null} scale={20}>
     <mesh
-      castShadow
-      receiveShadow
-      geometry={nodes.notch_collar_wide_AMF.geometry}
-      material={materials.AMF}
-      rotation={[Math.PI / 2, 0, 0]}
-      scale={0.01}
-    />
+        castShadow
+        receiveShadow
+        geometry={nodes.notch_collar_wide_AMF1.geometry}
+        material={materials.AMF}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
   </group>
   );
 }
 
-useGLTF.preload("./Coat GLB New modify/Noch AMF GLB/GLB/notch_collar_wide_AMF 2mm.glb");
+useGLTF.preload("./GLB NEW (26-1-25)/AMF/Noch Wide AMF/notch_collar_wide_AMF 2mm.glb");
 //  /////////
 
 
 export function Amf6mmDoublebreasted(props) {
   const { nodes, materials } = useGLTF(
-    "./Coat GLB New modify/Noch AMF GLB/GLB/noch_double_breasted_AMF 6mm.glb"
+    "./GLB NEW (26-1-25)/AMF/Noch AMF/noch_double_breasted_suit_AMF 6mm.glb"
   );
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -404,27 +404,27 @@ export function Amf6mmDoublebreasted(props) {
   }, [materials]);
   return (
     <group {...props} dispose={null} scale={20}>
-    <mesh
-      castShadow
-      receiveShadow
-      geometry={nodes.noch_double_breasted_suit_AMF.geometry}
-      material={materials.AMF}
-      rotation={[Math.PI / 2, 0, 0]}
-      scale={0.01}
-    />
-  </group>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.noch_double_breasted_suit_AMF1.geometry}
+        material={materials.AMF}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+    </group>
   );
 }
 
 useGLTF.preload(
-  "./Coat GLB New modify/Noch AMF GLB/GLB/noch_double_breasted_AMF 6mm.glb"
+  "./GLB NEW (26-1-25)/AMF/Noch AMF/noch_double_breasted_suit_AMF 6mm.glb"
 );
 
 
 //  /////////////
 export function Amf6mmwidedoubleBreastedwide(props) {
   const { nodes, materials } = useGLTF(
-    "./Coat GLB New modify/Noch AMF GLB/GLB/noch_double_breasted_wide_AMF 6mm.glb"
+    "./GLB NEW (26-1-25)/AMF/Noch Wide AMF/noch_double_breasted_wide_suit_AMF 6mm.glb"
   );
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -456,7 +456,7 @@ export function Amf6mmwidedoubleBreastedwide(props) {
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.noch_double_breasted_wide_suit_AMF.geometry}
+        geometry={nodes.noch_double_breasted_wide_suit_AMF1.geometry}
         material={materials.AMF}
         rotation={[Math.PI / 2, 0, 0]}
         scale={0.01}
@@ -466,12 +466,12 @@ export function Amf6mmwidedoubleBreastedwide(props) {
 }
 
 useGLTF.preload(
-  "./Coat GLB New modify/Noch AMF GLB/GLB/noch_double_breasted_wide_AMF 6mm.glb"
+  "./GLB NEW (26-1-25)/AMF/Noch Wide AMF/noch_double_breasted_wide_suit_AMF 6mm.glb"
 );
 
 export function Amf6mmdoubleButton(props) {
   const { nodes, materials } = useGLTF(
-    "./Coat GLB New modify/Noch AMF GLB/GLB/notch_double_button_AMF 6mm.glb"
+    "./GLB NEW (26-1-25)/AMF/Noch AMF/notch_double_button_AMF 6mm.glb"
   );
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -503,7 +503,7 @@ export function Amf6mmdoubleButton(props) {
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.notch_double_button_AMF.geometry}
+        geometry={nodes.notch_double_button_AMF1.geometry}
         material={materials.AMF}
         rotation={[Math.PI / 2, 0, 0]}
         scale={0.01}
@@ -513,12 +513,12 @@ export function Amf6mmdoubleButton(props) {
 }
 
 useGLTF.preload(
-  "./Coat GLB New modify/Noch AMF GLB/GLB/notch_double_button_AMF 6mm.glb"
+  "./GLB NEW (26-1-25)/AMF/Noch AMF/notch_double_button_AMF 6mm.glb"
 );
 
 export function Amf6mmdoublebuttonWide(props) {
   const { nodes, materials } = useGLTF(
-    "./Coat GLB New modify/Noch AMF GLB/GLB/notch_double_button_wide_AMF 6mm.glb"
+    "./GLB NEW (26-1-25)/AMF/Noch Wide AMF/notch_double_button_wide_AMF 6mm.glb"
   );
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -548,19 +548,19 @@ export function Amf6mmdoublebuttonWide(props) {
   return (
     <group {...props} dispose={null} scale={20}>
     <mesh
-      castShadow
-      receiveShadow
-      geometry={nodes.notch_double_button_wide_AMF.geometry}
-      material={materials.AMF}
-      rotation={[Math.PI / 2, 0, 0]}
-      scale={0.01}
-    />
+        castShadow
+        receiveShadow
+        geometry={nodes.notch_double_button_wide_AMF1.geometry}
+        material={materials.AMF}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
   </group>
   );
 }
 
 useGLTF.preload(
-  "./Coat GLB New modify/Noch AMF GLB/GLB/notch_double_button_wide_AMF 6mm.glb"
+  "./GLB NEW (26-1-25)/AMF/Noch Wide AMF/notch_double_button_wide_AMF 6mm.glb"
 );
 
 export function Amf6mmsingleButton(props) {
@@ -594,25 +594,25 @@ export function Amf6mmsingleButton(props) {
   }, [materials]);
   return (
     <group {...props} dispose={null} scale={20}>
-    <mesh
-      castShadow
-      receiveShadow
-      geometry={nodes.notch_single_button_AMF.geometry}
-      material={materials.AMF}
-      rotation={[Math.PI / 2, 0, 0]}
-      scale={0.01}
-    />
+     <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.notch_single_button_AMF1.geometry}
+        material={materials.AMF}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
   </group>
   );
 }
 
 useGLTF.preload(
-  "./Coat GLB New modify/Noch AMF GLB/GLB/notch_single_button_AMF 6mm.glb"
+  "./GLB NEW (26-1-25)/AMF/Noch AMF/notch_single_button_AMF 6mm.glb"
 );
 
 export function Amf6mmSinglebuttonWide(props) {
   const { nodes, materials } = useGLTF(
-    "./Coat GLB New modify/Noch AMF GLB/GLB/notch_single_button_wide_AMF 6mm.glb"
+    "./GLB NEW (26-1-25)/AMF/Noch Wide AMF/notch_single_button_wide_AMF 6mm.glb"
   );
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -641,26 +641,26 @@ export function Amf6mmSinglebuttonWide(props) {
   }, [materials]);
   return (
     <group {...props} dispose={null} scale={20}>
-    <mesh
-      castShadow
-      receiveShadow
-      geometry={nodes.notch_single_button_wide_AMF.geometry}
-      material={materials.AMF}
-      rotation={[Math.PI / 2, 0, 0]}
-      scale={0.01}
-    />
+   <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.notch_single_button_wide_AMF2.geometry}
+        material={materials.AMF}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
   </group>
   );
 }
 
 useGLTF.preload(
-  "./Coat GLB New modify/Noch AMF GLB/GLB/notch_single_button_wide_AMF 6mm.glb"
+  "./GLB NEW (26-1-25)/AMF/Noch Wide AMF/notch_single_button_wide_AMF 6mm.glb"
 );
   
 
 export function Amf6mmCollar(props) {
   const { nodes, materials } = useGLTF(
-    "./Coat GLB New modify/Noch AMF GLB/GLB/notch_collar_AMF 6mm.glb"
+    "./GLB NEW (26-1-25)/AMF/Noch AMF/notch_collar_AMF 6mm.glb"
   );
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -692,7 +692,7 @@ export function Amf6mmCollar(props) {
     <mesh
       castShadow
       receiveShadow
-      geometry={nodes.notch_collar_AMF.geometry}
+      geometry={nodes.notch_collar_AMF1.geometry}
       material={materials.AMF}
       rotation={[Math.PI / 2, 0, 0]}
       scale={0.01}
@@ -702,12 +702,12 @@ export function Amf6mmCollar(props) {
 }
 
 useGLTF.preload(
-  "./Coat GLB New modify/Noch AMF GLB/GLB/notch_collar_AMF 6mm.glb"
+  "./GLB NEW (26-1-25)/AMF/Noch AMF/notch_collar_AMF 6mm.glb"
 );
 
 export function Amf6mmWidecollar(props) {
   const { nodes, materials } = useGLTF(
-    "./Coat GLB New modify/Noch AMF GLB/GLB/notch_collar_wide_AMF 6mm.glb"
+    "./GLB NEW (26-1-25)/AMF/Noch Wide AMF/notch_collar_wide_AMF 6mm.glb"
   );
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -737,17 +737,17 @@ export function Amf6mmWidecollar(props) {
   return (
     <group {...props} dispose={null} scale={20}>
     <mesh
-      castShadow
-      receiveShadow
-      geometry={nodes.notch_collar_wide_AMF.geometry}
-      material={materials.AMF}
-      rotation={[Math.PI / 2, 0, 0]}
-      scale={0.01}
-    />
+        castShadow
+        receiveShadow
+        geometry={nodes.notch_collar_wide_AMF1.geometry}
+        material={materials.AMF}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
   </group>
   );
 }
 
 useGLTF.preload(
-  "./Coat GLB New modify/Noch AMF GLB/GLB/notch_collar_wide_AMF 6mm.glb"
+  "./GLB NEW (26-1-25)/AMF/Noch Wide AMF/notch_collar_wide_AMF 6mm.glb"
 );
