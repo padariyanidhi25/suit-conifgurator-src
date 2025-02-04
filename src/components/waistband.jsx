@@ -188,4 +188,4 @@ export function Standardhidden4cm(props) {
 }
 
 
-useGLTF.preload('./latest/trouser/Pant Revision GLB/Pant Revision GLB/Waistband/ 4cm standard_hidden_button.glb')
+useGLTF.preload('./latest/trouser/Pant Revision GLB/Pant Revision GLB/Waistband/4cm standard_hidden_button.glb')
