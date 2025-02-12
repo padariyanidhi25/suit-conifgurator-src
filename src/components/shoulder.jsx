@@ -4,7 +4,7 @@ import * as THREE from "three";
 import eventEmitter from "./eventEmitter";
 
 export function Lightly_padded(props) {
-  const { nodes, materials } = useGLTF("./GLB NEW (26-1-25)/Sleeves/Lightly_padded.glb");
+  const { nodes, materials } = useGLTF("./11-02-25/GLB NEW/Sleeves/Lightly_padded.glb");
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
       if (textureURL) {
@@ -42,10 +42,10 @@ export function Lightly_padded(props) {
   );
 }
 
-useGLTF.preload("./GLB NEW (26-1-25)/Sleeves/Lightly_padded.glb");
+useGLTF.preload("./11-02-25/GLB NEW/Sleeves/Lightly_padded.glb");
 
 export function Structured(props) {
-  const { nodes, materials } = useGLTF("./GLB NEW (26-1-25)/Sleeves/Structured.glb");
+  const { nodes, materials } = useGLTF("./11-02-25/GLB NEW/Sleeves/Structured.glb");
 
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -71,7 +71,7 @@ export function Structured(props) {
   }, [materials]);
   return (
     <group {...props} dispose={null} scale={20}>
-      <mesh
+       <mesh
         castShadow
         receiveShadow
         geometry={nodes.Sleevs_Structured.geometry}
@@ -83,4 +83,4 @@ export function Structured(props) {
   );
 }
 
-useGLTF.preload("./GLB NEW (26-1-25)/Sleeves/Structured.glb");
+useGLTF.preload("./11-02-25/GLB NEW/Sleeves/Structured.glb");

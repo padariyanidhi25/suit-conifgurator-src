@@ -5,7 +5,7 @@ import * as THREE from "three";
 import { useButtonTexture } from "./Buttontexture";
 
 export function Peakdoublebreasted(props) {
-  const { nodes, materials } = useGLTF("./GLB NEW (26-1-25)/Peak/peak_double_breasted.glb");
+  const { nodes, materials } = useGLTF("./11-02-25/GLB NEW/Peak/peak_double_breasted.glb");
 
   useButtonTexture(materials, "Button.003");
 
@@ -36,7 +36,7 @@ export function Peakdoublebreasted(props) {
 
   return (
     <group {...props} dispose={null} scale={20}>
-       <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+        <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
         <mesh
           castShadow
           receiveShadow
@@ -54,10 +54,10 @@ export function Peakdoublebreasted(props) {
   );
 }
 
-useGLTF.preload("./GLB NEW (26-1-25)/Peak/peak_double_breasted.glb");
+useGLTF.preload("./11-02-25/GLB NEW/Peak/peak_double_breasted.glb");
 
 export function Peakdoublebtn(props) {
-  const { nodes, materials } = useGLTF("./GLB NEW (26-1-25)/Peak/peak_double_button.glb");
+  const { nodes, materials } = useGLTF("./11-02-25/GLB NEW/Peak/peak_double_button.glb");
   const [textureURL, setTextureURL] = useState(null);
 
   useButtonTexture(materials, "Button.004");
@@ -89,7 +89,7 @@ export function Peakdoublebtn(props) {
 
   return (
     <group {...props} dispose={null} scale={20}>
-      <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+     <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
         <mesh
           castShadow
           receiveShadow
@@ -107,10 +107,10 @@ export function Peakdoublebtn(props) {
   );
 }
 
-useGLTF.preload("./GLB NEW (26-1-25)/Peak/peak_double_button.glb");
+useGLTF.preload("./11-02-25/GLB NEW/Peak/peak_double_button.glb");
 
 export function Peaksinglebtn(props) {
-  const { nodes, materials } = useGLTF("./GLB NEW (26-1-25)/Peak/peak_single_button.glb");
+  const { nodes, materials } = useGLTF("./11-02-25/GLB NEW/Peak/peak_single_button.glb");
   const [textureURL, setTextureURL] = useState(null);
 
   useButtonTexture(materials, "Button.002");
@@ -160,4 +160,4 @@ export function Peaksinglebtn(props) {
   );
 }
 
-useGLTF.preload("./GLB NEW (26-1-25)/Peak/peak_single_button.glb");
+useGLTF.preload("./11-02-25/GLB NEW/Peak/peak_single_button.glb");

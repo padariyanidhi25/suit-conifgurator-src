@@ -154,18 +154,18 @@ const canvasRef2 = useRef(null);
             <StaticDirectionalLight
                 position={[-0.621883, 0.32952, 0.268164]}
                 targetPosition={[-0.75, -1, -3]}
-                intensity={0.15}
+                intensity={0.10}
               />
 
               <StaticDirectionalLight
                 position={[0.629522, 0.42188, -0.652444]}
                 targetPosition={[2, 0.5, 4]}
-                intensity={0.15}
+                intensity={0.10}
               />
               <StaticDirectionalLight
                 position={[0, -10, 5]}
                 targetPosition={[0, -3, 4]}
-                intensity={0.15}
+                intensity={0.10}
               />
             <Environment preset="city" intensity={0.2} />
             <Experience toggleCanvas={toggleCanvas} setFabricPrice={setFabricPrice} />

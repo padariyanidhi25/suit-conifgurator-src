@@ -5,7 +5,7 @@ import * as THREE from "three";
 import { useButtonTexture } from "./Buttontexture";
 
 export function PeakwideBreasted(props) {
-  const { nodes, materials } = useGLTF("./GLB NEW (26-1-25)/Peak Wide/peak_double_breasted_wide.glb");
+  const { nodes, materials } = useGLTF("./11-02-25/GLB NEW/Peak Wide/peak_double_breasted_wide.glb");
 
   useButtonTexture(materials, "Button.003");
 
@@ -55,10 +55,10 @@ export function PeakwideBreasted(props) {
   );
 }
 
-useGLTF.preload("./GLB NEW (26-1-25)/Peak Wide/peak_double_breasted_wide.glb");
+useGLTF.preload("./11-02-25/GLB NEW/Peak Wide/peak_double_breasted_wide.glb");
 
 export function PeakwideDouble(props) {
-    const { nodes, materials } = useGLTF( "./GLB NEW (26-1-25)/Peak Wide/peak_double_button_wide.glb");
+    const { nodes, materials } = useGLTF( "./11-02-25/GLB NEW/Peak Wide/peak_double_button_wide.glb");
   
     useButtonTexture(materials, "Button.003");
   
@@ -108,10 +108,10 @@ export function PeakwideDouble(props) {
     );
   }
   
-  useGLTF.preload("./GLB NEW (26-1-25)/Peak Wide/peak_double_button_wide.glb");
+  useGLTF.preload("./11-02-25/GLB NEW/Peak Wide/peak_double_button_wide.glb");
 
   export function PeakWidesingle(props) {
-    const { nodes, materials } = useGLTF( "./GLB NEW (26-1-25)/Peak Wide/peak_single_button_wide.glb");
+    const { nodes, materials } = useGLTF( "./11-02-25/GLB NEW/Peak Wide/peak_single_button_wide.glb");
   
     useButtonTexture(materials, "Button.003");
   
@@ -161,4 +161,4 @@ export function PeakwideDouble(props) {
     );
   }
   
-  useGLTF.preload("./GLB NEW (26-1-25)/Peak Wide/peak_single_button_wide.glb");
+  useGLTF.preload("./11-02-25/GLB NEW/Peak Wide/peak_single_button_wide.glb");

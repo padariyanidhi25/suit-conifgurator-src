@@ -1,17 +1,17 @@
 // firebase.js
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-import { getStorage } from 'firebase/storage';
-import { getAuth } from 'firebase/auth';
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyA91w3NOLhpkrIMSe1OI32NIp9wD4AYIQk",
-    authDomain: "suit-config-cms.firebaseapp.com",
-    projectId: "suit-config-cms",
-    storageBucket: "suit-config-cms.appspot.com",
-    messagingSenderId: "344219017052",
-    appId: "1:344219017052:web:9eb545afbbc09124516b99",
-    measurementId: "G-3SX30H58TB"
+  apiKey: "AIzaSyBI90DcZxm4Stvs_xLkgm8m0dtzr6n7m1o",
+  authDomain: "vaibhav-shashank.firebaseapp.com",
+  projectId: "vaibhav-shashank",
+  storageBucket: "vaibhav-shashank.firebasestorage.app",
+  messagingSenderId: "903752393618",
+  appId: "1:903752393618:web:9d66ed21d3ca788280574b",
+  measurementId: "G-QZNRLKJWDH",
 };
 
 // Initialize Firebase

@@ -5,7 +5,9 @@ import * as THREE from "three";
 import { useButtonTexture } from "./Buttontexture";
 
 export function Nochdoublebrested(props) {
-  const { nodes, materials } = useGLTF("./GLB NEW (26-1-25)/Noch/noch_double_breasted.glb");
+  const { nodes, materials } = useGLTF(
+    "./11-02-25/GLB NEW/Noch/noch_double_breasted.glb"
+  );
 
   useButtonTexture(materials, "Button");
 
@@ -20,6 +22,7 @@ export function Nochdoublebrested(props) {
               const material = materials[key];
               if (material.map) {
                 material.map = texture;
+
                 material.needsUpdate = true;
               }
             }
@@ -37,8 +40,13 @@ export function Nochdoublebrested(props) {
 
   return (
     <group {...props} dispose={null} scale={20}>
-       <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
-        <mesh castShadow receiveShadow geometry={nodes.Mesh015.geometry} material={materials.AMF} />
+      <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Mesh015.geometry}
+          material={materials.AMF}
+        />
         <mesh
           castShadow
           receiveShadow
@@ -50,11 +58,11 @@ export function Nochdoublebrested(props) {
   );
 }
 
-useGLTF.preload("./GLB NEW (26-1-25)/Noch/noch_double_breasted.glb");
+useGLTF.preload("./11-02-25/GLB NEW/Noch/noch_double_breasted.glb");
 
 export function Notchdoublebtn(props) {
   const { nodes, materials } = useGLTF(
-    "./GLB NEW (26-1-25)/Noch/notch_double_button.glb"
+    "./11-02-25/GLB NEW/Noch/notch_double_button.glb"
   );
   const [textureURL, setTextureURL] = useState(null);
 
@@ -69,9 +77,11 @@ export function Notchdoublebtn(props) {
             if (!key.includes("Button")) {
               // Skip button materials
               const material = materials[key];
+
               if (material.map) {
                 material.map = texture;
                 material.needsUpdate = true;
+                material.map.flipY = false;
               }
             }
           });
@@ -87,7 +97,7 @@ export function Notchdoublebtn(props) {
   }, [materials]);
   return (
     <group {...props} dispose={null} scale={20}>
-     <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+      <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
         <mesh
           castShadow
           receiveShadow
@@ -101,15 +111,15 @@ export function Notchdoublebtn(props) {
           material={materials.AMF}
         />
       </group>
-  </group>
+    </group>
   );
 }
 
-useGLTF.preload("./GLB NEW (26-1-25)/Noch/notch_double_button.glb");
+useGLTF.preload("./11-02-25/GLB NEW/Noch/notch_double_button.glb");
 
 export function Notchsinglebtn(props) {
   const { nodes, materials } = useGLTF(
-    "./GLB NEW (26-1-25)/Noch/notch_single_button.glb"
+    "./11-02-25/GLB NEW/Noch/notch_single_button.glb"
   );
   const [textureURL, setTextureURL] = useState(null);
 
@@ -142,8 +152,13 @@ export function Notchsinglebtn(props) {
   }, [materials]);
   return (
     <group {...props} dispose={null} scale={20}>
-    <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
-        <mesh castShadow receiveShadow geometry={nodes.Mesh014.geometry} material={materials.AMF} />
+      <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Mesh014.geometry}
+          material={materials.AMF}
+        />
         <mesh
           castShadow
           receiveShadow
@@ -151,9 +166,8 @@ export function Notchsinglebtn(props) {
           material={materials.Jacket}
         />
       </group>
-  </group>
- 
+    </group>
   );
 }
 
-useGLTF.preload("./GLB NEW (26-1-25)/Noch/notch_single_button.glb");
+useGLTF.preload("./11-02-25/GLB NEW/Noch/notch_single_button.glb");

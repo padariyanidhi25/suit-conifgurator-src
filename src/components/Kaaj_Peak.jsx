@@ -1,9 +1,38 @@
 
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import React, { useRef, useState, useEffect } from "react";
+import { useGLTF } from "@react-three/drei";
+import eventEmitter from "./eventEmitter";
+import * as THREE from "three";
 
 export function Kaaj_Peak(props) {
-  const { nodes, materials } = useGLTF('./GLB NEW (26-1-25)/Peak/Peak_Collar Kaaj.glb')
+  const { nodes, materials } = useGLTF('./11-02-25/GLB NEW/Peak/Peak_Collar Kaaj.glb')
+
+  useEffect(() => {
+    const handleApplyFabric = ({ textureURL }) => {
+      if (textureURL) {
+        const loader = new THREE.TextureLoader();
+        loader.load(textureURL, (texture) => {
+          Object.keys(materials).forEach((key) => {
+            if (!key.includes("Button")) {
+              // Skip button materials
+              const material = materials[key];
+              if (material.map) {
+                material.map = texture;
+                material.needsUpdate = true;
+                material.map.flipY = false;
+              }
+            }
+          });
+        });
+      }
+    };
+
+    eventEmitter.on("applyFabric", handleApplyFabric);
+
+    return () => {
+      eventEmitter.off("applyFabric", handleApplyFabric);
+    };
+  }, [materials]);
   return (
     <group {...props} dispose={null} scale={20}>
     <mesh
@@ -18,10 +47,36 @@ export function Kaaj_Peak(props) {
   )
 }
 
-useGLTF.preload('./GLB NEW (26-1-25)/Peak/Peak_Collar Kaaj.glb')
+useGLTF.preload('./11-02-25/GLB NEW/Peak/Peak_Collar Kaaj.glb')
 
 export function PeakwideKaaj(props) {
-  const { nodes, materials } = useGLTF('./GLB NEW (26-1-25)/Peak Wide/peak_collar kaaj_wide.glb')
+  const { nodes, materials } = useGLTF('./11-02-25/GLB NEW/Peak Wide/peak_collar kaaj_wide.glb')
+  useEffect(() => {
+    const handleApplyFabric = ({ textureURL }) => {
+      if (textureURL) {
+        const loader = new THREE.TextureLoader();
+        loader.load(textureURL, (texture) => {
+          Object.keys(materials).forEach((key) => {
+            if (!key.includes("Button")) {
+              // Skip button materials
+              const material = materials[key];
+              if (material.map) {
+                material.map = texture;
+                material.needsUpdate = true;
+                material.map.flipY = false;
+              }
+            }
+          });
+        });
+      }
+    };
+
+    eventEmitter.on("applyFabric", handleApplyFabric);
+
+    return () => {
+      eventEmitter.off("applyFabric", handleApplyFabric);
+    };
+  }, [materials]);
   return (
     <group {...props} dispose={null} scale={20}>
      <mesh
@@ -36,4 +91,4 @@ export function PeakwideKaaj(props) {
   )
 }
 
-useGLTF.preload('./GLB NEW (26-1-25)/Peak Wide/peak_collar kaaj_wide.glb')
+useGLTF.preload('./11-02-25/GLB NEW/Peak Wide/peak_collar kaaj_wide.glb')

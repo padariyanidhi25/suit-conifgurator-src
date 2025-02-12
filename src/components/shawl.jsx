@@ -4,7 +4,7 @@ import eventEmitter from "./eventEmitter";
 import * as THREE from "three";
 
 export function Shawlsingle(props) {
-  const { nodes, materials } = useGLTF('./GLB NEW (26-1-25)/Shawl/shawl_single_button_wide.glb')
+  const { nodes, materials } = useGLTF('./11-02-25/GLB NEW/Shawl/shawl_single_button_wide.glb')
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
       if (textureURL) {
@@ -51,10 +51,10 @@ export function Shawlsingle(props) {
   )
 }
 
-useGLTF.preload('./GLB NEW (26-1-25)/Shawl/shawl_single_button_wide.glb')
+useGLTF.preload('./11-02-25/GLB NEW/Shawl/shawl_single_button_wide.glb')
 
 export function Shawldouble(props) {
-    const { nodes, materials } = useGLTF('./GLB NEW (26-1-25)/Shawl/shawl_single_button.glb')
+    const { nodes, materials } = useGLTF('./11-02-25/GLB NEW/Shawl/shawl_single_button.glb')
     useEffect(() => {
         const handleApplyFabric = ({ textureURL }) => {
           if (textureURL) {
@@ -101,5 +101,5 @@ export function Shawldouble(props) {
     )
   }
   
-  useGLTF.preload('./GLB NEW (26-1-25)/Shawl/shawl_single_button.glb')
+  useGLTF.preload('./11-02-25/GLB NEW/Shawl/shawl_single_button.glb')
   

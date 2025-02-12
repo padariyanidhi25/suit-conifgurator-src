@@ -1,13 +1,42 @@
 
 
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import React, { useRef, useState, useEffect } from "react";
+import { useGLTF } from "@react-three/drei";
+import eventEmitter from "./eventEmitter";
+import * as THREE from "three";
 
 export function Kaaj(props) {
-  const { nodes, materials } = useGLTF('./GLB NEW (26-1-25)/Noch/noch_collar_kaaj.glb')
+  const { nodes, materials } = useGLTF('./11-02-25/GLB NEW/Noch/noch_collar_kaaj.glb')
+
+  useEffect(() => {
+    const handleApplyFabric = ({ textureURL }) => {
+      if (textureURL) {
+        const loader = new THREE.TextureLoader();
+        loader.load(textureURL, (texture) => {
+          Object.keys(materials).forEach((key) => {
+            if (!key.includes("Button")) {
+              // Skip button materials
+              const material = materials[key];
+              if (material.map) {
+                material.map = texture;
+                material.needsUpdate = true;
+                material.map.flipY = false;
+              }
+            }
+          });
+        });
+      }
+    };
+
+    eventEmitter.on("applyFabric", handleApplyFabric);
+
+    return () => {
+      eventEmitter.off("applyFabric", handleApplyFabric);
+    };
+  }, [materials]);
   return (
     <group {...props} dispose={null} scale={20}>
-      <mesh
+     <mesh
         castShadow
         receiveShadow
         geometry={nodes.noch_kaaj.geometry}
@@ -19,13 +48,39 @@ export function Kaaj(props) {
 )
 }
 
-useGLTF.preload('./GLB NEW (26-1-25)/Noch/noch_collar_kaaj.glb')
+useGLTF.preload('./11-02-25/GLB NEW/Noch/noch_collar_kaaj.glb')
 
 export function NotchwideKaaj(props) {
-  const { nodes, materials } = useGLTF('./GLB NEW (26-1-25)/Noch Wide/noch_Colar kaaj_wide.glb')
+  const { nodes, materials } = useGLTF('./11-02-25/GLB NEW/Noch Wide/noch_Colar kaaj_wide.glb')
+  useEffect(() => {
+    const handleApplyFabric = ({ textureURL }) => {
+      if (textureURL) {
+        const loader = new THREE.TextureLoader();
+        loader.load(textureURL, (texture) => {
+          Object.keys(materials).forEach((key) => {
+            if (!key.includes("Button")) {
+              // Skip button materials
+              const material = materials[key];
+              if (material.map) {
+                material.map = texture;
+                material.needsUpdate = true;
+                material.map.flipY = false;
+              }
+            }
+          });
+        });
+      }
+    };
+
+    eventEmitter.on("applyFabric", handleApplyFabric);
+
+    return () => {
+      eventEmitter.off("applyFabric", handleApplyFabric);
+    };
+  }, [materials]);
   return (
     <group {...props} dispose={null} scale={20}>
-       <mesh
+    <mesh
         castShadow
         receiveShadow
         geometry={nodes.noch_kaaj_wide1.geometry}
@@ -37,6 +92,6 @@ export function NotchwideKaaj(props) {
   )
 }
 
-useGLTF.preload('./GLB NEW (26-1-25)/Noch Wide/noch_Colar kaaj_wide.glb')
+useGLTF.preload('./11-02-25/GLB NEW/Noch Wide/noch_Colar kaaj_wide.glb')
 
 
