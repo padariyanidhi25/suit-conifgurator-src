@@ -13,6 +13,7 @@
     "@react-three/drei": "^9.74.15",
     "@react-three/fiber": "^8.13.0",
     "@types/three": "^0.152.1",
+    "dotenv": "^16.4.7",
     "emailjs-com": "^3.2.0",
     "eventemitter3": "^5.0.1",
     "express": "^4.21.1",
