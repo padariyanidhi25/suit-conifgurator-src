@@ -19,6 +19,7 @@ export function Peakdoublebreasted(props) {
               const material = materials[key];
               if (material.map) {
                 material.map = texture;
+                material.map.flipY = false;
                 material.needsUpdate = true;
               }
             }
@@ -72,6 +73,7 @@ export function Peakdoublebtn(props) {
               const material = materials[key];
               if (material.map) {
                 material.map = texture;
+                material.map.flipY = false;
                 material.needsUpdate = true;
               }
             }
@@ -125,6 +127,7 @@ export function Peaksinglebtn(props) {
               const material = materials[key];
               if (material.map) {
                 material.map = texture;
+                material.map.flipY = false;
                 material.needsUpdate = true;
               }
             }

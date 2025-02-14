@@ -20,6 +20,7 @@ export function Notchbreastedwide(props) {
               const material = materials[key];
               if (material.map) {
                 material.map = texture;
+                material.map.flipY = false;
                 material.needsUpdate = true;
               }
             }
@@ -73,6 +74,7 @@ export function NotchDoublebuttonwide(props) {
                 const material = materials[key];
                 if (material.map) {
                   material.map = texture;
+                  material.map.flipY = false;
                   material.needsUpdate = true;
                 }
               }
@@ -126,6 +128,7 @@ export function NotchDoublebuttonwide(props) {
                 const material = materials[key];
                 if (material.map) {
                   material.map = texture;
+                  material.map.flipY = false;
                   material.needsUpdate = true;
                 }
               }

@@ -11,27 +11,25 @@ import { Environment, OrbitControls, PerspectiveCamera } from "@react-three/drei
 import { getEntries } from "./Firebase/userUtil";
 import eventEmitter from "./components/eventEmitter";
 
-function StaticDirectionalLight({ position, targetPosition, intensity, helperColor }) {
+function DirectionalLightWithHelper({ position, color, intensity ,targetPosition}) {
   const lightRef = useRef();
   const targetRef = useRef();
-  // useHelper(lightRef, DirectionalLightHelper, 1, helperColor);
+ 
+  // useHelper(lightRef, DirectionalLightHelper, 1, color);
   useEffect(() => {
     if (lightRef.current && targetRef.current) {
       lightRef.current.target = targetRef.current;
     }
   }, []);
 
-  return (
+  return(
     <>
-      <directionalLight
-        ref={lightRef}
-        position={position}
-        intensity={intensity}
-        castShadow={true}
-      />
-      <mesh ref={targetRef} position={targetPosition} />
+    
+    <directionalLight ref={lightRef} position={position} intensity={intensity} color={color} />;
+    <mesh ref={targetRef} position={targetPosition} />
     </>
-  );
+  )
+  
 }
 
 function App() {
@@ -46,6 +44,10 @@ function App() {
   const glRef = useRef();
   const canvasRef1 = useRef(null);
 const canvasRef2 = useRef(null);
+
+const lightRef1 = useRef();
+const lightRef2 = useRef();
+const lightRef3 = useRef();
 
   const toggleCanvas = () => {
     setShowFirstCanvas((prev) => !prev);
@@ -151,23 +153,15 @@ const canvasRef2 = useRef(null);
             }}
           >
             <PerspectiveCamera makeDefault fov={fov} position={[0, 3.25, 8]} />
-            <StaticDirectionalLight
-                position={[-0.621883, 0.32952, 0.268164]}
-                targetPosition={[-0.75, -1, -3]}
-                intensity={0.45}
-              />
-
-              <StaticDirectionalLight
-                position={[0.629522, 0.42188, -0.652444]}
-                targetPosition={[2, 0.5, 4]}
-                intensity={0.45}
-              />
-              <StaticDirectionalLight
-                position={[0, -10, 5]}
-                targetPosition={[0, -3, 4]}
-                intensity={0.45}
-              />
-            <Environment preset="city" intensity={0.2} />
+            <ambientLight intensity={0.4} />
+            <DirectionalLightWithHelper position={[2,5,1]} targetPosition={[-4,0,0]}  color="white" intensity={0.25} />
+            {/* <DirectionalLightWithHelper position={[0.629522, 0.42188, -0.652444]} target={[0,0,0]} color="blue" intensity={0.1} /> */}
+            <DirectionalLightWithHelper position={[-3,-2,-5]}  targetPosition={[0,4,-5]} color="white" intensity={0.25} />
+            
+            {/* {lightRef1.current && <primitive object={new DirectionalLightHelper(lightRef1.current, 1, "red")} />}
+            {lightRef2.current && <primitive object={new DirectionalLightHelper(lightRef2.current, 1, "blue")} />}
+            {lightRef3.current && <primitive object={new DirectionalLightHelper(lightRef3.current, 1, "green")} />} */}
+            <Environment preset="city" />
             <Experience toggleCanvas={toggleCanvas} setFabricPrice={setFabricPrice} />
           </Canvas>
         )}

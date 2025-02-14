@@ -331,7 +331,7 @@ const Experience = ({ toggleCanvas }) => {
         {showhem && <HemSelector />}
         {showlining && <LinigDisplay />}
         {showcollar && <CollarSelector />}
-        {showTrouser ? <Model /> : showClassic ? <Classic /> : <Chair />}
+        {showTrouser ? <Model /> : showClassic ? <Classic position={[0,0,0]} /> : <Chair position={[0,0,0]} />}
       </Suspense>
     </>
   );
