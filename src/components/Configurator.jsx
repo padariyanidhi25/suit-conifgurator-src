@@ -11,11 +11,13 @@ let isbutton = false;
 let ismonogram = false;
 const tablinks = document.querySelectorAll(".tablinks");
 
-const Configurator = ({takeCanvasScreenshot}) => {
+const Configurator = ({ takeCanvasScreenshot }) => {
   const {} = useCustomization();
+  const [activeTab, setActiveTab] = useState("linigs"); // Default tab is "linigs"
+
   useEffect(() => {
-    tabSwitch("linigs"); // Set "linigs" tab as the default open tab
-  }, []);
+    tabSwitch(activeTab); // Initialize with the default tab
+  }, [activeTab]);
 
   function hideElements() {
     const elementIds = [
@@ -1358,8 +1360,8 @@ const Configurator = ({takeCanvasScreenshot}) => {
 
       const orderJson = {
         Jacket: {
-          Name: `${name || 'None'}`,
-          MobileNo: `${mobileNo || 'None'}`,
+          Name: `${name || "None"}`,
+          MobileNo: `${mobileNo || "None"}`,
           Button: `${orderData.ButtonName}`,
           LowerPocket: `${orderData.selectedLowerPocket}`,
           Fabric: `${orderData.selectedFabricName}`,
@@ -1389,11 +1391,7 @@ const Configurator = ({takeCanvasScreenshot}) => {
         TotalPrice: `${orderData.TotalPrice}`,
       };
 
-      sendMail(
-        name,
-        "faiz@equanimoustech.com",
-        mobileNo,
-      );
+      sendMail(name, "faiz@equanimoustech.com", mobileNo);
     } else {
       // console.log("Result div not found");
     }

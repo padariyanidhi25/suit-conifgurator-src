@@ -272,10 +272,10 @@ const Experience = ({ toggleCanvas }) => {
     const o = getOrientation();
     if (o === "Landscape") {
       isLandscape = true;
-      document.getElementById("potraitimg").style.display = "none";
+      // document.getElementById("potraitimg").style.display = "none";
     } else if (confirm) {
       isLandscape = false;
-      document.getElementById("potraitimg").style.display = "none";
+      // document.getElementById("potraitimg").style.display = "none";
       document.querySelector(".App").style.width = "100vw";
       document.querySelector(".App").style.height = "55vh";
     }
