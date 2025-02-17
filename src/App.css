@@ -125,12 +125,12 @@ input:checked ~ .dott {
   opacity: 0.5;
 }
 .App {
-  height: 80%;
+  height: 100%;
   width: 100vw;
   user-select: none;
   background-color: #efefef;
   position: absolute;
-  top: 5vh;
+  top: 0vh;
 }
 
 .truser {

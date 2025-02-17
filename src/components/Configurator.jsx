@@ -1176,15 +1176,14 @@ const Configurator = ({ takeCanvasScreenshot }) => {
     document.getElementById("customize").style.display = "block";
     document.getElementById("result").style.display = "block";
 
-    // Retrieve saved values from localStorage
-    const ButtonPrice = Number(localStorage.getItem("ButtonPrice")) || 0;
-    const FabricPrice =
-      Number(localStorage.getItem("selectedFabricPrice")) || 0;
-    const LiningPrice = Number(localStorage.getItem("LiningColorPrice")) || 0;
+  // Retrieve saved values from localStorage
+  const ButtonPrice = Number(localStorage.getItem("ButtonPrice")) || 0;
+  const FabricPrice =
+    Number(localStorage.getItem("selectedFabricPrice")) || 0;
+  const LiningPrice = Number(localStorage.getItem("LiningColorPrice")) || 0;
 
-    // Calculate the total price
-    const TotalPrice = ButtonPrice + FabricPrice + LiningPrice;
-
+  // Calculate the total price
+  const TotalPrice = ButtonPrice + FabricPrice + LiningPrice;
     // Prepare order data
     const orderData = {
       name,

@@ -143,8 +143,8 @@ const Experience = ({ toggleCanvas }) => {
       document.getElementById("confirm").style.display = "none";
       document.getElementById("main").style.display = "block";
       document.querySelector(".App").style.width = "70vw";
-      document.querySelector(".App").style.height = "90%";
-      document.querySelector(".App").style.top = "7vh";
+      document.querySelector(".App").style.height = "100%";
+      
       finish.style.display = "block";
       confirm = true;
       // console.log("Selected Component:", selectedComponent);
@@ -272,10 +272,10 @@ const Experience = ({ toggleCanvas }) => {
     const o = getOrientation();
     if (o === "Landscape") {
       isLandscape = true;
-      // document.getElementById("potraitimg").style.display = "none";
+      document.getElementById("potraitimg").style.display = "none";
     } else if (confirm) {
       isLandscape = false;
-      // document.getElementById("potraitimg").style.display = "none";
+      document.getElementById("potraitimg").style.display = "none";
       document.querySelector(".App").style.width = "100vw";
       document.querySelector(".App").style.height = "55vh";
     }

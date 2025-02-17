@@ -66,14 +66,51 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const savedButtonPrice = localStorage.getItem("ButtonPrice");
+    const savedFabricPrice = localStorage.getItem("selectedFabricPrice");
+    const savedLiningPrice = localStorage.getItem("LiningColorPrice");
+
+    if (savedButtonPrice) setButtonPrice(Number(savedButtonPrice));
+    if (savedFabricPrice) setFabricPrice(Number(savedFabricPrice));
+    if (savedLiningPrice) setLiningPrice(Number(savedLiningPrice));
+  }, []);
+
+  useEffect(() => {
+    const handleButtonSelected = ({ price }) => {
+      setButtonPrice(Number(price) || 0);
+      localStorage.setItem("ButtonPrice", price);
+    };
+
+    const handleFabricSelected = ({ price }) => {
+      setFabricPrice(Number(price) || 0);
+      localStorage.setItem("FabricPrice", price);
+    };
+
+    const handleLiningColorSelected = ({ price }) => {
+      setLiningPrice(Number(price) || 0);
+      localStorage.setItem("LiningColorPrice", price);
+    };
+
+    eventEmitter.on("buttonSelected", handleButtonSelected);
+    eventEmitter.on("fabricSelected", handleFabricSelected);
+    eventEmitter.on("applyLiningColor", handleLiningColorSelected);
+
+    return () => {
+      eventEmitter.off("buttonSelected", handleButtonSelected);
+      eventEmitter.off("fabricSelected", handleFabricSelected);
+      eventEmitter.off("applyLiningColor", handleLiningColorSelected);
+    };
+  }, []);
+
+  useEffect(() => {
     setTotalPrice(buttonPrice + fabricPrice + liningPrice);
   }, [buttonPrice, fabricPrice, liningPrice]);
-
   return (
     <CustomizationProvider>
-      <div className="App" onWheel={handleWheel}>
+      <div className="App" >
         {showFirstCanvas && (
           <Canvas
+            onWheel={handleWheel}
             onCreated={({ gl, scene, camera }) => {
               canvasRef1.current = { gl, scene, camera };
             }}
@@ -101,16 +138,17 @@ function App() {
         )}
         {!showFirstCanvas && (
           <Canvas
+            onWheel={handleWheel}
             onCreated={({ gl, scene, camera }) => {
               canvasRef2.current = { gl, scene, camera };
             }}
             shadows
           >
-            <Experience />
+            <Experience setFabricPrice={setFabricPrice} />
           </Canvas>
         )}
         <Configurator />
-        <div className="storeprice absolute text-black z-[9] font-bold left-[2vw] top-[5vh] w-[5vw] h-[5vh] xs:w-[22vw] text-nowrap xs:left-1 xs:top-0 flex items-center justify-center">
+        <div className="storeprice absolute text-black z-[9] font-bold left-[2vw] top-[3vh] w-[5vw] h-[5vh] xs:w-[22vw] text-nowrap xs:left-1 xs:top-0 flex items-center justify-center">
           Total: ${Number(totalPrice).toFixed(2)}
         </div>
         <p className="absolute top-20 left-8 text-sm xs:top-7 xs:left-1">
