@@ -56,13 +56,16 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
       }
     };
   }, []);
-  const applyFabricTexture = () => {
-    console.log('notch selector', fabricURL);
-    
-    if (fabricURL) {
-        eventEmitter.emit("applyFabric", { textureURL: fabricURL });
+  const applyFabricTexture = (url) => {
+    // console.log("Applying fabric texture:", url);
+    if (url) {
+      // console.log("Emitting applyFabric event with URL:", url);
+      eventEmitter.emit("applyFabric", { textureURL: url });
+    } else {
+      // console.log("No URL provided, not emitting.");
     }
   };
+
   useEffect(() => {
     const handleConfirmAmfClick = () => {
       // Set the camera back to its original position
@@ -88,7 +91,7 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
       setIs2mmSelected(true);
       setIs6mmSelected(false); // Unselect 6mm when 2mm is selected
       applyFabricTexture();
-      setTargetPosition(new Vector3(0, 1, -5));
+      setTargetPosition(new Vector3(0, 1, -2));
 
     };
 
@@ -109,7 +112,7 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
       setIs6mmSelected(true);
       setIs2mmSelected(false); // Unselect 2mm when 6mm is selected
       applyFabricTexture();
-      setTargetPosition(new Vector3(0, 1, -5));
+      setTargetPosition(new Vector3(0, 1, -2));
 
     };
 
@@ -124,14 +127,31 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
       }
     };
   }, []);
+  useEffect(() => {
+    const handleFabricSelection = (fabric) => {
+      setFabricURL(fabric.textureURL);
+    };
 
+    eventEmitter.on("fabricSelected", handleFabricSelection);
+
+    return () => {
+      eventEmitter.off("fabricSelected", handleFabricSelection);
+    };
+  }, []);
+  useEffect(() => {
+    if (fabricURL) {
+      eventEmitter.emit("applyFabric", { textureURL: fabricURL });
+    }
+  }, [selectedNotch, fabricURL]);
   useEffect(() => {
     localStorage.setItem("selectedNotch", selectedNotch);
   }, [selectedNotch]);
 
   useEffect(() => {
     const savedNotch = localStorage.getItem("selectedNotch");
+    const selectedFabricName = localStorage.getItem("selectedFabricName");
     const selectedFabricUrl = localStorage.getItem("selectedFabricURL");
+    console.log('selectedFabricName', selectedFabricName);
 
     if (savedNotch) {
       setSelectedNotch(savedNotch);
@@ -145,15 +165,21 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
   useEffect(() => {
     const handleNotchChange = (notchType) => {
       setSelectedNotch(notchType);
-      setTargetPosition(new Vector3(0, 3, 0));
+      targetPosition.current = new Vector3(0, 3, 0);
+      const updatedFabricURL = localStorage.getItem("selectedFabricURL");
+      const updatedFabricName = localStorage.getItem("selectedFabricName");
+
+      setFabricURL(updatedFabricURL);
+      setFabricName(updatedFabricName);
+
+      // console.log(`Notch changed to: ${notchType}, Fabric Name: ${updatedFabricName}, Fabric URL: ${updatedFabricURL}`);
+
       if (buttonTextureURL) {
-        eventEmitter.emit("applyButtonTexture", {
-          textureURL: buttonTextureURL,
-        });
+        eventEmitter.emit("applyButtonTexture", { textureURL: buttonTextureURL });
       }
-      if (fabricURL) {
-        eventEmitter.emit("applyFabric", { textureURL: fabricURL });
-      }
+
+      // Apply fabric texture immediately
+      applyFabricTexture(updatedFabricURL);
     };
 
     document
@@ -177,7 +203,17 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
         .getElementById("doublebreasted")
         .removeEventListener("click", handleNotchChange);
     };
-  }, [buttonTextureURL, fabricURL, selectedComponent]);
+  }, [buttonTextureURL]);
+  useEffect(() => {
+    // console.log(`Fabric URL updated: ${fabricURL}`);
+    if (fabricURL) {
+      applyFabricTexture(fabricURL);
+    }
+  }, [fabricURL]);
+
+  useEffect(() => {
+    setSelectedNotch(defaultNotch);
+  }, [defaultNotch]);
 
   useEffect(() => {
     setSelectedNotch(defaultNotch);

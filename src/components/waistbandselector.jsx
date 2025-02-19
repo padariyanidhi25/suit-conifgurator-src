@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Singleside,Doubleside,Standardhidden,Standardhidden4cm} from './waistband';
+import { Singleside,Doubleside,Standardhidden,Standardhidden4cm, Standard4cm, Standard5cm} from './waistband';
 import eventEmitter from './eventEmitter';
 import { Vector3 } from "three";
 import { useThree, useFrame } from '@react-three/fiber';
 import { Hook4cm, Hook5cm } from './hook';
+
 
 const WaistbandSelector = () => {
   const [selectedWaistband, setSelectedWaistband] = useState('hidden4');
@@ -91,6 +92,12 @@ const WaistbandSelector = () => {
     document.getElementById('standard_hidden_button_5cm').addEventListener('click', () => {
         handleWaistbandChange('hidden5');
     });
+    document.getElementById('standard_button_4cm').addEventListener('click', () => {
+      handleWaistbandChange('standard4');
+  });
+  document.getElementById('standard_button_5cm').addEventListener('click', () => {
+    handleWaistbandChange('standard5');
+});
     document.getElementById('single_side_clouser').addEventListener('click', () => {
         handleWaistbandChange('singlesideclouser');
     });
@@ -101,6 +108,8 @@ const WaistbandSelector = () => {
     return () => {
       document.getElementById('standard_hidden_button_4cm').removeEventListener('click', handleWaistbandChange);
       document.getElementById('standard_hidden_button_5cm').removeEventListener('click', handleWaistbandChange);
+      document.getElementById('standard_button_4cm').removeEventListener('click', handleWaistbandChange);
+      document.getElementById('standard_button_5cm').removeEventListener('click', handleWaistbandChange);
       document.getElementById('single_side_clouser').removeEventListener('click', handleWaistbandChange);
       document.getElementById('double_side_clouser').removeEventListener('click', handleWaistbandChange);
     };
@@ -119,6 +128,18 @@ const WaistbandSelector = () => {
         <>
           <Standardhidden4cm />
           <Hook4cm /> {/* Show Hook4cm when hidden4 is selected */}
+        </>
+      )}
+       {selectedWaistband === 'standard4' && (
+        <>
+          <Standard4cm/>
+          <Hook4cm /> {/* Show Hook4cm when hidden4 is selected */}
+        </>
+      )}
+       {selectedWaistband === 'standard5' && (
+        <>
+          <Standard5cm/>
+          <Hook5cm /> {/* Show Hook5cm when hidden5 is selected */}
         </>
       )}
  {selectedWaistband === 'hidden5' && (

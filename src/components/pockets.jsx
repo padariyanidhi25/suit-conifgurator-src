@@ -47,7 +47,7 @@ export function Flap_Pocket(props) {
 useGLTF.preload("./11-02-25/GLB NEW/Pocket/Flap_Pocket.glb");
 
 export function Patch_Pocket(props) {
-  const { nodes, materials } = useGLTF("./11-02-25/GLB NEW/Pocket/Patch_Pockets.glb");
+  const { nodes, materials } = useGLTF("./11-02-25/GLB NEW/Pocket/Patch_Pockets/Patch_Pockets.glb");
   const [textureURL, setTextureURL] = useState(null);
 
   useEffect(() => {
@@ -60,6 +60,7 @@ export function Patch_Pocket(props) {
             if (material.map) {
               material.map = texture;
               material.needsUpdate = true;
+              
             }
           });
         });
@@ -87,7 +88,7 @@ export function Patch_Pocket(props) {
   );
 }
 
-useGLTF.preload("./11-02-25/GLB NEW/Pocket/Patch_Pockets.glb");
+useGLTF.preload("./11-02-25/GLB NEW/Pocket/Patch_Pockets/Patch_Pockets.glb");
 
 export function Besom_Pocket(props) {
   const { nodes, materials } = useGLTF("./11-02-25/GLB NEW/Pocket/Besom_Pocket.glb");

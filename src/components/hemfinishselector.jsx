@@ -7,7 +7,7 @@ import { Hemfinishing } from './hemfinishing';
 const HemSelector = () => {
   const [selectedHem, setSelectedHem] = useState(null); // Set initial state to null
   const [fabricURL, setFabricURL] = useState(null);
-  const [targetPosition, setTargetPosition] = useState(new Vector3(0, 3.25, 8)); // Default camera position
+  const [targetPosition, setTargetPosition] = useState(new Vector3(0, 1.25, 8)); // Default camera position
   const { camera } = useThree(); // Access the camera
   const lerpSpeed = 0.05; // Speed for camera transition
 
@@ -20,7 +20,7 @@ const HemSelector = () => {
   useEffect(() => {
     const handleConfirmLapelClick = () => {
       // Set the camera back to its original position
-      setTargetPosition(new Vector3(0, 3.25, 8));
+      setTargetPosition(new Vector3(0, 1.25, 8));
     };
 
     const confrmlapelBtn = document.getElementById('confrmhemfinishing');

@@ -163,6 +163,8 @@ const Configurator = ({ takeCanvasScreenshot }) => {
         document.getElementById("lining-menu").style.display = "none";
         document.getElementById("liningcontent").style.display = "none";
         document.getElementById("waist").style.display = "none";
+        document.getElementById("confirmwaistcoat").style.display = "none";
+
 
         // buttonsContent.style.display='none';
         button_menu.style.display = "none";
@@ -185,6 +187,8 @@ const Configurator = ({ takeCanvasScreenshot }) => {
         isbutton = !isbutton;
         isfabric = false;
         islinig = false;
+        hideElements();
+
         // dropdown_menu.style.display = 'none';
         buttonContent.style.display = "none";
         button_menu.style.display = "none";
@@ -200,7 +204,10 @@ const Configurator = ({ takeCanvasScreenshot }) => {
         document.getElementById("lining-menu").style.display = "none";
         document.getElementById("liningcontent").style.display = "none";
         document.getElementById("lining-color").style.display = "none";
+        document.getElementById("waistcoatoption").style.display = "none";
+        document.getElementById("confirmwaistcoat").style.display = "none";
 
+        document.getElementById("waist").style.display = "none";
         document.getElementById("monograminitials").style.display = "none";
         document.getElementById("monogram-option").style.display = "none";
         document.getElementById("lapelContent").style.display = "none";
@@ -234,6 +241,8 @@ const Configurator = ({ takeCanvasScreenshot }) => {
         document.getElementById("confirmsuspenderbtn").style.display = "none";
         document.getElementById("confirmwaistbandheight").style.display =
           "none";
+          document.getElementById("confirmwaistcoat").style.display = "none";
+
         document.getElementById("waistband-option").style.display = "none";
         document.getElementById("confirmwaistband").style.display = "none";
         document.getElementById("waistbandcontent").style.display = "none";
@@ -263,6 +272,8 @@ const Configurator = ({ takeCanvasScreenshot }) => {
         islinig = false;
         isbutton = false;
         document.getElementById("waist").style.display = "block";
+
+
         // dropdown_menu.style.display = 'none';
         document.getElementById("fabric-type").style.display = "none";
         button_menu.style.display = "none";
@@ -342,9 +353,13 @@ const Configurator = ({ takeCanvasScreenshot }) => {
         confrm.style.display = "none";
         document.getElementById("lining-menu").style.display = "none";
         document.getElementById("liningcontent").style.display = "none";
+        document.getElementById("confirmwaistcoat").style.display = "none";
+
         document.getElementById("lining-color").style.display = "none";
         document.getElementById("buttonContent").style.display = "none";
         document.getElementById("confrmbtn").style.display = "none";
+        document.getElementById("confrmwaist").style.display = "none";
+
         document.getElementById("lapel-buttonhole").style.display = "none";
         document.getElementById("pocketContent").style.display = "none";
 
@@ -428,7 +443,7 @@ const Configurator = ({ takeCanvasScreenshot }) => {
   confrmlining.addEventListener("click", () => {
     document.getElementById("liningcontent").style.display = "none";
     document.getElementById("lining-menu").style.display = "none";
-    document.getElementById("lining-color").style.display = "none";
+    document.getElementById("lining-print").style.display = "none";
     monogrm.style.display = "flex";
 
     confrmlining.style.display = "none";
@@ -438,12 +453,18 @@ const Configurator = ({ takeCanvasScreenshot }) => {
   });
   document.getElementById("linigtype").addEventListener("click", () => {
     document.getElementById("lining-menu").style.display = "flex";
-    document.getElementById("lining-color").style.display = "none";
+    document.getElementById("lining-print").style.display = "none";
     monogrm.style.display = "none";
     document.getElementById("waist").style.display = "none";
   });
-  document.getElementById("liningcolor").addEventListener("click", () => {
-    document.getElementById("lining-color").style.display = "flex";
+  document.getElementById("liningprint").addEventListener("click", () => {
+    document.getElementById("lining-print").style.display = "flex";
+    document.getElementById("lining-menu").style.display = "none";
+    monogrm.style.display = "none";
+    document.getElementById("waist").style.display = "none";
+  });
+  document.getElementById("color").addEventListener("click", () => {
+    document.getElementById("lining-print").style.display = "none";
     document.getElementById("lining-menu").style.display = "none";
     monogrm.style.display = "none";
     document.getElementById("waist").style.display = "none";
@@ -568,6 +589,21 @@ const Configurator = ({ takeCanvasScreenshot }) => {
   document.getElementById("confrmshoulder").addEventListener("click", () => {
     document.getElementById("shoulder-option").style.display = "none";
     document.getElementById("confirmshoulder").style.display = "none";
+    monogrm.style.display = "flex";
+    document.getElementById("tab").style.display = "block";
+    document.getElementById("finish").style.display = "block";
+  });
+
+   document.getElementById("sleevecuffs").addEventListener("click", () => {
+    document.getElementById("sleevecuff-option").style.display = "flex";
+    monogrm.style.display = "none";
+    document.getElementById("confirmsleevecuff").style.display = "block";
+    document.getElementById("tab").style.display = "none";
+    document.getElementById("finish").style.display = "none";
+  });
+  document.getElementById("confrmsleevecuff").addEventListener("click", () => {
+    document.getElementById("sleevecuff-option").style.display = "none";
+    document.getElementById("confirmsleevecuff").style.display = "none";
     monogrm.style.display = "flex";
     document.getElementById("tab").style.display = "block";
     document.getElementById("finish").style.display = "block";
@@ -778,8 +814,20 @@ const Configurator = ({ takeCanvasScreenshot }) => {
     document.getElementById("tab").style.display = "block";
     document.getElementById("finish").style.display = "block";
   });
+  document.getElementById("confirmwaistcoat").addEventListener("click", () => {
+    document.getElementById("leglinig-option").style.display = "none";
+    document.getElementById("confirmleglinig").style.display = "none";
+    document.getElementById("confirmwaistcoat").style.display = "none";
+
+
+    document.getElementById("waistcoatoption").style.display = "none";
+    document.getElementById("waist").style.display = "block";
+    
+  });
   document.getElementById("addwaistcoat").addEventListener("click", () => {
     document.getElementById("waistcoatoption").style.display = "flex";
+    document.getElementById("confirmwaistcoat").style.display = "block";
+
     document.getElementById("waist").style.display = "none";
   });
   // document.getElementById("closure-waistcoat").addEventListener("click", () => {
@@ -792,7 +840,7 @@ const Configurator = ({ takeCanvasScreenshot }) => {
   //   document.getElementById("confirmclosurew").style.display = "none";
   //   document.getElementById("waistcoatoption").style.display = "flex";
   // });
-  document.getElementById("style-waistcoat").addEventListener("click", () => {
+  document.getElementById("doublebreastedvest").addEventListener("click", () => {
     document.getElementById("waistcoat-style").style.display = "flex";
     document.getElementById("waistcoatoption").style.display = "none";
     document.getElementById("confirmstyle").style.display = "block";
@@ -802,7 +850,7 @@ const Configurator = ({ takeCanvasScreenshot }) => {
     document.getElementById("confirmstyle").style.display = "none";
     document.getElementById("waistcoatoption").style.display = "flex";
   });
-  document.getElementById("pocket-waistcoat").addEventListener("click", () => {
+  document.getElementById("singleBreastedVest").addEventListener("click", () => {
     document.getElementById("waistcoat-pocket").style.display = "flex";
     document.getElementById("waistcoatoption").style.display = "none";
     document.getElementById("confirmpocketw").style.display = "block";
@@ -812,43 +860,16 @@ const Configurator = ({ takeCanvasScreenshot }) => {
     document.getElementById("confirmpocketw").style.display = "none";
     document.getElementById("waistcoatoption").style.display = "flex";
   });
-  document
-    .getElementById("backstyle-waistcoat")
-    .addEventListener("click", () => {
-      document.getElementById("waistcoat-backstyle").style.display = "flex";
-      document.getElementById("waistcoatoption").style.display = "none";
-      document.getElementById("confirmbackstyle").style.display = "block";
-    });
-  document.getElementById("confrmbackstyle").addEventListener("click", () => {
-    document.getElementById("waistcoat-backstyle").style.display = "none";
-    document.getElementById("confirmbackstyle").style.display = "none";
-    document.getElementById("waistcoatoption").style.display = "flex";
-  });
-  document
-    .getElementById("linigcolor-waistcoat")
-    .addEventListener("click", () => {
-      document.getElementById("waistcoat-liningcolor").style.display = "flex";
-      document.getElementById("waistcoatoption").style.display = "none";
-      document.getElementById("confirmlinigcolor").style.display = "block";
-    });
-  document.getElementById("confrmlinigcolor").addEventListener("click", () => {
-    document.getElementById("waistcoat-liningcolor").style.display = "none";
-    document.getElementById("confirmlinigcolor").style.display = "none";
-    document.getElementById("waistcoatoption").style.display = "flex";
-  });
-  document.getElementById("button-waistcoat").addEventListener("click", () => {
-    document.getElementById("waistcoat-button").style.display = "flex";
-    document.getElementById("waistcoatoption").style.display = "none";
-    document.getElementById("confirmbuttonw").style.display = "block";
-  });
-  document.getElementById("confrmbuttonw").addEventListener("click", () => {
-    document.getElementById("waistcoat-button").style.display = "none";
-    document.getElementById("confirmbuttonw").style.display = "none";
-    document.getElementById("waistcoatoption").style.display = "flex";
-  });
+
+ 
+
+
   document.getElementById("removewaistcoat").addEventListener("click", () => {
     document.getElementById("waistcoatoption").style.display = "none";
+    document.getElementById("confirmwaistcoat").style.display = "none";
+
     document.getElementById("waist").style.display = "block";
+
   });
   //  //  //  //
   document.addEventListener("DOMContentLoaded", function () {
@@ -1199,6 +1220,8 @@ const Configurator = ({ takeCanvasScreenshot }) => {
       liningColorName: localStorage.getItem("LiningColor") || "Default",
       selectedCollar: localStorage.getItem("selectedCollar") || "Default",
       selectedCanvas: localStorage.getItem("selectedCanvas") || "None selected",
+      selectedsleevecuff:localStorage.getItem("selectedsleevecuff") || "None selected",
+      
       selectedShoulder:
         localStorage.getItem("selectedShoulder") || "None selected",
       selectedPeak: localStorage.getItem("selectedPeak") || "None selected",
@@ -1220,6 +1243,9 @@ const Configurator = ({ takeCanvasScreenshot }) => {
         localStorage.getItem("selectedSuspenderOption") || "None selected",
       selectedTrouserSize:
         localStorage.getItem("selectedTrouserSize") || "None selected",
+        selectedWaistcoatOption:
+        localStorage.getItem("selectedWaistcoatOption") || "None selected",
+
       TotalPrice: TotalPrice.toFixed(2),
     };
 
@@ -1306,6 +1332,10 @@ const Configurator = ({ takeCanvasScreenshot }) => {
                         <td>Inside Jacket</td>
                         <td>${orderData.jacketInside}</td>
                     </tr>
+                    <tr>
+                        <td>SleeveCuff</td>
+                        <td>${orderData.selectedsleevecuff}</td>
+                    </tr>
                 </tbody>
             </table>
             <br/>
@@ -1351,6 +1381,18 @@ const Configurator = ({ takeCanvasScreenshot }) => {
                     </tr>
                 </tbody>
             </table>
+            <table border="1" cellspacing="0" cellpadding="5" style="width:80%">
+                <thead>
+                    <tr>
+                        <th style="font-size: 24px; text-align: center;">Waistcoat</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tr>
+                        <td>Trouser size</td>
+                        <td>${orderData.selectedWaistcoatOption}</td>
+                    </tr>
+                </table>
             <p style="font-size: 20px; font-weight:bold; text-align: start; margin-top: 20px;">Total Price: $${
               orderData.TotalPrice
             }</p>
@@ -1376,6 +1418,8 @@ const Configurator = ({ takeCanvasScreenshot }) => {
           JacketSize: `${orderData.selectedSize}`,
           UndersideCollar: `${orderData.undersideCollar}`,
           InsideJacket: `${orderData.jacketInside}`,
+          selectedsleevecuff: `${orderData.selectedsleevecuff}`,
+
         },
         Trouser: {
           Waistband: `${orderData.selectedWaistband}`,
@@ -1387,6 +1431,10 @@ const Configurator = ({ takeCanvasScreenshot }) => {
           SuspenderButton: `${orderData.savedSelection}`,
           TrouserSize: `${orderData.selectedTrouserSize}`,
         },
+        Waistcoat:{
+          waistcoat:`${orderData.selectedWaistcoatOption}`,
+        },
+
         TotalPrice: `${orderData.TotalPrice}`,
       };
 
@@ -1442,6 +1490,8 @@ const Configurator = ({ takeCanvasScreenshot }) => {
     document.getElementById("buttonContent").style.display = "none";
     document.getElementById("button-menu").style.display = "none";
     document.getElementById("confrmbtn").style.display = "none";
+    document.getElementById("confrmwaist").style.display = "none";
+
     document.getElementById("sleeve-menu").style.display = "none";
     document.getElementById("monogram-option").style.display = "none";
     document.getElementById("confrmmonogram").style.display = "none";

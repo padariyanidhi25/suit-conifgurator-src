@@ -128,7 +128,7 @@ input:checked ~ .dott {
   height: 100%;
   width: 100vw;
   user-select: none;
-  background-color: #efefef;
+  background-color:  #e2d5d5;
   position: absolute;
   top: 0vh;
 }

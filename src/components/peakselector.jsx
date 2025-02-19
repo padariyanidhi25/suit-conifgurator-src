@@ -37,7 +37,7 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
     useEffect(() => {
         const handleFabricChange = () => {
             const selectedFabricUrl = localStorage.getItem("selectedFabricURL");
-            console.log("Fabric changed:", selectedFabricUrl);
+            // console.log("Fabric changed:", selectedFabricUrl);
             if (selectedFabricUrl) {
                 setFabricURL(selectedFabricUrl);
                 eventEmitter.emit("applyFabric", { textureURL: selectedFabricUrl });
@@ -67,7 +67,7 @@ const PeakSelector = ({ defaultPeak, collarType, selectedComponent }) => {
             setSelectedPeak(peakType);
             setTargetPosition(new Vector3(0, 3, 0));
             const currentFabric = localStorage.getItem("selectedFabricURL");
-            console.log("Applying fabric on peak type change:", currentFabric);
+            // console.log("Applying fabric on peak type change:", currentFabric);
             if (currentFabric) {
                 eventEmitter.emit("applyFabric", { textureURL: currentFabric });
             }

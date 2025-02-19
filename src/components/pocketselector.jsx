@@ -5,7 +5,7 @@ import { Vector3 } from "three";
 import { useThree, useFrame } from '@react-three/fiber';
 
 const PocketSelector = () => {
-    const [selectedLowerPocket, setSelectedLowerPocket] = useState('flap'); // Default to 'flap'
+    const [selectedLowerPocket, setSelectedLowerPocket] = useState('patch'); // Default to 'patch'
     const [selectedUpperPocket, setSelectedUpperPocket] = useState(null);
     const [fabricURL, setFabricURL] = useState(null);
     const [targetPosition, setTargetPosition] = useState(new Vector3(0, 3.25, 8)); // Default camera position
@@ -30,7 +30,6 @@ const PocketSelector = () => {
         document.getElementById('upper_pocket').style.display = 'none';
         document.getElementById('confrm').style.display = 'none';
         document.getElementById('monogrm').style.display = 'flex';
-      
       };
   
       const confrmlapelBtn = document.getElementById('confrmpkt');
@@ -45,73 +44,70 @@ const PocketSelector = () => {
       };
     }, []);
 
-
-    // useEffect(() => {
-    //     const handleFabricSelection = (fabric) => {
-    //       setFabricURL(fabric.textureURL);
-    //     };
-    
-    //     eventEmitter.on('fabricSelected', handleFabricSelection);
-    
-    //     return () => {
-    //       eventEmitter.off('fabricSelected', handleFabricSelection);
-    //     };
-    //   }, []);
-    
     useEffect(() => {
-      const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
-      // console.log('fabric name: ', selectedFabricName);
+      const selectedFabricName = localStorage.getItem("selectedFabricURL");
       setFabricURL(selectedFabricName);
   
       if (selectedFabricName) {
         eventEmitter.emit('applyFabric', { textureURL: selectedFabricName });
       }
-      // console.log('fabric url: ', fabricURL);
-  
     }, [selectedLowerPocket, fabricURL]);
-      
-      useEffect(() => {
+  
+    useEffect(() => {
         localStorage.setItem('selectedLowerPocket', selectedLowerPocket);
-      }, [selectedLowerPocket]);
+    }, [selectedLowerPocket]);
     
-     useEffect(() => {
+    useEffect(() => {
         const savedLowerPocket = localStorage.getItem('selectedLowerPocket');
         if (savedLowerPocket) {
-          setSelectedLowerPocket(savedLowerPocket);
+            setSelectedLowerPocket(savedLowerPocket);
         }
-      }, []);
+    }, []);
 
     useEffect(() => {
         const handleLowerPocketChange = (pocketType) => {
             setSelectedLowerPocket(pocketType);
             setTargetPosition(new Vector3(0, 2, -10));
- // Emit the applyFabric event with the current fabric URL when the waistband changes
- if (fabricURL) {
-  eventEmitter.emit('applyFabric', { textureURL: fabricURL });
-}
+            if (fabricURL) {
+                eventEmitter.emit('applyFabric', { textureURL: fabricURL });
+            }
+
+            // Handle visibility of the lower pocket models dynamically
+            const lowerPocketModel = document.getElementById('lowerpocketmodel');
+            if (pocketType === 'patch') {
+                if (lowerPocketModel) {
+                    lowerPocketModel.style.display = 'none'; // Hide lowerpocketmodel when 'patch' is selected
+                }
+            } else {
+                if (lowerPocketModel) {
+                    lowerPocketModel.style.display = 'block'; // Show the model for other pockets
+                }
+            }
         };
 
         const flapPocketButton = document.getElementById('flap-pocket');
         const patchPocketButton = document.getElementById('patch-pocket');
         const besomPocketButton = document.getElementById('besom-pocket');
+        
+        flapPocketButton.addEventListener('click', () => handleLowerPocketChange('flap'));
+        patchPocketButton.addEventListener('click', () => handleLowerPocketChange('patch'));
+        besomPocketButton.addEventListener('click', () => handleLowerPocketChange('besom'));
 
-     flapPocketButton.addEventListener('click', () => handleLowerPocketChange('flap'));
-         patchPocketButton.addEventListener('click', () => handleLowerPocketChange('patch'));
-         besomPocketButton.addEventListener('click', () => handleLowerPocketChange('besom'));
         return () => {
           flapPocketButton.removeEventListener('click', () => handleLowerPocketChange('flap'));
-             patchPocketButton.removeEventListener('click', () => handleLowerPocketChange('patch'));
-             besomPocketButton.removeEventListener('click', () => handleLowerPocketChange('besom'));
+          patchPocketButton.removeEventListener('click', () => handleLowerPocketChange('patch'));
+          besomPocketButton.removeEventListener('click', () => handleLowerPocketChange('besom'));
         };
-    }, []);
+    }, [fabricURL]);
 
     return (
         <>
-            {selectedLowerPocket === 'flap' && <Flap_Pocket />}
-            {selectedLowerPocket === 'patch' && <Patch_Pocket />}
-            {selectedLowerPocket === 'besom' && <Besom_Pocket />}
-            {/* {selectedUpperPocket === 'upper' && <Upperpocket />}
-            {selectedUpperPocket === 'halfmoon' && <Halfmoon />} */}
+            
+                {selectedLowerPocket === 'flap' && <Flap_Pocket />}
+                {selectedLowerPocket === 'patch' && <Patch_Pocket />}
+                {selectedLowerPocket === 'besom' && <Besom_Pocket />}
+           
+            {selectedLowerPocket === 'patch' && selectedUpperPocket === 'upper'}
         </>
     );
 };

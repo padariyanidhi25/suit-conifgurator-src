@@ -4,7 +4,7 @@ import { useGLTF } from '@react-three/drei'
 export function Button(props) {
   const { nodes, materials } = useGLTF('./latest/trouser/Pant Revision GLB/Pant Revision GLB/Button.glb')
   return (
-    <group {...props} dispose={null} scale={15}>
+    <group {...props} dispose={null} scale={15} position={[0,1.6,0]}>
       <group position={[-0.016, 0.008, -0.013]} rotation={[1.709, -0.118, 0.434]} scale={0.007}>
         <mesh
           castShadow

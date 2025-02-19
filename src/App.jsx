@@ -9,10 +9,15 @@ import { DirectionalLightHelper } from "three";
 import { Environment, PerspectiveCamera } from "@react-three/drei";
 import { getEntries } from "./Firebase/userUtil";
 import eventEmitter from "./components/eventEmitter";
+import Panning from "./components/Panning";
 
-function DirectionalLightWithHelper({ position, color, intensity, targetPosition }) {
+
+
+
+function DirectionalLightWithHelper({ position, color, intensity, targetPosition,helperColor }) {
   const lightRef = useRef();
   const targetRef = useRef();
+  // useHelper(lightRef, DirectionalLightHelper, 1, helperColor)
 
   useEffect(() => {
     if (lightRef.current && targetRef.current) {
@@ -52,10 +57,20 @@ function App() {
     setShowFirstCanvas((prev) => !prev);
   };
 
+  const MAX_SCROLLS = 6; // Maximum zoom-in and zoom-out steps
+  const ZOOM_STEP = 2; // Smaller step for fine control
+  
+  const [scrollCount, setScrollCount] = useState(0);
+  
   const handleWheel = (event) => {
-    setFov((prevFov) => {
-      let newFov = prevFov - event.deltaY * 0.05;
-      return Math.min(Math.max(newFov, 5), 20);
+    setScrollCount((prevCount) => {
+      let newCount = prevCount - Math.sign(event.deltaY); // Increase or decrease count
+      newCount = Math.max(-MAX_SCROLLS, Math.min(MAX_SCROLLS, newCount)); // Limit to -3 to +3
+  
+      let newFov = 25 - newCount * ZOOM_STEP; // Adjust FOV based on scroll count
+      setFov(Math.min(Math.max(newFov, 10), 25)); // Clamp FOV between 10 and 25
+  
+      return newCount; // Update scroll count
     });
   };
 
@@ -117,18 +132,18 @@ function App() {
             shadows
           >
             <PerspectiveCamera makeDefault fov={fov} position={[0, 3.25, 8]} />
-            
+            <Panning/>
             {/* Ambient Light (Soft Global Illumination) */}
-            <ambientLight intensity={0.4} />
+            <ambientLight intensity={0.01} />
 
             {/* Key Light (Main Directional Light) - Warmer Light */}
-            <DirectionalLightWithHelper position={[1.4, 6, 4.5]} targetPosition={[0, 1, 0]} color="white" intensity={0.5} />
+            <DirectionalLightWithHelper position={[1.4, 5, 4.5]} targetPosition={[0, 1, 0]} color="white" intensity={0.17} />
 
             {/* Fill Light (Reduces Shadows) - Soft Cool Light */}
-            <DirectionalLightWithHelper position={[-1.4, 6, 4.5]} targetPosition={[0,1, 0]} color="white" intensity={0.5} />
+            <DirectionalLightWithHelper position={[-1.4, 5, 4.5]} targetPosition={[0,1, 0]} color="white" intensity={0.17} />
 
             {/* Rim Light (Adds Depth) - Cool Back Light */}
-            <DirectionalLightWithHelper position={[0, 5, -4]} targetPosition={[0, 0, 0]} color="white" intensity={0.8} />
+            <DirectionalLightWithHelper position={[0, 5, -2]} targetPosition={[0, 0, 0]} color="white" intensity={0.8} />
 
             {/* HDRI Environment (Subtle & Neutral for Texture Accuracy) */}
             <Environment preset="city" />
@@ -144,6 +159,8 @@ function App() {
             }}
             shadows
           >
+
+
             <Experience setFabricPrice={setFabricPrice} />
           </Canvas>
         )}

@@ -5,11 +5,11 @@ import * as THREE from "three";
 import { useButtonTexture } from "./Buttontexture";
 
 export function Breastedbutton(props) {
-  const { nodes, materials } = useGLTF('./GLB NEW (26-1-25)/Buttons/double_breasted_buttons.glb')
+  const { nodes, materials } = useGLTF('./11-02-25/Coat/double_breasted_buttons.glb')
   useButtonTexture(materials, "Button")
   return (
     <group {...props} dispose={null} scale={20}>
-      <mesh
+       <mesh
         castShadow
         receiveShadow
         geometry={nodes.double_breasted_buttons.geometry}
@@ -21,7 +21,7 @@ export function Breastedbutton(props) {
   )
 }
 
-useGLTF.preload('./GLB NEW (26-1-25)/Buttons/double_breasted_buttons.glb')
+useGLTF.preload('./11-02-25/Coat/double_breasted_buttons.glb')
 
 export function Doublebutton(props) {
     const { nodes, materials } = useGLTF('./GLB NEW (26-1-25)/Buttons/Double_Buttons.glb')

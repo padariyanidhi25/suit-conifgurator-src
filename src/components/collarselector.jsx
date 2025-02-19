@@ -119,13 +119,7 @@ const CollarSelector = () => {
       setSelectedCollar(collarType);
       setTargetPosition(new Vector3(0, 7, -15));
     
-      const currentFabric = localStorage.getItem("selectedFabricURL");
-      console.log("Applying fabric on collar type change:", currentFabric, collarType);
       
-      if (currentFabric) {
-        setFabricURL(currentFabric); // Update the fabric URL
-        eventEmitter.emit("applyFabric", { textureURL: currentFabric });
-      }
     };
 
     document.getElementById("notch_collar").addEventListener("click", () => {

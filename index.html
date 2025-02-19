@@ -48,7 +48,7 @@
           src="./images/monogram.png">Waistcoat</button>
           
       </div>
-      <div class=" h-[100vh] w-full relative overflow-y-scroll xs:overflow-y-hidden xs:overflow-x-scroll">
+      <div class=" h-[87vh] w-full relative overflow-y-scroll xs:overflow-y-hidden xs:overflow-x-scroll">
         <div id="fabric-type"
         class="hidden p-4 flex flex-col gap-[1vh] xs:items-center xs:flex xs:flex-row xs:overflow-x-scroll absolute  xs:mt-[-1vh] xs:h-[24vh] xs:w-[100vw] "
         style="display: none;">
@@ -183,7 +183,9 @@
           style="display: none;">
           <div class="lining flex  mb-4 justify-center ml-[7vw]  xs:mt-[-5vh] " id="subtab-buttons">
             <button class="px-4 py-2 text-zinc-500 subtablinks active  rounded-full" id="linigtype">Type</button>
-            <button class="px-4 py-2 text-zinc-500 subtablinks rounded-full" id="liningcolor">Color</button>
+            <button class="px-4 py-2 text-zinc-500 subtablinks rounded-full" id="liningprint">Print</button>
+            <button class="px-4 py-2 text-zinc-500 subtablinks rounded-full" id="color">Color</button>
+
           </div>
 
         </div>
@@ -242,7 +244,7 @@
 
 
         </div>
-        <div id="lining-color"
+        <div id="lining-print"
           class="   p-3  z-10  flex flex-col  h-[100%]  xs:w-[110vw] xs:flex-row   xs:mt-[-1vh] "
           style="display: none;">
           <!-- <div
@@ -299,6 +301,33 @@
 
           </div>
         </div>
+        <div id="sleevecuff-option"
+        class="hidden   p-3  z-10  flex flex-col  h-[100%]  xs:w-[230vw] xs:flex-row   xs:mt-[-1vh] "
+        style="display: none;">
+        
+        <div
+        id="functsleevecuf"
+          class="p-4 rounded-lg flex items-center content-center w-[25vw] cursor-pointer space-x-4  xs:relative xs:flex-col xs:h-[9rem]  xs:w-[33vw] " onclick="handlesleevecuff('functsleevecuf')">
+          <img class="w-40 h-40  xs:h-20 xs:w-20 xs:mt-[3vh] "
+            src="public/images/functSleeveCuff.jpg"
+            alt="Lining">
+          <div>
+            <p class="font-semibold xs:text-[1rem] xs:ml-[-3vw] xs:w-[24vw] xs:overflow-hidden xs:text-nowrap">Functional Sleeves Cuff</p>
+          </div>
+        </div>
+       
+        <div
+        id="non-functsleevecuf"
+          class="p-4 rounded-lg flex items-center content-center w-[25vw] cursor-pointer space-x-4  xs:relative xs:flex-col xs:h-[9rem]  xs:w-[33vw] " onclick="handlesleevecuff('non-functsleevecuf')">
+          <img class="w-40 h-40  xs:h-20 xs:w-20 xs:mt-[3vh] "
+            src="public/images/non-funcSleeveCuff.jpg"
+            alt="Lining">
+          <div>
+            <p class="font-semibold xs:text-[1rem] xs:ml-[-3vw] xs:w-[24vw] xs:overflow-hidden xs:text-nowrap">
+              Non-Functional Sleeves Cuff</p>
+          </div>
+        </div>
+      </div>
         <div id="shawl_option"
         class="hidden absolute  p-3 flex flex-col z-10   left-minus-1vw xs:w-full h-[100%] w-120 xs:flex-row "
         style="display: none;">
@@ -845,6 +874,15 @@
               <p class="text-sm text-zinc-500 xs:hidden">Fabric</p>
             </div>
           </div>
+          <div id="sleevecuffs"
+          class="p-4 rounded-lg flex items-center content-center space-x-4 cursor-pointer xs:flex-col xs:w-[33vw] xs:relative xs:h-full ">
+          <img class="w-40 h-40 object-contain  xs:h-full"
+            src="public/images/sleevecuffs.jpg"
+            alt="Lapel">
+          <div>
+            <p class="font-semibold xs:text-[1rem] xs:ml-[-4vw]">Sleeves Cuff</p>
+          </div>
+        </div>
         </div>
         <div id="trousr"
           class="p-4 flex flex-col top-[5vh] xs:items-center xs:flex xs:flex-row xs:overflow-x-scroll absolute  xs:mt-[-5vh] xs:h-[23vh] "
@@ -956,77 +994,47 @@
         <div id="waistcoatoption"
           class="p-4 flex flex-col xs:items-center xs:flex xs:flex-row xs:space-x-4 xs:overflow-x-scroll absolute  xs:mt-[-1vh] xs:h-[21vh]  "
           style="display: none;">
-          <div id="removewaistcoat" class="mt-4 relative top-[-1vh] xs:w-[33vw] xs:flex xs:h-full">
+          <div id="removewaistcoat" class="mt-4 relative top-[-1vh] xs:w-[33vw] xs:flex xs:h-full" onclick="handleWaistcoatSelection('removewaistcoat')">
             <button class="flex items-center justify-center w-full py-2 border border-border rounded text-muted-foreground">
               <img aria-hidden="true" alt="remove-icon" src="https://openui.fly.dev/openui/24x24.svg?text=🚫" class="mr-2" />
              <P class="xs:hidden"> Remove Waistcoat</P>
             </button>
           </div>
           <div id="shawlCollarVest"
-            class="p-4 rounded-lg flex items-center content-center space-x-4 cursor-pointer xs:relative xs:flex-col xs:h-full  xs:w-[33vw] active">
+            class="p-4 rounded-lg flex items-center content-center space-x-4 cursor-pointer xs:relative xs:flex-col xs:h-full  xs:w-[33vw] active" onclick="handleWaistcoatSelection('shawlCollarVest')">
             <img class="w-40 h-40 object-contain xs:h-full "
-              src="https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/custommade/thumbs2/Waistcoat/CSB5BN2"
+              src="/images/shawlcollarVest.jpg"
               alt="Lining">
             <div>
-              <p class="font-semibold xs:text-[1rem] xs:ml-[-4vw]">Shawl collar double <br/> breasted vest</p>
+              <p class="font-semibold xs:text-[1rem] xs:ml-[-4vw]">Shawl collar double <br/> Breasted Vest</p>
               <!-- <p class="text-sm text-zinc-500 xs:hidden">Single Breasted 5 button</p> -->
             </div>
           </div>
           <div
-          id="style-waistcoat"
-            class="p-4 rounded-lg flex items-center content-center space-x-4 cursor-pointer xs:flex-col xs:relative xs:h-full xs:w-[33vw] ">
+          id="doublebreastedvest"
+            class="p-4 rounded-lg flex items-center content-center space-x-4 cursor-pointer xs:flex-col xs:relative xs:h-full xs:w-[33vw] "  onclick="handleWaistcoatSelection('doublebreastedvest')">
             <img class="w-40 h-40 xs:h-full object-contain "
-              src="https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/custommade/thumbs2/Waistcoat/STVS1"
+              src="/images/doubleBreastedVest.jpg"
               alt="Button">
             <div>
-              <p class="font-semibold xs:text-[1rem] xs:ml-[-4vw]">Style</p>
-              <p class="text-sm text-zinc-500 xs:hidden">V Shape</p>
+              <p class="font-semibold xs:text-[1rem] xs:ml-[-4vw]">Double <br/> Breasted Vest</p>
+              <!-- <p class="text-sm text-zinc-500 xs:hidden">Breasted Vest</p> -->
             </div>
           </div>
           <div
-          id="pocket-waistcoat"
-            class="p-4 rounded-lg flex items-center content-center space-x-4 cursor-pointer xs:relative xs:flex-col xs:w-[33vw] xs:h-full ">
+          id="singleBreastedVest"
+            class="p-4 rounded-lg flex items-center content-center space-x-4 cursor-pointer xs:relative xs:flex-col xs:w-[33vw] xs:h-full " onclick="handleWaistcoatSelection('singleBreastedVest')">
             <img class="w-40 h-40 xs:h-full  object-contain"
-              src="https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/custommade/thumbs2/Waistcoat/SPJP3"
+              src="/images/singleBreastedVest.jpg"
               alt="Monogram">
             <div>
-              <p class="font-semibold xs:text-[1rem] xs:ml-[-4vw]">Pocket</p>
-              <p class="text-sm text-zinc-500 xs:hidden">jetted Pocket</p>
+              <p class="font-semibold xs:text-[1rem] xs:ml-[-4vw]">Single <br/> Breasted Vest</p>
+              <!-- <p class="text-sm text-zinc-500 xs:hidden">jetted Pocket</p> -->
             </div>
           </div>
-          <div 
-          id="backstyle-waistcoat"
-            class="p-4 rounded-lg flex items-center content-center space-x-4 cursor-pointer xs:flex-col xs:relative xs:w-[33vw] xs:h-full ">
-            <img class="w-40 h-40 object-contain xs:h-full"
-              src="https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/custommade/thumbs2/Waistcoat/BSL1"
-              alt="Lapel">
-            <div>
-              <p class="font-semibold xs:text-[1rem] xs:ml-[-4vw]">Back Style</p>
-              <p class="text-sm text-zinc-500 xs:hidden">Lining</p>
-            </div>
-          </div>
-          <div 
-          id="linigcolor-waistcoat"
-            class="p-4 rounded-lg flex items-center content-center  space-x-4 cursor-pointer xs:flex-col xs:relative xs:w-[33vw] xs:h-full ">
-            <img class="w-40 h-40 object-contain  xs:h-full"
-              src="https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/custommade/thumbs2/lining_ui_v3/1098"
-              alt="Lapel">
-            <div>
-              <p class="font-semibold xs:text-[1rem] xs:ml-[-4vw] xs:w-[20vw] xs:text-nowrap xs:overflow-hidden">Lining Color</p>
-              <p class="text-sm text-zinc-500 xs:hidden">White</p>
-            </div>
-          </div>
-          <div 
-          id="button-waistcoat"
-            class="p-4 rounded-lg flex items-center content-center space-x-4 cursor-pointer xs:flex-col xs:w-[33vw] xs:relative xs:h-full ">
-            <img class="w-40 h-40  object-contain xs:h-full"
-              src="https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/custommade/thumbs2/buttons_v2/TFH01"
-              alt="Lapel">
-            <div>
-              <p class="font-semibold xs:text-[1rem] xs:ml-[-4vw]">Button</p>
-              <p class="text-sm text-zinc-500 xs:hidden">Dark Brown</p>
-            </div>
-          </div>
+         
+         
+          
          
         </div>
         <div id="waistcoat-closure"
@@ -1088,7 +1096,7 @@
           </div>
         </div>
       </div>
-      <div id="waistcoat-style"
+      <!-- <div id="waistcoat-style"
         class="hidden  bg-white shadow-md p-3  z-10  flex flex-col  h-[172vh]  xs:w-[150vw] xs:flex-row   xs:mt-[1vh] "
         style="display: none;">
         <div class="p-4 rounded-lg flex items-center content-center space-x-4  xs:relative xs:flex-col xs:h-[15vh] ">
@@ -1135,8 +1143,8 @@
             <p class="text-sm text-wrap w-[12vw] xs:hidden">A formal pick, featuring a deep, rounded neckline and a collar with no lapel.</p>
           </div>
         </div>
-      </div>
-      <div id="waistcoat-pocket"
+      </div> -->
+      <!-- <div id="waistcoat-pocket"
       class="hidden  bg-white shadow-md p-3  z-10  flex flex-col  h-[172vh]  xs:w-[100vw] xs:flex-row   xs:mt-[1vh] "
       style="display: none;">
       <div class="p-4 rounded-lg flex items-center content-center space-x-4  xs:relative xs:flex-col xs:h-[15vh] ">
@@ -1161,7 +1169,7 @@
           <p class="text-sm text-wrap w-[12vw] xs:hidden">Formal & exclusively aesthetic, jetted pockets are defined by a fine trimmed slit cut into the fabric.</p>
         </div>
       </div>
-    </div>
+    </div> -->
     <div id="waistcoat-backstyle"
     class="hidden  bg-white shadow-md p-3  z-10  flex flex-col  h-[172vh]  xs:w-[100vw] xs:flex-row   xs:mt-[1vh] "
     style="display: none;">
@@ -1260,6 +1268,17 @@
           class="hidden  p-3  z-10  flex flex-col  h-[100%]  xs:w-[135vw] xs:flex-row   xs:mt-[1vh] "
           style="display: none;">
           <div
+          id="standard_button_4cm"
+            class="p-4 rounded-lg flex items-center w-[25vw] content-center cursor-pointer space-x-4  xs:relative xs:flex-col xs:h-[8rem]  xs:w-[33vw] xs:mt-5 active">
+            <img class="w-40 h-40  xs:h-20 xs:w-20 xs:mt-[0vh] "
+              src="/Thumbnails/Trousers/Waistband/Standard hidden Button 4cm.jpg"
+              alt="Lining">
+            <div>
+              <p class="font-semibold xs:text-[1rem] xs:ml-[5vw] xs:w-[28vw] ">Standard  button 4cm</p>
+              <p class="text-sm text-wrap w-[12vw] xs:hidden">A classic, straightforward waistband with an exposed button.</p>
+            </div>
+          </div>
+          <div
           id="standard_hidden_button_4cm"
             class="p-4 rounded-lg flex items-center w-[25vw] content-center cursor-pointer space-x-4  xs:relative xs:flex-col xs:h-[8rem]  xs:w-[33vw] xs:mt-5 active">
             <img class="w-40 h-40  xs:h-20 xs:w-20 xs:mt-[0vh] "
@@ -1271,6 +1290,17 @@
             </div>
           </div>
           <div
+          id="standard_button_5cm"
+             class="p-4 rounded-lg flex items-center w-[25vw] content-center space-x-4 cursor-pointer  xs:relative xs:flex-col xs:h-[8rem] xs:mt-5  xs:w-[33vw] ">
+             <img class="w-40 h-40  xs:h-20 xs:w-20 xs:mt-[0vh] "
+               src="/Thumbnails/Trousers/Waistband/Standard Hidden Button 5cm.jpg"
+               alt="Lining">
+             <div>
+               <p class="font-semibold xs:text-[1rem] xs:ml-[5vw] xs:w-[28vw] ">Standard  button 5cm</p>
+               <p class="text-sm text-wrap w-[12vw] xs:hidden">Our classic waistband with a single  button under a squared shaped closure.</p>
+             </div>
+           </div>
+          <div
          id="standard_hidden_button_5cm"
             class="p-4 rounded-lg flex items-center w-[25vw] content-center space-x-4 cursor-pointer  xs:relative xs:flex-col xs:h-[8rem] xs:mt-5  xs:w-[33vw] ">
             <img class="w-40 h-40  xs:h-20 xs:w-20 xs:mt-[0vh] "
@@ -1281,6 +1311,7 @@
               <p class="text-sm text-wrap w-[12vw] xs:hidden">Our classic waistband with a single hidden button under a squared shaped closure.</p>
             </div>
           </div>
+         
           <!-- <div
          
             class="p-4 rounded-lg flex items-center w-[25vw] content-center space-x-4 cursor-pointer xs:relative xs:flex-col xs:h-[8rem] xs:mt-5  xs:w-[33vw] ">
@@ -2851,6 +2882,17 @@
 
     </div>
     <div id="result" class="absolute top-[0vh]" style="display:none;"> </div>
+    <div id="confirmwaistcoat" class=" z-[99] absolute left-[5.5vw] bottom-[-19vh] hidden xs:left-[72vw] xs:bottom-[61.5vh]"
+      style="display: none;">
+      <button id="confrmwaist" style=" background-color: #2d2d2c;"
+        class=" relative rounded-full w-[20vw] h-10 font-semibold text-lg xs:text-[0.8rem] xs:w-[12vw] xs:ml-[14vw]">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="white"
+          class="w-6 h-6 absolute top-[1vh] left-[6vw] xs:w-auto transform -translate-x-1/2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+        </svg>
+        <span class="text-white xs:hidden">Confirm</span>
+      </button>
+    </div>
     <div id="confirmcon" class=" z-[99] absolute left-[5.5vw] bottom-[-19vh] hidden xs:left-[72vw] xs:bottom-[61.5vh]"
       style="display: none;">
       <button id="confrmbtn" style=" background-color: #2d2d2c;"
@@ -2934,6 +2976,18 @@
         <span class="text-white xs:hidden">Confirm</span>
       </button>
     </div>
+    <div id="confirmsleevecuff"
+    class="hidden z-[99] absolute left-[5.5vw] bottom-[-9vh] hidden xs:left-[72vw] xs:bottom-[61.5vh]"
+    style="display: none;">
+    <button id="confrmsleevecuff" style=" background-color: #2d2d2c;"
+      class=" relative rounded-full w-[20vw] h-10 font-semibold text-lg xs:text-[0.8rem] xs:w-[12vw] xs:ml-[14vw]">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="white"
+        class="w-6 h-6 absolute top-[1vh] left-[6vw] xs:w-auto transform -translate-x-1/2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+      </svg>
+      <span class="text-white xs:hidden">Confirm</span>
+    </button>
+  </div>
     <div id="confirmcanvas"
       class="hidden z-[99] absolute left-[5.5vw] bottom-[-19vh] hidden xs:left-[72vw] xs:bottom-[61.5vh]"
       style="display: none;">
@@ -4301,6 +4355,22 @@ style="display: none;">
 
     // Optional: You can log or use the selected id in any other logic
     console.log('Selected ID:', id);
+  }
+
+  function handleWaistcoatSelection(id) {
+    // Store the selected ID in localStorage
+    localStorage.setItem("selectedWaistcoatOption", id);
+
+    // Optional: Log the selection
+    console.log("Selected Waistcoat ID:", id);
+  }
+
+  function handlesleevecuff(id) {
+    // Store the selected ID in localStorage
+    localStorage.setItem("selectedsleevecuff", id);
+
+    // Optional: Log the selection
+    console.log("selectedsleevecuff:", id);
   }
 
 </script>

@@ -43,7 +43,7 @@ liningRoot.render(
     <TBtnsComp />
   </React.StrictMode>
 );
-const liningCRoot = createRoot(document.getElementById("lining-color"));
+const liningCRoot = createRoot(document.getElementById("lining-print"));
 
 liningCRoot.render(
   <React.StrictMode>
