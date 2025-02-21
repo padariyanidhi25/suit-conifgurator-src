@@ -13,7 +13,6 @@ const FabComp = () => {
     getEntries()
       .then((result) => {
         setUserData(result);
-        // console.log(result);
         
 
       })
@@ -31,23 +30,17 @@ const FabComp = () => {
     setSelectedFabric(item);
     setSelectedFabricPrice(item.price);
     eventEmitter.emit("fabricSelected", item); // Emit event with selected fabric price
-    // console.log("Selected Fabric Texture URL:", item.textureURL); 
-    // console.log("Selected Fabric Texture URL:", item.name); 
+    
 
 
-    // Log the texture URL when a fabric is selected
-    // console.log("Selected Fabric Texture URL:", item.textureURL); // Use textureURL
 
     // Save the newly selected fabric name and texture URL to localStorage
     saveSelectedFabricName(item);
-    // console.log("fabricselected");
   };
 
   const handleConfirmClick = () => {
     if (selectedFabric) {
-      // console.log(
-      //   `Confirmed Fabric - Name: ${selectedFabric.name}, Price: ${selectedFabricPrice}`
-      // );
+    
     }
     setShowDropdown(false);
     setSelectedCategory(null);
@@ -58,7 +51,6 @@ const FabComp = () => {
   const saveSelectedFabricName = (item) => {
     // Save only the fabric name and texture URL to localStorage
     localStorage.setItem("selectedFabricName", item.name);
-    console.log("selectedFabricName", item.name);
     
     localStorage.setItem("selectedFabricURL", item.textureURL);
     localStorage.setItem("selectedFabricName", item.name);

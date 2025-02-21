@@ -45,27 +45,15 @@ const UpperpocketSelector = () => {
     }, []);
 
 
-    // useEffect(() => {
-    //     const handleFabricSelection = (fabric) => {
-    //       setFabricURL(fabric.textureURL);
-    //     };
-    
-    //     eventEmitter.on('fabricSelected', handleFabricSelection);
-    
-    //     return () => {
-    //       eventEmitter.off('fabricSelected', handleFabricSelection);
-    //     };
-    //   }, []);
+   
     
     useEffect(() => {
       const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
-      // console.log('fabric name: ', selectedFabricName);
       setFabricURL(selectedFabricName);
   
       if (selectedFabricName) {
         eventEmitter.emit('applyFabric', { textureURL: selectedFabricName });
       }
-      // console.log('fabric url: ', fabricURL);
   
     }, [selectedUpperPocket, fabricURL]);
 
@@ -97,14 +85,11 @@ const UpperpocketSelector = () => {
         document.getElementById('half-pocket').addEventListener('click', () => {
             handleUpperPocketChange('halfmoon');
         });
-      //   document.getElementById('patch-pocket-upper').addEventListener('click', () => {
-      //     handleUpperPocketChange('patch_U');
-      // });
+     
 
         return () => {
               document.getElementById('uppr-pocket').removeEventListener('click', handleUpperPocketChange);
             document.getElementById('half-pocket').removeEventListener('click', handleUpperPocketChange);
-            // document.getElementById('patch-pocket-upper').removeEventListener('click', handleUpperPocketChange);
 
         };
     }, []);
@@ -114,7 +99,6 @@ const UpperpocketSelector = () => {
             
             {selectedUpperPocket === 'upper' && <Upperpocket />}
             {selectedUpperPocket === 'halfmoon' && <Halfmoon />}
-            {/* {selectedUpperPocket === 'patch_U' && <Patch_Pocket_Upper />} */}
         </>
     );
 };

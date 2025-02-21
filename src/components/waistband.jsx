@@ -89,7 +89,7 @@ export function Doubleside(props) {
 useGLTF.preload('./11-02-25/Pant Waistband Update/Double_Side_Closure_5cm update.glb')
 
 export function Standardhidden(props) {
-  const { nodes, materials } = useGLTF('./11-02-25/Pant Waistband Update/5cm standard_hidden_button update.glb')
+  const { nodes, materials } = useGLTF('./Waistband GLB/5cm standard_hidden_button.glb')
 
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -115,7 +115,7 @@ export function Standardhidden(props) {
   }, [materials]);
   return (
     <group {...props} dispose={null} scale={15} position={[0,1.6,0]}>
-      <mesh
+       <mesh
         castShadow
         receiveShadow
         geometry={nodes.standard_hidden_button_5cm.geometry}
@@ -128,10 +128,10 @@ export function Standardhidden(props) {
 }
 
 
-useGLTF.preload('./11-02-25/Pant Waistband Update/5cm standard_hidden_button update.glb')
+useGLTF.preload('./Waistband GLB/5cm standard_hidden_button.glb')
 
 export function Standardhidden4cm(props) {
-  const { nodes, materials } = useGLTF('./11-02-25/Pant Waistband Update/4cm standard_hidden_button update.glb')
+  const { nodes, materials } = useGLTF('./Waistband GLB/4cm standard_hidden_button.glb')
 
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -170,11 +170,11 @@ export function Standardhidden4cm(props) {
 }
 
 
-useGLTF.preload('./11-02-25/Pant Waistband Update/4cm standard_hidden_button update.glb')
+useGLTF.preload('./Waistband GLB/4cm standard_hidden_button.glb')
 
 
 export function Standard4cm(props) {
-  const { nodes, materials } = useGLTF('./11-02-25/Pant Waistband Update/4cm standard_button update.glb')
+  const { nodes, materials } = useGLTF('./Waistband GLB/4cm standard_button.glb')
 
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -213,11 +213,11 @@ export function Standard4cm(props) {
 }
 
 
-useGLTF.preload('./11-02-25/Pant Waistband Update/4cm standard_button update.glb')
+useGLTF.preload('./Waistband GLB/4cm standard_button.glb')
 
 
 export function Standard5cm(props) {
-  const { nodes, materials } = useGLTF('./11-02-25/Pant Waistband Update/5cm standard_button update.glb')
+  const { nodes, materials } = useGLTF('./Waistband GLB/5cm standard_button_.glb')
 
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
@@ -243,7 +243,7 @@ export function Standard5cm(props) {
   }, [materials]);
   return (
     <group {...props} dispose={null} scale={15} position={[0,1.6,0]}>
-      <mesh
+       <mesh
         castShadow
         receiveShadow
         geometry={nodes.standard_button_5cm.geometry}
@@ -256,4 +256,4 @@ export function Standard5cm(props) {
 }
 
 
-useGLTF.preload('./11-02-25/Pant Waistband Update/5cm standard_button update.glb')
+useGLTF.preload('./Waistband GLB/5cm standard_button_.glb')

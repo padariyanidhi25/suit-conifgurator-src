@@ -131,17 +131,14 @@ const NotchwideSelector = ({
 
   useEffect(() => {
     const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
-    // console.log("fabric name: ", selectedFabricName);
     setFabricURL(selectedFabricName);
 
     if (selectedFabricName) {
       eventEmitter.emit("applyFabric", { textureURL: selectedFabricName });
     }
-    // console.log("fabric url: ", fabricURL);
   }, [selectedwideNotch, fabricURL]);
   useEffect(() => {
     const selectedbuttonurl = localStorage.getItem("ButtonURL");
-    // console.log("button name:", selectedbuttonurl);
     setButtonTextureURL(selectedbuttonurl);
     if (selectedbuttonurl) {
       eventEmitter.emit("applyButtonTexture", {
@@ -199,19 +196,17 @@ const NotchwideSelector = ({
     }
   }, [is2mmSelected, is6mmSelected]);
 
-  // Conditional rendering based on selectedComponent and collarType
-  // console.log("notchwide", collarType, selectedwideNotch);
+ 
 
   return (
     <>
-      {/* {selectedComponent === 'Classic' && collarType === 'peak' || selectedPeak === 'double' &&<Peakdoublebtn />}
-            {selectedComponent === 'Breasted' && collarType === 'peak' || selectedPeak === 'breasted' &&<Peakdoublebreasted />} */}
+    
 
       {selectedwideNotch === "single" && collarType === "notchwide" && (
         <>
           <NotchSingleButtonWide />
           <Singlebutton />
-          {/* <NotchwideKaaj/> */}
+         
           {is2mmSelected && <AmfnotchwideSingle />}
           {is6mmSelected && <Amf6mmSinglebuttonWide />}
         </>
@@ -220,7 +215,7 @@ const NotchwideSelector = ({
         <>
           <NotchDoublebuttonwide />
           <Doublebutton />
-          {/* <NotchwideKaaj/> */}
+         
 
           {is2mmSelected && <AmfnotchwideDouble />}
           {is6mmSelected && <Amf6mmdoublebuttonWide />}
@@ -230,7 +225,7 @@ const NotchwideSelector = ({
         <>
           <Notchbreastedwide />
           <Breastedbutton />
-          {/* <NotchwideKaaj/> */}
+         
 
           {is2mmSelected && <AmfnotchBreastedwide />}
           {is6mmSelected && <Amf6mmwidedoubleBreastedwide />}

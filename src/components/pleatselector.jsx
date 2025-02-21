@@ -44,29 +44,16 @@ const PleatSelector = () => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   const handleFabricSelection = (fabric) => {
-  //     setFabricURL(fabric.textureURL);
-  //     console.log("Fabric Selected:", fabric); // Log the entire fabric object
-  //   };
 
-  //   eventEmitter.on("fabricSelected", handleFabricSelection);
-
-  //   return () => {
-  //     eventEmitter.off("fabricSelected", handleFabricSelection);
-  //   };
-  // }, []);
 
    // Emit applyFabric event when selectedHem or fabricURL changes
    useEffect(() => {
     const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
-    // console.log('fabric name: ', selectedFabricName);
     setFabricURL(selectedFabricName);
 
     if (selectedFabricName) {
       eventEmitter.emit('applyFabric', { textureURL: selectedFabricName });
     }
-    // console.log('fabric url: ', fabricURL);
 
   }, [selectedpleat, fabricURL]);
 

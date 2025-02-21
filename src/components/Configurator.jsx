@@ -203,7 +203,7 @@ const Configurator = ({ takeCanvasScreenshot }) => {
         document.getElementById("fabric-type").style.display = "none";
         document.getElementById("lining-menu").style.display = "none";
         document.getElementById("liningcontent").style.display = "none";
-        document.getElementById("lining-color").style.display = "none";
+        document.getElementById("lining-print").style.display = "none";
         document.getElementById("waistcoatoption").style.display = "none";
         document.getElementById("confirmwaistcoat").style.display = "none";
 
@@ -249,10 +249,7 @@ const Configurator = ({ takeCanvasScreenshot }) => {
         document.getElementById("waistcoatoption").style.display = "none";
         document.getElementById("waist").style.display = "none";
         document.getElementById("waistcoat-closure").style.display = "none";
-        document.getElementById("confirmclosurew").style.display = "none";
-        document.getElementById("waistcoat-style").style.display = "none";
         document.getElementById("confirmstyle").style.display = "none";
-        document.getElementById("waistcoat-pocket").style.display = "none";
         document.getElementById("confirmpocketw").style.display = "none";
         document.getElementById("waistcoat-backstyle").style.display = "none";
         document.getElementById("confirmbackstyle").style.display = "none";
@@ -324,10 +321,7 @@ const Configurator = ({ takeCanvasScreenshot }) => {
         document.getElementById("confirmwaistband").style.display = "none";
         document.getElementById("waistbandcontent").style.display = "none";
         document.getElementById("waistcoat-closure").style.display = "none";
-        document.getElementById("confirmclosurew").style.display = "none";
-        document.getElementById("waistcoat-style").style.display = "none";
         document.getElementById("confirmstyle").style.display = "none";
-        document.getElementById("waistcoat-pocket").style.display = "none";
         document.getElementById("confirmpocketw").style.display = "none";
         document.getElementById("waistcoat-backstyle").style.display = "none";
         document.getElementById("confirmbackstyle").style.display = "none";
@@ -355,7 +349,7 @@ const Configurator = ({ takeCanvasScreenshot }) => {
         document.getElementById("liningcontent").style.display = "none";
         document.getElementById("confirmwaistcoat").style.display = "none";
 
-        document.getElementById("lining-color").style.display = "none";
+        document.getElementById("lining-print").style.display = "none";
         document.getElementById("buttonContent").style.display = "none";
         document.getElementById("confrmbtn").style.display = "none";
         document.getElementById("confrmwaist").style.display = "none";
@@ -470,7 +464,6 @@ const Configurator = ({ takeCanvasScreenshot }) => {
     document.getElementById("waist").style.display = "none";
   });
   document.getElementById("collarfelt").addEventListener("click", () => {
-    // console.log("click");
     monogrm.style.display = "none";
     document.getElementById("collar-option").style.display = "flex";
     document.getElementById("confirmcolar").style.display = "block";
@@ -830,33 +823,20 @@ const Configurator = ({ takeCanvasScreenshot }) => {
 
     document.getElementById("waist").style.display = "none";
   });
-  // document.getElementById("closure-waistcoat").addEventListener("click", () => {
-  //   document.getElementById("waistcoat-closure").style.display = "flex";
-  //   document.getElementById("waistcoatoption").style.display = "none";
-  //   document.getElementById("confirmclosurew").style.display = "block";
-  // });
-  // document.getElementById("confrmclosurew").addEventListener("click", () => {
-  //   document.getElementById("waistcoat-closure").style.display = "none";
-  //   document.getElementById("confirmclosurew").style.display = "none";
-  //   document.getElementById("waistcoatoption").style.display = "flex";
-  // });
+
   document.getElementById("doublebreastedvest").addEventListener("click", () => {
-    document.getElementById("waistcoat-style").style.display = "flex";
     document.getElementById("waistcoatoption").style.display = "none";
     document.getElementById("confirmstyle").style.display = "block";
   });
   document.getElementById("confrmstyle").addEventListener("click", () => {
-    document.getElementById("waistcoat-style").style.display = "none";
     document.getElementById("confirmstyle").style.display = "none";
     document.getElementById("waistcoatoption").style.display = "flex";
   });
   document.getElementById("singleBreastedVest").addEventListener("click", () => {
-    document.getElementById("waistcoat-pocket").style.display = "flex";
     document.getElementById("waistcoatoption").style.display = "none";
     document.getElementById("confirmpocketw").style.display = "block";
   });
   document.getElementById("confrmpocketw").addEventListener("click", () => {
-    document.getElementById("waistcoat-pocket").style.display = "none";
     document.getElementById("confirmpocketw").style.display = "none";
     document.getElementById("waistcoatoption").style.display = "flex";
   });
@@ -890,7 +870,6 @@ const Configurator = ({ takeCanvasScreenshot }) => {
 
   initialsInput.addEventListener("input", () => {
     const inputValue = initialsInput.value.trim().length;
-    // console.log(initialsInput.value);
 
     if (inputValue > 0) {
       nextButton.classList.add("bg-gray-300"); // Apply gray background
@@ -1440,7 +1419,6 @@ const Configurator = ({ takeCanvasScreenshot }) => {
 
       sendMail(name, "faiz@equanimoustech.com", mobileNo);
     } else {
-      // console.log("Result div not found");
     }
   });
 
@@ -1463,12 +1441,7 @@ const Configurator = ({ takeCanvasScreenshot }) => {
 
   //      //     //
   finish.addEventListener("click", () => {
-    // Check if 'finish' element is working
-    // console.log('Finish button clicked!');
-
-    // Hide various elements
-    // takeCanvasScreenshot(canvasRef1.current);
-    // takeCanvasScreenshot(canvasRef2.current);
+    
     monogrm.style.display = "none";
     document.getElementById("fabric").style.display = "none";
     document.getElementById("linigs").style.display = "none";
@@ -1480,13 +1453,12 @@ const Configurator = ({ takeCanvasScreenshot }) => {
     sizeoption.style.display = "flex";
     finish.style.display = "none";
     document.getElementById("waist").style.display = "none";
-    // document.getElementById('dropdown-menu').style.display = 'none';
     document.getElementById("tab").style.display = "none";
     document.getElementById("waistcoatoption").style.display = "none";
     document.getElementById("liningcontent").style.display = "none";
     document.getElementById("lining-menu").style.display = "none";
     document.getElementById("confrmlining").style.display = "none";
-    document.getElementById("lining-color").style.display = "none";
+    document.getElementById("lining-print").style.display = "none";
     document.getElementById("buttonContent").style.display = "none";
     document.getElementById("button-menu").style.display = "none";
     document.getElementById("confrmbtn").style.display = "none";
@@ -1525,7 +1497,6 @@ const Configurator = ({ takeCanvasScreenshot }) => {
 
   const savedCanvas = localStorage.getItem("selectedCanvas");
   if (savedCanvas) {
-    // console.log("Previously selected canvas:", savedCanvas);
   }
   //save shoulder option in local
 
@@ -1543,7 +1514,6 @@ const Configurator = ({ takeCanvasScreenshot }) => {
 
   const savedShoulder = localStorage.getItem("selectedShoulder");
   if (savedShoulder) {
-    // console.log("Previously selected canvas:", savedShoulder);
   }
 
   //save amf option in local
@@ -1559,7 +1529,6 @@ const Configurator = ({ takeCanvasScreenshot }) => {
 
   const savedAmf = localStorage.getItem("selectedAmf");
   if (savedAmf) {
-    // console.log("Previously selected canvas:", savedAmf);
   }
 
   jacketsize.addEventListener("click", () => {
@@ -1604,7 +1573,6 @@ const Configurator = ({ takeCanvasScreenshot }) => {
           jacketSizeDisplay.textContent = `Selected Jacket Size: ${selectedValue}`; // Update with selected size
         }
 
-        // console.log("Stored in localStorage:", selectedValue); // Debugging
       });
     });
 
@@ -1627,7 +1595,6 @@ const Configurator = ({ takeCanvasScreenshot }) => {
         // Store in local storage
         localStorage.setItem("selectedTrouserSize", selectedValue);
 
-        // console.log("Stored in localStorage:", selectedValue); // For debugging
 
         // Update the trouser size display
         const trouserSizeDisplay = document.getElementById("trousersize"); // Adjust the ID as needed
@@ -1637,26 +1604,11 @@ const Configurator = ({ takeCanvasScreenshot }) => {
       });
     });
 
-  // document.getElementById('shawl').addEventListener('click',()=>{
-  //   console.log('click');
-
-  //   document.getElementById('shawl_option').style.display='flex'
-  // })
-
-  // Optional: Retrieve the stored value when needed
-  // document.getElementById('finish').addEventListener("click", () => {
-  //   const selectedSize = localStorage.getItem("selectedSize");
-  //   console.log('Retrieved Size:', selectedSize); // For debugging
-  //   // sole.warn('No size selected!');
-
-  // });
+ 
 
   document.getElementById("next").addEventListener("click", () => {
-    // const selectedTrouserSize = localStorage.getItem("selectedTrouserSize");
 
-    // document.getElementById('sizetable').style.display = 'none'
     selectyourjacketsize.style.display = "none";
-    // document.getElementById("custm").style.display = "block";
     sizeoption.style.display = "flex";
   });
   document.getElementById("tnext").addEventListener("click", () => {

@@ -57,12 +57,9 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
     };
   }, []);
   const applyFabricTexture = (url) => {
-    // console.log("Applying fabric texture:", url);
     if (url) {
-      // console.log("Emitting applyFabric event with URL:", url);
       eventEmitter.emit("applyFabric", { textureURL: url });
     } else {
-      // console.log("No URL provided, not emitting.");
     }
   };
 
@@ -151,7 +148,6 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
     const savedNotch = localStorage.getItem("selectedNotch");
     const selectedFabricName = localStorage.getItem("selectedFabricName");
     const selectedFabricUrl = localStorage.getItem("selectedFabricURL");
-    console.log('selectedFabricName', selectedFabricName);
 
     if (savedNotch) {
       setSelectedNotch(savedNotch);
@@ -172,7 +168,6 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
       setFabricURL(updatedFabricURL);
       setFabricName(updatedFabricName);
 
-      // console.log(`Notch changed to: ${notchType}, Fabric Name: ${updatedFabricName}, Fabric URL: ${updatedFabricURL}`);
 
       if (buttonTextureURL) {
         eventEmitter.emit("applyButtonTexture", { textureURL: buttonTextureURL });
@@ -205,7 +200,6 @@ const NotchSelector = ({ defaultNotch, collarType, selectedComponent }) => {
     };
   }, [buttonTextureURL]);
   useEffect(() => {
-    // console.log(`Fabric URL updated: ${fabricURL}`);
     if (fabricURL) {
       applyFabricTexture(fabricURL);
     }

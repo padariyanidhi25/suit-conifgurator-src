@@ -111,18 +111,15 @@ const PeakWideSelector = ({ defaultwidePeak, collarType, selectedComponent }) =>
 
     useEffect(() => {
       const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
-      // console.log('fabric name: ', selectedFabricName);
       setFabricURL(selectedFabricName);
   
       if (selectedFabricName) {
         eventEmitter.emit('applyFabric', { textureURL: selectedFabricName });
       }
-      // console.log('fabric url: ', fabricURL);
   
     }, [selectedwidePeak, fabricURL]);
     useEffect(()=>{
       const selectedbuttonurl=localStorage.getItem('ButtonURL')
-      // console.log("button name:",selectedbuttonurl);
       setButtonTextureURL(selectedbuttonurl)
       if(selectedbuttonurl){
         eventEmitter.emit("applyButtonTexture", { textureURL: selectedbuttonurl })    }

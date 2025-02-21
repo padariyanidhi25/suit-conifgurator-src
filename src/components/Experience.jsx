@@ -147,7 +147,6 @@ const Experience = ({ toggleCanvas }) => {
       
       finish.style.display = "block";
       confirm = true;
-      // console.log("Selected Component:", selectedComponent);
       orientationChecker();
     };
 
@@ -282,7 +281,6 @@ const Experience = ({ toggleCanvas }) => {
   }
 
   window.onresize = orientationChecker;
-  // console.log(collarType);
 
   return (
     <>

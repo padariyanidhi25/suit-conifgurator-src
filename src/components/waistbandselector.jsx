@@ -4,13 +4,14 @@ import eventEmitter from './eventEmitter';
 import { Vector3 } from "three";
 import { useThree, useFrame } from '@react-three/fiber';
 import { Hook4cm, Hook5cm } from './hook';
+import { Button, Button5cm } from './waistbandbutton';
 
 
 const WaistbandSelector = () => {
-  const [selectedWaistband, setSelectedWaistband] = useState('hidden4');
+  const [selectedWaistband, setSelectedWaistband] = useState('standard4');
   const [fabricURL, setFabricURL] = useState(undefined);
   const [targetPosition, setTargetPosition] = useState(new Vector3(0, 3.25, 8)); // Default camera position
-  const { camera } = useThree(); // Access the camera
+  const { camera } = useThree(); 
   const lerpSpeed = 0.05; // Speed for camera transition
 
   // This function will smoothly move the camera to a target position
@@ -39,27 +40,17 @@ const WaistbandSelector = () => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   const handleFabricSelection = (fabric) => {
-  //     setFabricURL(fabric.textureURL);
-  //   };
-
-  //   eventEmitter.on('fabricSelected', handleFabricSelection);
-
-  //   return () => {
-  //     eventEmitter.off('fabricSelected', handleFabricSelection);
-  //   };
-  // }, [fabricURL]);
+  
 
   useEffect(() => {
     const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
-    // console.log('fabric name: ', selectedFabricName);
+   
     setFabricURL(selectedFabricName);
 
     if (selectedFabricName) {
       eventEmitter.emit('applyFabric', { textureURL: selectedFabricName });
     }
-    // console.log('fabric url: ', fabricURL);
+    
 
   }, [selectedWaistband, fabricURL]);
   
@@ -79,10 +70,7 @@ const WaistbandSelector = () => {
         setSelectedWaistband(waistbandType);
       setTargetPosition(new Vector3(0,7, -15));
 
-      //  // Emit the applyFabric event with the current fabric URL when the waistband changes
-      //  if (fabricURL) {
-      //   eventEmitter.emit('applyFabric', { textureURL: fabricURL });
-      // }
+     
     };
     
 
@@ -114,12 +102,7 @@ const WaistbandSelector = () => {
       document.getElementById('double_side_clouser').removeEventListener('click', handleWaistbandChange);
     };
   }, [fabricURL]);
-  // useEffect(() => {
-  //   if (fabricURL) {
-  //     // Emit the applyFabric event when the fabric URL changes.
-  //     eventEmitter.emit('applyFabric', { textureURL: fabricURL });
-  //   }
-  // }, [fabricURL]);
+
 
   return (
     <>
@@ -133,12 +116,15 @@ const WaistbandSelector = () => {
        {selectedWaistband === 'standard4' && (
         <>
           <Standard4cm/>
+          <Button/>
           <Hook4cm /> {/* Show Hook4cm when hidden4 is selected */}
         </>
       )}
        {selectedWaistband === 'standard5' && (
         <>
           <Standard5cm/>
+         <Button5cm/>
+
           <Hook5cm /> {/* Show Hook5cm when hidden5 is selected */}
         </>
       )}

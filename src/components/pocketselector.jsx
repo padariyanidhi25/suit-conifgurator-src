@@ -5,7 +5,7 @@ import { Vector3 } from "three";
 import { useThree, useFrame } from '@react-three/fiber';
 
 const PocketSelector = () => {
-    const [selectedLowerPocket, setSelectedLowerPocket] = useState('patch'); // Default to 'patch'
+    const [selectedLowerPocket, setSelectedLowerPocket] = useState('flap'); // Default to 'patch'
     const [selectedUpperPocket, setSelectedUpperPocket] = useState(null);
     const [fabricURL, setFabricURL] = useState(null);
     const [targetPosition, setTargetPosition] = useState(new Vector3(0, 3.25, 8)); // Default camera position

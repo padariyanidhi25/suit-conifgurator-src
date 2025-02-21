@@ -1,8 +1,5 @@
-
-
-import React, { useEffect, useRef, useState } from "react";
-import { Html, useGLTF, useTexture } from "@react-three/drei";
-import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
+import React, { useEffect, useState } from "react";
+import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import eventEmitter from './eventEmitter';
 
@@ -10,13 +7,10 @@ import eventEmitter from './eventEmitter';
  ** CHAIR MATERIALS
  */
 
-function Chair( ...props ) {
+function Chair(...props) {
+  const { nodes, materials } = useGLTF('./models/classic_noch_doublebtn_new.glb');
 
-  const { nodes, materials, scene } = useGLTF('./models/classic_noch_doublebtn_new.glb');
-
-
-  const [suitchange, setsuitchange] = useState(false)
-
+  const [suitchange, setsuitchange] = useState(false);
   const [textureURL, setTextureURL] = useState(null);
   const [buttonTextureURL, setButtonTextureURL] = useState(null);
 
@@ -36,17 +30,16 @@ function Chair( ...props ) {
   const applyButtonTexture = (texturePath) => {
     const loader = new THREE.TextureLoader();
     loader.load(texturePath, (texture) => {
-      // Assuming the button material has a specific key like 'Button.011'
       if (materials['Button.011']) {
         materials['Button.011'].map = texture;
         materials['Button.011'].needsUpdate = true;
       }
     });
   };
+
   useEffect(() => {
     const handleFabricSelection = (fabric) => {
       setTextureURL(fabric.textureURL);
-      // Call the function to change the material here
       changeJacketMaterial(fabric.textureURL);
     };
 
@@ -60,7 +53,6 @@ function Chair( ...props ) {
   function changeJacketMaterial(texturePath) {
     const loader = new THREE.TextureLoader();
     loader.load(texturePath, (texture) => {
-      // Update all materials with the new texture
       Object.keys(materials).forEach((key) => {
         const material = materials[key];
         if (material.map) {
@@ -70,14 +62,14 @@ function Chair( ...props ) {
       });
     });
   }
- 
+
   useEffect(() => {
     const handleApplyFabric = ({ textureURL }) => {
       if (textureURL) {
         const loader = new THREE.TextureLoader();
         loader.load(textureURL, (texture) => {
           Object.keys(materials).forEach((key) => {
-            if (!key.includes('Button')) { // Skip button materials
+            if (!key.includes('Button')) {
               const material = materials[key];
               if (material.map) {
                 material.map = texture;
@@ -88,108 +80,103 @@ function Chair( ...props ) {
         });
       }
     };
-   
-    eventEmitter.on('applyFabric', handleApplyFabric);
 
+    eventEmitter.on('applyFabric', handleApplyFabric);
 
     return () => {
       eventEmitter.off('applyFabric', handleApplyFabric);
-
     };
   }, [materials]);
 
-  document.getElementById('classic').addEventListener('click', function () {
+  useEffect(() => {
+    // Handle click event for 'classic' and 'breasted'
+    const classicButton = document.getElementById('classic');
+    const breastedButton = document.getElementById('breasted');
+    const tabLinks = document.querySelectorAll('.cursor-pointer');
+    const tabItems = document.querySelectorAll('.tab');
+    const subLinks = document.querySelectorAll('.sublinks');
+    const subTabLinks = document.querySelectorAll('.subtablinks');
 
-    setsuitchange(!suitchange)
+    const handleClickClassic = () => setsuitchange(!suitchange);
+    const handleClickBreasted = () => setsuitchange(false);
 
-  })
-  document.getElementById('breasted').addEventListener('click', function () {
-    setsuitchange(false);
-  });
- 
-  document.querySelectorAll('.cursor-pointer').forEach((tab)=>{
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.cursor-pointer').forEach((tab)=>tab.classList.remove('active'));
-      tab.classList.add('active');
-    })
-  })
+    classicButton?.addEventListener('click', handleClickClassic);
+    breastedButton?.addEventListener('click', handleClickBreasted);
 
+    tabLinks.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        tabLinks.forEach((tab) => tab.classList.remove('active'));
+        tab.classList.add('active');
+      });
+    });
 
-  document.querySelectorAll('.tab').forEach((tab) => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.tab').forEach((tab) => tab.classList.remove('active'));
-      tab.classList.add('active');
-    })
-  })
-  document.querySelectorAll('.sublinks').forEach((tab) => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.sublinks').forEach((tab) => tab.classList.remove('active'));
-      tab.classList.add('active');
-    })
-  })
+    tabItems.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        tabItems.forEach((tab) => tab.classList.remove('active'));
+        tab.classList.add('active');
+      });
+    });
 
-  // document.querySelectorAll('.links').forEach((tab) => {
-  //   tab.addEventListener('click', () => {
-  //     document.querySelectorAll('.links').forEach((tab) => tab.classList.remove('active'));
-  //     tab.classList.add('active');
-  //   })
-  // })
-  document.querySelectorAll('.subtablinks').forEach((tab) => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.subtablinks').forEach((tab) => tab.classList.remove('active'));
-      tab.classList.add('active');
-      if (tab.id === 'upperpocketModel') {
-        pocket.style.display = 'flex'
-        upper_pocket.style.display = 'none'
-        upper_pocket.classList.remove('pocket-active')
-        pocket.classList.add('pocket-active')
-      }
-      else if (tab.id === 'lowerpocketmodel') {
-        pocket.style.display = 'none'
-        upper_pocket.style.display = 'flex'
-        pocket.classList.remove('pocket-active')
-        upper_pocket.classList.add('pocket-active')
-      }
-    })
-  })
- 
-  
-    return (<></>
-    //   <group {...props} dispose={null} scale={20} >
-    //   {/* <mesh
-    //     castShadow
-    //     receiveShadow
-    //     geometry={nodes.Full_Lined.geometry}
-    //     material={materials['Lining.001']}
-    //     rotation={[Math.PI / 2, 0, 0]}
-    //     scale={0.01}
-    //   /> */}
-    //   <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes.Mesh026.geometry}
-    //       material={materials['Jacket.019']}
-    //     />
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes.Mesh026_1.geometry}
-    //       material={materials['Kaaj.009']}
-    //     />
-    //   </group>
-    //   <mesh
-    //     castShadow
-    //     receiveShadow
-    //     geometry={nodes.Sleeves_Buttons.geometry}
-    //     material={materials['Button.011']}
-    //     rotation={[Math.PI / 2, 0, 0]}
-    //     scale={0.01}
-    //   />
-    // </group>
-    )
-  }
-  
-  useGLTF.preload('./models/classic_noch_doublebtn_new.glb')
-export default Chair;  
+    subLinks.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        subLinks.forEach((tab) => tab.classList.remove('active'));
+        tab.classList.add('active');
+      });
+    });
 
+    subTabLinks.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        subTabLinks.forEach((tab) => tab.classList.remove('active'));
+        tab.classList.add('active');
+        if (tab.id === 'upperpocketModel') {
+          pocket.style.display = 'flex';
+          upper_pocket.style.display = 'none';
+          upper_pocket.classList.remove('pocket-active');
+          pocket.classList.add('pocket-active');
+        } else if (tab.id === 'lowerpocketmodel') {
+          pocket.style.display = 'none';
+          upper_pocket.style.display = 'flex';
+          pocket.classList.remove('pocket-active');
+          upper_pocket.classList.add('pocket-active');
+        }
+      });
+    });
+
+    // Cleanup the event listeners when the component is unmounted
+    return () => {
+      classicButton?.removeEventListener('click', handleClickClassic);
+      breastedButton?.removeEventListener('click', handleClickBreasted);
+      tabLinks.forEach((tab) => {
+        tab.removeEventListener('click', () => {
+          tabLinks.forEach((tab) => tab.classList.remove('active'));
+          tab.classList.add('active');
+        });
+      });
+      tabItems.forEach((tab) => {
+        tab.removeEventListener('click', () => {
+          tabItems.forEach((tab) => tab.classList.remove('active'));
+          tab.classList.add('active');
+        });
+      });
+      subLinks.forEach((tab) => {
+        tab.removeEventListener('click', () => {
+          subLinks.forEach((tab) => tab.classList.remove('active'));
+          tab.classList.add('active');
+        });
+      });
+      subTabLinks.forEach((tab) => {
+        tab.removeEventListener('click', () => {
+          subTabLinks.forEach((tab) => tab.classList.remove('active'));
+          tab.classList.add('active');
+          // Any other logic here...
+        });
+      });
+    };
+  }, [suitchange]); // Add the suitchange to the dependency array if needed
+
+  return <></>;
+
+}
+
+useGLTF.preload('./models/classic_noch_doublebtn_new.glb');
+export default Chair;

@@ -40,27 +40,13 @@ const TrouserPocketSelector = () => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   const handleFabricSelection = (fabric) => {
-  //     setFabricURL(fabric.textureURL);
-  //   };
-
-  //   eventEmitter.on("fabricSelected", handleFabricSelection);
-
-  //   return () => {
-  //     eventEmitter.off("fabricSelected", handleFabricSelection);
-  //   };
-  // }, []);
-
   useEffect(() => {
     const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
-    // console.log('fabric name: ', selectedFabricName);
     setFabricURL(selectedFabricName);
 
     if (selectedFabricName) {
-      eventEmitter.emit('applyFabric', { textureURL: selectedFabricName });
+      eventEmitter.emit("applyFabric", { textureURL: selectedFabricName });
     }
-    // console.log('fabric url: ', fabricURL);
   }, [selectedtrouserpocket, fabricURL]);
   useEffect(() => {
     localStorage.setItem("selectedtrouserpocket", selectedtrouserpocket);
@@ -78,9 +64,9 @@ const TrouserPocketSelector = () => {
       setSelectedtrouserpocket(PockettType);
       setTargetPosition(new Vector3(0, 3, -5));
 
-       // Emit the applyFabric event with the current fabric URL when the waistband changes
-       if (fabricURL) {
-        eventEmitter.emit('applyFabric', { textureURL: fabricURL });
+      // Emit the applyFabric event with the current fabric URL when the waistband changes
+      if (fabricURL) {
+        eventEmitter.emit("applyFabric", { textureURL: fabricURL });
       }
     };
 

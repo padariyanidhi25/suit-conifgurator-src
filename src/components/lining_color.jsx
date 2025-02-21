@@ -11,7 +11,6 @@ const LiningComponent = () => {
   useEffect(() => {
     getEntries()
       .then((result) => {
-        // console.log("Data fetched from Firebase:", result); // Log the raw data fetched
         setUserData(result);
 
         const saveLiningColor = localStorage.getItem('LiningColor');
@@ -44,7 +43,6 @@ const LiningComponent = () => {
     if (selectedLiningColorUrl) {
       localStorage.removeItem('LiningColorURL');
     }
-    // console.log(`Selected Lining Color: ${name}, Price: ${price}, Texture URL: ${textureURL}`);
 
     // Set the new selected values
     setSelectedLiningColor(name);
@@ -67,7 +65,7 @@ const LiningComponent = () => {
           <div
             key={index}
             className="p-4 rounded-lg flex items-center content-center cursor-pointer w-[25vw] space-x-4 xs:relative xs:flex-col xs:h-full xs:w-[33vw]"
-            onClick={() => handleLiningColorClick(item, item.name, item.textureURL, item.price)} // Add onClick event to log the selected lining color
+            onClick={() => handleLiningColorClick(item, item.name, item.textureURL, item.price)} //  onClick event to  selected lining color
           >
             <img
               className="w-40 h-40 xs:h-20 xs:w-20 xs:mt-[3vh]"

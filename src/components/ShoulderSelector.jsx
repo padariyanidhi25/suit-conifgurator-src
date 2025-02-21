@@ -39,27 +39,15 @@ const ShoulderSelector=()=>{
   }, []);
 
 
-  // useEffect(() => {
-  //   const handleFabricSelection = (fabric) => {
-  //     setFabricURL(fabric.textureURL);
-  //   };
-
-  //   eventEmitter.on('fabricSelected', handleFabricSelection);
-
-  //   return () => {
-  //     eventEmitter.off('fabricSelected', handleFabricSelection);
-  //   };
-  // }, []);
+ 
 
   useEffect(() => {
     const selectedFabricName = localStorage.getItem("selectedFabricURL"); // Example, adjust if needed
-    // console.log('fabric name: ', selectedFabricName);
     setFabricURL(selectedFabricName);
 
     if (selectedFabricName) {
       eventEmitter.emit('applyFabric', { textureURL: selectedFabricName });
     }
-    // console.log('fabric url: ', fabricURL);
 
   }, [selectedShoulder, fabricURL]);
   

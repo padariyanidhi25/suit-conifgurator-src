@@ -87,7 +87,6 @@ export function Half_Linning(props) {
   const { nodes, materials } = useGLTF("./GLB NEW (26-1-25)/Lining/Half_Linning.glb" );
   useEffect(() => {
     const handleApplyLiningColor = ({ textureURL }) => {
-      // console.log('gfhudg');
 
       if (textureURL) {
         const loader = new THREE.TextureLoader();
